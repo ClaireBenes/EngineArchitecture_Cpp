@@ -52,6 +52,7 @@ void Game::Render()
 
 void Game::Update()
 {
+    mScenes[mLoadedScene]->Update();
 }
 
 void Game::CheckForInputs()
@@ -79,5 +80,6 @@ void Game::CheckForInputs()
 
 void Game::Close()
 {
+    mScenes[mLoadedScene]->Close();
     SDL_Quit();
 }

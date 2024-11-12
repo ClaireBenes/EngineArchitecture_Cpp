@@ -2,9 +2,11 @@
 
 #include <iostream>
 #include <cmath>
+#include <string>
 
 struct Vector2
 {
+	Vector2();
 	Vector2(float x, float y);
 
 	//Variables
@@ -15,16 +17,18 @@ struct Vector2
 
 	//Functions
 	float GetMagnitude() const;
-	inline void Normalize();
-	inline Vector2 Normalized();
+	void Normalize();
+	Vector2 Normalized();
 
 	float Dot(const Vector2& left, const Vector2& right) const;
 	float Cross(const Vector2& vector) const;
 
-	inline void operator+=(const Vector2& vector);
-	inline void operator-=(const Vector2& vector);
-	inline void operator*=(const float value);
-	inline void operator/=(const float value);
+	std::string ToString() const;
+
+	void operator+=(const Vector2& vector);
+	void operator-=(const Vector2& vector);
+	void operator*=(const float value);
+	void operator/=(const float value);
 
 	friend Vector2 operator+(const Vector2& left, const Vector2& right);
 	friend Vector2 operator-(const Vector2& left, const Vector2& right);

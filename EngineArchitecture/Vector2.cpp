@@ -3,6 +3,12 @@
 const Vector2 Vector2::ZERO(0.0f, 0.0f);
 const Vector2 Vector2::ONE(1.0f, 1.0f);
 
+Vector2::Vector2()
+{
+	x = 0;
+	y = 0;
+}
+
 Vector2::Vector2(float x, float y)
 {
 	this->x = x;
@@ -51,6 +57,11 @@ float Vector2::Dot(const Vector2& left, const Vector2& right) const
 float Vector2::Cross(const Vector2& vector) const
 {
 	return x * vector.y - y * vector.x;
+}
+
+std::string Vector2::ToString() const
+{
+	return "(" + std::to_string(x) + " , " + std::to_string(y) + ")";
 }
 
 void Vector2::operator+=(const Vector2& vector)

@@ -55,7 +55,7 @@ void Game::Render()
 
 void Game::Update()
 {
-    mScenes[mLoadedScene]->Update();
+    mScenes[mLoadedScene]->Update(Time::deltaTime);
 }
 
 void Game::CheckForInputs()

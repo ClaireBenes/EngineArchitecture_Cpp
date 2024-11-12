@@ -9,7 +9,7 @@ void Pong::Start(Renderer* pRenderer)
 	mRenderer = pRenderer;
 }
 
-void Pong::Update()
+void Pong::Update(float deltaTime)
 {
 }
 

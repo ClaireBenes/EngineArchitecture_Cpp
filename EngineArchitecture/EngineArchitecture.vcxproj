@@ -134,12 +134,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EngineArchitecture.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Log.cpp" />
+    <ClCompile Include="Pong.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Vector2.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Log.h" />
+    <ClInclude Include="Pong.h" />
+    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Vector2.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

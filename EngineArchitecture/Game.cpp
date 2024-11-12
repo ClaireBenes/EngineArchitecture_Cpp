@@ -34,10 +34,12 @@ void Game::Loop()
 {
     while(mIsRunning)
     {
+        Time::ComputeDeltaTime();
         Update();
         mScenes[mLoadedScene]->Update();
         CheckForInputs();
         Render();
+        Time::DelayTime();
     }
     Close();
 }

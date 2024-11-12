@@ -14,12 +14,22 @@ float Vector2::GetMagnitude() const
 	return std::sqrt(x * x + y * y);
 }
 
-inline void Vector2::Normalize()
+void Vector2::Normalize()
 {
-	(*this) /= GetMagnitude();
+	float lenght = GetMagnitude();
+
+	if(lenght == 0.0f)
+	{
+		return;
+	}
+	else
+	{
+		( *this ) /= GetMagnitude();
+	}
+
 }
 
-inline Vector2 Vector2::Normalized()
+Vector2 Vector2::Normalized()
 {
 	float lenght = GetMagnitude();
 
@@ -43,47 +53,47 @@ float Vector2::Cross(const Vector2& vector) const
 	return x * vector.y - y * vector.x;
 }
 
-inline void Vector2::operator+=(const Vector2& vector)
+void Vector2::operator+=(const Vector2& vector)
 {
 	x += vector.x;
 	y += vector.y;
 }
 
-inline void Vector2::operator-=(const Vector2& vector)
+void Vector2::operator-=(const Vector2& vector)
 {
 	x -= vector.x;
 	y -= vector.y;
 }
 
-inline void Vector2::operator*=(const float value)
+void Vector2::operator*=(const float value)
 {
 	x *= value;
 	y *= value;
 }
 
-inline void Vector2::operator/=(const float value)
+void Vector2::operator/=(const float value)
 {
 	x /= value;
 	y /= value;
 }
 
 
-inline Vector2 operator+(Vector2& left, const Vector2& right)
+Vector2 operator+(const Vector2& left, const Vector2& right)
 {
 	return { left.x + right.x, right.x + right.y };
 }
 
-inline Vector2 operator-(const Vector2& left, const Vector2& right)
+Vector2 operator-(const Vector2& left, const Vector2& right)
 {
 	return { left.x - right.x, right.x - right.y };
 }
 
-inline Vector2 operator*(float value, Vector2& vector)
+Vector2 operator*(const float value, const Vector2& vector)
 {
 	return { value * vector.x, value - vector.y };
 }
 
-inline Vector2 operator/(float value, Vector2& vector)
+Vector2 operator/(const float value, const Vector2& vector)
 {
 	if(value != 0)
 	{
@@ -95,7 +105,7 @@ inline Vector2 operator/(float value, Vector2& vector)
 	}
 }
 
-inline Vector2 operator/(Vector2& vector, float value)
+Vector2 operator/(const Vector2& vector, const float value)
 {
 	if(vector.x != 0 && vector.y != 0)
 	{

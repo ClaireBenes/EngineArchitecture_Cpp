@@ -25,5 +25,10 @@ struct Vector2
 	inline void operator-=(const Vector2& vector);
 	inline void operator*=(const float value);
 	inline void operator/=(const float value);
+
+	friend Vector2 operator+(const Vector2& left, const Vector2& right);
+	friend Vector2 operator-(const Vector2& left, const Vector2& right);
+	friend Vector2 operator*(const float value, const Vector2& vector);
+	friend Vector2 operator/(const Vector2& vector, const float value);
 };
 

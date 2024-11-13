@@ -23,9 +23,5 @@ public:
 protected:
 	Window* mWindow;
 	Renderer* mRenderer;
-
-private:
-	std::string mTitle = "Scene";
-
 };
 

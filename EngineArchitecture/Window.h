@@ -19,7 +19,7 @@ public:
 	void Close();
 
 private:
-	Vector2 mDimensions = {0,0};
+	Vector2 mDimensions = { 0,0 };
 	SDL_Window* mSdlWindow;
 };
 

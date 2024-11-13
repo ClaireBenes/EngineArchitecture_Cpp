@@ -3,6 +3,7 @@
 #include <string>
 
 #include "Renderer.h"
+#include "Window.h"
 
 class Scene
 {
@@ -15,9 +16,11 @@ public:
 	virtual void OnInput(SDL_Event event) = 0;
 	virtual void Close() = 0;
 
+	void SetWindow(Window* pWindow);
+protected:
+	Window* mWindow;
 private:
 	std::string mTitle = "Scene";
 	Renderer* mRenderer;
-
 };
 

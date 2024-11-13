@@ -21,6 +21,7 @@ void Game::Initialize()
 
     if(mScenes.size() > 0)
     {
+        mScenes[mLoadedScene]->SetWindow(mWindow);
         mScenes[mLoadedScene]->Start(mRenderer);
     }
 

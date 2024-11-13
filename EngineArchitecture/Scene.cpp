@@ -3,3 +3,8 @@
 Scene::Scene()
 {
 }
+
+void Scene::SetWindow(Window* pWindow)
+{
+	mWindow = pWindow;
+}

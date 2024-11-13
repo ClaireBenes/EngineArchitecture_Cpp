@@ -6,14 +6,11 @@
 
 #include "Vector3.h"
 
-//alias
-using Color = Vector4;
-
 struct Vector4
 {
 	Vector4();
 	Vector4(float x, float y, float z, float w);
-	Vector4(Vector3 vec3, float w);
+	Vector4(Vector3 vec3, float w = 0);
 
 	//Variables
 	float x = 0;
@@ -26,4 +23,7 @@ struct Vector4
 	//functions
 	std::string ToString() const;
 };
+
+//alias
+using Color = Vector4;
 

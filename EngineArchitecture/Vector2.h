@@ -16,7 +16,7 @@ struct Vector2
 	static const Vector2 ZERO, ONE;
 
 	//Functions
-	float GetMagnitude() const;
+	float Magnitude() const;
 	void Normalize();
 	Vector2 Normalized();
 

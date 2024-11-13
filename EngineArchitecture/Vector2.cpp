@@ -17,7 +17,7 @@ Vector2::Vector2(float x, float y)
 }
 
 //Magnitude
-float Vector2::GetMagnitude() const
+float Vector2::Magnitude() const
 {
 	return std::sqrt(x * x + y * y);
 }
@@ -25,7 +25,7 @@ float Vector2::GetMagnitude() const
 //Normalize
 void Vector2::Normalize()
 {
-	float lenght = GetMagnitude();
+	float lenght = Magnitude();
 
 	if(lenght == 0.0f)
 	{
@@ -33,15 +33,14 @@ void Vector2::Normalize()
 	}
 	else
 	{
-		( *this ) /= GetMagnitude();
+		( *this ) /= Magnitude();
 	}
-
 }
 
 //Normalized
 Vector2 Vector2::Normalized()
 {
-	float lenght = GetMagnitude();
+	float lenght = Magnitude();
 
 	if(lenght == 0.0f)
 	{

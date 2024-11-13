@@ -7,6 +7,8 @@ struct Rectangle
 {
     Rectangle(Vector2 pPosition, Vector2 pDimensions);
 
+    friend bool Collision(Rectangle& a, Rectangle& b);
+
     Vector2 position;
     Vector2 dimensions;
 

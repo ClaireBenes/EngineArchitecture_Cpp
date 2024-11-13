@@ -16,6 +16,8 @@ void Pong::Start(Renderer* pRenderer)
 
 void Pong::Update(float deltaTime)
 {
+
+
 	//player paddle movement
 	if(mIsGoingUp && (mPaddleRight.position.y > 0))
 	{
@@ -35,6 +37,11 @@ void Pong::Update(float deltaTime)
 	//ball movement
 	mBall.position.y += mBallSpeedY * Time::deltaTime;
 	mBall.position.x += mBallSpeedX * Time::deltaTime;
+
+	if(Collision(mBall, mPaddleLeft) || Collision(mBall, mPaddleRight))
+	{
+		mBallSpeedX = -mBallSpeedX;
+	}
 
 	if(mBall.position.y < 0 )
 	{

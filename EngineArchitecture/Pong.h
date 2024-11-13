@@ -19,7 +19,7 @@ private:
 	Renderer* mRenderer{};
 
 	float mPaddleSpeed = 500.0f;
-	float mBallSpeedX = 300.0f;
+	float mBallSpeedX = -300.0f;
 	float mBallSpeedY = 400.0f;
 
 	bool mIsGoingUp = false;

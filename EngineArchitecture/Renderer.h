@@ -2,6 +2,7 @@
 
 #include "Rectangle.h"
 #include "Window.h"
+#include "Vector4.h"
 
 class Renderer
 {
@@ -17,11 +18,12 @@ public:
 	void EndDraw();
 	void Close();
 
-	void DrawRect(Rectangle& rRect);
+	void DrawRect(Rectangle& rRect, Color pColor);
 
 private:
 	//variables
 	SDL_Renderer* mSdlRenderer;
+	Color mBackgroundColor = { 120, 120, 255, 255 };
 
 	
 };

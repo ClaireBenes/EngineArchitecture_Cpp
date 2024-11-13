@@ -20,7 +20,7 @@ bool Renderer::Initialize(Window& rWindow)
 void Renderer::BeginDraw()
 {
     //Background Color
-    SDL_SetRenderDrawColor(mSdlRenderer, 120, 120, 255, 255);
+    SDL_SetRenderDrawColor(mSdlRenderer, mBackgroundColor.x, mBackgroundColor.y, mBackgroundColor.z, mBackgroundColor.w);
     SDL_RenderClear(mSdlRenderer);
 }
 
@@ -37,9 +37,9 @@ void Renderer::Close()
 }
 
 //Draw Rectangle
-void Renderer::DrawRect(Rectangle& rRect)
+void Renderer::DrawRect(Rectangle& rRect, Color pColor)
 {
-    SDL_SetRenderDrawColor(mSdlRenderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(mSdlRenderer, pColor.x, pColor.y, pColor.z, pColor.w);
     SDL_Rect sdlRect = rRect.ToSdlRect();
     SDL_RenderFillRect(mSdlRenderer, &sdlRect);
 }

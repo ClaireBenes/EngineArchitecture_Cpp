@@ -30,7 +30,7 @@ void Pong::Update(float deltaTime)
 	}
 
 	//ai paddle movement
-	if(mBall.position.y > 0 && mBall.position.y < mWindow->GetDimensions().y - mPaddleHeight)
+	if(mBallIsMoving && mBall.position.y > 0 && mBall.position.y < mWindow->GetDimensions().y - mPaddleHeight)
 	{
 		mPaddleLeft.position.y = mBall.position.y;
 	}
@@ -81,9 +81,12 @@ void Pong::Update(float deltaTime)
 //Draw
 void Pong::Render()
 {
-	mRenderer->DrawRect(mBall);
-	mRenderer->DrawRect(mPaddleRight);
-	mRenderer->DrawRect(mPaddleLeft);
+	Color ballColor = { 100, 0, 200, 255 };
+	Color paddleColor = { 0, 0, 200, 255 };
+
+	mRenderer->DrawRect(mBall, ballColor );
+	mRenderer->DrawRect(mPaddleRight, paddleColor);
+	mRenderer->DrawRect(mPaddleLeft, paddleColor);
 }
 
 //Input Handler

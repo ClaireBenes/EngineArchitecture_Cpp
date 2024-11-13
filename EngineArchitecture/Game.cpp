@@ -8,7 +8,7 @@ Game::Game(std::string pTitle, std::vector<Scene*> pScene) : mScenes(pScene), mI
     }
     else
     {
-        std::cout << "SDL initialization succeeded!";
+        std::cout << "SDL initialization succeeded!\n";
     }
 
     Initialize();

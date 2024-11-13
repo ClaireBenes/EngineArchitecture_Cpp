@@ -16,8 +16,6 @@ void Pong::Start(Renderer* pRenderer)
 
 void Pong::Update(float deltaTime)
 {
-
-
 	//player paddle movement
 	if(mIsGoingUp && (mPaddleRight.position.y > 0))
 	{
@@ -35,8 +33,11 @@ void Pong::Update(float deltaTime)
 	}
 
 	//ball movement
-	mBall.position.y += mBallSpeedY * Time::deltaTime;
-	mBall.position.x += mBallSpeedX * Time::deltaTime;
+	if(mIsMoving)
+	{
+		mBall.position.y += mBallSpeedY * Time::deltaTime;
+		mBall.position.x += mBallSpeedX * Time::deltaTime;
+	}
 
 	if(Collision(mBall, mPaddleLeft) || Collision(mBall, mPaddleRight))
 	{
@@ -52,13 +53,21 @@ void Pong::Update(float deltaTime)
 		mBallSpeedY = -abs(mBallSpeedY);
 	}
 
-	if(mBall.position.x < 0)
+	if(mBall.position.x < 0 || mBall.position.x > mWindow->GetDimensions().x - mBallSize)
 	{
-		mBallSpeedX = abs(mBallSpeedX);
-	}
-	else if(mBall.position.x > mWindow->GetDimensions().x - mBallSize)
-	{
-		mBallSpeedX = -abs(mBallSpeedX);
+		if(mBall.position.x < 0)
+		{
+			mScoreAI += 1;
+		}
+		else
+		{
+			mScorePlayer += 1;
+		}
+
+		mBall.position = { mWindow->GetDimensions().y / 2 - mBallSize / 2, mWindow->GetDimensions().y / 2 - mBallSize / 2 };
+		mIsMoving = false;
+
+		printf("Score : %i - %i\n", mScorePlayer, mScoreAI);
 	}
 }
 
@@ -74,15 +83,19 @@ void Pong::OnInput(SDL_Event event)
 	switch(event.type)
 	{
 		case SDL_KEYDOWN:
-			if(event.key.keysym.sym == SDLK_UP)
+			if(event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_z)
 			{
 				mIsGoingUp = true;
 				mIsGoingDown = false;
 			}
-			if(event.key.keysym.sym == SDLK_DOWN)
+			if(event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
 			{
 				mIsGoingDown = true;
 				mIsGoingUp = false;
+			}
+			if(event.key.keysym.sym == SDLK_SPACE)
+			{
+				mIsMoving = true;
 			}
 			break;
 

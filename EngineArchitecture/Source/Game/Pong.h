@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Scene.h"
-#include "Renderer.h"
-#include "Time.h"
+#include "Engine/Scene.h"
+#include "Engine/Renderer.h"
+#include "Engine/Time.h"
 
 class Pong : public Scene
 {
@@ -35,8 +35,8 @@ private:
 	bool mBallIsMoving = false;
 
 	//Objects
-	Rectangle mBall = Rectangle({ 400.0 - 20.0f / 2, 400.0f - 20.0f / 2 }, { 20,20 });
-	Rectangle mPaddleRight = Rectangle({ 0, 400.0f - 100.0f / 2 }, { 20,100 });
-	Rectangle mPaddleLeft = Rectangle({ 800 - 20, 400.0f - 100.0f / 2 }, { 20,100 });
+	Rectangle mBall {};
+	Rectangle mPaddleRight {};
+	Rectangle mPaddleLeft {};
 };
 

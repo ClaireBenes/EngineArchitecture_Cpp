@@ -1,7 +1,8 @@
 #include "Window.h"
 
-Window::Window(int pWidth, int pHeight):mSdlWindow(nullptr), mDimensions({ static_cast<float>(pWidth), static_cast< float >(pHeight) })
+Window::Window(int pWidth, int pHeight, std::string pTitle):mSdlWindow(nullptr), mDimensions({ static_cast<float>(pWidth), static_cast< float >(pHeight) })
 {
+    mTitle = pTitle;
 }
 
 //Get window dimensions
@@ -25,7 +26,7 @@ bool Window::Open()
         return false;
     }
 
-    mSdlWindow = SDL_CreateWindow("My Game", 
+    mSdlWindow = SDL_CreateWindow(mTitle.c_str(),
         SDL_WINDOWPOS_CENTERED, 
         SDL_WINDOWPOS_CENTERED, 
         static_cast< int >( mDimensions.x ), 

@@ -7,7 +7,7 @@
 class Window
 {
 public:
-	Window(int pWidth, int pHeight);
+	Window(int pWidth, int pHeight, std::string pTitle);
 	Window(const Window&) = delete;
 
 	Window& operator=(const Window&) = delete;
@@ -24,5 +24,6 @@ private:
 	//variables
 	Vector2 mDimensions = { 0,0 };
 	SDL_Window* mSdlWindow;
+	std::string mTitle = "Best Game";
 };
 

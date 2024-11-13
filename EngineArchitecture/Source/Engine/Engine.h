@@ -9,10 +9,10 @@
 #include "Scene.h"
 #include "Time.h"
 
-class Game
+class Engine
 {
 public:
-	Game(std::string pTitle, std::vector<Scene*> pScene);
+	Engine(std::string pTitle, std::vector<Scene*> pScene);
 
 	//functions
 	void Initialize();

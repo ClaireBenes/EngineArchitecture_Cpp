@@ -43,7 +43,7 @@ void Pong::Update(float deltaTime)
 	}
 
 	//ball collision
-	if(Collision(mBall, mPaddleLeft) || Collision(mBall, mPaddleRight))
+	if(Rectangle::Collision(mBall, mPaddleLeft) || Rectangle::Collision(mBall, mPaddleRight))
 	{
 		mBallSpeedX = -mBallSpeedX;
 	}

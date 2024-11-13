@@ -5,12 +5,12 @@
 
 struct Rectangle
 {
-    Rectangle(Vector2 pPosition, Vector2 pDimensions);
+    Rectangle(Vector2 pPosition = Vector2::ZERO, Vector2 pDimensions = Vector2::ONE);
 
     //functions
     SDL_Rect ToSdlRect() const;
     //AABB Collision Check
-    friend bool Collision(Rectangle& a, Rectangle& b);
+    static bool Collision(Rectangle& a, Rectangle& b);
 
     //variables
     Vector2 position;

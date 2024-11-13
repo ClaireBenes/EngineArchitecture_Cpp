@@ -20,17 +20,17 @@ SDL_Rect Rectangle::ToSdlRect() const
 }
 
 //AABB Collision calculation
-bool Collision(Rectangle& a, Rectangle& b)
+bool Rectangle::Collision(Rectangle& a, Rectangle& b)
 {
-	int xMinA = a.position.x;
-	int yMinA = a.position.y;
-	int xMaxA = a.position.x + a.dimensions.x;
-	int yMaxA = a.position.y + a.dimensions.y;
+	float xMinA = a.position.x;
+	float yMinA = a.position.y;
+	float xMaxA = a.position.x + a.dimensions.x;
+	float yMaxA = a.position.y + a.dimensions.y;
 
-	int xMinB = b.position.x;
-	int yMinB = b.position.y;
-	int xMaxB = b.position.x + b.dimensions.x;
-	int yMaxB = b.position.y + b.dimensions.y;
+	float xMinB = b.position.x;
+	float yMinB = b.position.y;
+	float xMaxB = b.position.x + b.dimensions.x;
+	float yMaxB = b.position.y + b.dimensions.y;
 
 	return ( !( xMinB > xMaxA || yMinB > yMaxA
 		|| xMaxB < xMinA || yMaxB < yMinA ) );

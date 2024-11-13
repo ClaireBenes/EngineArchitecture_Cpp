@@ -1,6 +1,6 @@
-#include "Game.h"
+#include "Engine.h"
 
-Game::Game(std::string pTitle, std::vector<Scene*> pScene) : mScenes(pScene), mIsRunning(true)
+Engine::Engine(std::string pTitle, std::vector<Scene*> pScene) : mScenes(pScene), mIsRunning(true)
 {
     //initialize SDL
     if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
@@ -12,13 +12,15 @@ Game::Game(std::string pTitle, std::vector<Scene*> pScene) : mScenes(pScene), mI
         std::cout << "SDL initialization succeeded!\n";
     }
 
+    mTitle = pTitle;
+
     Initialize();
 }
 
-void Game::Initialize()
+void Engine::Initialize()
 {
     //Create Window and Renderer
-    mWindow = new Window(800, 800);
+    mWindow = new Window(800, 800, mTitle);
     mRenderer = new Renderer();
 
     //if we have at least one scene -> Start it
@@ -36,7 +38,7 @@ void Game::Initialize()
 }
 
 //Main game loop
-void Game::Loop()
+void Engine::Loop()
 {
     while(mIsRunning)
     {
@@ -52,7 +54,7 @@ void Game::Loop()
 }
 
 //Draw
-void Game::Render()
+void Engine::Render()
 {
     mRenderer->BeginDraw();
     mScenes[mLoadedScene]->Render();
@@ -61,13 +63,13 @@ void Game::Render()
 }
 
 //Update
-void Game::Update()
+void Engine::Update()
 {
     mScenes[mLoadedScene]->Update(Time::deltaTime);
 }
 
 //Input Handler
-void Game::CheckForInputs()
+void Engine::CheckForInputs()
 {
     if(mIsRunning)
     {
@@ -97,7 +99,7 @@ void Game::CheckForInputs()
 }
 
 //Close game
-void Game::Close()
+void Engine::Close()
 {
     mScenes[mLoadedScene]->Close();
     SDL_Quit();

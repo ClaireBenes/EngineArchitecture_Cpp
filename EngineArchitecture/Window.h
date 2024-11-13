@@ -11,6 +11,8 @@ public:
 	Window(const Window&) = delete;
 
 	Window& operator=(const Window&) = delete;
+
+	//functions
 	Vector2 GetDimensions() const;
 	SDL_Window* GetSdlWindow() const;
 
@@ -19,6 +21,7 @@ public:
 	void Close();
 
 private:
+	//variables
 	Vector2 mDimensions = { 0,0 };
 	SDL_Window* mSdlWindow;
 };

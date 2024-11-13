@@ -6,6 +6,20 @@ Rectangle::Rectangle(Vector2 pPosition, Vector2 pDimensions)
 	dimensions = pDimensions;
 }
 
+//cast our rectangle to SDL rectangle
+SDL_Rect Rectangle::ToSdlRect() const
+{
+	return SDL_Rect
+	{
+		static_cast< int >( position.x ),
+		static_cast< int >( position.y ),
+		static_cast< int >( dimensions.x ),
+		static_cast< int >( dimensions.y )
+	};
+
+}
+
+//AABB Collision calculation
 bool Collision(Rectangle& a, Rectangle& b)
 {
 	int xMinA = a.position.x;

@@ -8,8 +8,10 @@ class Renderer
 public:
 	Renderer();
 	Renderer(const Renderer&) = delete;
+
 	Renderer& operator= (const Renderer&) = delete;
 
+	//function
 	bool Initialize(Window& rWindow);
 	void BeginDraw();
 	void EndDraw();
@@ -18,7 +20,10 @@ public:
 	void DrawRect(Rectangle& rRect);
 
 private:
+	//variables
 	SDL_Renderer* mSdlRenderer;
+
+	
 };
 
 

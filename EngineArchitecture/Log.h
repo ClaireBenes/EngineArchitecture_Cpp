@@ -5,6 +5,7 @@
 
 enum class LogType;
 
+//To print info and specific errors
 class Log
 {
 public:
@@ -15,8 +16,6 @@ public:
 	static void Info(const std::string& message);
 	static void Error(LogType category, const std::string& message);
 };
-
-
 
 enum class LogType
 {

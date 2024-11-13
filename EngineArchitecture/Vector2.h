@@ -25,6 +25,7 @@ struct Vector2
 
 	std::string ToString() const;
 
+	//Operator
 	void operator+=(const Vector2& vector);
 	void operator-=(const Vector2& vector);
 	void operator*=(const float value);

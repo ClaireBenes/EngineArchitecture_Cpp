@@ -6,12 +6,15 @@ public:
 	Time(const Time&) = delete;
 	Time& operator=(const Time&) = delete;
 
+	//static function
 	static unsigned int ComputeDeltaTime();
 	static void DelayTime();
 
+	//static variable
 	static float deltaTime;
 
 private:
+	//static variable
 	const static unsigned int FPS = 60;
 	const static unsigned int FRAME_DELAY = 1000 / FPS;
 	//Maximum Delta Time

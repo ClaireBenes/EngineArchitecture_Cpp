@@ -4,11 +4,13 @@ Window::Window(int pWidth, int pHeight):mSdlWindow(nullptr), mDimensions({ stati
 {
 }
 
+//Get window dimensions
 Vector2 Window::GetDimensions() const
 {
 	return mDimensions;
 }
 
+//Get SDL Window
 SDL_Window* Window::GetSdlWindow() const
 {
 	return mSdlWindow;
@@ -16,6 +18,7 @@ SDL_Window* Window::GetSdlWindow() const
 
 bool Window::Open()
 {
+    //Create SDL Window
     if(SDL_Init(SDL_INIT_VIDEO) != 0)
     {
         Log::Error(LogType::Video, "Unable to initialize video");

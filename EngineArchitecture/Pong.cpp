@@ -4,16 +4,19 @@ Pong::Pong() : Scene()
 {
 }
 
+//Initialize
 void Pong::Start(Renderer* pRenderer)
 {
 	mRenderer = pRenderer;
 
+	//initialize objects
 	Vector2 winDimension = mWindow->GetDimensions();
 	mBall = { { winDimension.y / 2 - mBallSize / 2, winDimension.y / 2 - mBallSize / 2 }, { mBallSize, mBallSize } };
 	mPaddleRight = { { 10, winDimension.y / 2 - mPaddleHeight / 2 }, { mPaddleWidth, mPaddleHeight } };
 	mPaddleLeft = { { winDimension.x - mPaddleWidth - 10, winDimension.y / 2 - mPaddleHeight / 2 }, { mPaddleWidth, mPaddleHeight } };
 }
 
+//Update
 void Pong::Update(float deltaTime)
 {
 	//player paddle movement
@@ -33,12 +36,13 @@ void Pong::Update(float deltaTime)
 	}
 
 	//ball movement
-	if(mIsMoving)
+	if(mBallIsMoving)
 	{
 		mBall.position.y += mBallSpeedY * Time::deltaTime;
 		mBall.position.x += mBallSpeedX * Time::deltaTime;
 	}
 
+	//ball collision
 	if(Collision(mBall, mPaddleLeft) || Collision(mBall, mPaddleRight))
 	{
 		mBallSpeedX = -mBallSpeedX;
@@ -53,8 +57,10 @@ void Pong::Update(float deltaTime)
 		mBallSpeedY = -abs(mBallSpeedY);
 	}
 
+	//death
 	if(mBall.position.x < 0 || mBall.position.x > mWindow->GetDimensions().x - mBallSize)
 	{
+		//score
 		if(mBall.position.x < 0)
 		{
 			mScoreAI += 1;
@@ -64,13 +70,15 @@ void Pong::Update(float deltaTime)
 			mScorePlayer += 1;
 		}
 
-		mBall.position = { mWindow->GetDimensions().y / 2 - mBallSize / 2, mWindow->GetDimensions().y / 2 - mBallSize / 2 };
-		mIsMoving = false;
-
 		printf("Score : %i - %i\n", mScorePlayer, mScoreAI);
+
+		//reset ball position
+		mBall.position = { mWindow->GetDimensions().y / 2 - mBallSize / 2, mWindow->GetDimensions().y / 2 - mBallSize / 2 };
+		mBallIsMoving = false;
 	}
 }
 
+//Draw
 void Pong::Render()
 {
 	mRenderer->DrawRect(mBall);
@@ -78,11 +86,13 @@ void Pong::Render()
 	mRenderer->DrawRect(mPaddleLeft);
 }
 
+//Input Handler
 void Pong::OnInput(SDL_Event event)
 {
 	switch(event.type)
 	{
 		case SDL_KEYDOWN:
+			//Move paddle up and down
 			if(event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_z)
 			{
 				mIsGoingUp = true;
@@ -93,13 +103,15 @@ void Pong::OnInput(SDL_Event event)
 				mIsGoingDown = true;
 				mIsGoingUp = false;
 			}
+			//Start to move ball
 			if(event.key.keysym.sym == SDLK_SPACE)
 			{
-				mIsMoving = true;
+				mBallIsMoving = true;
 			}
 			break;
 
 		case SDL_KEYUP:
+			//stop moving paddle up and down
 			mIsGoingDown = false;
 			mIsGoingUp = false;
 			break;
@@ -107,8 +119,4 @@ void Pong::OnInput(SDL_Event event)
 		default:
 			break;
 	}
-}
-
-void Pong::Close()
-{
 }

@@ -14,6 +14,7 @@ class Game
 public:
 	Game(std::string pTitle, std::vector<Scene*> pScene);
 
+	//functions
 	void Initialize();
 	void Loop();
 	void Render();
@@ -22,6 +23,7 @@ public:
 	void Close();
 
 private:
+	//variables
 	std::string mTitle = "The Title";
 	std::vector<Scene*> mScenes{};
 	Window* mWindow{};

@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Engine\Actor.h" />
+    <ClInclude Include="Source\Engine\Component.h" />
     <ClInclude Include="Source\Engine\Engine.h" />
     <ClInclude Include="Source\Engine\Log.h" />
     <ClInclude Include="Source\Engine\Rectangle.h" />
@@ -30,8 +32,11 @@
     <ClInclude Include="Source\Engine\Vector4.h" />
     <ClInclude Include="Source\Engine\Window.h" />
     <ClInclude Include="Source\Game\Pong.h" />
+    <ClInclude Include="Source\Engine\Transform2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine\Actor.cpp" />
+    <ClCompile Include="Source\Engine\Component.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
     <ClCompile Include="Source\Engine\Log.cpp" />
     <ClCompile Include="Source\Engine\Rectangle.cpp" />
@@ -44,6 +49,7 @@
     <ClCompile Include="Source\Engine\Window.cpp" />
     <ClCompile Include="Source\Game\EngineArchitecture.cpp" />
     <ClCompile Include="Source\Game\Pong.cpp" />
+    <ClCompile Include="Source\Engine\Transform2D.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

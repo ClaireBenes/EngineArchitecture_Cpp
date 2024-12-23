@@ -14,3 +14,27 @@ void Actor::RemoveComponent(Component* rComponent)
 {
 	mComponentList.erase(mComponentList.begin()+rComponent->GetUpdateOrder());
 }
+
+void Actor::SetActive()
+{
+	for (Component* myComponent : mComponentList) 
+	{
+		myComponent->OnStart();
+	}
+}
+
+void Actor::Update()
+{
+	for(Component* myComponent : mComponentList)
+	{
+		myComponent->Update();
+	}
+}
+
+void Actor::Destroy()
+{
+	for(Component* myComponent : mComponentList)
+	{
+		myComponent->OnEnd();
+	}
+}

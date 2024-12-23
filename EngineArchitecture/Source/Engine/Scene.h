@@ -1,9 +1,12 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 #include "Renderer.h"
 #include "Window.h"
+
+class Actor;
 
 class Scene
 {
@@ -23,5 +26,6 @@ public:
 protected:
 	Window* mWindow;
 	Renderer* mRenderer;
+	std::vector<Actor*> mActorList{};
 };
 

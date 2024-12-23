@@ -4,7 +4,7 @@
 #include "Engine/Transform2D.h"
 #include "Engine/Component.h"
 
-#include <vector>;
+#include <vector>
 
 
 enum class ActorState

@@ -47,7 +47,9 @@
     <ClCompile Include="Source\Engine\Vector3.cpp" />
     <ClCompile Include="Source\Engine\Vector4.cpp" />
     <ClCompile Include="Source\Engine\Window.cpp" />
-    <ClCompile Include="Source\Game\EngineArchitecture.cpp" />
+    <ClCompile Include="Source\Game\EngineArchitecture.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="Source\Game\Pong.cpp" />
     <ClCompile Include="Source\Engine\Transform2D.cpp" />
   </ItemGroup>

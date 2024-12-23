@@ -13,6 +13,8 @@ public:
 	virtual void Update();
 	virtual void OnEnd();
 
+	int GetUpdateOrder() const;
+
 private:
 	bool mIsActive = true;
 	int mUpdateOrder;

@@ -5,3 +5,28 @@ Component::Component(Actor* pOwner, float pUpdateOrder) : mOwner(*pOwner), mUpda
 {
 	mOwner.AddComponent(this);
 }
+
+Component::~Component()
+{
+	mOwner.RemoveComponent(this);
+}
+
+void Component::OnStart()
+{
+	//to add
+}
+
+void Component::Update()
+{
+	//to add
+}
+
+void Component::OnEnd()
+{
+	//to add
+}
+
+int Component::GetUpdateOrder() const
+{
+	return mUpdateOrder;
+}

@@ -13,7 +13,7 @@ void Actor::Start()
 	}
 }
 
-void Actor::AttachScene(Scene* pScene)
+void Actor::SetScene(Scene* pScene)
 {
 	mScene = pScene;
 }

@@ -24,6 +24,9 @@ public:
 	void SetWindow(Window* pWindow);
 	void SetRenderer(Renderer* pRenderer);
 
+	void AddActor(Actor* pActor);
+	void RemoveActor(Actor* pActor);
+
 protected:
 	Window* mWindow;
 	Renderer* mRenderer;

@@ -20,7 +20,7 @@ class Actor
 public:
 	Actor();
 
-	void AttachScene(Scene* pScene);
+	void SetScene(Scene* pScene);
 	void AddComponent(Component* pComponent);
 	void RemoveComponent(Component* pComponent);
 

@@ -1,9 +1,36 @@
 #include "Scene.h"
 
+#include "Renderer.h"
+#include "Window.h"
 #include "Actor.h"
+#include "RenderComponent.h"
 
 Scene::Scene()
 {
+}
+
+Scene::~Scene()
+{
+	for(Actor* actor : mActors)
+	{
+		delete actor;
+	}
+}
+
+void Scene::Update(float deltaTime)
+{
+	for(Actor* actor : mActors)
+	{
+		actor->Update();
+	}
+}
+
+void Scene::Render()
+{
+	for(RenderComponent* renderComponent : mRenderComponents)
+	{
+		renderComponent->Render(mRenderer);
+	}
 }
 
 void Scene::SetWindow(Window* pWindow)
@@ -18,6 +45,6 @@ void Scene::SetRenderer(Renderer* pRenderer)
 
 void Scene::AddActor(Actor* pActor)
 {
-	mActorList.push_back(pActor);
+	mActors.push_back(pActor);
 	pActor->SetScene(this);
 }

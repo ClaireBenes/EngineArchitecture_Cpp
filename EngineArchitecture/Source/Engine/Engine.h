@@ -13,6 +13,7 @@ class Engine
 {
 public:
 	Engine(std::string pTitle, std::vector<Scene*> pScene);
+	~Engine();
 
 	//functions
 	void Initialize();

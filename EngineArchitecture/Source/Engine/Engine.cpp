@@ -17,6 +17,19 @@ Engine::Engine(std::string pTitle, std::vector<Scene*> pScene) : mScenes(pScene)
     Initialize();
 }
 
+Engine::~Engine()
+{
+    for(Scene* scene : mScenes)
+    {
+        delete scene;
+    }
+
+    delete mRenderer;
+    delete mWindow;
+
+    SDL_Quit();
+}
+
 void Engine::Initialize()
 {
     //Create Window and Renderer
@@ -52,7 +65,6 @@ void Engine::Loop()
 
         Time::DelayTime();
     }
-    Close();
 }
 
 //Draw
@@ -97,12 +109,4 @@ void Engine::CheckForInputs()
             mScenes[mLoadedScene]->OnInput(event);
         }
     }
-
-}
-
-//Close game
-void Engine::Close()
-{
-    mScenes[mLoadedScene]->Close();
-    SDL_Quit();
 }

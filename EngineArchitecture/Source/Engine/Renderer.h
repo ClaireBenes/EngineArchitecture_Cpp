@@ -24,7 +24,6 @@ private:
 	//variables
 	SDL_Renderer* mSdlRenderer;
 	Color mBackgroundColor = { 120, 120, 255, 255 };
-
 	
 };
 

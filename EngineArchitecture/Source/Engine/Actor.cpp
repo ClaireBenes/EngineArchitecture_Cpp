@@ -1,25 +1,47 @@
 #include "Actor.h"
 
-void Actor::AttachScene(Scene* rScene)
+Actor::Actor()
 {
-	mScene = rScene;
+
 }
 
-void Actor::AddComponent(Component* rComponent)
+void Actor::Start()
 {
-	mComponentList.push_back(rComponent);
-}
-
-void Actor::RemoveComponent(Component* rComponent)
-{
-	mComponentList.erase(mComponentList.begin()+rComponent->GetUpdateOrder());
-}
-
-void Actor::SetActive()
-{
-	for (Component* myComponent : mComponentList) 
+	for(Component* myComponent : mComponentList)
 	{
 		myComponent->OnStart();
+	}
+}
+
+void Actor::AttachScene(Scene* pScene)
+{
+	mScene = pScene;
+}
+
+void Actor::AddComponent(Component* pComponent)
+{
+	mComponentList.push_back(pComponent);
+}
+
+void Actor::RemoveComponent(Component* pComponent)
+{
+	mComponentList.erase(mComponentList.begin() + pComponent->GetUpdateOrder());
+}
+
+void Actor::SetActive(bool isActive)
+{
+	if(isActive)
+	{
+		mState = ActorState::Active;
+	}
+	else
+	{
+		mState = ActorState::Paused;
+	}
+
+	for(Component* myComponent : mComponentList)
+	{
+		myComponent->SetActive(isActive);
 	}
 }
 

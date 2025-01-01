@@ -5,10 +5,8 @@ Pong::Pong() : Scene()
 }
 
 //Initialize
-void Pong::Start(Renderer* pRenderer)
+void Pong::Start()
 {
-	mRenderer = pRenderer;
-
 	//initialize objects
 	Vector2 winDimension = mWindow->GetDimensions();
 	mBall = { { winDimension.y / 2 - mBallSize / 2, winDimension.y / 2 - mBallSize / 2 }, { mBallSize, mBallSize } };

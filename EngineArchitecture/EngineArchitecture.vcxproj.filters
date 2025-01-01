@@ -57,6 +57,18 @@
     <ClInclude Include="Source\Engine\Transform2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\RenderComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\RectangleRenderComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\SpaceInvaders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Engine.cpp">
@@ -102,6 +114,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Transform2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\RenderComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\RectangleRenderComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\SpaceInvaders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

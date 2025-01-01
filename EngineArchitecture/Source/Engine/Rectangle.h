@@ -9,6 +9,7 @@ struct Rectangle
 
     //functions
     SDL_Rect ToSdlRect() const;
+
     //AABB Collision Check
     static bool Collision(Rectangle& a, Rectangle& b);
 

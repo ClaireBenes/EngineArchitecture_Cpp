@@ -14,7 +14,7 @@ public:
 	Scene();
 
 	//virtual functions
-	virtual void Start(Renderer* pRenderer) = 0;
+	virtual void Start() = 0;
 	virtual void Update(float deltaTime) = 0;
 	virtual void Render() = 0;
 	virtual void OnInput(SDL_Event event) = 0;
@@ -22,6 +22,7 @@ public:
 
 	//non virtual functions
 	void SetWindow(Window* pWindow);
+	void SetRenderer(Renderer* pRenderer);
 
 protected:
 	Window* mWindow;

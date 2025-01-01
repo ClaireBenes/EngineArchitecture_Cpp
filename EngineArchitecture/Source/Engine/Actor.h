@@ -20,19 +20,20 @@ class Actor
 public:
 	Actor();
 
-	void Start();
+	void AttachScene(Scene* pScene);
+	void AddComponent(Component* pComponent);
+	void RemoveComponent(Component* pComponent);
 
-	void AttachScene(Scene* rScene);
-	void AddComponent(Component* rComponent);
-	void RemoveComponent(Component* rComponent);
+	void SetActive(bool isActive);
 
-	void SetActive();
-	void Update();
-	void Destroy();
+	virtual void Start();
+	virtual void Update();
+	virtual void Destroy();
+
+	Transform2D mTransform{};
 
 private:
 	Scene* mScene = nullptr;
-	Transform2D* mTransform = nullptr;
 	ActorState mState = ActorState::Active;
 	std::vector<Component*> mComponentList{};
 	

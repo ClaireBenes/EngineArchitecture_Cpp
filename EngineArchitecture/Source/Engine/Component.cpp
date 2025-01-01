@@ -26,6 +26,11 @@ void Component::OnEnd()
 	//to add
 }
 
+void Component::SetActive(bool isActive)
+{
+	mIsActive = isActive;
+}
+
 int Component::GetUpdateOrder() const
 {
 	return mUpdateOrder;

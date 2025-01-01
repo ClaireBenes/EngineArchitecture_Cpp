@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Engine\RectangleRenderComponent.h" />
+    <ClInclude Include="Source\Engine\RenderComponent.h" />
+    <ClInclude Include="Source\Game\Player.h" />
     <ClInclude Include="Source\Engine\Actor.h" />
     <ClInclude Include="Source\Engine\Component.h" />
     <ClInclude Include="Source\Engine\Engine.h" />
@@ -33,8 +36,12 @@
     <ClInclude Include="Source\Engine\Window.h" />
     <ClInclude Include="Source\Game\Pong.h" />
     <ClInclude Include="Source\Engine\Transform2D.h" />
+    <ClInclude Include="Source\Game\SpaceInvaders.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine\RectangleRenderComponent.cpp" />
+    <ClCompile Include="Source\Engine\RenderComponent.cpp" />
+    <ClCompile Include="Source\Game\Player.cpp" />
     <ClCompile Include="Source\Engine\Actor.cpp" />
     <ClCompile Include="Source\Engine\Component.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
@@ -52,6 +59,7 @@
     </ClCompile>
     <ClCompile Include="Source\Game\Pong.cpp" />
     <ClCompile Include="Source\Engine\Transform2D.cpp" />
+    <ClCompile Include="Source\Game\SpaceInvaders.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

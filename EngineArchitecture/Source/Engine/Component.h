@@ -13,11 +13,15 @@ public:
 	virtual void Update();
 	virtual void OnEnd();
 
+	void SetActive(bool isActive);
+
 	int GetUpdateOrder() const;
+
+protected:
+	Actor& mOwner;
 
 private:
 	bool mIsActive = true;
 	int mUpdateOrder;
-	Actor& mOwner;
 };
 

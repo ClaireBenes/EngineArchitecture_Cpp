@@ -9,7 +9,7 @@ class Pong : public Scene
 public:
 	Pong();
 
-	void Start(Renderer* pRenderer) override;
+	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
 	void OnInput(SDL_Event event) override;

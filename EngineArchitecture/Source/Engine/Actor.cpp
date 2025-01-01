@@ -1,9 +1,6 @@
 #include "Actor.h"
 
-Actor::Actor()
-{
-
-}
+#include "RenderComponent.h"
 
 void Actor::Start()
 {
@@ -23,11 +20,33 @@ void Actor::SetScene(Scene* pScene)
 void Actor::AddComponent(Component* pComponent)
 {
 	mComponentList.push_back(pComponent);
+
+	if(RenderComponent* pRenderComponent = dynamic_cast<RenderComponent*>(pComponent))
+	{
+		mRenderComponents.push_back(pRenderComponent);
+	}
 }
 
 void Actor::RemoveComponent(Component* pComponent)
 {
-	mComponentList.erase(mComponentList.begin() + pComponent->GetUpdateOrder());
+	auto it = std::find(mComponentList.begin(), mComponentList.end(), pComponent);
+	if(it == mComponentList.end())
+	{
+		return;
+	}
+
+	if(RenderComponent* pRenderComponent = dynamic_cast<RenderComponent*>(pComponent))
+	{
+		auto itRender = std::find(mRenderComponents.begin(), mRenderComponents.end(), pRenderComponent);
+
+		if(itRender != mRenderComponents.end())
+		{
+			mRenderComponents.erase(itRender);
+		}
+	}
+
+	delete pComponent;
+	mComponentList.erase(it);
 }
 
 void Actor::SetActive(bool isActive)
@@ -44,6 +63,14 @@ void Actor::SetActive(bool isActive)
 	for(Component* myComponent : mComponentList)
 	{
 		myComponent->SetActive(isActive);
+	}
+}
+
+void Actor::Render(Renderer* pRenderer)
+{
+	for(RenderComponent* renderComponent : mRenderComponents)
+	{
+		renderComponent->Render(pRenderer);
 	}
 }
 

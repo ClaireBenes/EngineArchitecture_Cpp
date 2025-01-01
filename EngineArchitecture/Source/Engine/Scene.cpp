@@ -3,7 +3,6 @@
 #include "Renderer.h"
 #include "Window.h"
 #include "Actor.h"
-#include "RenderComponent.h"
 
 Scene::Scene()
 {
@@ -27,9 +26,9 @@ void Scene::Update(float deltaTime)
 
 void Scene::Render()
 {
-	for(RenderComponent* renderComponent : mRenderComponents)
+	for(Actor* actor : mActors)
 	{
-		renderComponent->Render(mRenderer);
+		actor->Render(mRenderer);
 	}
 }
 
@@ -47,4 +46,5 @@ void Scene::AddActor(Actor* pActor)
 {
 	mActors.push_back(pActor);
 	pActor->SetScene(this);
+	pActor->Start();
 }

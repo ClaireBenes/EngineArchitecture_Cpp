@@ -6,6 +6,7 @@
 
 #include <vector>
 
+class RenderComponent;
 
 enum class ActorState
 {
@@ -18,13 +19,12 @@ enum class ActorState
 class Actor
 {
 public:
-	Actor();
-
 	void SetScene(Scene* pScene);
 	void AddComponent(Component* pComponent);
 	void RemoveComponent(Component* pComponent);
 
 	void SetActive(bool isActive);
+	void Render(Renderer* pRenderer);
 
 	virtual void SetupComponents() = 0;
 	virtual void Start();
@@ -37,8 +37,7 @@ private:
 	Scene* mScene = nullptr;
 	ActorState mState = ActorState::Active;
 	std::vector<Component*> mComponentList{};
-	
-
+	std::vector<RenderComponent*> mRenderComponents{};
 };
 
 

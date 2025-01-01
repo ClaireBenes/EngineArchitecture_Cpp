@@ -8,7 +8,6 @@
 class Renderer;
 class Window;
 class Actor;
-class RenderComponent;
 
 class Scene
 {
@@ -33,6 +32,5 @@ protected:
 	Window* mWindow;
 	Renderer* mRenderer;
 	std::vector<Actor*> mActors{};
-	std::vector<RenderComponent*> mRenderComponents{};
 };
 

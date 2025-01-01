@@ -14,10 +14,12 @@ void SpaceInvaders::Start()
 
 void SpaceInvaders::Update(float deltaTime)
 {
+	Scene::Update(deltaTime);
 }
 
 void SpaceInvaders::Render()
 {
+	Scene::Render();
 }
 
 void SpaceInvaders::OnInput(SDL_Event event)

@@ -119,9 +119,9 @@ Vector2 operator*(const float value, const Vector2& vector)
 // divide in one order 
 Vector2 operator/(const float value, const Vector2& vector)
 {
-	if(value != 0)
+	if(vector.x != 0 && vector.y != 0)
 	{
-		return { vector.x / value, vector.y / value };
+		return { value / vector.x, value / vector.y };
 	}
 	else
 	{
@@ -132,9 +132,9 @@ Vector2 operator/(const float value, const Vector2& vector)
 // divide in different order
 Vector2 operator/(const Vector2& vector, const float value)
 {
-	if(vector.x != 0 && vector.y != 0)
+	if(value != 0)
 	{
-		return { value / vector.x, value / vector.y };
+		return { vector.x / value, vector.y / value };
 	}
 	else
 	{

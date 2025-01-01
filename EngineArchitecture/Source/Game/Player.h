@@ -5,7 +5,7 @@
 class Player : public Actor
 {
 public:
-	void Start() override;
+	void SetupComponents() override;
 	void Update() override;
 	void Destroy() override;
 };

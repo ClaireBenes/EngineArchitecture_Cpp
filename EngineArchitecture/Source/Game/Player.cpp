@@ -1,8 +1,12 @@
 #include "Player.h"
 
-void Player::Start()
+#include "Engine/RectangleRenderComponent.h"
+
+void Player::SetupComponents()
 {
-	Actor::Start();
+	RectangleRenderComponent* renderComponent = new RectangleRenderComponent();
+	renderComponent->SetOwner(this);
+	renderComponent->mColor = { 255,0,0,255 };
 }
 
 void Player::Update()

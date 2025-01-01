@@ -7,6 +7,8 @@ Actor::Actor()
 
 void Actor::Start()
 {
+	SetupComponents();
+
 	for(Component* myComponent : mComponentList)
 	{
 		myComponent->OnStart();

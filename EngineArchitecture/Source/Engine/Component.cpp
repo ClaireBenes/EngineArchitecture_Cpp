@@ -1,14 +1,16 @@
 #include "Component.h"
 #include "Actor.h"
 
-Component::Component(Actor* pOwner, float pUpdateOrder) : mOwner(*pOwner), mUpdateOrder(pUpdateOrder)
+Component::Component(float pUpdateOrder) : mUpdateOrder(pUpdateOrder)
 {
-	mOwner.AddComponent(this);
 }
 
 Component::~Component()
 {
-	mOwner.RemoveComponent(this);
+	if(mOwner != nullptr)
+	{
+		mOwner->RemoveComponent(this);
+	}
 }
 
 void Component::OnStart()
@@ -29,6 +31,12 @@ void Component::OnEnd()
 void Component::SetActive(bool isActive)
 {
 	mIsActive = isActive;
+}
+
+void Component::SetOwner(Actor* pOwner)
+{
+	mOwner = pOwner;
+	mOwner->AddComponent(this);
 }
 
 int Component::GetUpdateOrder() const

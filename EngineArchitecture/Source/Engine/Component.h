@@ -5,8 +5,7 @@ class Actor;
 class Component
 {
 public:
-	Component(Actor* pOwner, float pUpdateOrder = 100);
-	Component() = delete;
+	Component(float pUpdateOrder = 100);
 	virtual~Component();
 
 	virtual void OnStart();
@@ -14,11 +13,12 @@ public:
 	virtual void OnEnd();
 
 	void SetActive(bool isActive);
+	void SetOwner(Actor* pOwner);
 
 	int GetUpdateOrder() const;
 
 protected:
-	Actor& mOwner;
+	Actor* mOwner = nullptr;
 
 private:
 	bool mIsActive = true;

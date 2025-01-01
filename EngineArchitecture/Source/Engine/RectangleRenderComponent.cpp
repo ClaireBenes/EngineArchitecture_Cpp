@@ -6,6 +6,6 @@
 void RectangleRenderComponent::Render(Renderer* pRenderer)
 {
 	Rectangle tempRectangle = mRectangle;
-	tempRectangle.position += mOwner.mTransform.mPosition;
+	tempRectangle.position += mOwner->mTransform.mPosition;
 	pRenderer->DrawRect(tempRectangle, mColor);
 }

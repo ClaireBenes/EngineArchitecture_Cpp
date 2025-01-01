@@ -26,6 +26,7 @@ public:
 
 	void SetActive(bool isActive);
 
+	virtual void SetupComponents() = 0;
 	virtual void Start();
 	virtual void Update();
 	virtual void Destroy();

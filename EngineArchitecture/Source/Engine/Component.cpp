@@ -5,6 +5,7 @@ Component::Component(float pUpdateOrder) : mUpdateOrder(pUpdateOrder)
 {
 }
 
+//On destruction
 Component::~Component()
 {
 	if(mOwner != nullptr)
@@ -13,26 +14,12 @@ Component::~Component()
 	}
 }
 
-void Component::OnStart()
-{
-	//to add
-}
-
-void Component::Update()
-{
-	//to add
-}
-
-void Component::OnEnd()
-{
-	//to add
-}
-
 void Component::SetActive(bool isActive)
 {
 	mIsActive = isActive;
 }
 
+//Put component on actor
 void Component::SetOwner(Actor* pOwner)
 {
 	mOwner = pOwner;

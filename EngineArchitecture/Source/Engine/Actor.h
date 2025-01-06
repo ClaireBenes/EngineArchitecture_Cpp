@@ -8,6 +8,7 @@
 
 class RenderComponent;
 
+//All actor possible state
 enum class ActorState
 {
 	Active,
@@ -19,6 +20,7 @@ enum class ActorState
 class Actor
 {
 public:
+	//Functions
 	void SetScene(Scene* pScene);
 	void AddComponent(Component* pComponent);
 	void RemoveComponent(Component* pComponent);
@@ -31,9 +33,11 @@ public:
 	virtual void Update();
 	virtual void Destroy();
 
+	//Variables
 	Transform2D mTransform{};
 
 private:
+	//Variables
 	Scene* mScene = nullptr;
 	ActorState mState = ActorState::Active;
 	std::vector<Component*> mComponentList{};

@@ -4,12 +4,10 @@
 #include "Window.h"
 #include "Actor.h"
 
-Scene::Scene()
-{
-}
-
+//On destruction
 Scene::~Scene()
 {
+	//Delete all actors
 	for(Actor* actor : mActors)
 	{
 		delete actor;
@@ -44,6 +42,7 @@ void Scene::SetRenderer(Renderer* pRenderer)
 
 void Scene::AddActor(Actor* pActor)
 {
+	//Add actor, give them the scene reference and start it
 	mActors.push_back(pActor);
 	pActor->SetScene(this);
 	pActor->Start();

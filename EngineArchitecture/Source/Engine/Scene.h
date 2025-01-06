@@ -12,16 +12,16 @@ class Actor;
 class Scene
 {
 public:
-	Scene();
+	Scene(){};
 	virtual ~Scene();
 
-	//virtual functions
+	//Virtual functions
 	virtual void Start() = 0;
 	virtual void Update(float deltaTime);
 	virtual void Render();
 	virtual void OnInput(SDL_Event event) = 0;
 
-	//non virtual functions
+	//Non virtual functions
 	void SetWindow(Window* pWindow);
 	void SetRenderer(Renderer* pRenderer);
 
@@ -29,6 +29,7 @@ public:
 	void RemoveActor(Actor* pActor){};
 
 protected:
+	//Variables
 	Window* mWindow;
 	Renderer* mRenderer;
 	std::vector<Actor*> mActors{};

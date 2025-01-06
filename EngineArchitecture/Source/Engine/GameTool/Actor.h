@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Engine/Scene.h"
-#include "Engine/Transform2D.h"
-#include "Engine/Component.h"
+#include "Scene.h"
+#include "Transform/Transform2D.h"
+#include "Component.h"
 
 #include <vector>
 

@@ -1,6 +1,6 @@
 #include "Actor.h"
 
-#include "RenderComponent.h"
+#include "Render/RenderComponent.h"
 
 void Actor::Start()
 {

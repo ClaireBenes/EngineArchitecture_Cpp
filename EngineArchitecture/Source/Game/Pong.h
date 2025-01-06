@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Engine/Scene.h"
+#include "Engine/GameTool/Scene.h"
 #include "Engine/Renderer.h"
 #include "Engine/Time.h"
 

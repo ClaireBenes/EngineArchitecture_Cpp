@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Rectangle.h"
+#include "GameTool/Rectangle.h"
 #include "Window.h"
-#include "Vector4.h"
+#include "GameTool/Vector/Vector4.h"
 
 class Renderer
 {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Vector2.h"
-#include "Component.h"
+#include "../Vector/Vector2.h"
+#include "../Component.h"
 
 struct Transform2D 
 {

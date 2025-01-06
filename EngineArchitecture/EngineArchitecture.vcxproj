@@ -19,46 +19,46 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Engine\RectangleRenderComponent.h" />
-    <ClInclude Include="Source\Engine\RenderComponent.h" />
+    <ClInclude Include="Source\Engine\GameTool\Render\RectangleRenderComponent.h" />
+    <ClInclude Include="Source\Engine\GameTool\Render\RenderComponent.h" />
     <ClInclude Include="Source\Game\Player.h" />
-    <ClInclude Include="Source\Engine\Actor.h" />
-    <ClInclude Include="Source\Engine\Component.h" />
+    <ClInclude Include="Source\Engine\GameTool\Actor.h" />
+    <ClInclude Include="Source\Engine\GameTool\Component.h" />
     <ClInclude Include="Source\Engine\Engine.h" />
     <ClInclude Include="Source\Engine\Log.h" />
-    <ClInclude Include="Source\Engine\Rectangle.h" />
+    <ClInclude Include="Source\Engine\GameTool\Rectangle.h" />
     <ClInclude Include="Source\Engine\Renderer.h" />
-    <ClInclude Include="Source\Engine\Scene.h" />
+    <ClInclude Include="Source\Engine\GameTool\Scene.h" />
     <ClInclude Include="Source\Engine\Time.h" />
-    <ClInclude Include="Source\Engine\Vector2.h" />
-    <ClInclude Include="Source\Engine\Vector3.h" />
-    <ClInclude Include="Source\Engine\Vector4.h" />
+    <ClInclude Include="Source\Engine\GameTool\Vector\Vector2.h" />
+    <ClInclude Include="Source\Engine\GameTool\Vector\Vector3.h" />
+    <ClInclude Include="Source\Engine\GameTool\Vector\Vector4.h" />
     <ClInclude Include="Source\Engine\Window.h" />
     <ClInclude Include="Source\Game\Pong.h" />
-    <ClInclude Include="Source\Engine\Transform2D.h" />
+    <ClInclude Include="Source\Engine\GameTool\Transform\Transform2D.h" />
     <ClInclude Include="Source\Game\SpaceInvaders.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Engine\RectangleRenderComponent.cpp" />
-    <ClCompile Include="Source\Engine\RenderComponent.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Render\RectangleRenderComponent.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Render\RenderComponent.cpp" />
     <ClCompile Include="Source\Game\Player.cpp" />
-    <ClCompile Include="Source\Engine\Actor.cpp" />
-    <ClCompile Include="Source\Engine\Component.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Actor.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Component.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
     <ClCompile Include="Source\Engine\Log.cpp" />
-    <ClCompile Include="Source\Engine\Rectangle.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Rectangle.cpp" />
     <ClCompile Include="Source\Engine\Renderer.cpp" />
-    <ClCompile Include="Source\Engine\Scene.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Scene.cpp" />
     <ClCompile Include="Source\Engine\Time.cpp" />
-    <ClCompile Include="Source\Engine\Vector2.cpp" />
-    <ClCompile Include="Source\Engine\Vector3.cpp" />
-    <ClCompile Include="Source\Engine\Vector4.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Vector\Vector2.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Vector\Vector3.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Vector\Vector4.cpp" />
     <ClCompile Include="Source\Engine\Window.cpp" />
     <ClCompile Include="Source\Game\EngineArchitecture.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="Source\Game\Pong.cpp" />
-    <ClCompile Include="Source\Engine\Transform2D.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Transform\Transform2D.cpp" />
     <ClCompile Include="Source\Game\SpaceInvaders.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SDL_rect.h>
-#include "Vector2.h"
+#include "Vector/Vector2.h"
 
 struct Rectangle
 {

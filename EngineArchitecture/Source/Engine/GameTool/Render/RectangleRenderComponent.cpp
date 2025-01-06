@@ -1,7 +1,7 @@
 #include "RectangleRenderComponent.h"
 
-#include "Renderer.h"
-#include "Actor.h"
+#include "../Actor.h"
+#include "../../Renderer.h"
 
 void RectangleRenderComponent::Render(Renderer* pRenderer)
 {

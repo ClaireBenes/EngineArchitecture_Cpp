@@ -2,7 +2,7 @@
 #include "SDL.h"
 
 #include "Log.h"
-#include "Vector2.h"
+#include "GameTool/Vector/Vector2.h"
 
 class Window
 {

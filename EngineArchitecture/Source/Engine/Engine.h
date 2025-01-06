@@ -5,8 +5,7 @@
 
 #include "Window.h"
 #include "Renderer.h"
-#include "Rectangle.h"
-#include "Scene.h"
+#include "GameTool/Scene.h"
 #include "Time.h"
 
 class Engine

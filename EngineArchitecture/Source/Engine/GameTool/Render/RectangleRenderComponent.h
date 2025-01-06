@@ -1,7 +1,7 @@
 #pragma once
 
 #include "RenderComponent.h"
-#include "Rectangle.h"
+#include "../Rectangle.h"
 
 //Rectangle
 class RectangleRenderComponent : public RenderComponent

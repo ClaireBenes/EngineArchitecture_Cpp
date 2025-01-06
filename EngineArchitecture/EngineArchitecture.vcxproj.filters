@@ -24,46 +24,46 @@
     <ClInclude Include="Source\Engine\Log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Rectangle.h">
+    <ClInclude Include="Source\Engine\GameTool\Rectangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Scene.h">
+    <ClInclude Include="Source\Engine\GameTool\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Vector2.h">
+    <ClInclude Include="Source\Engine\GameTool\Vector\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Vector3.h">
+    <ClInclude Include="Source\Engine\GameTool\Vector\Vector3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Vector4.h">
+    <ClInclude Include="Source\Engine\GameTool\Vector\Vector4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Actor.h">
+    <ClInclude Include="Source\Engine\GameTool\Actor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Component.h">
+    <ClInclude Include="Source\Engine\GameTool\Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Transform2D.h">
+    <ClInclude Include="Source\Engine\GameTool\Transform\Transform2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\RenderComponent.h">
+    <ClInclude Include="Source\Engine\GameTool\Render\RenderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\RectangleRenderComponent.h">
+    <ClInclude Include="Source\Engine\GameTool\Render\RectangleRenderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\SpaceInvaders.h">
@@ -77,25 +77,25 @@
     <ClCompile Include="Source\Engine\Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Rectangle.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Rectangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Scene.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Time.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Vector2.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Vector\Vector2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Vector3.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Vector\Vector3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Vector4.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Vector\Vector4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Window.cpp">
@@ -107,22 +107,22 @@
     <ClCompile Include="Source\Game\Pong.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Actor.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Actor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Component.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Transform2D.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Transform\Transform2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\RenderComponent.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Render\RenderComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\RectangleRenderComponent.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Render\RectangleRenderComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\SpaceInvaders.cpp">

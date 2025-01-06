@@ -1,6 +1,6 @@
 #include "Player.h"
 
-#include "Engine/RectangleRenderComponent.h"
+#include "Engine/GameTool/Render/RectangleRenderComponent.h"
 
 void Player::SetupComponents()
 {

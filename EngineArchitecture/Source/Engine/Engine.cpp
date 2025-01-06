@@ -5,7 +5,7 @@ Engine::Engine(std::string pTitle, std::vector<Scene*> pScene) : mScenes(pScene)
     //initialize SDL
     if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
-        printf("SDL initialization failed. SDL Error: %c\n", SDL_GetError());
+        printf("SDL initialization failed. SDL Error: %s\n", SDL_GetError());
     }
     else
     {

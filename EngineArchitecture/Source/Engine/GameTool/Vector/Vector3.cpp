@@ -134,9 +134,9 @@ Vector3 operator*(const float value, const Vector3& vector)
 // divide in one order 
 Vector3 operator/(const float value, const Vector3& vector)
 {
-	if(value != 0)
+	if(vector.x != 0 && vector.y != 0 && vector.z != 0)
 	{
-		return { vector.x / value, vector.y / value, vector.z / value };
+		return { value / vector.x, value / vector.y, value / vector.z };
 	}
 	else
 	{
@@ -147,9 +147,9 @@ Vector3 operator/(const float value, const Vector3& vector)
 // divide in different order
 Vector3 operator/(const Vector3& vector, const float value)
 {
-	if(vector.x != 0 && vector.y != 0 && vector.z != 0)
+	if(value != 0)
 	{
-		return { value / vector.x, value / vector.y, value / vector.z };
+		return { vector.x / value, vector.y / value, vector.z / value };
 	}
 	else
 	{

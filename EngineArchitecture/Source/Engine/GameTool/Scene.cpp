@@ -1,7 +1,7 @@
 #include "Scene.h"
 
-#include "Renderer.h"
-#include "Window.h"
+#include "../Renderer.h"
+#include "../Window.h"
 #include "Actor.h"
 
 //On destruction

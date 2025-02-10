@@ -6,7 +6,7 @@ void Player::SetupComponents()
 {
 	RectangleRenderComponent* renderComponent = new RectangleRenderComponent();
 	renderComponent->SetOwner(this);
-	renderComponent->mColor = { 255,0,0,255 };
+	renderComponent->mColor = { 200,20,20,255 };
 	renderComponent->mRectangle.dimensions.x = 70;
 }
 

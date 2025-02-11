@@ -2,6 +2,8 @@
 
 #include "Engine/GameTool/Scene.h"
 
+class Player;
+
 class SpaceInvaders : public Scene
 {
 public:
@@ -11,5 +13,6 @@ public:
 	void OnInput(SDL_Event event) override;
 
 private:
+	Player* player;
 };
 

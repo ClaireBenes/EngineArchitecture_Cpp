@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "Transform/Transform2D.h"
 #include "Component.h"
+#include "Engine/Time.h"
 
 #include <vector>
 

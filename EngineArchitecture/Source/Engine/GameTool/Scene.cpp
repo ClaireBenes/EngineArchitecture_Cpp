@@ -4,6 +4,9 @@
 #include "../Window.h"
 #include "Actor.h"
 
+#include <algorithm>
+
+
 //On destruction
 Scene::~Scene()
 {
@@ -16,10 +19,24 @@ Scene::~Scene()
 
 void Scene::Update(float deltaTime)
 {
+	mIsUpdatingActors = true;
+
 	for(Actor* actor : mActors)
 	{
 		actor->Update();
 	}
+
+	mIsUpdatingActors = false;
+
+	for(Actor * actor: mPendingActors)
+	{
+		mActors.emplace_back(actor);
+		actor->Start();
+	}
+
+	mPendingActors.clear();
+
+	//delete them when in dead state
 }
 
 void Scene::Render()
@@ -43,7 +60,34 @@ void Scene::SetRenderer(Renderer* pRenderer)
 void Scene::AddActor(Actor* pActor)
 {
 	//Add actor, give them the scene reference and start it
-	mActors.push_back(pActor);
 	pActor->SetScene(this);
-	pActor->Start();
+
+	if (mIsUpdatingActors)
+	{
+		mPendingActors.emplace_back(pActor);
+	}
+	else
+	{
+		mActors.emplace_back(pActor);
+		pActor->Start();
+	}
+
+}
+
+void Scene::RemoveActor(Actor* pActor)
+{
+	std::vector<Actor*>::iterator it = find(mPendingActors.begin(), mPendingActors.end(), pActor);
+	if (it != mPendingActors.end())
+	{
+		std::iter_swap(it, mPendingActors.end() - 1);
+		mPendingActors.pop_back();
+	}
+
+	it = find(mActors.begin(), mActors.end(), pActor);
+	if (it != mActors.end())
+	{
+		std::iter_swap(it, mActors.end() - 1);
+		mActors.pop_back();
+	}
+
 }

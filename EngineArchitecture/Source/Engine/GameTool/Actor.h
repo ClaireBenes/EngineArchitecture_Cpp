@@ -22,6 +22,8 @@ enum class ActorState
 class Actor
 {
 public:
+	virtual ~Actor();
+
 	//Functions
 	void SetScene(Scene* pScene);
 	void AddComponent(Component* pComponent);
@@ -29,6 +31,8 @@ public:
 
 	void SetActive(bool isActive);
 	void Render(Renderer* pRenderer);
+
+	ActorState GetState() const;
 
 	virtual void SetupComponents() = 0;
 	virtual void Start();
@@ -41,8 +45,8 @@ public:
 private:
 	//Variables
 	Scene* mScene = nullptr;
-	ActorState mState = ActorState::Active;
-	std::vector<Component*> mComponentList{};
+	ActorState mState = ActorState::Paused;
+	std::vector<Component*> mComponents{};
 	std::vector<RenderComponent*> mRenderComponents{};
 	std::vector<ColliderComponent*> mColliderComponents{};
 };

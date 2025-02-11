@@ -26,12 +26,17 @@ public:
 	void SetRenderer(Renderer* pRenderer);
 
 	void AddActor(Actor* pActor);
-	void RemoveActor(Actor* pActor){};
+	void RemoveActor(Actor* pActor);
 
 protected:
 	//Variables
 	Window* mWindow;
 	Renderer* mRenderer;
 	std::vector<Actor*> mActors{};
+
+private:
+	std::vector<Actor*> mPendingActors {};
+
+	bool mIsUpdatingActors = false;
 };
 

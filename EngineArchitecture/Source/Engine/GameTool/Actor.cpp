@@ -8,9 +8,20 @@ void Actor::Start()
 	//Setting up all actors component
 	SetupComponents();
 
-	for(Component* myComponent : mComponentList)
+	for(Component* myComponent : mComponents)
 	{
 		myComponent->OnStart();
+	}
+
+	mState = ActorState::Active;
+}
+
+Actor::~Actor()
+{
+	for (Component* pComponent : mComponents)
+	{
+		pComponent->OnEnd();
+		delete pComponent;
 	}
 }
 
@@ -21,7 +32,7 @@ void Actor::SetScene(Scene* pScene)
 
 void Actor::AddComponent(Component* pComponent)
 {
-	mComponentList.push_back(pComponent);
+	mComponents.push_back(pComponent);
 
 	//check if the component is a render component
 	if(RenderComponent* pRenderComponent = dynamic_cast<RenderComponent*>(pComponent))
@@ -42,8 +53,8 @@ void Actor::AddComponent(Component* pComponent)
 //Remove a specific component
 void Actor::RemoveComponent(Component* pComponent)
 {
-	auto it = std::find(mComponentList.begin(), mComponentList.end(), pComponent);
-	if(it == mComponentList.end())
+	auto it = std::find(mComponents.begin(), mComponents.end(), pComponent);
+	if(it == mComponents.end())
 	{
 		return;
 	}
@@ -71,7 +82,7 @@ void Actor::RemoveComponent(Component* pComponent)
 	}
 
 	delete pComponent;
-	mComponentList.erase(it);
+	mComponents.erase(it);
 }
 
 //Set state of actor (active or paused)
@@ -86,7 +97,7 @@ void Actor::SetActive(bool isActive)
 		mState = ActorState::Paused;
 	}
 
-	for(Component* myComponent : mComponentList)
+	for(Component* myComponent : mComponents)
 	{
 		myComponent->SetActive(isActive);
 	}
@@ -106,9 +117,14 @@ void Actor::Render(Renderer* pRenderer)
 	}
 }
 
+ActorState Actor::GetState() const
+{
+	return mState;
+}
+
 void Actor::Update()
 {
-	for(Component* myComponent : mComponentList)
+	for(Component* myComponent : mComponents)
 	{
 		myComponent->Update();
 	}
@@ -116,7 +132,7 @@ void Actor::Update()
 
 void Actor::Destroy()
 {
-	for(Component* myComponent : mComponentList)
+	for(Component* myComponent : mComponents)
 	{
 		myComponent->OnEnd();
 	}

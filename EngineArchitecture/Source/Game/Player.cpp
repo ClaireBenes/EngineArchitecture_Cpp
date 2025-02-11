@@ -1,12 +1,19 @@
 #include "Player.h"
 
 #include "Engine/GameTool/Render/RectangleRenderComponent.h"
+#include "Engine/GameTool/Collision/RectangleColliderComponent.h"
+#include "Engine/PhysicManager.h"
 
 void Player::SetupComponents()
 {
 	RectangleRenderComponent* renderComponent = new RectangleRenderComponent();
 	renderComponent->SetOwner(this);
-	renderComponent->mColor = { 200,20,20,255 };
+	renderComponent->mColor = { 20,20,200,255 };
+
+	colliderComponent = new RectangleColliderComponent();
+	colliderComponent->SetOwner(this);
+	colliderComponent->mRectangle.dimensions.x = renderComponent->mRectangle.dimensions.x;
+	colliderComponent->mRectangle.dimensions.y = renderComponent->mRectangle.dimensions.y;
 }
 
 void Player::Update()
@@ -29,6 +36,13 @@ void Player::Update()
 	if(mIsMovingLeft)
 	{
 		mTransform.mPosition.x -= mSpeedX * Time::deltaTime;
+	}
+
+	PhysicManager& physicManager = PhysicManager::Instance();
+
+	if(physicManager.Collision(colliderComponent))
+	{
+		printf("dfgfdsgfdgdfgD");
 	}
 }
 

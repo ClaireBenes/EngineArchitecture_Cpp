@@ -78,6 +78,9 @@
     <ClInclude Include="Source\Engine\GameTool\Collision\RectangleColliderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\PhysicManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Engine.cpp">
@@ -144,6 +147,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\GameTool\Collision\RectangleColliderComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\PhysicManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

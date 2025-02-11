@@ -11,7 +11,7 @@ struct Rectangle
     SDL_Rect ToSdlRect() const;
 
     //AABB Collision Check
-    static bool Collision(Rectangle& a, Rectangle& b);
+    static bool Collision(const Rectangle& a, const Rectangle& b);
 
     //variables
     Vector2 position;

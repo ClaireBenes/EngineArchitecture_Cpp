@@ -18,8 +18,8 @@ public:
 	void EndDraw();
 	void Close();
 
-	void DrawRect(Rectangle& rRect, Color pColor);
-	void DrawRectLine(Rectangle& rRect, Color pColor);
+	void DrawRect(const Rectangle& rRect, Color pColor);
+	void DrawRectLine(const Rectangle& rRect, Color pColor);
 
 private:
 	//variables

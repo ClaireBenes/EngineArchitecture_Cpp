@@ -2,6 +2,8 @@
 
 #include "Engine/GameTool/Actor.h"
 
+class RectangleColliderComponent;
+
 class Player : public Actor
 {
 public:
@@ -20,5 +22,7 @@ public:
 private:
 	float mSpeedX = 100;
 	float mSpeedY = 100;
+
+	RectangleColliderComponent* colliderComponent = nullptr;
 };
 

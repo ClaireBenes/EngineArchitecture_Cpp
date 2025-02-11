@@ -20,7 +20,7 @@ SDL_Rect Rectangle::ToSdlRect() const
 }
 
 //AABB Collision calculation
-bool Rectangle::Collision(Rectangle& a, Rectangle& b)
+bool Rectangle::Collision(const Rectangle& a, const Rectangle& b)
 {
 	float xMinA = a.position.x;
 	float yMinA = a.position.y;

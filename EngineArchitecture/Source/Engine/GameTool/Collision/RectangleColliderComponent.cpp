@@ -6,12 +6,26 @@
 void RectangleColliderComponent::Render(Renderer* pRenderer)
 {
 	//relative transform position
-	Rectangle tempRectangle = mRectangle;
-	tempRectangle.position += mOwner->mTransform.mPosition;
-	pRenderer->DrawRectLine(tempRectangle, mColor);
+	pRenderer->DrawRectLine(GetWorldRectangle(), mColor);
 }
 
-bool RectangleColliderComponent::Collision(Rectangle& otherRectangle)
+Rectangle RectangleColliderComponent::GetWorldRectangle() const
 {
-	Rectangle::Collision(mRectangle, otherRectangle);
+	Rectangle tempRectangle = mRectangle;
+	tempRectangle.position += mOwner->mTransform.mPosition;
+	return tempRectangle;
+}
+
+bool RectangleColliderComponent::Collision(const Rectangle& otherRectangle)
+{
+	return Rectangle::Collision(GetWorldRectangle(), otherRectangle);
+}
+
+bool RectangleColliderComponent::Collision(const ColliderComponent* pComponent)
+{
+	if( const RectangleColliderComponent* pRectangleComponent = dynamic_cast<const RectangleColliderComponent*>(pComponent))
+	{
+		return Collision(pRectangleComponent->GetWorldRectangle());
+	}
+	return false;
 }

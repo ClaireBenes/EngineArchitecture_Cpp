@@ -8,8 +8,13 @@ class Renderer;
 class ColliderComponent : public Component
 {
 public:
-	//Variables
+	void OnStart() override;
+	void OnEnd() override;
+
+	virtual bool Collision(const ColliderComponent* pComponent) = 0;
 	virtual void Render(Renderer* rRenderer) = 0;
+
+	//Variables
 	Color mColor{ 255,0,0,255 };
 };
 

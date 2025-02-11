@@ -13,6 +13,6 @@ public:
 	void OnInput(SDL_Event event) override;
 
 private:
-	Player* player;
+	Player* player = nullptr;
 };
 

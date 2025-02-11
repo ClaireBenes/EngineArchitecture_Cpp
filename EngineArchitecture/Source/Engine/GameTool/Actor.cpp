@@ -1,6 +1,7 @@
 #include "Actor.h"
 
 #include "Render/RenderComponent.h"
+#include "Collision/ColliderComponent.h"
 
 void Actor::Start()
 {
@@ -28,6 +29,12 @@ void Actor::AddComponent(Component* pComponent)
 		mRenderComponents.push_back(pRenderComponent);
 	}
 
+	//check if the component is a collider component
+	if(ColliderComponent* pColliderComponent = dynamic_cast< ColliderComponent* >( pComponent ))
+	{
+		mColliderComponents.push_back(pColliderComponent);
+	}
+
 	//***************** not sure ? ************************//
 	pComponent->OnStart();
 }
@@ -41,6 +48,7 @@ void Actor::RemoveComponent(Component* pComponent)
 		return;
 	}
 
+	//check if the component is a render component
 	if(RenderComponent* pRenderComponent = dynamic_cast<RenderComponent*>(pComponent))
 	{
 		auto itRender = std::find(mRenderComponents.begin(), mRenderComponents.end(), pRenderComponent);
@@ -48,6 +56,17 @@ void Actor::RemoveComponent(Component* pComponent)
 		if(itRender != mRenderComponents.end())
 		{
 			mRenderComponents.erase(itRender);
+		}
+	}
+
+	//check if the component is a collider component
+	if(ColliderComponent* pColliderComponent = dynamic_cast< ColliderComponent* >( pComponent ))
+	{
+		auto itRender = std::find(mColliderComponents.begin(), mColliderComponents.end(), pColliderComponent);
+
+		if(itRender != mColliderComponents.end())
+		{
+			mColliderComponents.erase(itRender);
 		}
 	}
 
@@ -78,6 +97,12 @@ void Actor::Render(Renderer* pRenderer)
 	for(RenderComponent* renderComponent : mRenderComponents)
 	{
 		renderComponent->Render(pRenderer);
+	}
+
+	//for debug
+	for(ColliderComponent* colliderComponent : mColliderComponents)
+	{
+		colliderComponent->Render(pRenderer);
 	}
 }
 

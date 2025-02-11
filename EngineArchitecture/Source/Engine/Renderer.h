@@ -19,6 +19,7 @@ public:
 	void Close();
 
 	void DrawRect(Rectangle& rRect, Color pColor);
+	void DrawRectLine(Rectangle& rRect, Color pColor);
 
 private:
 	//variables

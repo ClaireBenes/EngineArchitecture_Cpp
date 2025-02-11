@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Engine\GameTool\Collision\RectangleColliderComponent.h" />
+    <ClInclude Include="Source\Engine\GameTool\Collision\ColliderComponent.h" />
     <ClInclude Include="Source\Game\Bush.h" />
     <ClInclude Include="Source\Engine\GameTool\Render\RectangleRenderComponent.h" />
     <ClInclude Include="Source\Engine\GameTool\Render\RenderComponent.h" />
@@ -40,6 +42,8 @@
     <ClInclude Include="Source\Game\SpaceInvaders.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine\GameTool\Collision\RectangleColliderComponent.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Collision\ColliderComponent.cpp" />
     <ClCompile Include="Source\Game\Bush.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Render\RectangleRenderComponent.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Render\RenderComponent.cpp" />

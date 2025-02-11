@@ -8,6 +8,7 @@
 #include <vector>
 
 class RenderComponent;
+class ColliderComponent;
 
 //All actor possible state
 enum class ActorState
@@ -43,6 +44,7 @@ private:
 	ActorState mState = ActorState::Active;
 	std::vector<Component*> mComponentList{};
 	std::vector<RenderComponent*> mRenderComponents{};
+	std::vector<ColliderComponent*> mColliderComponents{};
 };
 
 

@@ -1,5 +1,6 @@
 #include "Scene.h"
 
+#include "../Manager/AssetManager.h"
 #include "../Renderer.h"
 #include "../Window.h"
 #include "Actor.h"
@@ -45,6 +46,20 @@ void Scene::Render()
 	{
 		actor->Render(mRenderer);
 	}
+}
+
+void Scene::Unload()
+{
+	//Free actors pointers memory
+   //Because ~Actor() calls RemoveActor, we have to use a while loop
+	while (!mActors.empty())
+	{
+		delete mActors.back();
+	}
+
+	//Free up resources
+	AssetManager::Clear();
+
 }
 
 void Scene::SetWindow(Window* pWindow)

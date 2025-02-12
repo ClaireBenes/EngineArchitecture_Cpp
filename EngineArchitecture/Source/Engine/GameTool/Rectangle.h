@@ -16,6 +16,8 @@ struct Rectangle
     //variables
     Vector2 position;
     Vector2 dimensions;
+
+    static const Rectangle NullRect;
 };
 
 

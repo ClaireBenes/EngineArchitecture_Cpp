@@ -42,6 +42,7 @@ void Engine::Initialize()
         mScenes[mLoadedScene]->SetWindow(mWindow);
         mScenes[mLoadedScene]->SetRenderer(mRenderer);
 
+        mScenes[mLoadedScene]->Load();
         mScenes[mLoadedScene]->Start();
     }
 

@@ -1,6 +1,7 @@
 #include "Renderer.h"
 
 #include "SDL_image.h"
+#include "GameTool/Utility/Math.h"
 
 Renderer::Renderer() : mSdlRenderer(nullptr)
 {
@@ -64,6 +65,32 @@ void Renderer::DrawRectLine(const Rectangle& rRect, Color pColor)
     SDL_SetRenderDrawColor(mSdlRenderer, static_cast< Uint8 >( pColor.x ), static_cast< Uint8 >( pColor.y ), static_cast< Uint8 >( pColor.z ), static_cast< Uint8 >( pColor.w ));
     SDL_Rect sdlRect = rRect.ToSdlRect();
     SDL_RenderDrawRect(mSdlRenderer, &sdlRect);
+}
+
+void Renderer::DrawSprite(Texture& pTex, const Rectangle& rRect, Actor* pOwner) const
+{
+    SDL_Rect sdlRect = rRect.ToSdlRect();
+
+    SDL_Rect* sourceSDL = nullptr;
+    if (rRect != Rectangle::NullRect)
+    {
+        sourceSDL = new SDL_Rect{
+            Maths::Round(rRect.position.x),
+            Maths::Round(rRect.position.y),
+            Maths::Round(rRect.dimensions.x),
+            Maths::Round(rRect.dimensions.y) };
+    }
+
+    SDL_RenderCopyEx(mSdlRenderer,
+        pTex.GetSDLTexture(),
+        sourceSDL,
+        &sdlRect,
+        -Maths::ToDeg(pOwner->mTransform.mRotation),
+        nullptr,
+        SDL_FLIP_NONE);
+
+    delete sourceSDL;
+
 }
 
 

@@ -7,8 +7,9 @@
 class RectangleRenderComponent : public RenderComponent
 {
 public:
-	//Variables
 	void Render(Renderer* pRenderer) override;
+
+	//Variables
 	Rectangle mRectangle{Vector2(-16,-16),Vector2(32,32)};
 };
 

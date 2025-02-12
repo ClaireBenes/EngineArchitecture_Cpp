@@ -9,6 +9,7 @@
 
 class RenderComponent;
 class ColliderComponent;
+class AssetManager;
 
 //All actor possible state
 enum class ActorState
@@ -42,10 +43,12 @@ public:
 	//Variables
 	Transform2D mTransform{};
 
-private:
-	//Variables
+protected:
 	Scene* mScene = nullptr;
+
+private:
 	ActorState mState = ActorState::Paused;
+
 	std::vector<Component*> mComponents{};
 	std::vector<RenderComponent*> mRenderComponents{};
 	std::vector<ColliderComponent*> mColliderComponents{};

@@ -1,6 +1,6 @@
 #include "Texture.h"
 
-#include "SDL_image.h"
+#include "Engine/Renderer.h"
 
 //Load Texture
 bool Texture::Load(Renderer& pRenderer, const std::string& pFileName)

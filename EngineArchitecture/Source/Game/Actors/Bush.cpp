@@ -1,7 +1,9 @@
 #include "Bush.h"
 
 #include "Engine/GameTool/Visual/Render/RectangleRenderComponent.h"
+#include "Engine/GameTool/Visual/Render/SpriteRenderComponent.h"
 #include "Engine/GameTool/Collision/RectangleColliderComponent.h"
+#include "Engine/Manager/AssetManager.h"
 
 void Bush::SetupComponents()
 {
@@ -15,6 +17,13 @@ void Bush::SetupComponents()
 	colliderComponent->SetOwner(this);
 	colliderComponent->mRectangle.dimensions.x = renderComponent->mRectangle.dimensions.x;
 	colliderComponent->mRectangle.dimensions.y = renderComponent->mRectangle.dimensions.y;
+
+	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/pokeball.png", "ball");
+	SpriteRenderComponent* spriteComponent = new SpriteRenderComponent(AssetManager::GetTexture("ball"));
+	spriteComponent->SetOwner(this);
+	//spriteComponent->mColor = { 255, 255, 255, 255 };
+	//spriteComponent->mRectangle.dimensions.x = 100;
+	//spriteComponent->mRectangle.dimensions.y = 50;
 }
 
 void Bush::Update()

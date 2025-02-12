@@ -1,7 +1,10 @@
 #include "Renderer.h"
 
 #include "SDL_image.h"
+
+#include "GameTool/Actor.h"
 #include "GameTool/Utility/Math.h"
+#include "GameTool/Visual/Texture.h"
 
 Renderer::Renderer() : mSdlRenderer(nullptr)
 {

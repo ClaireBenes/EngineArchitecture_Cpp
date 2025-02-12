@@ -5,6 +5,8 @@
 #include <map>
 #include <string>
 
+class Renderer;
+
 class AssetManager
 {
 public:

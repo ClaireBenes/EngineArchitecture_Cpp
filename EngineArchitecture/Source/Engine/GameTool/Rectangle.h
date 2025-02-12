@@ -13,6 +13,10 @@ struct Rectangle
     //AABB Collision Check
     static bool Collision(const Rectangle& a, const Rectangle& b);
 
+    //Operators
+    bool operator==(const Rectangle& other) const;
+    bool operator!=(const Rectangle& other) const;
+
     //variables
     Vector2 position;
     Vector2 dimensions;

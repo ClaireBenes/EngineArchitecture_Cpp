@@ -2,6 +2,7 @@
 
 #include "Visual/Render/RenderComponent.h"
 #include "Collision/ColliderComponent.h"
+#include "Engine/Manager/AssetManager.h"
 
 void Actor::Start()
 {

@@ -72,6 +72,11 @@ void Scene::SetRenderer(Renderer* pRenderer)
 	mRenderer = pRenderer;
 }
 
+Renderer* Scene::GetRenderer()
+{
+	return mRenderer;
+}
+
 void Scene::AddActor(Actor* pActor)
 {
 	//Add actor, give them the scene reference and start it

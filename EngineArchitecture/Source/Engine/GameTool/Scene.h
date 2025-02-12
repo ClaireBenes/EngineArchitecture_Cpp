@@ -26,6 +26,7 @@ public:
 	//Non virtual functions
 	void SetWindow(Window* pWindow);
 	void SetRenderer(Renderer* pRenderer);
+	Renderer* GetRenderer();
 
 	void AddActor(Actor* pActor);
 	void RemoveActor(Actor* pActor);
@@ -38,7 +39,6 @@ protected:
 
 private:
 	std::vector<Actor*> mPendingActors {};
-
 	bool mIsUpdatingActors = false;
 };
 

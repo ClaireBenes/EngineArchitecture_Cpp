@@ -1,8 +1,10 @@
 #pragma once
 
-#include "Engine/Renderer.h"
-
 #include <string>
+
+#include "SDL_image.h"
+
+class Renderer;
 
 class Texture
 {

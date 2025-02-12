@@ -1,11 +1,11 @@
 #pragma once
 
-#include "GameTool/Actor.h"
 #include "GameTool/Rectangle.h"
 #include "GameTool/Vector/Vector4.h"
-#include "GameTool/Visual/Texture.h"
-#include "GameTool/Visual/Render/SpriteRenderComponent.h"
 #include "Window.h"
+
+class Actor;
+class Texture;
 
 class Renderer
 {

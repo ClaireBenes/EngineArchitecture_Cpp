@@ -42,13 +42,14 @@ void Engine::Initialize()
         mScenes[mLoadedScene]->SetWindow(mWindow);
         mScenes[mLoadedScene]->SetRenderer(mRenderer);
 
-        mScenes[mLoadedScene]->Load();
-        mScenes[mLoadedScene]->Start();
+
     }
 
     //Go into main game loop when initialize is finished
     if(mWindow->Open() && mRenderer->Initialize(*mWindow))
     {
+        mScenes[mLoadedScene]->Load();
+        mScenes[mLoadedScene]->Start();
         Loop();
     }
 }

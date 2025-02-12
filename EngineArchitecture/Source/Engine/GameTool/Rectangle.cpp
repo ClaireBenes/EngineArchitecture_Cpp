@@ -37,3 +37,18 @@ bool Rectangle::Collision(const Rectangle& a, const Rectangle& b)
 	return ( !( xMinB > xMaxA || yMinB > yMaxA
 		|| xMaxB < xMinA || yMaxB < yMinA ) );
 }
+
+// ==
+bool Rectangle::operator==(const Rectangle& other) const
+{
+	return position.x == other.position.x &&
+		position.y == other.position.y &&
+		dimensions.x == other.dimensions.x &&
+		dimensions.y == other.dimensions.y;
+}
+
+// !=
+bool Rectangle::operator!=(const Rectangle& other) const
+{
+	return !(*this == other);
+}

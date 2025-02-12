@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Game\Pong.h">
+    <ClInclude Include="Source\Game\Scene\Pong.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Engine.h">
@@ -57,19 +57,19 @@
     <ClInclude Include="Source\Engine\GameTool\Transform\Transform2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Player.h">
+    <ClInclude Include="Source\Game\Actors\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\GameTool\Render\RenderComponent.h">
+    <ClInclude Include="Source\Engine\GameTool\Visual\Render\RenderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\GameTool\Render\RectangleRenderComponent.h">
+    <ClInclude Include="Source\Engine\GameTool\Visual\Render\RectangleRenderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\SpaceInvaders.h">
+    <ClInclude Include="Source\Game\Scene\SpaceInvaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Bush.h">
+    <ClInclude Include="Source\Game\Actors\Bush.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\GameTool\Collision\ColliderComponent.h">
@@ -78,7 +78,13 @@
     <ClInclude Include="Source\Engine\GameTool\Collision\RectangleColliderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\PhysicManager.h">
+    <ClInclude Include="Source\Engine\Manager\PhysicManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GameTool\Visual\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Manager\AssetManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -116,7 +122,7 @@
     <ClCompile Include="Source\Game\EngineArchitecture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Pong.cpp">
+    <ClCompile Include="Source\Game\Scene\Pong.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\GameTool\Actor.cpp">
@@ -128,19 +134,19 @@
     <ClCompile Include="Source\Engine\GameTool\Transform\Transform2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Player.cpp">
+    <ClCompile Include="Source\Game\Actors\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\GameTool\Render\RenderComponent.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Visual\Render\RenderComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\GameTool\Render\RectangleRenderComponent.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Visual\Render\RectangleRenderComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\SpaceInvaders.cpp">
+    <ClCompile Include="Source\Game\Scene\SpaceInvaders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Bush.cpp">
+    <ClCompile Include="Source\Game\Actors\Bush.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\GameTool\Collision\ColliderComponent.cpp">
@@ -149,7 +155,13 @@
     <ClCompile Include="Source\Engine\GameTool\Collision\RectangleColliderComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\PhysicManager.cpp">
+    <ClCompile Include="Source\Engine\Manager\PhysicManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GameTool\Visual\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Manager\AssetManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

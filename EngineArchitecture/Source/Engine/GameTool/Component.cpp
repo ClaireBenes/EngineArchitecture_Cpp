@@ -5,15 +5,6 @@ Component::Component(float pUpdateOrder) : mUpdateOrder(pUpdateOrder)
 {
 }
 
-//On destruction
-Component::~Component()
-{
-	if(mOwner != nullptr)
-	{
-		mOwner->RemoveComponent(this);
-	}
-}
-
 void Component::SetActive(bool isActive)
 {
 	mIsActive = isActive;

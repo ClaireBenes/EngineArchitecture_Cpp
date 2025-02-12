@@ -73,11 +73,11 @@ void Actor::RemoveComponent(Component* pComponent)
 	//check if the component is a collider component
 	if(ColliderComponent* pColliderComponent = dynamic_cast< ColliderComponent* >( pComponent ))
 	{
-		auto itRender = std::find(mColliderComponents.begin(), mColliderComponents.end(), pColliderComponent);
+		auto itCollider = std::find(mColliderComponents.begin(), mColliderComponents.end(), pColliderComponent);
 
-		if(itRender != mColliderComponents.end())
+		if(itCollider != mColliderComponents.end())
 		{
-			mColliderComponents.erase(itRender);
+			mColliderComponents.erase(itCollider);
 		}
 	}
 

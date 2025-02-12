@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../Component.h"
-#include "../Vector/Vector4.h"
+#include "Engine/GameTool/Component.h"
+#include "Engine//GameTool/Vector/Vector4.h"
 
 class Renderer;
 

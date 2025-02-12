@@ -1,5 +1,7 @@
 #include "Renderer.h"
 
+#include "SDL_image.h"
+
 Renderer::Renderer() : mSdlRenderer(nullptr)
 {
 }
@@ -13,6 +15,13 @@ bool Renderer::Initialize(Window& rWindow)
         Log::Error(LogType::Video, "Failed to create Renderer");
         return false;
     }
+
+    if (IMG_Init(IMG_INIT_PNG) == 0)
+    {
+        Log::Error(LogType::Video, "Unable to initialize SDL_Image");
+        return false;
+    }
+
     return true;
 }
 
@@ -35,6 +44,11 @@ void Renderer::EndDraw()
 void Renderer::Close()
 {
     SDL_DestroyRenderer(mSdlRenderer);
+}
+
+SDL_Renderer* Renderer::GetSDLRender()
+{
+    return mSdlRenderer;
 }
 
 //Draw Rectangle

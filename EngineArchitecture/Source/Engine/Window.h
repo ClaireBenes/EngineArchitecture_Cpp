@@ -9,7 +9,6 @@ class Window
 public:
 	Window(int pWidth, int pHeight, std::string pTitle);
 	Window(const Window&) = delete;
-
 	Window& operator=(const Window&) = delete;
 
 	//functions

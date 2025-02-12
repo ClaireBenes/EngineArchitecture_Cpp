@@ -12,6 +12,8 @@ class Engine
 {
 public:
 	Engine(std::string pTitle, std::vector<Scene*> pScene);
+	Engine(const Engine&) = delete;
+	Engine& operator=(const Engine&) = delete;
 	~Engine();
 
 	//functions

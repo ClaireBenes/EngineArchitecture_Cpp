@@ -1,6 +1,6 @@
 #include "Bush.h"
 
-#include "Engine/GameTool/Render/RectangleRenderComponent.h"
+#include "Engine/GameTool/Visual/Render/RectangleRenderComponent.h"
 #include "Engine/GameTool/Collision/RectangleColliderComponent.h"
 
 void Bush::SetupComponents()

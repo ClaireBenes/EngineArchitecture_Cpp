@@ -1,8 +1,8 @@
 #include "Player.h"
 
-#include "Engine/GameTool/Render/RectangleRenderComponent.h"
+#include "Engine/GameTool/Visual/Render/RectangleRenderComponent.h"
 #include "Engine/GameTool/Collision/RectangleColliderComponent.h"
-#include "Engine/PhysicManager.h"
+#include "Engine/Manager/PhysicManager.h"
 
 void Player::SetupComponents()
 {

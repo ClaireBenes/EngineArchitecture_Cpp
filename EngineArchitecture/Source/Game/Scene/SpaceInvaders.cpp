@@ -1,8 +1,8 @@
 #include "SpaceInvaders.h"
 
 #include "Engine/Window.h"
-#include "Player.h"
-#include "Bush.h"
+#include "Game/Actors/Player.h"
+#include "Game/Actors/Bush.h"
 
 void SpaceInvaders::Start()
 {

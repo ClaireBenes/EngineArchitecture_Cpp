@@ -1,6 +1,6 @@
 #include "Actor.h"
 
-#include "Render/RenderComponent.h"
+#include "Visual/Render/RenderComponent.h"
 #include "Collision/ColliderComponent.h"
 
 void Actor::Start()

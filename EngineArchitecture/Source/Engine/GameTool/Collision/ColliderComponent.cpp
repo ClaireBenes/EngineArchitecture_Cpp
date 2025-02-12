@@ -1,6 +1,6 @@
 #include "ColliderComponent.h"
 
-#include "../../PhysicManager.h"
+#include "Engine/Manager/PhysicManager.h"
 
 void ColliderComponent::OnStart()
 {

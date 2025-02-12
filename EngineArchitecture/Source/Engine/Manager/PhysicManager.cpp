@@ -1,6 +1,6 @@
 #include "PhysicManager.h"
 
-#include "GameTool/Collision/ColliderComponent.h"
+#include "../GameTool/Collision/ColliderComponent.h"
 
 PhysicManager& PhysicManager::Instance()
 {

@@ -9,7 +9,6 @@ class Renderer
 public:
 	Renderer();
 	Renderer(const Renderer&) = delete;
-
 	Renderer& operator= (const Renderer&) = delete;
 
 	//function
@@ -17,6 +16,8 @@ public:
 	void BeginDraw();
 	void EndDraw();
 	void Close();
+
+	SDL_Renderer* GetSDLRender();
 
 	void DrawRect(const Rectangle& rRect, Color pColor);
 	void DrawRectLine(const Rectangle& rRect, Color pColor);

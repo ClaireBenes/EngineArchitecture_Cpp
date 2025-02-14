@@ -4,6 +4,7 @@
 
 #include <map>
 #include <string>
+#include <vector>
 
 class Renderer;
 
@@ -14,6 +15,7 @@ public:
 	AssetManager& operator=(const AssetManager&) = delete;
 
 	static Texture LoadTexture(Renderer& pRenderer, const std::string& pFileName, const std::string& pName);
+	static void LoadTexturesFromFolder(Renderer& pRenderer, const std::string& pPathName, std::vector<Texture>& pAllTextures);
 	static Texture& GetTexture(const std::string& pName);
 	static void Clear();
 

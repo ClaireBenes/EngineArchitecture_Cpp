@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Engine/GameTool/Actor.h"
+#include "Engine/GameTool/Visual/Texture.h"
 
 class RectangleColliderComponent;
+class AnimatedSpriteRenderComponent;
 
 class Player : public Actor
 {
@@ -24,5 +26,7 @@ private:
 	float mSpeedY = 100;
 
 	RectangleColliderComponent* colliderComponent = nullptr;
+	AnimatedSpriteRenderComponent* animatedSpriteComponent = nullptr;
+	std::vector<Texture> allTextures;
 };
 

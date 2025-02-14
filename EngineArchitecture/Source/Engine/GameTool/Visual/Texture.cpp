@@ -44,18 +44,18 @@ void Texture::UpdateInfo(int& pWidthOut, int& pHeightOut)
 }
 
 //Get Texture Width
-int Texture::GetWidth()
+int Texture::GetWidth() const
 {
 	return mWidth;
 }
 
 //Get Texture Height
-int Texture::GetHeight()
+int Texture::GetHeight() const
 {
 	return mHeight;
 }
 
-SDL_Texture* Texture::GetSDLTexture()
+SDL_Texture* Texture::GetSDLTexture() const
 {
     return mSDLTexture;
 }

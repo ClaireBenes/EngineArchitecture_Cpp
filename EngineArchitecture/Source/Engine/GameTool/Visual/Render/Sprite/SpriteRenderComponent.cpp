@@ -2,7 +2,7 @@
 
 #include "Engine/GameTool/Actor.h"
 
-SpriteRenderComponent::SpriteRenderComponent(Texture& pTexture, int pDrawOrder):
+SpriteRenderComponent::SpriteRenderComponent(const Texture& pTexture, int pDrawOrder):
 mTexture(pTexture),
 mDrawOrder(pDrawOrder),
 mTexWidth(pTexture.GetWidth()),

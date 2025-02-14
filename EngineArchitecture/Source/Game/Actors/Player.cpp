@@ -2,20 +2,27 @@
 
 #include "Engine/GameTool/Visual/Render/RectangleRenderComponent.h"
 #include "Engine/GameTool/Collision/RectangleColliderComponent.h"
-#include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
+#include "Engine/GameTool/Visual/Render/Sprite/AnimatedSpriteRenderComponent.h"
 #include "Engine/Manager/PhysicManager.h"
 #include "Engine/Manager/AssetManager.h"
 
+#include <vector>
+
 void Player::SetupComponents()
 {
-	RectangleRenderComponent* renderComponent = new RectangleRenderComponent();
-	renderComponent->SetOwner(this);
-	renderComponent->mColor = { 20,20,200,255 };
+	AssetManager::LoadTexturesFromFolder(*mScene->GetRenderer(), "Resources/Characters/Walk", allTextures);
+
+	animatedSpriteComponent = new AnimatedSpriteRenderComponent(allTextures);
+	animatedSpriteComponent->SetOwner(this);
+	animatedSpriteComponent->AddSprite();
+	animatedSpriteComponent->SetAnimationFps(10.0f);
+
+	animatedSpriteComponent->SetNewDimensions(86, 86);
 
 	colliderComponent = new RectangleColliderComponent();
 	colliderComponent->SetOwner(this);
-	colliderComponent->mRectangle.dimensions.x = renderComponent->mRectangle.dimensions.x;
-	colliderComponent->mRectangle.dimensions.y = renderComponent->mRectangle.dimensions.y;
+	colliderComponent->mRectangle.dimensions.x = animatedSpriteComponent->mRectangle.dimensions.x;
+	colliderComponent->mRectangle.dimensions.y = animatedSpriteComponent->mRectangle.dimensions.y;
 }
 
 void Player::Update()
@@ -34,10 +41,12 @@ void Player::Update()
 	if(mIsMovingRight)
 	{
 		mTransform.mPosition.x += mSpeedX * Time::deltaTime;
+		animatedSpriteComponent->mFlip = Renderer::Flip::None;
 	}
 	if(mIsMovingLeft)
 	{
 		mTransform.mPosition.x -= mSpeedX * Time::deltaTime;
+		animatedSpriteComponent->mFlip = Renderer::Flip::Horizontal;
 	}
 
 	PhysicManager& physicManager = PhysicManager::Instance();

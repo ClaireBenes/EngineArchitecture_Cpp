@@ -14,9 +14,9 @@ public:
 
 	void UpdateInfo(int& pWidthOut, int& pHeightOut); // Using references to get two informations out)
 
-	int GetWidth();
-	int GetHeight();
-	SDL_Texture* GetSDLTexture();
+	int GetWidth() const;
+	int GetHeight() const;
+	SDL_Texture* GetSDLTexture() const;
 
 private:
 	std::string mFileName;

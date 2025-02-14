@@ -10,7 +10,7 @@
 class SpriteRenderComponent : public RenderComponent
 {
 public:
-	SpriteRenderComponent(Texture& pTexture, int pDrawOrder = 100);
+	SpriteRenderComponent(const Texture& pTexture, int pDrawOrder = 100);
 	virtual ~SpriteRenderComponent();
 
 	SpriteRenderComponent() = delete;
@@ -27,12 +27,13 @@ public:
 	int GetTexWidth() const;
 	int GetTexHeight() const;
 
+public:
 	//Variables
 	Rectangle mRectangle{ Vector2(-16,-16),Vector2(32,32) };
+	Renderer::Flip mFlip = Renderer::Flip::None;
 
 protected:
 	Texture mTexture;
-	Renderer::Flip mFlip = Renderer::Flip::None;
 
 	int mDrawOrder;
 	int mTexWidth;

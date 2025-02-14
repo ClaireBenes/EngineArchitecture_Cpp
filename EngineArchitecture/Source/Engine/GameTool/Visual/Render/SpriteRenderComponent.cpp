@@ -1,7 +1,6 @@
 #include "SpriteRenderComponent.h"
 
 #include "Engine/GameTool/Actor.h"
-#include "Engine/Renderer.h"
 
 SpriteRenderComponent::SpriteRenderComponent(Texture& pTexture, int pDrawOrder):
 mTexture(pTexture),
@@ -29,13 +28,18 @@ void SpriteRenderComponent::Render(Renderer* pRenderer)
 	Rectangle tempRectangle = mRectangle;
 	tempRectangle.position += mOwner->mTransform.mPosition;
 
-	pRenderer->DrawSprite(*mOwner, mTexture, tempRectangle, Renderer::Flip::None);
-
+	pRenderer->DrawSprite(*mOwner, mTexture, tempRectangle, mFlip);
 }
 
 void SpriteRenderComponent::AddSprite()
 {
 	mOwner->mScene->GetRenderer()->AddSprite(this);
+}
+
+void SpriteRenderComponent::SetNewDimensions(int x, int y)
+{
+	mRectangle.dimensions.x = x;
+	mRectangle.dimensions.y = y;
 }
 
 int SpriteRenderComponent::GetDrawOrder() const

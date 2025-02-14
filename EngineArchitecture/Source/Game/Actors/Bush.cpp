@@ -7,28 +7,18 @@
 
 void Bush::SetupComponents()
 {
-	RectangleRenderComponent* renderComponent = new RectangleRenderComponent();
-	renderComponent->SetOwner(this);
-	renderComponent->mColor = { 20,200,20,255 };
-	renderComponent->mRectangle.dimensions.x = 320;
-	renderComponent->mRectangle.dimensions.y = 320;
-
-	RectangleColliderComponent* colliderComponent = new RectangleColliderComponent();
-	colliderComponent->SetOwner(this);
-	colliderComponent->mRectangle.dimensions.x = renderComponent->mRectangle.dimensions.x;
-	colliderComponent->mRectangle.dimensions.y = renderComponent->mRectangle.dimensions.y;
-
 	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/pokeball.png", "ball");
 
 	SpriteRenderComponent* spriteComponent = new SpriteRenderComponent(AssetManager::GetTexture("ball"));
 	spriteComponent->SetOwner(this);
 	spriteComponent->AddSprite();
 
+	spriteComponent->SetNewDimensions(86, 86);
 
-	//spriteComponent->mColor = { 255, 255, 255, 255 };
-	spriteComponent->mRectangle.dimensions.x = 320;
-	spriteComponent->mRectangle.dimensions.y = 320;
-
+	RectangleColliderComponent* colliderComponent = new RectangleColliderComponent();
+	colliderComponent->SetOwner(this);
+	colliderComponent->mRectangle.dimensions.x = spriteComponent->mRectangle.dimensions.x;
+	colliderComponent->mRectangle.dimensions.y = spriteComponent->mRectangle.dimensions.y;
 }
 
 void Bush::Update()

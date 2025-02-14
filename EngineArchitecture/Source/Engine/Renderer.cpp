@@ -99,7 +99,7 @@ void Renderer::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec,
         &destinationRect,
         -Maths::ToDeg(transform.mRotation),
         nullptr,
-        SDL_FLIP_NONE);
+        static_cast<SDL_RendererFlip>(flip));
 
     delete sourceSDL;
 }

@@ -5,6 +5,8 @@
 #include "../Texture.h"
 #include "../../Rectangle.h"
 
+#include "Engine/Renderer.h"
+
 class SpriteRenderComponent : public RenderComponent
 {
 public:
@@ -18,6 +20,7 @@ public:
 	virtual void SetTexture(const Texture& pTexture);
 	virtual void Render(Renderer* pRenderer) override;
 	void AddSprite();
+	void SetNewDimensions(int x, int y);
 
 	//Getters
 	int GetDrawOrder() const;
@@ -29,6 +32,7 @@ public:
 
 protected:
 	Texture mTexture;
+	Renderer::Flip mFlip = Renderer::Flip::None;
 
 	int mDrawOrder;
 	int mTexWidth;

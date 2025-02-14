@@ -6,7 +6,7 @@
 #include "GameTool/Actor.h"
 #include "GameTool/Utility/Math.h"
 #include "GameTool/Visual/Texture.h"
-#include "GameTool/Visual/Render/SpriteRenderComponent.h"
+#include "GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
 
 Renderer::Renderer() : mSdlRenderer(nullptr)
 {

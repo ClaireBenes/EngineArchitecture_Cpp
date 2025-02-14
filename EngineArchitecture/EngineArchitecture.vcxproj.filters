@@ -90,7 +90,10 @@
     <ClInclude Include="Source\Engine\GameTool\Utility\Math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\GameTool\Visual\Render\SpriteRenderComponent.h">
+    <ClInclude Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GameTool\Visual\Render\Sprite\AnimatedSpriteRenderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -170,7 +173,10 @@
     <ClCompile Include="Source\Engine\Manager\AssetManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\GameTool\Visual\Render\SpriteRenderComponent.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GameTool\Visual\Render\Sprite\AnimatedSpriteRenderComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

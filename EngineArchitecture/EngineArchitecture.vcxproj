@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Engine\GameTool\Visual\Render\Sprite\AnimatedSpriteRenderComponent.h" />
     <ClInclude Include="Source\Engine\GameTool\Utility\Math.h" />
     <ClInclude Include="Source\Engine\Manager\AssetManager.h" />
     <ClInclude Include="Source\Engine\Manager\PhysicManager.h" />
@@ -44,9 +45,10 @@
     <ClInclude Include="Source\Engine\GameTool\Transform\Transform2D.h" />
     <ClInclude Include="Source\Game\Scene\SpaceInvaders.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Texture.h" />
-    <ClInclude Include="Source\Engine\GameTool\Visual\Render\SpriteRenderComponent.h" />
+    <ClInclude Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine\GameTool\Visual\Render\Sprite\AnimatedSpriteRenderComponent.cpp" />
     <ClCompile Include="Source\Engine\Manager\AssetManager.cpp" />
     <ClCompile Include="Source\Engine\Manager\PhysicManager.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Collision\RectangleColliderComponent.cpp" />
@@ -74,7 +76,7 @@
     <ClCompile Include="Source\Engine\GameTool\Transform\Transform2D.cpp" />
     <ClCompile Include="Source\Game\Scene\SpaceInvaders.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Texture.cpp" />
-    <ClCompile Include="Source\Engine\GameTool\Visual\Render\SpriteRenderComponent.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

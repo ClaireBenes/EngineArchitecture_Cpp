@@ -2,7 +2,7 @@
 
 #include "Engine/GameTool/Visual/Render/RectangleRenderComponent.h"
 #include "Engine/GameTool/Collision/RectangleColliderComponent.h"
-#include "Engine/GameTool/Visual/Render/SpriteRenderComponent.h"
+#include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
 #include "Engine/Manager/PhysicManager.h"
 #include "Engine/Manager/AssetManager.h"
 

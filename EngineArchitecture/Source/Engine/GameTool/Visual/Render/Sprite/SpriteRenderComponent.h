@@ -1,9 +1,9 @@
 #pragma once
 
-#include "RenderComponent.h"
+#include "../RenderComponent.h"
 
-#include "../Texture.h"
-#include "../../Rectangle.h"
+#include "Engine/GameTool/Visual/Texture.h"
+#include "Engine/GameTool/Rectangle.h"
 
 #include "Engine/Renderer.h"
 

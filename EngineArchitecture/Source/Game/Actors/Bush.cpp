@@ -10,8 +10,8 @@ void Bush::SetupComponents()
 	RectangleRenderComponent* renderComponent = new RectangleRenderComponent();
 	renderComponent->SetOwner(this);
 	renderComponent->mColor = { 20,200,20,255 };
-	renderComponent->mRectangle.dimensions.x = 86;
-	renderComponent->mRectangle.dimensions.y = 86;
+	renderComponent->mRectangle.dimensions.x = 320;
+	renderComponent->mRectangle.dimensions.y = 320;
 
 	RectangleColliderComponent* colliderComponent = new RectangleColliderComponent();
 	colliderComponent->SetOwner(this);
@@ -26,8 +26,8 @@ void Bush::SetupComponents()
 
 
 	//spriteComponent->mColor = { 255, 255, 255, 255 };
-	spriteComponent->mRectangle.dimensions.x = 86;
-	spriteComponent->mRectangle.dimensions.y = 86;
+	spriteComponent->mRectangle.dimensions.x = 320;
+	spriteComponent->mRectangle.dimensions.y = 320;
 
 }
 

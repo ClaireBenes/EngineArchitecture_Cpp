@@ -78,8 +78,8 @@ void Renderer::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec,
     Transform2D transform = rOwner.mTransform;
     destinationRect.w = static_cast< int >( transform.mScale.x * rec.dimensions.x);
     destinationRect.h = static_cast< int >( transform.mScale.y * rec.dimensions.y);
-    destinationRect.x = static_cast< int >( transform.mPosition.x);
-    destinationRect.y = static_cast< int >( transform.mPosition.y);
+    destinationRect.x = static_cast< int >( rec.position.x);
+    destinationRect.y = static_cast< int >( rec.position.y);
 
     SDL_Rect* sourceSDL = nullptr;
     if(rec != Rectangle::NullRect)

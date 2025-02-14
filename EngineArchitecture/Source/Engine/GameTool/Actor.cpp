@@ -3,6 +3,7 @@
 #include "Visual/Render/RenderComponent.h"
 #include "Collision/ColliderComponent.h"
 #include "Engine/Manager/AssetManager.h"
+#include "Visual/Render/SpriteRenderComponent.h"
 
 void Actor::Start()
 {

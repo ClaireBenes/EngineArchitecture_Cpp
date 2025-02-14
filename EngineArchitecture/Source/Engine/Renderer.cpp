@@ -2,9 +2,11 @@
 
 #include "SDL_image.h"
 
+#include "Window.h"
 #include "GameTool/Actor.h"
 #include "GameTool/Utility/Math.h"
 #include "GameTool/Visual/Texture.h"
+#include "GameTool/Visual/Render/SpriteRenderComponent.h"
 
 Renderer::Renderer() : mSdlRenderer(nullptr)
 {
@@ -70,30 +72,55 @@ void Renderer::DrawRectLine(const Rectangle& rRect, Color pColor)
     SDL_RenderDrawRect(mSdlRenderer, &sdlRect);
 }
 
-void Renderer::DrawSprite(Texture& pTex, const Rectangle& rRect, Actor* pOwner) const
+void Renderer::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip) const
 {
-    SDL_Rect sdlRect = rRect.ToSdlRect();
+    SDL_Rect destinationRect;
+    Transform2D transform = rOwner.mTransform;
+    destinationRect.w = static_cast< int >( transform.mScale.x * rec.dimensions.x);
+    destinationRect.h = static_cast< int >( transform.mScale.y * rec.dimensions.y);
+    destinationRect.x = static_cast< int >( transform.mPosition.x);
+    destinationRect.y = static_cast< int >( transform.mPosition.y);
 
     SDL_Rect* sourceSDL = nullptr;
-    if (rRect != Rectangle::NullRect)
+    if(rec != Rectangle::NullRect)
     {
-        sourceSDL = new SDL_Rect{
-            Maths::Round(rRect.position.x),
-            Maths::Round(rRect.position.y),
-            Maths::Round(rRect.dimensions.x),
-            Maths::Round(rRect.dimensions.y) };
+        sourceSDL = new SDL_Rect
+        {
+            Maths::Round(0),
+            Maths::Round(0),
+            Maths::Round(rTexture.GetWidth()),
+            Maths::Round(rTexture.GetHeight())
+        };
     }
 
     SDL_RenderCopyEx(mSdlRenderer,
-        pTex.GetSDLTexture(),
+        rTexture.GetSDLTexture(),
         sourceSDL,
-        &sdlRect,
-        -Maths::ToDeg(pOwner->mTransform.mRotation),
+        &destinationRect,
+        -Maths::ToDeg(transform.mRotation),
         nullptr,
         SDL_FLIP_NONE);
 
     delete sourceSDL;
+}
 
+void Renderer::AddSprite(SpriteRenderComponent* pSprite)
+{
+    int spriteDrawOrder = pSprite->GetDrawOrder();
+    std::vector<SpriteRenderComponent*>::iterator spriteIterator;
+
+    for(spriteIterator = mSprites.begin(); spriteIterator != mSprites.end(); ++spriteIterator)
+    {
+        if(spriteDrawOrder < ( *spriteIterator )->GetDrawOrder()) break;
+    }
+    mSprites.insert(spriteIterator, pSprite);
+}
+
+void Renderer::RemoveSprite(SpriteRenderComponent* pSprite)
+{
+    std::vector<SpriteRenderComponent*>::iterator spriteIterator;
+    spriteIterator = std::find(mSprites.begin(), mSprites.end(), pSprite);
+    mSprites.erase(spriteIterator);
 }
 
 

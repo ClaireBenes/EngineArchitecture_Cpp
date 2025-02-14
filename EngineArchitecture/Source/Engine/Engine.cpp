@@ -41,8 +41,6 @@ void Engine::Initialize()
     {
         mScenes[mLoadedScene]->SetWindow(mWindow);
         mScenes[mLoadedScene]->SetRenderer(mRenderer);
-
-
     }
 
     //Go into main game loop when initialize is finished

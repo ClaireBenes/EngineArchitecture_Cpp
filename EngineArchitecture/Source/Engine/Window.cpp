@@ -3,6 +3,7 @@
 Window::Window(int pWidth, int pHeight, std::string pTitle):mSdlWindow(nullptr), mDimensions({ static_cast<float>(pWidth), static_cast< float >(pHeight) })
 {
     mTitle = pTitle;
+    //dimension = mDimensions;
 }
 
 //Get window dimensions
@@ -10,6 +11,12 @@ Vector2 Window::GetDimensions() const
 {
 	return mDimensions;
 }
+
+//Get window dimensions static
+//Vector2 Window::Dimension()
+//{
+//    return dimension;
+//}
 
 //Get SDL Window
 SDL_Window* Window::GetSdlWindow() const

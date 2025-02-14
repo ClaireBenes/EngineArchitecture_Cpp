@@ -9,6 +9,12 @@ mDrawOrder(pDrawOrder),
 mTexWidth(pTexture.GetWidth()),
 mTexHeight(pTexture.GetHeight())
 {
+
+}
+
+SpriteRenderComponent::~SpriteRenderComponent()
+{
+	mOwner->mScene->GetRenderer()->RemoveSprite(this);
 }
 
 void SpriteRenderComponent::SetTexture(const Texture& pTexture)
@@ -19,22 +25,17 @@ void SpriteRenderComponent::SetTexture(const Texture& pTexture)
 
 void SpriteRenderComponent::Render(Renderer* pRenderer)
 {
-
-	//SDL_Rect tempRect;
-	//Transform2D transform = mOwner->mTransform;
-
-	//tempRect.w = static_cast<int>(mTexture.GetWidth() * transform.mScale.x);
-	//tempRect.h = static_cast<int>(mTexture.GetHeight() * transform.mScale.y);
-	//tempRect.x = static_cast<int>(transform.mPosition.x - mTexWidth / 2.0f);
-	//tempRect.y = static_cast<int>(transform.mPosition.y - mTexHeight / 2.0f);
-
 	//relative transform position
 	Rectangle tempRectangle = mRectangle;
 	tempRectangle.position += mOwner->mTransform.mPosition;
 
+	pRenderer->DrawSprite(*mOwner, mTexture, tempRectangle, Renderer::Flip::None);
 
-	//Vector2 origin{ mTexWidth / 2.0f, mTexHeight / 2.0f };
-	pRenderer->DrawSprite(mTexture, tempRectangle, mOwner);
+}
+
+void SpriteRenderComponent::AddSprite()
+{
+	mOwner->mScene->GetRenderer()->AddSprite(this);
 }
 
 int SpriteRenderComponent::GetDrawOrder() const

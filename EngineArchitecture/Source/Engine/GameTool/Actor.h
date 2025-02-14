@@ -40,10 +40,9 @@ public:
 	virtual void Update();
 	virtual void Destroy();
 
+public:
 	//Variables
 	Transform2D mTransform{};
-
-protected:
 	Scene* mScene = nullptr;
 
 private:

@@ -16,6 +16,9 @@ Scene::~Scene()
 	{
 		delete actor;
 	}
+
+	//Free up resources
+	AssetManager::Clear();
 }
 
 void Scene::Update(float deltaTime)
@@ -46,20 +49,6 @@ void Scene::Render()
 	{
 		actor->Render(mRenderer);
 	}
-}
-
-void Scene::Unload()
-{
-	//Free actors pointers memory
-   //Because ~Actor() calls RemoveActor, we have to use a while loop
-	while (!mActors.empty())
-	{
-		delete mActors.back();
-	}
-
-	//Free up resources
-	AssetManager::Clear();
-
 }
 
 void Scene::SetWindow(Window* pWindow)
@@ -109,5 +98,4 @@ void Scene::RemoveActor(Actor* pActor)
 		std::iter_swap(it, mActors.end() - 1);
 		mActors.pop_back();
 	}
-
 }

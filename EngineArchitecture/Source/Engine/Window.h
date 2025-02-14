@@ -15,6 +15,8 @@ public:
 	Vector2 GetDimensions() const;
 	SDL_Window* GetSdlWindow() const;
 
+	//static Vector2 Dimension();
+
 	bool Open();
 	void Update();
 	void Close();
@@ -22,6 +24,7 @@ public:
 private:
 	//variables
 	Vector2 mDimensions = { 0,0 };
+	//static Vector2 dimension;
 	SDL_Window* mSdlWindow;
 	std::string mTitle = "Best Game";
 };

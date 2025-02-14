@@ -21,7 +21,6 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Render();
 	virtual void OnInput(SDL_Event event) = 0;
-	virtual void Unload();
 
 	//Non virtual functions
 	void SetWindow(Window* pWindow);

@@ -9,14 +9,15 @@ class SpriteRenderComponent : public RenderComponent
 {
 public:
 	SpriteRenderComponent(Texture& pTexture, int pDrawOrder = 100);
-	//virtual ~SpriteRenderComponent();
+	virtual ~SpriteRenderComponent();
 
-	//SpriteRenderComponent() = delete;
-	//SpriteRenderComponent(const SpriteRenderComponent&) = delete;
-	//SpriteRenderComponent& operator= (const SpriteRenderComponent&) = delete;
+	SpriteRenderComponent() = delete;
+	SpriteRenderComponent(const SpriteRenderComponent&) = delete;
+	SpriteRenderComponent& operator= (const SpriteRenderComponent&) = delete;
 
 	virtual void SetTexture(const Texture& pTexture);
 	virtual void Render(Renderer* pRenderer) override;
+	void AddSprite();
 
 	//Getters
 	int GetDrawOrder() const;

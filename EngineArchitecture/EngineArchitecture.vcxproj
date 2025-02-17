@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Engine\Manager\InputManager.h" />
+    <ClInclude Include="Source\Engine\GameTool\Movement\Controller\PlayerController.h" />
+    <ClInclude Include="Source\Engine\GameTool\Movement\Input\InputEvent.h" />
+    <ClInclude Include="Source\Engine\GameTool\Movement\Input\IInputListener.h" />
     <ClInclude Include="Source\Engine\GameTool\Movement\MoveComponent.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Render\Sprite\AnimatedSpriteRenderComponent.h" />
     <ClInclude Include="Source\Engine\GameTool\Utility\Math.h" />
@@ -49,6 +53,9 @@
     <ClInclude Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine\Manager\InputManager.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Movement\Controller\PlayerController.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Movement\Input\InputEvent.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Movement\MoveComponent.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Render\Sprite\AnimatedSpriteRenderComponent.cpp" />
     <ClCompile Include="Source\Engine\Manager\AssetManager.cpp" />

@@ -1,5 +1,7 @@
 #include "Engine.h"
 
+#include "Manager/InputManager.h"
+
 Engine::Engine(std::string pTitle, std::vector<Scene*> pScene) : mScenes(pScene), mIsRunning(true)
 {
     //initialize SDL
@@ -102,11 +104,9 @@ void Engine::CheckForInputs()
                         mIsRunning = false;
                     }
                 default:
+                    InputManager::Instance().HandleInputs(event);
                     break;
             }
-
-            //check input of specific scene
-            mScenes[mLoadedScene]->OnInput(event);
         }
     }
 }

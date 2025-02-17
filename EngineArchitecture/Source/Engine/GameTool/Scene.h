@@ -20,7 +20,6 @@ public:
 	virtual void Start() = 0;
 	virtual void Update(float deltaTime);
 	virtual void Render();
-	virtual void OnInput(SDL_Event event) = 0;
 
 	//Non virtual functions
 	void SetWindow(Window* pWindow);

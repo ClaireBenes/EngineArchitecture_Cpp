@@ -88,36 +88,36 @@ void Pong::Render()
 }
 
 //Input Handler
-void Pong::OnInput(SDL_Event event)
-{
-	switch(event.type)
-	{
-		case SDL_KEYDOWN:
-			//Move paddle up and down
-			if(event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_z)
-			{
-				mIsGoingUp = true;
-				mIsGoingDown = false;
-			}
-			if(event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
-			{
-				mIsGoingDown = true;
-				mIsGoingUp = false;
-			}
-			//Start to move ball
-			if(event.key.keysym.sym == SDLK_SPACE)
-			{
-				mBallIsMoving = true;
-			}
-			break;
-
-		case SDL_KEYUP:
-			//stop moving paddle up and down
-			mIsGoingDown = false;
-			mIsGoingUp = false;
-			break;
-
-		default:
-			break;
-	}
-}
+//void Pong::OnInput(SDL_Event event)
+//{
+//	switch(event.type)
+//	{
+//		case SDL_KEYDOWN:
+//			//Move paddle up and down
+//			if(event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_z)
+//			{
+//				mIsGoingUp = true;
+//				mIsGoingDown = false;
+//			}
+//			if(event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
+//			{
+//				mIsGoingDown = true;
+//				mIsGoingUp = false;
+//			}
+//			//Start to move ball
+//			if(event.key.keysym.sym == SDLK_SPACE)
+//			{
+//				mBallIsMoving = true;
+//			}
+//			break;
+//
+//		case SDL_KEYUP:
+//			//stop moving paddle up and down
+//			mIsGoingDown = false;
+//			mIsGoingUp = false;
+//			break;
+//
+//		default:
+//			break;
+//	}
+//}

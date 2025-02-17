@@ -124,7 +124,12 @@ Vector2 operator-(const Vector2& left, const Vector2& right)
 // *
 Vector2 operator*(const float value, const Vector2& vector)
 {
-	return { value * vector.x, value - vector.y };
+	return { value * vector.x, value * vector.y };
+}
+
+Vector2 operator*(const Vector2& vector, const float value)
+{
+	return { value * vector.x, value * vector.y };
 }
 
 // divide in one order 

@@ -99,6 +99,18 @@
     <ClInclude Include="Source\Engine\GameTool\Movement\MoveComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\GameTool\Movement\Input\IInputListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GameTool\Movement\Input\InputEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Manager\InputManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GameTool\Movement\Controller\PlayerController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Engine.cpp">
@@ -183,6 +195,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\GameTool\Movement\MoveComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GameTool\Movement\Input\InputEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Manager\InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GameTool\Movement\Controller\PlayerController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

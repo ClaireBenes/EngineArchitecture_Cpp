@@ -36,6 +36,7 @@ struct Vector2
 	friend Vector2 operator+(const Vector2& left, const Vector2& right);
 	friend Vector2 operator-(const Vector2& left, const Vector2& right);
 	friend Vector2 operator*(const float value, const Vector2& vector);
+	friend Vector2 operator*(const Vector2& vector, const float value);
 	friend Vector2 operator/(const Vector2& vector, const float value);
 };
 

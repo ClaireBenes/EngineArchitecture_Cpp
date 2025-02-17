@@ -2,6 +2,7 @@
 
 #include "Engine/GameTool/Utility/Math.h"
 #include "Engine/GameTool/Actor.h"
+#include "Engine/Log.h"
 
 MoveComponent::MoveComponent(Actor* pOwner, int pUpdateOrder) :
 	Component(pUpdateOrder), mSpeed(0.0f)
@@ -23,10 +24,9 @@ void MoveComponent::Update()
 {
 	if (!Maths::NearZero(mSpeed.SqrLength()))
 	{
-
-		Vector2 newPosition = mOwner->mTransform.mPosition;
+		Vector2 newPosition = mOwner->mTransform.mPosition
 			+ (mOwner->mTransform.Right() * mSpeed.x
-				+ mOwner->GetTransform().Up() * mSpeed.y) * Time::deltaTime;
-		mOwner->SetPosition(newPosition);
+				+ mOwner->mTransform.Up() * mSpeed.y) * Time::deltaTime;
+		mOwner->mTransform.mPosition = newPosition;
 	}
 }

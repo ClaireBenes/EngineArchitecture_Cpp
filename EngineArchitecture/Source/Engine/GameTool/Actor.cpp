@@ -134,8 +134,5 @@ void Actor::Update()
 
 void Actor::Destroy()
 {
-	for(Component* myComponent : mComponents)
-	{
-		myComponent->OnEnd();
-	}
+
 }

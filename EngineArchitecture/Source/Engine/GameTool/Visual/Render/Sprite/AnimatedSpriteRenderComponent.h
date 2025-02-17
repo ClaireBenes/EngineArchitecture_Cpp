@@ -6,7 +6,7 @@
 class AnimatedSpriteRenderComponent : public SpriteRenderComponent
 {
 public:
-	AnimatedSpriteRenderComponent(const std::vector<Texture>& pTexture, int pDrawOrder = 100);
+	AnimatedSpriteRenderComponent(Actor* pOwner, const std::vector<Texture>& pTexture, int pDrawOrder = 100);
 	virtual ~AnimatedSpriteRenderComponent();
 	AnimatedSpriteRenderComponent() = delete;
 	AnimatedSpriteRenderComponent(const AnimatedSpriteRenderComponent&) = delete;

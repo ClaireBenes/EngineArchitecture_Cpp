@@ -12,11 +12,8 @@ void Player::SetupComponents()
 {
 	AssetManager::LoadTexturesFromFolder(*mScene->GetRenderer(), "Resources/Characters/Walk", allTextures);
 
-	animatedSpriteComponent = new AnimatedSpriteRenderComponent(allTextures);
-	animatedSpriteComponent->SetOwner(this);
-	animatedSpriteComponent->AddSprite();
+	animatedSpriteComponent = new AnimatedSpriteRenderComponent(this, allTextures);
 	animatedSpriteComponent->SetAnimationFps(10.0f);
-
 	animatedSpriteComponent->SetNewDimensions(86, 86);
 
 	colliderComponent = new RectangleColliderComponent();

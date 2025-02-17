@@ -16,10 +16,21 @@ Vector2::Vector2(float x, float y)
 	this->y = y;
 }
 
+Vector2::Vector2(float x)
+{
+	this->x = x;
+	this->y = x;
+}
+
 //Magnitude
 float Vector2::Magnitude() const
 {
 	return std::sqrt(x * x + y * y);
+}
+
+float Vector2::SqrLength() const
+{
+	return (x * x + y * y);
 }
 
 //Normalize

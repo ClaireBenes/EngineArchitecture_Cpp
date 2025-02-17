@@ -9,5 +9,5 @@ void ColliderComponent::OnStart()
 
 void ColliderComponent::OnEnd()
 {
-	PhysicManager::Instance().RemoveComponent(this);
+	//PhysicManager::Instance().RemoveComponent(this);
 }

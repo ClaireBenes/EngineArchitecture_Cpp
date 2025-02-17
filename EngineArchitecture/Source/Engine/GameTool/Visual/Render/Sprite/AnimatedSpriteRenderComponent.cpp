@@ -2,8 +2,8 @@
 
 #include "Engine/Time.h"
 
-AnimatedSpriteRenderComponent::AnimatedSpriteRenderComponent(const std::vector<Texture>& pTexture, int pDrawOrder) :
-SpriteRenderComponent(pTexture[0], pDrawOrder), mCurrentFrame(0.0f), mAnimFps(24.0f)
+AnimatedSpriteRenderComponent::AnimatedSpriteRenderComponent(Actor* pOwner, const std::vector<Texture>& pTexture, int pDrawOrder) :
+SpriteRenderComponent(pOwner, pTexture[0], pDrawOrder), mCurrentFrame(0.0f), mAnimFps(24.0f)
 {
 	SetAnimationTextures(pTexture);
 }

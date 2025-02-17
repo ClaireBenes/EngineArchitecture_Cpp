@@ -2,13 +2,14 @@
 
 #include "Engine/GameTool/Actor.h"
 
-SpriteRenderComponent::SpriteRenderComponent(const Texture& pTexture, int pDrawOrder):
+SpriteRenderComponent::SpriteRenderComponent(Actor* pOwner, const Texture& pTexture, int pDrawOrder):
 mTexture(pTexture),
 mDrawOrder(pDrawOrder),
 mTexWidth(pTexture.GetWidth()),
 mTexHeight(pTexture.GetHeight())
 {
-
+	SetOwner(pOwner);
+	AddSprite();
 }
 
 SpriteRenderComponent::~SpriteRenderComponent()

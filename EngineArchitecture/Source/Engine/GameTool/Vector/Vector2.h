@@ -8,6 +8,7 @@ struct Vector2
 {
 	Vector2();
 	Vector2(float x, float y);
+	Vector2(float x);
 
 	//Variables
 	float x = 0;
@@ -17,6 +18,7 @@ struct Vector2
 
 	//Functions
 	float Magnitude() const;
+	float SqrLength() const;
 	void Normalize();
 	Vector2 Normalized();
 

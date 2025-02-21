@@ -5,6 +5,8 @@
 #include "Engine/Manager/AssetManager.h"
 #include "Visual/Render/Sprite/SpriteRenderComponent.h"
 
+#include "Engine/Engine.h"
+
 void Actor::Start()
 {
 	//Setting up all actors component
@@ -113,10 +115,14 @@ void Actor::Render(Renderer* pRenderer)
 	}
 
 	//for debug
-	for(ColliderComponent* colliderComponent : mColliderComponents)
+	if (Engine::mInDebugMode) 
 	{
-		colliderComponent->DebugRender(pRenderer);
+		for (ColliderComponent* colliderComponent : mColliderComponents)
+		{
+			colliderComponent->DebugRender(pRenderer);
+		}
 	}
+
 }
 
 ActorState Actor::GetState() const

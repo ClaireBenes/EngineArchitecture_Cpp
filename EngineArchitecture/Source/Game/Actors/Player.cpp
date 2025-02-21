@@ -20,8 +20,10 @@ void Player::SetupComponents()
 
 	colliderComponent = new RectangleColliderComponent();
 	colliderComponent->SetOwner(this);
-	colliderComponent->mRectangle.dimensions.x = animatedSpriteComponent->mRectangle.dimensions.x;
-	colliderComponent->mRectangle.dimensions.y = animatedSpriteComponent->mRectangle.dimensions.y;
+	colliderComponent->mRectangle.dimensions.x = animatedSpriteComponent->mRectangle.dimensions.x / 2;
+	colliderComponent->mRectangle.dimensions.y = animatedSpriteComponent->mRectangle.dimensions.y / 1.3f;
+	colliderComponent->mRectangle.position.x = animatedSpriteComponent->mRectangle.position.x + (animatedSpriteComponent->mRectangle.dimensions.x / 4);
+	colliderComponent->mRectangle.position.y = animatedSpriteComponent->mRectangle.position.y + (animatedSpriteComponent->mRectangle.dimensions.y / 8);
 
 	PlatformerPlayerController* platformPlayercontroller = new PlatformerPlayerController(this);
 	platformPlayercontroller->SetCollider(colliderComponent);

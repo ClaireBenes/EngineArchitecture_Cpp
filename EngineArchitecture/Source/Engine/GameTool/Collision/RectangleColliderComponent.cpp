@@ -5,7 +5,6 @@
 
 void RectangleColliderComponent::Render(Renderer* pRenderer)
 {
-	//relative transform position
 	pRenderer->DrawRectLine(GetWorldRectangle(), mColor);
 }
 

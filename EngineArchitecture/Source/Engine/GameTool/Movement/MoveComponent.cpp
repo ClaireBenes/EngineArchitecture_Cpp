@@ -51,7 +51,6 @@ void MoveComponent::Update()
 		{
 			newPosition.x = oldPosition.x;
 			mVelocity.x = 0;
-			//ResetVelocity();
 		}
 
 		//Check collision on Y axis
@@ -60,8 +59,6 @@ void MoveComponent::Update()
 		{
 			newPosition.y = oldPosition.y;
 			mVelocity.y = 0;
-			mVelocity.x = 0;
-			//ResetVelocity();
 		}
 
 		mOwner->mTransform.mPosition = newPosition;
@@ -78,6 +75,15 @@ bool MoveComponent::CheckCollision()
 	if (mCollidercomponent != nullptr)
 	{
 		PhysicManager& physicManager = PhysicManager::Instance();
+
+		if (physicManager.Collision(mCollidercomponent)) 
+		{
+			mInCollision = true;
+		}
+		else 
+		{
+			mInCollision = false;
+		}
 
 		return physicManager.Collision(mCollidercomponent);
 	}

@@ -11,7 +11,7 @@ public:
 	void OnNotify(SDL_Event& pEvent) override;
 
 private:
-	Vector2 mForce = { 0, -2 };
+	Vector2 mForce = { 0, -4 };
 	bool mIsJumping = false;
 };
 

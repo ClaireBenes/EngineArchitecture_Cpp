@@ -27,7 +27,7 @@ void PlatformerPlayerController::OnNotify(SDL_Event& pEvent)
 		Vector2 direction = Vector2::ZERO;
 		if (pEvent.key.keysym.sym == SDLK_SPACE || pEvent.key.keysym.sym == SDLK_UP)
 		{
-			if (!mIsJumping) 
+			if (!mIsJumping && mInCollision) 
 			{
 				direction.y = 1;
 				AddForce({GetSpeed().x / 75, mForce.y});
@@ -54,11 +54,16 @@ void PlatformerPlayerController::OnNotify(SDL_Event& pEvent)
 	}
 
 	case SDL_KEYUP:
-		SetSpeed(Vector2::ZERO);
-		//mVelocity.x = 0;
-		
-		mIsJumping = false;
-
+		if (pEvent.key.keysym.sym == SDLK_RIGHT || pEvent.key.keysym.sym == SDLK_d || pEvent.key.keysym.sym == SDLK_LEFT || pEvent.key.keysym.sym == SDLK_q)
+		{
+			SetSpeed(Vector2::ZERO);
+			mVelocity = 0;
+		}
+		if (pEvent.key.keysym.sym == SDLK_SPACE || pEvent.key.keysym.sym == SDLK_UP) 
+		{
+			SetSpeed({GetSpeed().x, 0});
+			mIsJumping = false;
+		}
 		break;
 
 	default:

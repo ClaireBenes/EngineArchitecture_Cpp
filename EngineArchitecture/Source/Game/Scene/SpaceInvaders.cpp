@@ -12,11 +12,15 @@ void SpaceInvaders::Start()
 	player->mTransform.mPosition = winDimension / 2;
 	AddActor(player);
 
-	Bush* bush = new Bush();
-	bush->mTransform.mPosition = player->mTransform.mPosition;
-	bush->mTransform.mPosition.y += 200;
+	Bush* platform = new Bush();
+	platform->mTransform.mPosition = player->mTransform.mPosition;
+	platform->mTransform.mPosition.y += 200;
 
-	AddActor(bush);
+	Bush* secondPlatform = new Bush();
+	secondPlatform->mTransform.mPosition = Vector2(150, 530);
+
+	AddActor(platform);
+	AddActor(secondPlatform);
 }
 
 void SpaceInvaders::Update(float deltaTime)

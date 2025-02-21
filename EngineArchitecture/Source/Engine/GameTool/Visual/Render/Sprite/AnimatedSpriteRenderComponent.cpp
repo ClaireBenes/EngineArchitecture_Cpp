@@ -2,23 +2,14 @@
 
 #include "Engine/Time.h"
 
-AnimatedSpriteRenderComponent::AnimatedSpriteRenderComponent(Actor* pOwner, const std::vector<Texture>& pTexture, int pDrawOrder) :
-SpriteRenderComponent(pOwner, pTexture[0], pDrawOrder), mCurrentFrame(0.0f), mAnimFps(24.0f)
+AnimatedSpriteRenderComponent::AnimatedSpriteRenderComponent(Actor* pOwner, int pDrawOrder) :
+SpriteRenderComponent(pOwner, pDrawOrder), mCurrentFrame(0.0f), mAnimFps(24.0f)
 {
-	SetAnimationTextures(pTexture);
+
 }
 
 AnimatedSpriteRenderComponent::~AnimatedSpriteRenderComponent()
 {
-}
-
-void AnimatedSpriteRenderComponent::SetAnimationTextures(const std::vector<Texture>& pTextures)
-{
-	mAnimationTextures = pTextures;
-	if(mAnimationTextures.size() > 0)
-	{
-		SetTexture(mAnimationTextures[0]);
-	}
 }
 
 void AnimatedSpriteRenderComponent::SetAnimationFps(float pFps)
@@ -26,22 +17,40 @@ void AnimatedSpriteRenderComponent::SetAnimationFps(float pFps)
 	mAnimFps = pFps;
 }
 
+void AnimatedSpriteRenderComponent::SetCurrentAnimation(std::string pAnimation)
+{
+	if (mTextureMap.find(pAnimation) != mTextureMap.end()) 
+	{
+		mCurrentAnimation = pAnimation;
+	}
+}
+
+void AnimatedSpriteRenderComponent::AddAnimation(std::string pName, std::vector<Texture> pTextures)
+{
+	mTextureMap.emplace(pName, pTextures);
+}
+
 void AnimatedSpriteRenderComponent::Update()
 {
 	SpriteRenderComponent::Update();
 
-	if(mAnimationTextures.size() == 0)
+	if (mCurrentAnimation.empty()) 
+	{
+		return;
+	}
+
+	if(mTextureMap[mCurrentAnimation].size() == 0)
 	{
 		return;
 	}
 
 	mCurrentFrame += mAnimFps * Time::deltaTime;
-	while(mCurrentFrame >= mAnimationTextures.size())
+	while(mCurrentFrame >= mTextureMap[mCurrentAnimation].size())
 	{
-		mCurrentFrame -= mAnimationTextures.size();
+		mCurrentFrame -= mTextureMap[mCurrentAnimation].size();
 	}
 
-	SetTexture(mAnimationTextures[static_cast< int >( mCurrentFrame )]);
+	SetTexture(mTextureMap[mCurrentAnimation][static_cast< int >( mCurrentFrame )]);
 }
 
 

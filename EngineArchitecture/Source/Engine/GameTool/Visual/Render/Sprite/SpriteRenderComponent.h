@@ -10,6 +10,7 @@
 class SpriteRenderComponent : public RenderComponent
 {
 public:
+	SpriteRenderComponent(Actor* pOwner, int pDrawOrder = 100);
 	SpriteRenderComponent(Actor* pOwner, const Texture& pTexture, int pDrawOrder = 100);
 	virtual ~SpriteRenderComponent();
 

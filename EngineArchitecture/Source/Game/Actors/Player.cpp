@@ -12,9 +12,7 @@
 
 void Player::SetupComponents()
 {
-	AssetManager::LoadTexturesFromFolder(*mScene->GetRenderer(), "Resources/Characters/Walk", allTextures);
-
-	animatedSpriteComponent = new AnimatedSpriteRenderComponent(this, allTextures);
+	SetUpAnimations();
 	animatedSpriteComponent->SetAnimationFps(10.0f);
 	animatedSpriteComponent->SetNewDimensions(86, 86);
 
@@ -27,6 +25,24 @@ void Player::SetupComponents()
 
 	PlatformerPlayerController* platformPlayercontroller = new PlatformerPlayerController(this);
 	platformPlayercontroller->SetCollider(colliderComponent);
+}
+
+
+void Player::SetUpAnimations()
+{
+	std::vector<Texture> walkTextures{};
+	AssetManager::LoadTexturesFromFolder(*mScene->GetRenderer(), "Resources/Characters/Walk", walkTextures);
+
+	std::vector<Texture> jumpTextures{};
+	AssetManager::LoadTexturesFromFolder(*mScene->GetRenderer(), "Resources/Characters/Jump", jumpTextures);
+
+	std::vector<Texture> idleTextures{};
+	AssetManager::LoadTexturesFromFolder(*mScene->GetRenderer(), "Resources/Characters/Idle", idleTextures);
+
+	animatedSpriteComponent = new AnimatedSpriteRenderComponent(this);
+	animatedSpriteComponent->AddAnimation("Walk", walkTextures);
+	animatedSpriteComponent->AddAnimation("Idle", idleTextures);
+	animatedSpriteComponent->AddAnimation("Jump", jumpTextures);
 }
 
 void Player::Update()

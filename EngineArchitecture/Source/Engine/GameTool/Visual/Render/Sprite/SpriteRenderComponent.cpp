@@ -2,6 +2,15 @@
 
 #include "Engine/GameTool/Actor.h"
 
+SpriteRenderComponent::SpriteRenderComponent(Actor* pOwner, int pDrawOrder):
+mDrawOrder(pDrawOrder),
+mTexWidth(0),
+mTexHeight(0)
+{
+	SetOwner(pOwner);
+	AddSprite();
+}
+
 SpriteRenderComponent::SpriteRenderComponent(Actor* pOwner, const Texture& pTexture, int pDrawOrder):
 mTexture(pTexture),
 mDrawOrder(pDrawOrder),
@@ -25,6 +34,10 @@ void SpriteRenderComponent::SetTexture(const Texture& pTexture)
 
 void SpriteRenderComponent::Render(Renderer* pRenderer)
 {
+	if (mTexHeight == 0 || mTexWidth == 0) 
+	{
+		return;
+	}
 	//relative transform position
 	Rectangle tempRectangle = mRectangle;
 	tempRectangle.position += mOwner->mTransform.mPosition;

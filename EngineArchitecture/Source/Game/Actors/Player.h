@@ -16,8 +16,9 @@ public:
 
 private:
 
+	void SetUpAnimations();
+
 	RectangleColliderComponent* colliderComponent = nullptr;
 	AnimatedSpriteRenderComponent* animatedSpriteComponent = nullptr;
-	std::vector<Texture> allTextures;
 };
 

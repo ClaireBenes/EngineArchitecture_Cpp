@@ -24,6 +24,11 @@ void MoveComponent::SetSpeed(Vector2 pSpeed)
 	mSpeed = pSpeed;
 }
 
+void MoveComponent::AddForce(Vector2 pForce)
+{
+	mVelocity += pForce;
+}
+
 void MoveComponent::Update()
 {
 	if (mGravityDirection != Vector2::ZERO) 
@@ -46,6 +51,7 @@ void MoveComponent::Update()
 		{
 			newPosition.x = oldPosition.x;
 			mVelocity.x = 0;
+			//ResetVelocity();
 		}
 
 		//Check collision on Y axis
@@ -54,6 +60,8 @@ void MoveComponent::Update()
 		{
 			newPosition.y = oldPosition.y;
 			mVelocity.y = 0;
+			mVelocity.x = 0;
+			//ResetVelocity();
 		}
 
 		mOwner->mTransform.mPosition = newPosition;

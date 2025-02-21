@@ -4,6 +4,8 @@
 #include "Engine/GameTool/Collision/RectangleColliderComponent.h"
 #include "Engine/GameTool/Movement/Controller/PlayerController.h"
 
+#include "Engine/GameTool/Movement/Controller/PlatformerPlayerController.h"
+
 #include "Engine/Manager/AssetManager.h"
 
 #include <vector>
@@ -21,8 +23,8 @@ void Player::SetupComponents()
 	colliderComponent->mRectangle.dimensions.x = animatedSpriteComponent->mRectangle.dimensions.x;
 	colliderComponent->mRectangle.dimensions.y = animatedSpriteComponent->mRectangle.dimensions.y;
 
-	playerController = new PlayerController(this);
-	playerController->SetCollider(colliderComponent);
+	PlatformerPlayerController* platformPlayercontroller = new PlatformerPlayerController(this);
+	platformPlayercontroller->SetCollider(colliderComponent);
 }
 
 void Player::Update()

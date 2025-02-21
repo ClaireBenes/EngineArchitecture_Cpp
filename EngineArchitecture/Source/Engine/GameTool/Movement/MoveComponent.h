@@ -15,6 +15,7 @@ public:
 
 	Vector2 GetSpeed() const;
 	void SetSpeed(Vector2 pSpeed);
+	void AddForce(Vector2 pForce);
 
 	void Update() override;
 
@@ -23,12 +24,12 @@ public:
 
 	// - == up && + == down
 	Vector2 mGravityDirection = { 0, 5 };
+	Vector2 mVelocity = Vector2::ZERO;
 
 protected:
 	Vector2 mSpeed;
 
 private:
 	ColliderComponent* mCollidercomponent = nullptr;
-	Vector2 mVelocity = Vector2::ZERO;
 };
 

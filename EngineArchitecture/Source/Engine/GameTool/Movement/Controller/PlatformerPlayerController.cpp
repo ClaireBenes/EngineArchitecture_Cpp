@@ -1,4 +1,4 @@
-#include "PlayerController.h"
+#include "PlatformerPlayerController.h"
 
 #include "Engine/GameTool/Actor.h"
 #include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
@@ -7,33 +7,33 @@
 
 #include "Engine/Manager/InputManager.h"
 
-PlayerController::PlayerController(Actor* pActor) : MoveComponent(pActor)
+PlatformerPlayerController::PlatformerPlayerController(Actor* pActor) : MoveComponent(pActor)
 {
-	InputManager::Instance().SubscribeTo(SDLK_z, this);
 	InputManager::Instance().SubscribeTo(SDLK_q, this);
-	InputManager::Instance().SubscribeTo(SDLK_s, this);
 	InputManager::Instance().SubscribeTo(SDLK_d, this);
+	InputManager::Instance().SubscribeTo(SDLK_SPACE, this);
 
-	InputManager::Instance().SubscribeTo(SDLK_UP, this);
 	InputManager::Instance().SubscribeTo(SDLK_LEFT, this);
-	InputManager::Instance().SubscribeTo(SDLK_DOWN, this);
 	InputManager::Instance().SubscribeTo(SDLK_RIGHT, this);
+	InputManager::Instance().SubscribeTo(SDLK_UP, this);
 }
 
-void PlayerController::OnNotify(SDL_Event& pEvent)
+void PlatformerPlayerController::OnNotify(SDL_Event& pEvent)
 {
-	switch (pEvent.type) 
+	switch (pEvent.type)
 	{
-	case SDL_KEYDOWN: 
+	case SDL_KEYDOWN:
 	{
 		Vector2 direction = Vector2::ZERO;
-		if (pEvent.key.keysym.sym == SDLK_UP || pEvent.key.keysym.sym == SDLK_z)
+		if (pEvent.key.keysym.sym == SDLK_SPACE || pEvent.key.keysym.sym == SDLK_UP)
 		{
-			direction.y = 1;
-		}
-		if (pEvent.key.keysym.sym == SDLK_DOWN || pEvent.key.keysym.sym == SDLK_s)
-		{
-			direction.y = -1;
+			if (!mIsJumping) 
+			{
+				direction.y = 1;
+				AddForce({GetSpeed().x / 75, mForce.y});
+				mIsJumping = true;
+			}
+
 		}
 		if (pEvent.key.keysym.sym == SDLK_RIGHT || pEvent.key.keysym.sym == SDLK_d)
 		{
@@ -52,14 +52,16 @@ void PlayerController::OnNotify(SDL_Event& pEvent)
 
 		break;
 	}
-		
+
 	case SDL_KEYUP:
 		SetSpeed(Vector2::ZERO);
+		//mVelocity.x = 0;
+		
+		mIsJumping = false;
+
 		break;
 
 	default:
 		break;
 	}
 }
-
-

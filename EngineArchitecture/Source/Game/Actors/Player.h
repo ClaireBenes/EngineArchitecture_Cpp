@@ -18,7 +18,6 @@ private:
 
 	RectangleColliderComponent* colliderComponent = nullptr;
 	AnimatedSpriteRenderComponent* animatedSpriteComponent = nullptr;
-	PlayerController* playerController = nullptr;
 	std::vector<Texture> allTextures;
 };
 

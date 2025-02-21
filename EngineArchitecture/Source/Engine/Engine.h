@@ -24,6 +24,9 @@ public:
 	void CheckForInputs();
 	void Close();
 
+public:
+	bool mInDebugMode = true;
+
 private:
 	//variables
 	std::string mTitle = "The Title";

@@ -115,7 +115,7 @@ void Actor::Render(Renderer* pRenderer)
 	//for debug
 	for(ColliderComponent* colliderComponent : mColliderComponents)
 	{
-		colliderComponent->Render(pRenderer);
+		colliderComponent->DebugRender(pRenderer);
 	}
 }
 

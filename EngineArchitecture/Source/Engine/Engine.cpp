@@ -103,6 +103,17 @@ void Engine::CheckForInputs()
                     {
                         mIsRunning = false;
                     }
+                    if (event.key.keysym.sym == SDLK_p)
+                    {
+                        if (mInDebugMode) 
+                        {
+                            mInDebugMode = false;
+                        }
+                        else 
+                        {
+                            mInDebugMode = true;
+                        }
+                    }
                 default:
                     InputManager::Instance().HandleInputs(event);
                     break;

@@ -3,7 +3,7 @@
 #include "../Actor.h"
 #include "../../Renderer.h"
 
-void RectangleColliderComponent::Render(Renderer* pRenderer)
+void RectangleColliderComponent::DebugRender(Renderer* pRenderer)
 {
 	pRenderer->DrawRectLine(GetWorldRectangle(), mColor);
 }

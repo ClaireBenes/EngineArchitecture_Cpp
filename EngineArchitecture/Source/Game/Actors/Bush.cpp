@@ -10,7 +10,7 @@ void Bush::SetupComponents()
 	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/pokeball.png", "ball");
 
 	SpriteRenderComponent* spriteComponent = new SpriteRenderComponent(this, AssetManager::GetTexture("ball"));
-	spriteComponent->SetNewDimensions(86, 86);
+	spriteComponent->SetNewDimensions(512, 86);
 
 	RectangleColliderComponent* colliderComponent = new RectangleColliderComponent();
 	colliderComponent->SetOwner(this);

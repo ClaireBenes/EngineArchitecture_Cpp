@@ -21,10 +21,14 @@ public:
 	void SetCollider(ColliderComponent* pCollider);
 	bool CheckCollision();
 
+	// - == up && + == down
+	Vector2 mGravityDirection = { 0, 5 };
+
 protected:
 	Vector2 mSpeed;
 
 private:
 	ColliderComponent* mCollidercomponent = nullptr;
+	Vector2 mVelocity = Vector2::ZERO;
 };
 

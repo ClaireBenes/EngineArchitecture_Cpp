@@ -33,6 +33,8 @@ struct Vector2
 	void operator*=(const float value);
 	void operator/=(const float value);
 
+	friend bool operator==(const Vector2& left, const Vector2& right);
+
 	friend Vector2 operator+(const Vector2& left, const Vector2& right);
 	friend Vector2 operator-(const Vector2& left, const Vector2& right);
 	friend Vector2 operator*(const float value, const Vector2& vector);

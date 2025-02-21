@@ -13,9 +13,9 @@ void SpaceInvaders::Start()
 	AddActor(player);
 
 	Bush* bush = new Bush();
-	bush->mTransform.mPosition = winDimension / 2;
-	bush->mTransform.mPosition.y = bush->mTransform.mPosition.y - 100;
-	bush->mTransform.mPosition.x = bush->mTransform.mPosition.x + 200;
+	bush->mTransform.mPosition = player->mTransform.mPosition;
+	bush->mTransform.mPosition.y += 200;
+
 	AddActor(bush);
 }
 

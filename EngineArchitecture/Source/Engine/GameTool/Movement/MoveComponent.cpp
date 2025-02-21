@@ -26,18 +26,37 @@ void MoveComponent::SetSpeed(Vector2 pSpeed)
 
 void MoveComponent::Update()
 {
-	if (!Maths::NearZero(mSpeed.SqrLength()))
+	if (mGravityDirection != Vector2::ZERO) 
 	{
-		Vector2 newPosition = mOwner->mTransform.mPosition
+		mVelocity += mGravityDirection * Time::deltaTime;
+	}
+
+	if (!Maths::NearZero(mSpeed.SqrLength() + mVelocity.SqrLength()))
+	{
+		Vector2 desiredPosition = mOwner->mTransform.mPosition
 			+ (mOwner->mTransform.Right() * mSpeed.x
-				+ mOwner->mTransform.Up() * mSpeed.y) * Time::deltaTime;
+				+ mOwner->mTransform.Up() * mSpeed.y) * Time::deltaTime + mVelocity;
 		Vector2 oldPosition = mOwner->mTransform.mPosition;
 
-		mOwner->mTransform.mPosition = newPosition;
+		Vector2 newPosition = desiredPosition;
+
+		//Check collision on X axis
+		mOwner->mTransform.mPosition = { desiredPosition.x, oldPosition.y };
 		if (CheckCollision() == true)
 		{
-			mOwner->mTransform.mPosition = oldPosition;
+			newPosition.x = oldPosition.x;
+			mVelocity.x = 0;
 		}
+
+		//Check collision on Y axis
+		mOwner->mTransform.mPosition = { oldPosition.x, desiredPosition.y };
+		if (CheckCollision() == true)
+		{
+			newPosition.y = oldPosition.y;
+			mVelocity.y = 0;
+		}
+
+		mOwner->mTransform.mPosition = newPosition;
 	}
 }
 
@@ -50,8 +69,6 @@ bool MoveComponent::CheckCollision()
 {
 	if (mCollidercomponent != nullptr)
 	{
-		//printf("IN COLLISION | ");
-
 		PhysicManager& physicManager = PhysicManager::Instance();
 
 		return physicManager.Collision(mCollidercomponent);

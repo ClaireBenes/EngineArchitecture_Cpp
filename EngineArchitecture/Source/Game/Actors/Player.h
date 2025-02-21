@@ -14,8 +14,6 @@ public:
 	void Update() override;
 	void Destroy() override;
 
-	void StopMoving();
-
 private:
 
 	RectangleColliderComponent* colliderComponent = nullptr;

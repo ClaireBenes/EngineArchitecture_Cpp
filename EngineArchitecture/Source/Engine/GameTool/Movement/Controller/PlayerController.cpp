@@ -1,9 +1,11 @@
 #include "PlayerController.h"
 
-#include "Engine/Manager/InputManager.h"
 #include "Engine/GameTool/Actor.h"
 #include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
+
 #include "Engine/Renderer.h"
+
+#include "Engine/Manager/InputManager.h"
 
 PlayerController::PlayerController(Actor* pActor):MoveComponent(pActor)
 {
@@ -22,30 +24,37 @@ void PlayerController::OnNotify(SDL_Event& pEvent)
 {
 	switch (pEvent.type) 
 	{
-	case SDL_KEYDOWN:
+	case SDL_KEYDOWN: 
+	{
+		Vector2 direction = Vector2::ZERO;
 		if (pEvent.key.keysym.sym == SDLK_UP || pEvent.key.keysym.sym == SDLK_z)
 		{
-			SetSpeed({ 0,100 });
+			direction.y = 1;
 		}
 		if (pEvent.key.keysym.sym == SDLK_DOWN || pEvent.key.keysym.sym == SDLK_s)
 		{
-			SetSpeed({ 0,-100 });
+			direction.y = -1;
 		}
 		if (pEvent.key.keysym.sym == SDLK_RIGHT || pEvent.key.keysym.sym == SDLK_d)
 		{
-			SetSpeed({ 100,0 });
+			direction.x = 1;
 
 			mOwner->GetComponentOfType<SpriteRenderComponent>()->mFlip = Renderer::Flip::None;
 		}
 		if (pEvent.key.keysym.sym == SDLK_LEFT || pEvent.key.keysym.sym == SDLK_q)
 		{
-			SetSpeed({ -100,0 });
-		
+			direction.x = -1;
+
 			mOwner->GetComponentOfType<SpriteRenderComponent>()->mFlip = Renderer::Flip::Horizontal;
 		}
+
+		SetSpeed(150.0f * direction);
+
 		break;
+	}
+		
 	case SDL_KEYUP:
-		SetSpeed(0.0f);
+		SetSpeed(Vector2::ZERO);
 		break;
 
 	default:

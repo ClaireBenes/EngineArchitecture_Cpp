@@ -1,13 +1,9 @@
 #include "Player.h"
 
-#include "Engine/GameTool/Visual/Render/RectangleRenderComponent.h"
 #include "Engine/GameTool/Visual/Render/Sprite/AnimatedSpriteRenderComponent.h"
-
 #include "Engine/GameTool/Collision/RectangleColliderComponent.h"
-
 #include "Engine/GameTool/Movement/Controller/PlayerController.h"
 
-#include "Engine/Manager/PhysicManager.h"
 #include "Engine/Manager/AssetManager.h"
 
 #include <vector>
@@ -26,20 +22,12 @@ void Player::SetupComponents()
 	colliderComponent->mRectangle.dimensions.y = animatedSpriteComponent->mRectangle.dimensions.y;
 
 	playerController = new PlayerController(this);
+	playerController->SetCollider(colliderComponent);
 }
 
 void Player::Update()
 {
 	Actor::Update();
-
-	playerController->Update();
-
-	PhysicManager& physicManager = PhysicManager::Instance();
-
-	if(physicManager.Collision(colliderComponent))
-	{
-		printf("IN COLLISION | ");
-	}
 }
 
 void Player::Destroy()

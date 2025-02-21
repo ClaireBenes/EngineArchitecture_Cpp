@@ -3,6 +3,8 @@
 #include "Engine/GameTool/Component.h"
 #include "Engine/GameTool/Vector/Vector2.h"
 
+class ColliderComponent;
+
 class MoveComponent : public Component
 {
 public:
@@ -16,7 +18,13 @@ public:
 
 	void Update() override;
 
+	void SetCollider(ColliderComponent* pCollider);
+	bool CheckCollision();
+
 protected:
 	Vector2 mSpeed;
+
+private:
+	ColliderComponent* mCollidercomponent = nullptr;
 };
 

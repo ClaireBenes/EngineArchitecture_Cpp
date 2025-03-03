@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Game\Scene\Pong.h">
+    <ClInclude Include="Source\Game\Scenes\Pong.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Engine.h">
@@ -66,7 +66,7 @@
     <ClInclude Include="Source\Engine\GameTool\Visual\Render\RectangleRenderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Scene\SpaceInvaders.h">
+    <ClInclude Include="Source\Game\Scenes\SpaceInvaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\Actors\Bush.h">
@@ -164,7 +164,7 @@
     <ClCompile Include="Source\Game\EngineArchitecture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Scene\Pong.cpp">
+    <ClCompile Include="Source\Game\Scenes\Pong.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\GameTool\Actor.cpp">
@@ -185,7 +185,7 @@
     <ClCompile Include="Source\Engine\GameTool\Visual\Render\RectangleRenderComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Scene\SpaceInvaders.cpp">
+    <ClCompile Include="Source\Game\Scenes\SpaceInvaders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Actors\Bush.cpp">

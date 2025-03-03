@@ -5,8 +5,8 @@
 
 #include "Engine/Engine.h"
 
-#include "Scene/Pong.h"
-#include "Scene/SpaceInvaders.h"
+#include "Scenes/Pong.h"
+#include "Scenes/SpaceInvaders.h"
 
 int main(int argc, char* argv[])
 {

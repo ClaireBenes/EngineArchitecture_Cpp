@@ -51,9 +51,9 @@
     <ClInclude Include="Source\Engine\GameTool\Utility\Vector\Vector3.h" />
     <ClInclude Include="Source\Engine\GameTool\Utility\Vector\Vector4.h" />
     <ClInclude Include="Source\Engine\Window.h" />
-    <ClInclude Include="Source\Game\Scene\Pong.h" />
+    <ClInclude Include="Source\Game\Scenes\Pong.h" />
     <ClInclude Include="Source\Engine\GameTool\Transform\Transform2D.h" />
-    <ClInclude Include="Source\Game\Scene\SpaceInvaders.h" />
+    <ClInclude Include="Source\Game\Scenes\SpaceInvaders.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Texture.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.h" />
     <ClInclude Include="Source\Engine\Vertex\VertexArray.h" />
@@ -92,9 +92,9 @@
     <ClCompile Include="Source\Game\EngineArchitecture.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="Source\Game\Scene\Pong.cpp" />
+    <ClCompile Include="Source\Game\Scenes\Pong.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Transform\Transform2D.cpp" />
-    <ClCompile Include="Source\Game\Scene\SpaceInvaders.cpp" />
+    <ClCompile Include="Source\Game\Scenes\SpaceInvaders.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Texture.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.cpp" />
     <ClCompile Include="Source\Engine\Vertex\VertexArray.cpp" />

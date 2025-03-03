@@ -3,7 +3,7 @@
 #include "Engine/GameTool/Actor.h"
 #include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
 
-#include "Engine/Renderer.h"
+#include "Engine/Renderer/RendererSDL.h"
 
 #include "Engine/Manager/InputManager.h"
 
@@ -39,13 +39,13 @@ void PlayerController::OnNotify(SDL_Event& pEvent)
 		{
 			direction.x = 1;
 
-			mOwner->GetComponentOfType<SpriteRenderComponent>()->mFlip = Renderer::Flip::None;
+			mOwner->GetComponentOfType<SpriteRenderComponent>()->mFlip = RendererSDL::Flip::None;
 		}
 		if (pEvent.key.keysym.sym == SDLK_LEFT || pEvent.key.keysym.sym == SDLK_q)
 		{
 			direction.x = -1;
 
-			mOwner->GetComponentOfType<SpriteRenderComponent>()->mFlip = Renderer::Flip::Horizontal;
+			mOwner->GetComponentOfType<SpriteRenderComponent>()->mFlip = RendererSDL::Flip::Horizontal;
 		}
 
 		SetSpeed(150.0f * direction);

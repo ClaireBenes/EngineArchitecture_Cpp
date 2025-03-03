@@ -1,19 +1,19 @@
-#include "Renderer.h"
+#include "RendererSDL.h"
 
 #include "SDL_image.h"
 
-#include "Window.h"
-#include "GameTool/Actor.h"
-#include "GameTool/Utility/Math.h"
-#include "GameTool/Visual/Texture.h"
-#include "GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
+#include "Engine/Window.h"
+#include "Engine/GameTool/Actor.h"
+#include "Engine/GameTool/Utility/Math.h"
+#include "Engine/GameTool/Visual/Texture.h"
+#include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
 
-Renderer::Renderer() : mSdlRenderer(nullptr)
+RendererSDL::RendererSDL() : mSdlRenderer(nullptr)
 {
 }
 
 //Initialize renderer
-bool Renderer::Initialize(Window& rWindow)
+bool RendererSDL::Initialize(Window& rWindow)
 {
     mSdlRenderer = SDL_CreateRenderer(rWindow.GetSdlWindow(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if(!mSdlRenderer)
@@ -32,7 +32,7 @@ bool Renderer::Initialize(Window& rWindow)
 }
 
 //Draw
-void Renderer::BeginDraw()
+void RendererSDL::BeginDraw()
 {
     //Background Color
     SDL_SetRenderDrawColor(mSdlRenderer, static_cast<Uint8>(mBackgroundColor.x), static_cast<Uint8>(mBackgroundColor.y), 
@@ -41,38 +41,38 @@ void Renderer::BeginDraw()
 }
 
 //End Draw
-void Renderer::EndDraw()
+void RendererSDL::EndDraw()
 {
     SDL_RenderPresent(mSdlRenderer);
 }
 
 //Close Game
-void Renderer::Close()
+void RendererSDL::Close()
 {
     SDL_DestroyRenderer(mSdlRenderer);
 }
 
-SDL_Renderer* Renderer::GetSDLRender()
+SDL_Renderer* RendererSDL::GetSDLRender()
 {
     return mSdlRenderer;
 }
 
 //Draw Rectangle
-void Renderer::DrawRect(const Rectangle& rRect, Color pColor)
+void RendererSDL::DrawRect(const Rectangle& rRect, Color pColor)
 {
     SDL_SetRenderDrawColor(mSdlRenderer, static_cast<Uint8>(pColor.x), static_cast<Uint8>(pColor.y), static_cast<Uint8>(pColor.z), static_cast<Uint8>(pColor.w));
     SDL_Rect sdlRect = rRect.ToSdlRect();
     SDL_RenderFillRect(mSdlRenderer, &sdlRect);
 }
 
-void Renderer::DrawRectLine(const Rectangle& rRect, Color pColor)
+void RendererSDL::DrawRectLine(const Rectangle& rRect, Color pColor)
 {
     SDL_SetRenderDrawColor(mSdlRenderer, static_cast< Uint8 >( pColor.x ), static_cast< Uint8 >( pColor.y ), static_cast< Uint8 >( pColor.z ), static_cast< Uint8 >( pColor.w ));
     SDL_Rect sdlRect = rRect.ToSdlRect();
     SDL_RenderDrawRect(mSdlRenderer, &sdlRect);
 }
 
-void Renderer::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip) const
+void RendererSDL::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip) const
 {
     SDL_Rect destinationRect;
     Transform2D transform = rOwner.mTransform;
@@ -88,8 +88,8 @@ void Renderer::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec,
         {
             Maths::Round(0),
             Maths::Round(0),
-            Maths::Round(rTexture.GetWidth()),
-            Maths::Round(rTexture.GetHeight())
+            Maths::Round(static_cast<float>(rTexture.GetWidth())),
+            Maths::Round(static_cast<float>(rTexture.GetHeight()))
         };
     }
 
@@ -104,7 +104,7 @@ void Renderer::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec,
     delete sourceSDL;
 }
 
-void Renderer::AddSprite(SpriteRenderComponent* pSprite)
+void RendererSDL::AddSprite(SpriteRenderComponent* pSprite)
 {
     int spriteDrawOrder = pSprite->GetDrawOrder();
     std::vector<SpriteRenderComponent*>::iterator spriteIterator;
@@ -116,7 +116,7 @@ void Renderer::AddSprite(SpriteRenderComponent* pSprite)
     mSprites.insert(spriteIterator, pSprite);
 }
 
-void Renderer::RemoveSprite(SpriteRenderComponent* pSprite)
+void RendererSDL::RemoveSprite(SpriteRenderComponent* pSprite)
 {
     std::vector<SpriteRenderComponent*>::iterator spriteIterator;
     spriteIterator = std::find(mSprites.begin(), mSprites.end(), pSprite);

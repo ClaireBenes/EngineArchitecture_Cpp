@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Engine/GameTool/Scene.h"
-#include "Engine/Renderer.h"
+#include "Engine/Renderer/RendererSDL.h"
 #include "Engine/Time.h"
 
 class Pong : public Scene

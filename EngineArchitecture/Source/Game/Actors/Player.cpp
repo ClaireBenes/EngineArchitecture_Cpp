@@ -25,6 +25,8 @@ void Player::SetupComponents()
 
 	PlatformerPlayerController* platformPlayercontroller = new PlatformerPlayerController(this);
 	platformPlayercontroller->SetCollider(colliderComponent);
+
+	animatedSpriteComponent->SetCurrentAnimation("Idle");
 }
 
 

@@ -36,7 +36,7 @@ void Engine::Initialize()
 {
     //Create Window and Renderer
     mWindow = new Window(800, 800, mTitle);
-    mRenderer = new Renderer();
+    mRenderer = new RendererSDL();
 
     //if we have at least one scene -> Start it
     if(mScenes.size() > 0)

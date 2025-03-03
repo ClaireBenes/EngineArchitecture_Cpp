@@ -1,9 +1,9 @@
 #include "RectangleColliderComponent.h"
 
 #include "../Actor.h"
-#include "../../Renderer.h"
+#include "Engine/Renderer/RendererSDL.h"
 
-void RectangleColliderComponent::DebugRender(Renderer* pRenderer)
+void RectangleColliderComponent::DebugRender(RendererSDL* pRenderer)
 {
 	pRenderer->DrawRectLine(GetWorldRectangle(), mColor);
 }

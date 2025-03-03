@@ -31,7 +31,7 @@ public:
 	void RemoveComponent(Component* pComponent);
 
 	void SetActive(bool isActive);
-	void Render(Renderer* pRenderer);
+	void Render(RendererSDL* pRenderer);
 
 	ActorState GetState() const;
 

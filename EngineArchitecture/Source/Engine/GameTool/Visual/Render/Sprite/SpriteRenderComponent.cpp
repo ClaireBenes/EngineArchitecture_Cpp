@@ -32,7 +32,7 @@ void SpriteRenderComponent::SetTexture(const Texture& pTexture)
 	mTexture.UpdateInfo(mTexWidth, mTexHeight);
 }
 
-void SpriteRenderComponent::Render(Renderer* pRenderer)
+void SpriteRenderComponent::Render(RendererSDL* pRenderer)
 {
 	if (mTexHeight == 0 || mTexWidth == 0) 
 	{

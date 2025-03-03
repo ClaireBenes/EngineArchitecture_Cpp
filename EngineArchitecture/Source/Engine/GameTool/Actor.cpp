@@ -107,7 +107,7 @@ void Actor::SetActive(bool isActive)
 	}
 }
 
-void Actor::Render(Renderer* pRenderer)
+void Actor::Render(RendererSDL* pRenderer)
 {
 	for(RenderComponent* renderComponent : mRenderComponents)
 	{

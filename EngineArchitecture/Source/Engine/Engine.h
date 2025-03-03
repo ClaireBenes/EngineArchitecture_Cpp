@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "Window.h"
-#include "Renderer.h"
+#include "Engine/Renderer/RendererSDL.h"
 #include "GameTool/Scene.h"
 #include "Time.h"
 
@@ -32,7 +32,7 @@ private:
 	std::string mTitle = "The Title";
 	std::vector<Scene*> mScenes{};
 	Window* mWindow{};
-	Renderer* mRenderer{};
+	RendererSDL* mRenderer{};
 
 	bool mIsRunning = true;
 	int mLoadedScene = 0;

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "GameTool/Rectangle.h"
-#include "GameTool/Vector/Vector4.h"
-#include "Window.h"
+#include "Engine/GameTool/Rectangle.h"
+#include "Engine/GameTool/Vector/Vector4.h"
+#include "Engine/Window.h"
 
 #include <vector>
 
@@ -10,12 +10,12 @@ class Actor;
 class Texture;
 class SpriteRenderComponent;
 
-class Renderer
+class RendererSDL
 {
 public:
-	Renderer();
-	Renderer(const Renderer&) = delete;
-	Renderer& operator= (const Renderer&) = delete;
+	RendererSDL();
+	RendererSDL(const RendererSDL&) = delete;
+	RendererSDL& operator= (const RendererSDL&) = delete;
 
 	//to wrap SDL sprites flipping modes
 	enum class Flip

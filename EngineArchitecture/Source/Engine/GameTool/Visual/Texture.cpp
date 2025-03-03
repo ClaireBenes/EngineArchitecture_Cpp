@@ -1,9 +1,9 @@
 #include "Texture.h"
 
-#include "Engine/Renderer.h"
+#include "Engine/Renderer/RendererSDL.h"
 
 //Load Texture
-bool Texture::Load(Renderer& pRenderer, const std::string& pFileName)
+bool Texture::Load(RendererSDL& pRenderer, const std::string& pFileName)
 {
     mFileName = pFileName;
     SDL_Surface* surface = IMG_Load(mFileName.c_str());

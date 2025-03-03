@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine\GameTool\Movement\Controller\PlatformerPlayerController.h" />
+    <ClInclude Include="Source\Engine\Renderer\IRenderer.h" />
     <ClInclude Include="Source\Engine\Manager\InputManager.h" />
     <ClInclude Include="Source\Engine\GameTool\Movement\Controller\PlayerController.h" />
     <ClInclude Include="Source\Engine\GameTool\Movement\Input\InputEvent.h" />
@@ -40,7 +41,7 @@
     <ClInclude Include="Source\Engine\Engine.h" />
     <ClInclude Include="Source\Engine\Log.h" />
     <ClInclude Include="Source\Engine\GameTool\Rectangle.h" />
-    <ClInclude Include="Source\Engine\Renderer.h" />
+    <ClInclude Include="Source\Engine\Renderer\RendererSDL.h" />
     <ClInclude Include="Source\Engine\GameTool\Scene.h" />
     <ClInclude Include="Source\Engine\Time.h" />
     <ClInclude Include="Source\Engine\GameTool\Vector\Vector2.h" />
@@ -55,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\GameTool\Movement\Controller\PlatformerPlayerController.cpp" />
+    <ClCompile Include="Source\Engine\Renderer\IRenderer.cpp" />
     <ClCompile Include="Source\Engine\Manager\InputManager.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Movement\Controller\PlayerController.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Movement\Input\InputEvent.cpp" />
@@ -73,7 +75,7 @@
     <ClCompile Include="Source\Engine\Engine.cpp" />
     <ClCompile Include="Source\Engine\Log.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Rectangle.cpp" />
-    <ClCompile Include="Source\Engine\Renderer.cpp" />
+    <ClCompile Include="Source\Engine\Renderer\RendererSDL.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Scene.cpp" />
     <ClCompile Include="Source\Engine\Time.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Vector\Vector2.cpp" />

@@ -5,7 +5,7 @@
 #include "Engine/GameTool/Visual/Texture.h"
 #include "Engine/GameTool/Rectangle.h"
 
-#include "Engine/Renderer.h"
+#include "Engine/Renderer/RendererSDL.h"
 
 class SpriteRenderComponent : public RenderComponent
 {
@@ -19,7 +19,7 @@ public:
 	SpriteRenderComponent& operator= (const SpriteRenderComponent&) = delete;
 
 	virtual void SetTexture(const Texture& pTexture);
-	virtual void Render(Renderer* pRenderer) override;
+	virtual void Render(RendererSDL* pRenderer) override;
 	void AddSprite();
 	void SetNewDimensions(int x, int y);
 
@@ -31,7 +31,7 @@ public:
 public:
 	//Variables
 	Rectangle mRectangle{ Vector2(-16,-16),Vector2(32,32) };
-	Renderer::Flip mFlip = Renderer::Flip::None;
+	RendererSDL::Flip mFlip = RendererSDL::Flip::None;
 
 protected:
 	Texture mTexture;

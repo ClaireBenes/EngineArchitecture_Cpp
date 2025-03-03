@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Engine/GameTool/Actor.h"
-#include "Engine/GameTool/Visual/Texture.h"
 
 class RectangleColliderComponent;
 class AnimatedSpriteRenderComponent;

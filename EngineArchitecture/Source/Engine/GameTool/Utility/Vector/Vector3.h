@@ -6,6 +6,9 @@
 
 #include "Vector2.h"
 
+class Matrix4;
+class Quaternion;
+
 class Vector3
 {
 public:
@@ -22,7 +25,7 @@ public:
 
 	//Functions
 	float Magnitude() const;
-	float MagnitudeSq() const;
+	float MagnitudeSqr() const;
 
 	void Normalize();
 	Vector3 Normalized();
@@ -38,6 +41,10 @@ public:
 
 	std::string ToString() const;
 	const float* GetAsFloatPtr() const;
+
+	static Vector3 Transform(Vector3& vec, class Matrix4& mat4, float w = 1.0f);
+	static Vector3 TransformWithPerspDiv(Vector3& vec, class Matrix4& mat4, float w = 1.0f);
+	static Vector3 Transform(const Vector3& v, const class Quaternion& q);
 
 	//Operator
 	void operator+=(const Vector3& vector);

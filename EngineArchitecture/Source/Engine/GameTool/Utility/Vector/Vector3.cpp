@@ -1,6 +1,8 @@
 #include "Vector3.h"
 
 #include "Engine/GameTool/Utility/Maths.h"
+#include "Engine/GameTool/Utility/Matrix/Matrix4.h"
+#include "Engine/GameTool/Utility/Quaternion/Quaternion.h"
 
 const Vector3 Vector3::Zero(0.0f, 0.0f, 0.0f);
 const Vector3 Vector3::One(1.0f, 1.0f, 1.0f);
@@ -42,7 +44,7 @@ float Vector3::Magnitude() const
 	return std::sqrt(x * x + y * y + z * z);
 }
 
-float Vector3::MagnitudeSq() const
+float Vector3::MagnitudeSqr() const
 {
 	return ( x * x + y * y + z * z );
 }
@@ -126,6 +128,49 @@ std::string Vector3::ToString() const
 const float* Vector3::GetAsFloatPtr() const
 {
 	return reinterpret_cast< const float* >( &x );
+}
+
+Vector3 Vector3::Transform(Vector3& vec, Matrix4& mat4, float w)
+{
+	Vector3 retVal;
+	
+	retVal.x = vec.x * mat4.mat[0][0] + vec.y * mat4.mat[1][0] +
+		vec.z * mat4.mat[2][0] + w * mat4.mat[3][0];
+	retVal.y = vec.x * mat4.mat[0][1] + vec.y * mat4.mat[1][1] +
+		vec.z * mat4.mat[2][1] + w * mat4.mat[3][1];
+	retVal.z = vec.x * mat4.mat[0][2] + vec.y * mat4.mat[1][2] +
+		vec.z * mat4.mat[2][2] + w * mat4.mat[3][2];
+	//ignore w since we aren't returning a new value for it...
+	return retVal;
+}
+
+// This will transform the vector and renormalize the w component
+Vector3 Vector3::TransformWithPerspDiv(Vector3& vec, Matrix4& mat4, float w)
+{
+	Vector3 retVal;
+	retVal.x = vec.x * mat4.mat[0][0] + vec.y * mat4.mat[1][0] +
+		vec.z * mat4.mat[2][0] + w * mat4.mat[3][0];
+	retVal.y = vec.x * mat4.mat[0][1] + vec.y * mat4.mat[1][1] +
+		vec.z * mat4.mat[2][1] + w * mat4.mat[3][1];
+	retVal.z = vec.x * mat4.mat[0][2] + vec.y * mat4.mat[1][2] +
+		vec.z * mat4.mat[2][2] + w * mat4.mat[3][2];
+	float transformedW = vec.x * mat4.mat[0][3] + vec.y * mat4.mat[1][3] +
+		vec.z * mat4.mat[2][3] + w * mat4.mat[3][3];
+	if(!Maths::NearZero(Maths::Abs(transformedW)))
+	{
+		transformedW = 1.0f / transformedW;
+		retVal *= transformedW;
+	}
+	return retVal;
+}
+
+// Transform a Vector3 by a quaternion
+Vector3 Vector3::Transform(const Vector3& v, const Quaternion& q)
+{
+	Vector3 qv(q.x, q.y, q.z);
+	Vector3 retVal = v;
+	retVal += 2.0f * Vector3::Cross(qv, Vector3::Cross(qv, v) + q.w * v);
+	return retVal;
 }
 
 // +=

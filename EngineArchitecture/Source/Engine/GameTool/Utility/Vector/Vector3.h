@@ -10,7 +10,7 @@ class Vector3
 {
 public:
 	Vector3();
-	Vector3(float x, float y, float z);
+	Vector3(float x = 0, float y = 0, float z = 0);
 	Vector3(Vector2 vec2, float z = 0);
 
 	//Variables
@@ -22,6 +22,8 @@ public:
 
 	//Functions
 	float Magnitude() const;
+	float MagnitudeSq() const;
+
 	void Normalize();
 	Vector3 Normalized();
 
@@ -30,6 +32,7 @@ public:
 	Vector3 Cross(const Vector3& vector) const;
 
 	std::string ToString() const;
+	const float* GetAsFloatPtr() const;
 
 	//Operator
 	void operator+=(const Vector3& vector);
@@ -39,7 +42,9 @@ public:
 
 	friend Vector3 operator+(const Vector3& left, const Vector3& right);
 	friend Vector3 operator-(const Vector3& left, const Vector3& right);
-	friend Vector3 operator*(const float value, const Vector3& vector);
 	friend Vector3 operator/(const Vector3& vector, const float value);
+	friend Vector3 operator*(const Vector3& left, const Vector3& right);
+	friend Vector3 operator*(const Vector3& vector, const float value);
+	friend Vector3 operator*(const float value, const Vector3& vector);
 };
 

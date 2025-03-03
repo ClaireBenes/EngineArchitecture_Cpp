@@ -33,6 +33,11 @@ float Vector3::Magnitude() const
 	return std::sqrt(x * x + y * y + z * z);
 }
 
+float Vector3::MagnitudeSq() const
+{
+	return ( x * x + y * y + z * z );
+}
+
 void Vector3::Normalize()
 {
 	float lenght = Magnitude();
@@ -81,6 +86,11 @@ std::string Vector3::ToString() const
 	return "(" + std::to_string(x) + " , " + std::to_string(y) + " , " + std::to_string(z) + ")";
 }
 
+const float* Vector3::GetAsFloatPtr() const
+{
+	return reinterpret_cast< const float* >( &x );
+}
+
 // +=
 void Vector3::operator+=(const Vector3& vector)
 {
@@ -126,6 +136,18 @@ Vector3 operator-(const Vector3& left, const Vector3& right)
 }
 
 // *
+Vector3 operator*(const Vector3& left, const Vector3& right)
+{
+	return { left.x * right.x, left.y * right.y, left.z * right.z };
+}
+
+// vector * float
+Vector3 operator*(const Vector3& vector, const float value)
+{
+	return { value * vector.x, value - vector.y, value * vector.z };
+}
+
+// float * vector
 Vector3 operator*(const float value, const Vector3& vector)
 {
 	return { value * vector.x, value - vector.y, value * vector.z };

@@ -1,7 +1,7 @@
 #include "Component.h"
 #include "Actor.h"
 
-Component::Component(float pUpdateOrder) : mUpdateOrder(pUpdateOrder)
+Component::Component(int pUpdateOrder) : mUpdateOrder(pUpdateOrder)
 {
 }
 

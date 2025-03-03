@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Engine\Renderer\RendererGL.h" />
     <ClInclude Include="Source\Engine\GameTool\Movement\Controller\PlatformerPlayerController.h" />
     <ClInclude Include="Source\Engine\GameTool\Utility\Matrix\Matrix4.h" />
     <ClInclude Include="Source\Engine\GameTool\Utility\Quaternion\Quaternion.h" />
@@ -55,8 +56,10 @@
     <ClInclude Include="Source\Game\Scene\SpaceInvaders.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Texture.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.h" />
+    <ClInclude Include="Source\Engine\Vertex\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine\Renderer\RendererGL.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Movement\Controller\PlatformerPlayerController.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Utility\Matrix\Matrix4.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Utility\Quaternion\Quaternion.cpp" />
@@ -94,6 +97,7 @@
     <ClCompile Include="Source\Game\Scene\SpaceInvaders.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Texture.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.cpp" />
+    <ClCompile Include="Source\Engine\Vertex\VertexArray.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -50,7 +50,7 @@ void SpriteRenderComponent::AddSprite()
 	mOwner->mScene->GetRenderer()->AddSprite(this);
 }
 
-void SpriteRenderComponent::SetNewDimensions(int x, int y)
+void SpriteRenderComponent::SetNewDimensions(float x, float y)
 {
 	mRectangle.dimensions.x = x;
 	mRectangle.dimensions.y = y;

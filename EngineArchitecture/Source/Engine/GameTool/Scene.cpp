@@ -8,6 +8,10 @@
 #include <algorithm>
 
 
+Scene::Scene() : mRenderer(nullptr), mWindow(nullptr)
+{
+}
+
 //On destruction
 Scene::~Scene()
 {

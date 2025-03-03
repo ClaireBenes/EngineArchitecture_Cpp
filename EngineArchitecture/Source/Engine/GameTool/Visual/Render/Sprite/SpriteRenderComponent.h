@@ -21,7 +21,7 @@ public:
 	virtual void SetTexture(const Texture& pTexture);
 	virtual void Render(RendererSDL* pRenderer) override;
 	void AddSprite();
-	void SetNewDimensions(int x, int y);
+	void SetNewDimensions(float x, float y);
 
 	//Getters
 	int GetDrawOrder() const;

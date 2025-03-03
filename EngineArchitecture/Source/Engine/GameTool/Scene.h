@@ -12,7 +12,7 @@ class Actor;
 class Scene
 {
 public:
-	Scene(){};
+	Scene();
 	virtual ~Scene();
 
 	//Virtual functions

@@ -11,9 +11,6 @@ public:
 	RendererSDL(const RendererSDL&) = delete;
 	RendererSDL& operator= (const RendererSDL&) = delete;
 
-	//override
-	RendererType GetType() override;
-
 	//function
 	bool Initialize(Window& rWindow);
 	void BeginDraw() override;
@@ -28,6 +25,8 @@ public:
 
 	void AddSprite(SpriteRenderComponent* pSprite) override;
 	void RemoveSprite(SpriteRenderComponent* pSprite) override;
+
+	RendererType GetType() override;
 
 private:
 	//variables

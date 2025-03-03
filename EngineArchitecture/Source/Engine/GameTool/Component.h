@@ -6,7 +6,7 @@ class Component
 {
 public:
 	//Functions
-	Component(float pUpdateOrder = 100);
+	Component(int pUpdateOrder = 100);
 
 	virtual void OnStart() {};
 	virtual void Update() {};

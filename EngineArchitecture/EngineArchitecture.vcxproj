@@ -104,6 +104,8 @@
     <ClCompile Include="Source\Engine\Vertex\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Shaders\Simple.frag" />
+    <None Include="Resources\Shaders\Simple.vert" />
     <None Include="Source\Game\Shaders\Fragment\SimpleFragment.shader" />
     <None Include="Source\Game\Shaders\Vertex\SimpleVertex.shader" />
   </ItemGroup>

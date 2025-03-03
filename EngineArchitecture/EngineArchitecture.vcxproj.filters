@@ -258,5 +258,7 @@
   <ItemGroup>
     <None Include="Source\Game\Shaders\Vertex\SimpleVertex.shader" />
     <None Include="Source\Game\Shaders\Fragment\SimpleFragment.shader" />
+    <None Include="Resources\Shaders\Simple.frag" />
+    <None Include="Resources\Shaders\Simple.vert" />
   </ItemGroup>
 </Project>

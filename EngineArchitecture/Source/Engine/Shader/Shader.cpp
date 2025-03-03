@@ -3,6 +3,8 @@
 #include "Engine/Log.h"
 #include <glew.h>
 
+const std::string Shader::SHADER_PATH = "Resources/Shaders";
+
 Shader::Shader() : mId(0), mCode(""), mType(VERTEX)
 {
 }

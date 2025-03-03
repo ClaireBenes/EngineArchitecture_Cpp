@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-class RendererSDL;
+class IRenderer;
 
 class AssetManager
 {
@@ -14,8 +14,8 @@ public:
 	AssetManager(const AssetManager&) = delete;
 	AssetManager& operator=(const AssetManager&) = delete;
 
-	static Texture LoadTexture(RendererSDL& pRenderer, const std::string& pFileName, const std::string& pName);
-	static void LoadTexturesFromFolder(RendererSDL& pRenderer, const std::string& pPathName, std::vector<Texture>& pAllTextures);
+	static Texture LoadTexture(IRenderer& pRenderer, const std::string& pFileName, const std::string& pName);
+	static void LoadTexturesFromFolder(IRenderer& pRenderer, const std::string& pPathName, std::vector<Texture>& pAllTextures);
 	static Texture& GetTexture(const std::string& pName);
 	static void Clear();
 
@@ -25,6 +25,6 @@ public:
 private:
 	AssetManager() = default;
 
-	static Texture LoadTextureFromFile(RendererSDL& pRenderer, const std::string& pFileName);
+	static Texture LoadTextureFromFile(IRenderer& pRenderer, const std::string& pFileName);
 };
 

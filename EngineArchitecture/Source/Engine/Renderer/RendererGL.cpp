@@ -44,9 +44,32 @@ bool RendererGL::Initialize(Window& rWindow)
     {
         Log::Error(LogType::Video, "Failed to initialize SDL_Image");
     }
-    mVao = new VertexArray(vertices, 4, indices, 6);
-    return true;
 
+    mVao = new VertexArray(vertices, 4, indices, 6);
+    LoadShaders();
+
+    return true;
+}
+
+void RendererGL::LoadShaders()
+{
+    //Sprite 
+    mSpriteVertexShader.Load("Simple.vert", ShaderType::VERTEX);
+    mSpriteFragShader.Load("Simple.frag", ShaderType::FRAGMENT);
+
+    mSpriteShaderProgram.Compose({ &mSpriteVertexShader,&mSpriteFragShader });
+
+    //Rect 
+    mRectVertexShader.Load("Simple.vert", ShaderType::VERTEX);
+    mRectFragShader.Load("Simple.frag", ShaderType::FRAGMENT);
+
+    mRectShaderProgram.Compose({ &mRectVertexShader,&mRectFragShader });
+
+    //RectLine 
+    mRectLineVertexShader.Load("Simple.vert", ShaderType::VERTEX);
+    mRectLineFragShader.Load("Simple.frag", ShaderType::FRAGMENT);
+
+    mRectLineShaderProgram.Compose({ &mRectLineVertexShader,&mRectLineFragShader });
 }
 
 void RendererGL::BeginDraw()
@@ -55,11 +78,29 @@ void RendererGL::BeginDraw()
     glClear(GL_COLOR_BUFFER_BIT);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    mVao->SetActive();
 }
 
 void RendererGL::EndDraw()
 {
     SDL_GL_SwapWindow(mWindow->GetSdlWindow());
+}
+
+void RendererGL::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip)
+{
+    mSpriteShaderProgram.Use();
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+}
+
+void RendererGL::DrawRect(const Rectangle& rRect, Color pColor)
+{
+    mRectShaderProgram.Use();
+}
+
+void RendererGL::DrawRectLine(const Rectangle& rRect, Color pColor)
+{
+    mRectLineShaderProgram.Use();
 }
 
 void RendererGL::AddSprite(SpriteRenderComponent* pSprite)

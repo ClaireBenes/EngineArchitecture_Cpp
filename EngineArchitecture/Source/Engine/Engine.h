@@ -4,20 +4,20 @@
 #include <vector>
 
 #include "Window.h"
-#include "Engine/Renderer/RendererSDL.h"
+#include "Engine/Renderer/IRenderer.h"
 #include "GameTool/Scene.h"
 #include "Time.h"
 
 class Engine
 {
 public:
-	Engine(std::string pTitle, std::vector<Scene*> pScene);
+	Engine(std::string pTitle, std::vector<Scene*> pScene, IRenderer::RendererType pRendererType);
 	Engine(const Engine&) = delete;
 	Engine& operator=(const Engine&) = delete;
 	~Engine();
 
 	//functions
-	void Initialize();
+	void Initialize(IRenderer::RendererType pRendererType);
 	void Loop();
 	void Render();
 	void Update();
@@ -32,7 +32,7 @@ private:
 	std::string mTitle = "The Title";
 	std::vector<Scene*> mScenes{};
 	Window* mWindow{};
-	RendererSDL* mRenderer{};
+	IRenderer* mRenderer{};
 
 	bool mIsRunning = true;
 	int mLoadedScene = 0;

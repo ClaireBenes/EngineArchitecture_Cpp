@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Game\Scenes\GLTestScene.h" />
     <ClInclude Include="Source\Engine\Shader\ShaderProgram.h" />
     <ClInclude Include="Source\Engine\Shader\Shader.h" />
     <ClInclude Include="Source\Engine\Renderer\RendererGL.h" />
@@ -61,6 +62,7 @@
     <ClInclude Include="Source\Engine\Vertex\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\Scenes\GLTestScene.cpp" />
     <ClCompile Include="Source\Engine\Shader\ShaderProgram.cpp" />
     <ClCompile Include="Source\Engine\Shader\Shader.cpp" />
     <ClCompile Include="Source\Engine\Renderer\RendererGL.cpp" />

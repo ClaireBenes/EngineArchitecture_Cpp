@@ -1,29 +1,30 @@
 #include "Texture.h"
 
 #include "Engine/Renderer/RendererSDL.h"
+#include "Engine/Renderer/IRenderer.h"
 
 //Load Texture
-bool Texture::Load(RendererSDL& pRenderer, const std::string& pFileName)
+bool Texture::Load(IRenderer& pRenderer, const std::string& pFileName)
 {
-    mFileName = pFileName;
-    SDL_Surface* surface = IMG_Load(mFileName.c_str());
-    if (!surface)
-    {
-        Log::Error(LogType::Application, "Failed to load texture file :" + mFileName);
-        return false;
-    }
-    mWidth = surface->w;
-    mHeight = surface->h;
+    //mFileName = pFileName;
+    //SDL_Surface* surface = IMG_Load(mFileName.c_str());
+    //if (!surface)
+    //{
+    //    Log::Error(LogType::Application, "Failed to load texture file :" + mFileName);
+    //    return false;
+    //}
+    //mWidth = surface->w;
+    //mHeight = surface->h;
 
-    //Create texture from surface
-    mSDLTexture = SDL_CreateTextureFromSurface(pRenderer.GetSDLRender(), surface);
-    SDL_FreeSurface(surface);
-    if (!mSDLTexture)
-    {
-        Log::Error(LogType::Render, "Failed to convert surface to texture :" + mFileName);
-        return false;
-    }
-    Log::Info("Loaded texture : " + mFileName);
+    ////Create texture from surface
+    //mSDLTexture = SDL_CreateTextureFromSurface(pRenderer.GetSDLRender(), surface);
+    //SDL_FreeSurface(surface);
+    //if (!mSDLTexture)
+    //{
+    //    Log::Error(LogType::Render, "Failed to convert surface to texture :" + mFileName);
+    //    return false;
+    //}
+    //Log::Info("Loaded texture : " + mFileName);
     return true;
 }
 

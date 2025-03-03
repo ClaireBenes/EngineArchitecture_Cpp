@@ -4,12 +4,12 @@
 
 #include "SDL_image.h"
 
-class RendererSDL;
+class IRenderer;
 
 class Texture
 {
 public:
-	bool Load(RendererSDL& pRenderer, const std::string& pFileName);
+	bool Load(IRenderer& pRenderer, const std::string& pFileName);
 	void Unload();
 
 	void UpdateInfo(int& pWidthOut, int& pHeightOut); // Using references to get two informations out)

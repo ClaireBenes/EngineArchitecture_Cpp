@@ -1,9 +1,9 @@
 #include "RectangleRenderComponent.h"
 
 #include "Engine/GameTool/Actor.h"
-#include "Engine/Renderer/RendererSDL.h"
+#include "Engine/Renderer/IRenderer.h"
 
-void RectangleRenderComponent::Render(RendererSDL* pRenderer)
+void RectangleRenderComponent::Render(IRenderer* pRenderer)
 {
 	//relative transform position
 	Rectangle tempRectangle = mRectangle;

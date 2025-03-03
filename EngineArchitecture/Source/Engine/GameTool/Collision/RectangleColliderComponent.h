@@ -8,7 +8,7 @@ class RectangleColliderComponent : public ColliderComponent
 {
 public:
 	//Variables
-	void DebugRender(RendererSDL* pRenderer) override;
+	void DebugRender(IRenderer* pRenderer) override;
 
 	Rectangle GetWorldRectangle() const;
 

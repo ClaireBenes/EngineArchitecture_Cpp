@@ -1,8 +1,10 @@
 #include "Engine.h"
 
 #include "Manager/InputManager.h"
+#include "Engine/Renderer/RendererSDL.h"
+#include "Engine/Renderer/RendererGL.h"
 
-Engine::Engine(std::string pTitle, std::vector<Scene*> pScene) : mScenes(pScene), mIsRunning(true)
+Engine::Engine(std::string pTitle, std::vector<Scene*> pScene, IRenderer::RendererType pRendererType) : mScenes(pScene), mIsRunning(true)
 {
     //initialize SDL
     if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
@@ -15,8 +17,9 @@ Engine::Engine(std::string pTitle, std::vector<Scene*> pScene) : mScenes(pScene)
     }
 
     mTitle = pTitle;
+    
 
-    Initialize();
+    Initialize(pRendererType);
 }
 
 Engine::~Engine()
@@ -32,11 +35,21 @@ Engine::~Engine()
     SDL_Quit();
 }
 
-void Engine::Initialize()
+void Engine::Initialize(IRenderer::RendererType pRendererType)
 {
-    //Create Window and Renderer
+    //Create Window
     mWindow = new Window(800, 800, mTitle);
-    mRenderer = new RendererSDL();
+
+    //Create Renderer
+    switch(pRendererType)
+    {
+        case IRenderer::RendererType::SDL:
+            mRenderer = new RendererSDL();
+            break;
+        case IRenderer::RendererType::OPENGL:
+            mRenderer = new RendererGL();
+            break;
+    }
 
     //if we have at least one scene -> Start it
     if(mScenes.size() > 0)

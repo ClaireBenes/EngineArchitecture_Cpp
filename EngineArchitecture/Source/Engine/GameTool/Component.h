@@ -1,6 +1,7 @@
 #pragma once
 
 class Actor;
+class IRenderer;
 
 class Component
 {

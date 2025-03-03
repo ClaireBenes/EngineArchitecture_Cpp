@@ -5,8 +5,7 @@
 #include "Engine/GameTool/Visual/Render/Sprite/AnimatedSpriteRenderComponent.h"
 
 
-#include "Engine/Renderer/RendererSDL.h"
-
+#include "Engine/Renderer/IRenderer.h"
 #include "Engine/Manager/InputManager.h"
 
 PlatformerPlayerController::PlatformerPlayerController(Actor* pActor) : MoveComponent(pActor), mSpriteRenderComponent(nullptr)
@@ -42,14 +41,14 @@ void PlatformerPlayerController::OnNotify(SDL_Event& pEvent)
 		{
 			direction.x = 1;
 
-			mSpriteRenderComponent->mFlip = RendererSDL::Flip::None;
+			mSpriteRenderComponent->mFlip = IRenderer::Flip::None;
 			mSpriteRenderComponent->SetCurrentAnimation("Walk");
 		}
 		if (pEvent.key.keysym.sym == SDLK_LEFT || pEvent.key.keysym.sym == SDLK_q)
 		{
 			direction.x = -1;
 
-			mSpriteRenderComponent->mFlip = RendererSDL::Flip::Horizontal;
+			mSpriteRenderComponent->mFlip = IRenderer::Flip::Horizontal;
 			mSpriteRenderComponent->SetCurrentAnimation("Walk");
 		}
 

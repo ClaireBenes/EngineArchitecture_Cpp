@@ -8,7 +8,7 @@
 
 std::map<std::string, Texture> AssetManager::mTextures = {};
 
-Texture AssetManager::LoadTexture(RendererSDL& pRenderer, const std::string& pFileName, const std::string& pName)
+Texture AssetManager::LoadTexture(IRenderer& pRenderer, const std::string& pFileName, const std::string& pName)
 {
 	printf("fileName : %s, Name : %s\n", pFileName.c_str(), pName.c_str());
 
@@ -17,7 +17,7 @@ Texture AssetManager::LoadTexture(RendererSDL& pRenderer, const std::string& pFi
 
 }
 
-void AssetManager::LoadTexturesFromFolder(RendererSDL& pRenderer, const std::string& pPathName, std::vector<Texture>& pAllTextures)
+void AssetManager::LoadTexturesFromFolder(IRenderer& pRenderer, const std::string& pPathName, std::vector<Texture>& pAllTextures)
 {
 	std::filesystem::directory_iterator it(pPathName);
 
@@ -54,7 +54,7 @@ void AssetManager::Clear()
 	mTextures.clear();
 }
 
-Texture AssetManager::LoadTextureFromFile(RendererSDL& pRenderer, const std::string& pFileName)
+Texture AssetManager::LoadTextureFromFile(IRenderer& pRenderer, const std::string& pFileName)
 {
 	Texture texture;
 	texture.Load(pRenderer, pFileName);

@@ -78,7 +78,7 @@ void RendererSDL::DrawRectLine(const Rectangle& rRect, Color pColor)
     SDL_RenderDrawRect(mSdlRenderer, &sdlRect);
 }
 
-void RendererSDL::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip) const
+void RendererSDL::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip)
 {
     SDL_Rect destinationRect;
     Transform2D transform = rOwner.mTransform;

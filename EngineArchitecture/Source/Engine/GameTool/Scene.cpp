@@ -1,7 +1,7 @@
 #include "Scene.h"
 
 #include "../Manager/AssetManager.h"
-#include "Engine/Renderer/RendererSDL.h"
+#include "Engine/Renderer/IRenderer.h"
 #include "../Window.h"
 #include "Actor.h"
 
@@ -60,12 +60,12 @@ void Scene::SetWindow(Window* pWindow)
 	mWindow = pWindow;
 }
 
-void Scene::SetRenderer(RendererSDL* pRenderer)
+void Scene::SetRenderer(IRenderer* pRenderer)
 {
 	mRenderer = pRenderer;
 }
 
-RendererSDL* Scene::GetRenderer()
+IRenderer* Scene::GetRenderer()
 {
 	return mRenderer;
 }

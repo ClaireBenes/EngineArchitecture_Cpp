@@ -5,7 +5,7 @@
 
 #include "SDL.h"
 
-class RendererSDL;
+class IRenderer;
 class Window;
 class Actor;
 
@@ -23,8 +23,8 @@ public:
 
 	//Non virtual functions
 	void SetWindow(Window* pWindow);
-	void SetRenderer(RendererSDL* pRenderer);
-	RendererSDL* GetRenderer();
+	void SetRenderer(IRenderer* pRenderer);
+	IRenderer* GetRenderer();
 
 	void AddActor(Actor* pActor);
 	void RemoveActor(Actor* pActor);
@@ -32,7 +32,7 @@ public:
 protected:
 	//Variables
 	Window* mWindow;
-	RendererSDL* mRenderer;
+	IRenderer* mRenderer;
 	std::vector<Actor*> mActors{};
 
 private:

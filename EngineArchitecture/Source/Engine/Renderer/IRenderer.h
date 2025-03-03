@@ -33,9 +33,12 @@ public:
     virtual void Close() = 0;
     virtual RendererType GetType() = 0;
 
+    virtual void DrawRect(const Rectangle& rRect, Color pColor) = 0;
+    virtual void DrawRectLine(const Rectangle& rRect, Color pColor) = 0;
+
+    virtual void DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip = Flip::None) = 0;
     virtual void AddSprite(SpriteRenderComponent* pSprite) = 0;
     virtual void RemoveSprite(SpriteRenderComponent* pSprite) = 0;
-    virtual void DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip = Flip::None) const = 0;
 };
 
 

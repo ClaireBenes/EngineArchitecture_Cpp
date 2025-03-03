@@ -4,7 +4,7 @@
 
 #include "Engine/Window.h"
 #include "Engine/GameTool/Actor.h"
-#include "Engine/GameTool/Utility/Math.h"
+#include "Engine/GameTool/Utility/Maths.h"
 #include "Engine/GameTool/Visual/Texture.h"
 #include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
 

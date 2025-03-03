@@ -27,7 +27,7 @@
     <ClInclude Include="Source\Engine\GameTool\Movement\Input\IInputListener.h" />
     <ClInclude Include="Source\Engine\GameTool\Movement\MoveComponent.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Render\Sprite\AnimatedSpriteRenderComponent.h" />
-    <ClInclude Include="Source\Engine\GameTool\Utility\Math.h" />
+    <ClInclude Include="Source\Engine\GameTool\Utility\Maths.h" />
     <ClInclude Include="Source\Engine\Manager\AssetManager.h" />
     <ClInclude Include="Source\Engine\Manager\PhysicManager.h" />
     <ClInclude Include="Source\Engine\GameTool\Collision\RectangleColliderComponent.h" />

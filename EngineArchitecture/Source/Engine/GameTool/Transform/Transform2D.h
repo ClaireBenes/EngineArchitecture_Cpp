@@ -2,7 +2,7 @@
 
 #include "Engine/GameTool/Utility/Vector/Vector2.h"
 #include "../Component.h"
-#include "Engine/GameTool/Utility/Math.h"
+#include "Engine/GameTool/Utility/Maths.h"
 
 struct Transform2D 
 {

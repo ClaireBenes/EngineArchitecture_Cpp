@@ -87,7 +87,7 @@
     <ClInclude Include="Source\Engine\Manager\AssetManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\GameTool\Utility\Math.h">
+    <ClInclude Include="Source\Engine\GameTool\Utility\Maths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.h">

@@ -18,7 +18,7 @@ public:
 	float y = 0;
 	float z = 0;
 
-	static const Vector3 ZERO, ONE, FORWARD, UP, RIGHT;
+	static const Vector3 Zero, One, Forward, Up, Right, Backward, Down, Left, Infinity, MinusInfinity ;
 
 	//Functions
 	float Magnitude() const;
@@ -26,10 +26,15 @@ public:
 
 	void Normalize();
 	Vector3 Normalized();
+	static Vector3 Normalize(const Vector3& vec);
 
-	float Dot(const Vector3& left, const Vector3& right) const;
-	float Distance(Vector3& a, Vector3& b);
+	static float Dot(const Vector3& left, const Vector3& right);
+	static float Distance(Vector3& a, Vector3& b);
+	static Vector3 Cross(const Vector3& left, const Vector3& right);
 	Vector3 Cross(const Vector3& vector) const;
+
+	static Vector3 Lerp(const Vector3& a, const Vector3& b, float f);
+	static Vector3 Reflect(const Vector3& v, const Vector3& n);
 
 	std::string ToString() const;
 	const float* GetAsFloatPtr() const;

@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine\GameTool\Movement\Controller\PlatformerPlayerController.h" />
+    <ClInclude Include="Source\Engine\GameTool\Utility\Matrix\Matrix4.h" />
+    <ClInclude Include="Source\Engine\GameTool\Utility\Quaternion\Quaternion.h" />
     <ClInclude Include="Source\Engine\Renderer\IRenderer.h" />
     <ClInclude Include="Source\Engine\Manager\InputManager.h" />
     <ClInclude Include="Source\Engine\GameTool\Movement\Controller\PlayerController.h" />
@@ -56,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\GameTool\Movement\Controller\PlatformerPlayerController.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Utility\Matrix\Matrix4.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Utility\Quaternion\Quaternion.cpp" />
     <ClCompile Include="Source\Engine\Renderer\IRenderer.cpp" />
     <ClCompile Include="Source\Engine\Manager\InputManager.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Movement\Controller\PlayerController.cpp" />

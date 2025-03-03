@@ -10,7 +10,7 @@ class Vector3
 {
 public:
 	Vector3();
-	Vector3(float x = 0, float y = 0, float z = 0);
+	Vector3(float x, float y, float z);
 	Vector3(Vector2 vec2, float z = 0);
 
 	//Variables

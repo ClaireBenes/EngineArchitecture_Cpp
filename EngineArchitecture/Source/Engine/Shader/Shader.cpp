@@ -1,6 +1,5 @@
 #include "Shader.h"
 
-
 #include "Engine/Log.h"
 #include <glew.h>
 

@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Engine\Shader\ShaderProgram.h" />
+    <ClInclude Include="Source\Engine\Shader\Shader.h" />
     <ClInclude Include="Source\Engine\Renderer\RendererGL.h" />
     <ClInclude Include="Source\Engine\GameTool\Movement\Controller\PlatformerPlayerController.h" />
     <ClInclude Include="Source\Engine\GameTool\Utility\Matrix\Matrix4.h" />
@@ -59,6 +61,8 @@
     <ClInclude Include="Source\Engine\Vertex\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine\Shader\ShaderProgram.cpp" />
+    <ClCompile Include="Source\Engine\Shader\Shader.cpp" />
     <ClCompile Include="Source\Engine\Renderer\RendererGL.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Movement\Controller\PlatformerPlayerController.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Utility\Matrix\Matrix4.cpp" />
@@ -98,6 +102,10 @@
     <ClCompile Include="Source\Engine\GameTool\Visual\Texture.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.cpp" />
     <ClCompile Include="Source\Engine\Vertex\VertexArray.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\Game\Shaders\Fragment\SimpleFragment.shader" />
+    <None Include="Source\Game\Shaders\Vertex\SimpleVertex.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

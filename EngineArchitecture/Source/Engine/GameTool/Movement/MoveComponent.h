@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Engine/GameTool/Component.h"
-#include "Engine/GameTool/Vector/Vector2.h"
+#include "Engine/GameTool/Utility/Vector/Vector2.h"
 
 class ColliderComponent;
 

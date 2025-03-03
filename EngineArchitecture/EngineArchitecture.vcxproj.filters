@@ -36,13 +36,13 @@
     <ClInclude Include="Source\Engine\Time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\GameTool\Vector\Vector2.h">
+    <ClInclude Include="Source\Engine\GameTool\Utility\Vector\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\GameTool\Vector\Vector3.h">
+    <ClInclude Include="Source\Engine\GameTool\Utility\Vector\Vector3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\GameTool\Vector\Vector4.h">
+    <ClInclude Include="Source\Engine\GameTool\Utility\Vector\Vector4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Window.h">
@@ -137,13 +137,13 @@
     <ClCompile Include="Source\Engine\Time.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\GameTool\Vector\Vector2.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Utility\Vector\Vector2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\GameTool\Vector\Vector3.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Utility\Vector\Vector3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\GameTool\Vector\Vector4.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Utility\Vector\Vector4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Window.cpp">

@@ -1,45 +1,33 @@
 #pragma once
 
-#include "Engine/GameTool/Rectangle.h"
-#include "Engine/GameTool/Vector/Vector4.h"
-#include "Engine/Window.h"
+#include "IRenderer.h"
 
 #include <vector>
 
-class Actor;
-class Texture;
-class SpriteRenderComponent;
-
-class RendererSDL
+class RendererSDL : public IRenderer
 {
 public:
 	RendererSDL();
 	RendererSDL(const RendererSDL&) = delete;
 	RendererSDL& operator= (const RendererSDL&) = delete;
 
-	//to wrap SDL sprites flipping modes
-	enum class Flip
-	{
-		None = SDL_FLIP_NONE,
-		Horizontal = SDL_FLIP_HORIZONTAL,
-		Vertical = SDL_FLIP_VERTICAL
-	};
-
+	//override
+	RendererType GetType() override;
 
 	//function
 	bool Initialize(Window& rWindow);
-	void BeginDraw();
-	void EndDraw();
-	void Close();
+	void BeginDraw() override;
+	void EndDraw() override;
+	void Close() override;
 
 	SDL_Renderer* GetSDLRender();
 
 	void DrawRect(const Rectangle& rRect, Color pColor);
 	void DrawRectLine(const Rectangle& rRect, Color pColor);
-	void DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip) const;
+	void DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip = Flip::None) const override;
 
-	void AddSprite(SpriteRenderComponent* pSprite);
-	void RemoveSprite(SpriteRenderComponent* pSprite);
+	void AddSprite(SpriteRenderComponent* pSprite) override;
+	void RemoveSprite(SpriteRenderComponent* pSprite) override;
 
 private:
 	//variables
@@ -47,7 +35,6 @@ private:
 	Color mBackgroundColor = { 120, 120, 255, 255 };
 
 	std::vector<SpriteRenderComponent*> mSprites;
-	
 };
 
 

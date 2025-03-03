@@ -44,9 +44,9 @@
     <ClInclude Include="Source\Engine\Renderer\RendererSDL.h" />
     <ClInclude Include="Source\Engine\GameTool\Scene.h" />
     <ClInclude Include="Source\Engine\Time.h" />
-    <ClInclude Include="Source\Engine\GameTool\Vector\Vector2.h" />
-    <ClInclude Include="Source\Engine\GameTool\Vector\Vector3.h" />
-    <ClInclude Include="Source\Engine\GameTool\Vector\Vector4.h" />
+    <ClInclude Include="Source\Engine\GameTool\Utility\Vector\Vector2.h" />
+    <ClInclude Include="Source\Engine\GameTool\Utility\Vector\Vector3.h" />
+    <ClInclude Include="Source\Engine\GameTool\Utility\Vector\Vector4.h" />
     <ClInclude Include="Source\Engine\Window.h" />
     <ClInclude Include="Source\Game\Scene\Pong.h" />
     <ClInclude Include="Source\Engine\GameTool\Transform\Transform2D.h" />
@@ -78,9 +78,9 @@
     <ClCompile Include="Source\Engine\Renderer\RendererSDL.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Scene.cpp" />
     <ClCompile Include="Source\Engine\Time.cpp" />
-    <ClCompile Include="Source\Engine\GameTool\Vector\Vector2.cpp" />
-    <ClCompile Include="Source\Engine\GameTool\Vector\Vector3.cpp" />
-    <ClCompile Include="Source\Engine\GameTool\Vector\Vector4.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Utility\Vector\Vector2.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Utility\Vector\Vector3.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Utility\Vector\Vector4.cpp" />
     <ClCompile Include="Source\Engine\Window.cpp" />
     <ClCompile Include="Source\Game\EngineArchitecture.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>

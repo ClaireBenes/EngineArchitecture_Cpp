@@ -12,6 +12,12 @@ RendererSDL::RendererSDL() : mSdlRenderer(nullptr)
 {
 }
 
+IRenderer::RendererType RendererSDL::GetType()
+{
+    return RendererType::SDL;
+}
+
+
 //Initialize renderer
 bool RendererSDL::Initialize(Window& rWindow)
 {
@@ -122,6 +128,5 @@ void RendererSDL::RemoveSprite(SpriteRenderComponent* pSprite)
     spriteIterator = std::find(mSprites.begin(), mSprites.end(), pSprite);
     mSprites.erase(spriteIterator);
 }
-
 
 

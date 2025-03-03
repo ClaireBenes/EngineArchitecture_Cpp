@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Vector/Vector2.h"
+#include "Engine/GameTool/Utility/Vector/Vector2.h"
 #include "../Component.h"
 #include "Engine/GameTool/Utility/Math.h"
 

@@ -1,11 +1,11 @@
 #include "GLTestScene.h"
 
-#include "Game/Actors/Bush.h"
+#include "Game/Actors/Wall.h"
 
 void GLTestScene::Start()
 {
-	Bush* platform = new Bush();
-	AddActor(platform);
+	Wall* wall = new Wall();
+	AddActor(wall);
 }
 
 void GLTestScene::Update(float deltaTime)

@@ -81,7 +81,7 @@ void RendererSDL::DrawRectLine(const Rectangle& rRect, Color pColor)
 void RendererSDL::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip)
 {
     SDL_Rect destinationRect;
-    Transform2D transform = rOwner.mTransform;
+    Transform transform = rOwner.mTransform;
     destinationRect.w = static_cast< int >( transform.mScale.x * rec.dimensions.x);
     destinationRect.h = static_cast< int >( transform.mScale.y * rec.dimensions.y);
     destinationRect.x = static_cast< int >( rec.position.x);

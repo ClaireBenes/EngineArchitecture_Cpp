@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Scene.h"
-#include "Transform/Transform2D.h"
+#include "Transform/Transform.h"
 #include "Component.h"
 #include "Engine/Time.h"
 
@@ -42,7 +42,7 @@ public:
 
 public:
 	//Variables
-	Transform2D mTransform{};
+	Transform mTransform{};
 	Scene* mScene = nullptr;
 
 	template<typename  C>

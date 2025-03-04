@@ -54,7 +54,7 @@
     <ClInclude Include="Source\Engine\GameTool\Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\GameTool\Transform\Transform2D.h">
+    <ClInclude Include="Source\Engine\GameTool\Transform\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\Actors\Player.h">
@@ -138,6 +138,9 @@
     <ClInclude Include="Source\Game\Scenes\GLTestScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Actors\Wall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Engine.cpp">
@@ -182,7 +185,7 @@
     <ClCompile Include="Source\Engine\GameTool\Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\GameTool\Transform\Transform2D.cpp">
+    <ClCompile Include="Source\Engine\GameTool\Transform\Transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Actors\Player.cpp">
@@ -258,6 +261,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Scenes\GLTestScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Actors\Wall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

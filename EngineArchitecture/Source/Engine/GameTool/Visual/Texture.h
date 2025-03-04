@@ -5,14 +5,17 @@
 #include "SDL_image.h"
 
 class IRenderer;
+class RendererGL;
+class RendererSDL;
 
 class Texture
 {
 public:
 	bool Load(IRenderer& pRenderer, const std::string& pFileName);
 	void Unload();
+	void SetActive() const;
 
-	void UpdateInfo(int& pWidthOut, int& pHeightOut); // Using references to get two informations out)
+	void UpdateInfo(int& pWidthOut, int& pHeightOut); 
 
 	int GetWidth() const;
 	int GetHeight() const;
@@ -24,5 +27,10 @@ private:
 
 	int mWidth = 16;
 	int mHeight = 16;
+
+	unsigned int mTextureId;
+
+	bool LoadSDL(RendererSDL* pRenderer, const std::string& pFileName, SDL_Surface* pSurface);
+	bool LoadGL(RendererGL* pRenderer, const std::string& pFileName, SDL_Surface* pSurface);
 };
 

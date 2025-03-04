@@ -208,13 +208,13 @@ void Vector3::operator/=(const float value)
 // +
 Vector3 operator+(const Vector3& left, const Vector3& right)
 {
-	return { left.x + right.x, right.x + right.y, left.z + right.z };
+	return { left.x + right.x, left.y + right.y, left.z + right.z };
 }
 
 // -
 Vector3 operator-(const Vector3& left, const Vector3& right)
 {
-	return { left.x - right.x, right.x - right.y, left.z - right.z };
+	return { left.x - right.x, left.y - right.y, left.z - right.z };
 }
 
 // *
@@ -226,13 +226,13 @@ Vector3 operator*(const Vector3& left, const Vector3& right)
 // vector * float
 Vector3 operator*(const Vector3& vector, const float value)
 {
-	return { value * vector.x, value - vector.y, value * vector.z };
+	return { value * vector.x, value * vector.y, value * vector.z };
 }
 
 // float * vector
 Vector3 operator*(const float value, const Vector3& vector)
 {
-	return { value * vector.x, value - vector.y, value * vector.z };
+	return { value * vector.x, value * vector.y, value * vector.z };
 }
 
 // divide in one order 

@@ -13,8 +13,8 @@
 int main(int argc, char* argv[])
 {
 	//Engine pong ("Claire's Game Engine", { new Pong });
-	//Engine spaceInvaders("Claire wants to destroy smt", { new SpaceInvaders },IRenderer::RendererType::SDL);
-	Engine gLTest("Claire wants to SDFSDGSDGSFD AAAAAAAAAH", { new GLTestScene }, IRenderer::RendererType::OPENGL);
+	Engine spaceInvaders("Claire wants to destroy smt", { new SpaceInvaders },IRenderer::RendererType::SDL);
+	//Engine gLTest("Claire wants to SDFSDGSDGSFD AAAAAAAAAH", { new GLTestScene }, IRenderer::RendererType::OPENGL);
 
 	return 0;
 }

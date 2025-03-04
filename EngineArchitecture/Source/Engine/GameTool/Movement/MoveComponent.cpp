@@ -14,39 +14,40 @@ MoveComponent::MoveComponent(Actor* pOwner, int pUpdateOrder) :
 	SetOwner(pOwner);
 }
 
-Vector2 MoveComponent::GetSpeed() const
+Vector3 MoveComponent::GetSpeed() const
 {
 	return mSpeed;
 }
 
-void MoveComponent::SetSpeed(Vector2 pSpeed)
+void MoveComponent::SetSpeed(Vector3 pSpeed)
 {
 	mSpeed = pSpeed;
 }
 
-void MoveComponent::AddForce(Vector2 pForce)
+void MoveComponent::AddForce(Vector3 pForce)
 {
 	mVelocity += pForce;
 }
 
 void MoveComponent::Update()
 {
-	if (mGravityDirection != Vector2::ZERO) 
+	if (mGravityDirection != Vector3::Zero)
 	{
 		mVelocity += mGravityDirection * Time::deltaTime;
 	}
 
-	if (!Maths::NearZero(mSpeed.SqrLength() + mVelocity.SqrLength()))
+	if (!Maths::NearZero(mSpeed.MagnitudeSqr() + mVelocity.MagnitudeSqr()))
 	{
-		Vector2 desiredPosition = mOwner->mTransform.mPosition
+		Vector3 desiredPosition = mOwner->mTransform.mPosition
 			+ (mOwner->mTransform.Right() * mSpeed.x
-				+ mOwner->mTransform.Up() * mSpeed.y) * Time::deltaTime + mVelocity;
-		Vector2 oldPosition = mOwner->mTransform.mPosition;
+				+ mOwner->mTransform.Up() * mSpeed.y 
+				+ mOwner->mTransform.Forward() * mSpeed.z) * Time::deltaTime + mVelocity;
+		Vector3 oldPosition = mOwner->mTransform.mPosition;
 
-		Vector2 newPosition = desiredPosition;
+		Vector3 newPosition = desiredPosition;
 
 		//Check collision on X axis
-		mOwner->mTransform.mPosition = { desiredPosition.x, oldPosition.y };
+		mOwner->mTransform.mPosition = { desiredPosition.x, oldPosition.y, 0 };
 		if (CheckCollision() == true)
 		{
 			newPosition.x = oldPosition.x;
@@ -54,7 +55,7 @@ void MoveComponent::Update()
 		}
 
 		//Check collision on Y axis
-		mOwner->mTransform.mPosition = { oldPosition.x, desiredPosition.y };
+		mOwner->mTransform.mPosition = { oldPosition.x, desiredPosition.y, 0 };
 		if (CheckCollision() == true)
 		{
 			newPosition.y = oldPosition.y;
@@ -76,16 +77,8 @@ bool MoveComponent::CheckCollision()
 	{
 		PhysicManager& physicManager = PhysicManager::Instance();
 
-		if (physicManager.Collision(mCollidercomponent)) 
-		{
-			mInCollision = true;
-		}
-		else 
-		{
-			mInCollision = false;
-		}
-
-		return physicManager.Collision(mCollidercomponent);
+		mInCollision = physicManager.Collision(mCollidercomponent);
+		return mInCollision;
 	}
 
 	return false;

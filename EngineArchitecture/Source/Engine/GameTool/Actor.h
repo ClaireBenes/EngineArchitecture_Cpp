@@ -42,7 +42,7 @@ public:
 
 public:
 	//Variables
-	Transform mTransform{};
+	Transform mTransform {};
 	Scene* mScene = nullptr;
 
 	template<typename  C>

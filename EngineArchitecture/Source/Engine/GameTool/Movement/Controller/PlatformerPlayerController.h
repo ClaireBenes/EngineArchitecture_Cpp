@@ -14,7 +14,7 @@ public:
 	void OnStart() override;
 
 private:
-	Vector2 mForce = { 0, -4 };
+	Vector3 mForce = { 0, -4, 0 };
 	AnimatedSpriteRenderComponent* mSpriteRenderComponent;
 
 	bool mIsJumping = false;

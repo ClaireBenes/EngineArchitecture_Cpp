@@ -49,9 +49,6 @@ void Actor::AddComponent(Component* pComponent)
 	{
 		mColliderComponents.push_back(pColliderComponent);
 	}
-
-	//***************** not sure ? ************************//
-	pComponent->OnStart();
 }
 
 //Remove a specific component

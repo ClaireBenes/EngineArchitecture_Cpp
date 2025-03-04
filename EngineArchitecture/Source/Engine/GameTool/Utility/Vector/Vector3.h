@@ -13,8 +13,9 @@ class Vector3
 {
 public:
 	Vector3();
+	Vector3(float x);
 	Vector3(float x, float y, float z);
-	Vector3(Vector2 vec2, float z = 0);
+	Vector3(Vector2 vec2);
 
 	//Variables
 	float x = 0;
@@ -51,6 +52,8 @@ public:
 	void operator-=(const Vector3& vector);
 	void operator*=(const float value);
 	void operator/=(const float value);
+
+	friend bool operator==(const Vector3& left, const Vector3& right);
 
 	friend Vector3 operator+(const Vector3& left, const Vector3& right);
 	friend Vector3 operator-(const Vector3& left, const Vector3& right);

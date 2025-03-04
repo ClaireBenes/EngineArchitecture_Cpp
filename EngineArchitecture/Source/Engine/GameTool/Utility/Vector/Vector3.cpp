@@ -25,6 +25,13 @@ Vector3::Vector3()
 	z = 0;
 }
 
+Vector3::Vector3(float x)
+{
+	this->x = x;
+	this->y = x;
+	this->z = x;
+}
+
 Vector3::Vector3(float x, float y, float z)
 {
 	this->x = x;
@@ -32,11 +39,11 @@ Vector3::Vector3(float x, float y, float z)
 	this->z = z;
 }
 
-Vector3::Vector3(Vector2 vec2, float z)
+Vector3::Vector3(Vector2 vec2)
 {
 	x = vec2.x;
 	y = vec2.y;
-	this->z = z;
+	z = 0;
 }
 
 float Vector3::Magnitude() const
@@ -203,6 +210,11 @@ void Vector3::operator/=(const float value)
 	x /= value;
 	y /= value;
 	z /= value;
+}
+
+bool operator==(const Vector3& left, const Vector3& right)
+{
+	return left.x == right.x && left.y == right.y && left.z == right.z;
 }
 
 // +

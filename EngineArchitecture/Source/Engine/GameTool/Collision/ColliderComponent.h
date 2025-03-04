@@ -9,7 +9,6 @@ class ColliderComponent : public Component
 {
 public:
 	void OnStart() override;
-	void OnEnd() override;
 
 	virtual bool Collision(const ColliderComponent* pComponent) = 0;
 	virtual void DebugRender(IRenderer* rRenderer) = 0;

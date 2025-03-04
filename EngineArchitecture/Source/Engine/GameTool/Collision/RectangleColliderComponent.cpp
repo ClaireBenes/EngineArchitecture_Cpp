@@ -11,7 +11,9 @@ void RectangleColliderComponent::DebugRender(IRenderer* pRenderer)
 Rectangle RectangleColliderComponent::GetWorldRectangle() const
 {
 	Rectangle tempRectangle = mRectangle;
-	tempRectangle.position += mOwner->mTransform.mPosition;
+	tempRectangle.position.x += mOwner->mTransform.mPosition.x;
+	tempRectangle.position.y += mOwner->mTransform.mPosition.y;
+
 	return tempRectangle;
 }
 

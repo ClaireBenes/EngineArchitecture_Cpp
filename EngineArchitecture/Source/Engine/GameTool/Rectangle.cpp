@@ -34,8 +34,9 @@ bool Rectangle::Collision(const Rectangle& a, const Rectangle& b)
 	float xMaxB = b.position.x + b.dimensions.x;
 	float yMaxB = b.position.y + b.dimensions.y;
 
-	return ( !( xMinB > xMaxA || yMinB > yMaxA
-		|| xMaxB < xMinA || yMaxB < yMinA ) );
+	/*return ( !( xMinB > xMaxA || yMinB > yMaxA
+		|| xMaxB < xMinA || yMaxB < yMinA ) );*/
+	return ( xMinA < xMaxB ) && ( xMaxA > xMinB ) && ( yMinA < yMaxB ) && ( yMaxA > yMinB );
 }
 
 // ==

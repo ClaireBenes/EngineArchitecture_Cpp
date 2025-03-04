@@ -26,7 +26,7 @@ void PlayerController::OnNotify(SDL_Event& pEvent)
 	{
 	case SDL_KEYDOWN: 
 	{
-		Vector2 direction = Vector2::ZERO;
+		Vector3 direction = Vector3::Zero;
 		if (pEvent.key.keysym.sym == SDLK_UP || pEvent.key.keysym.sym == SDLK_z)
 		{
 			direction.y = 1;
@@ -54,7 +54,7 @@ void PlayerController::OnNotify(SDL_Event& pEvent)
 	}
 		
 	case SDL_KEYUP:
-		SetSpeed(Vector2::ZERO);
+		SetSpeed(Vector3::Zero);
 		break;
 
 	default:

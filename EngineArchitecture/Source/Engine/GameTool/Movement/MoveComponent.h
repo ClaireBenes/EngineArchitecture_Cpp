@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Engine/GameTool/Component.h"
-#include "Engine/GameTool/Utility/Vector/Vector2.h"
+#include "Engine/GameTool/Utility/Vector/Vector3.h"
 
 class ColliderComponent;
 
@@ -13,9 +13,9 @@ public:
 	MoveComponent(const MoveComponent&) = delete;
 	MoveComponent& operator= (const MoveComponent&) = delete;
 
-	Vector2 GetSpeed() const;
-	void SetSpeed(Vector2 pSpeed);
-	void AddForce(Vector2 pForce);
+	Vector3 GetSpeed() const;
+	void SetSpeed(Vector3 pSpeed);
+	void AddForce(Vector3 pForce);
 
 	void Update() override;
 
@@ -23,13 +23,13 @@ public:
 	bool CheckCollision();
 
 	// - == up && + == down
-	Vector2 mGravityDirection = { 0, 15 };
-	Vector2 mVelocity = Vector2::ZERO;
+	Vector3 mGravityDirection = { 0, 15, 0 };
+	Vector3 mVelocity = Vector3::Zero;
 
 	bool mInCollision = false;
 
 protected:
-	Vector2 mSpeed;
+	Vector3 mSpeed;
 
 private:
 	ColliderComponent* mCollidercomponent = nullptr;

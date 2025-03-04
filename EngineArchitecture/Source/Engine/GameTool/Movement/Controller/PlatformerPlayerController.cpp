@@ -25,13 +25,13 @@ void PlatformerPlayerController::OnNotify(SDL_Event& pEvent)
 	{
 	case SDL_KEYDOWN:
 	{
-		Vector2 direction = Vector2::ZERO;
+		Vector3 direction = Vector3::Zero;
 		if (pEvent.key.keysym.sym == SDLK_SPACE || pEvent.key.keysym.sym == SDLK_UP)
 		{
 			if (!mIsJumping && mInCollision) 
 			{
 				direction.y = 1;
-				AddForce({GetSpeed().x / 75, mForce.y});
+				AddForce({GetSpeed().x / 75, mForce.y, 0.0f});
 				mIsJumping = true;
 
 				mSpriteRenderComponent->SetCurrentAnimation("Jump");
@@ -60,13 +60,13 @@ void PlatformerPlayerController::OnNotify(SDL_Event& pEvent)
 	case SDL_KEYUP:
 		if (pEvent.key.keysym.sym == SDLK_RIGHT || pEvent.key.keysym.sym == SDLK_d || pEvent.key.keysym.sym == SDLK_LEFT || pEvent.key.keysym.sym == SDLK_q)
 		{
-			SetSpeed(Vector2::ZERO);
+			SetSpeed(Vector3::Zero);
 			mVelocity = 0;
 			mSpriteRenderComponent->SetCurrentAnimation("Idle");
 		}
 		if (pEvent.key.keysym.sym == SDLK_SPACE || pEvent.key.keysym.sym == SDLK_UP) 
 		{
-			SetSpeed({GetSpeed().x, 0});
+			SetSpeed({GetSpeed().x, 0.0f, 0.0f});
 			mIsJumping = false;
 		}
 		break;

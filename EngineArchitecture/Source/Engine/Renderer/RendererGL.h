@@ -33,6 +33,7 @@ private:
 	Window* mWindow;
 	VertexArray* mVao;
 	SDL_GLContext mContext;
+	Matrix4 mViewProj;
 	std::vector<SpriteRenderComponent*> mSprites;
 
 	//SHADERS

@@ -1,5 +1,7 @@
 #include "RendererGL.h"
 
+#include "Engine/GameTool/Actor.h"
+#include "Engine/GameTool/Utility/Matrix/Matrix4.h"
 #include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
 
 #include <SDL_image.h>
@@ -17,6 +19,7 @@ RendererGL::~RendererGL()
 bool RendererGL::Initialize(Window& rWindow)
 {
     mWindow = &rWindow;
+    mViewProj = Matrix4::CreateSimpleViewProj(mWindow->GetDimensions().x, mWindow->GetDimensions().y);
 
     //Setting OpenGL attributes
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
@@ -58,6 +61,7 @@ void RendererGL::LoadShaders()
     mSpriteFragShader.Load("Simple.frag", ShaderType::FRAGMENT);
 
     mSpriteShaderProgram.Compose({ &mSpriteVertexShader,&mSpriteFragShader });
+    mSpriteShaderProgram.setMatrix4("uViewProj", mViewProj);
 
     //Rect 
     mRectVertexShader.Load("Simple.vert", ShaderType::VERTEX);
@@ -90,6 +94,15 @@ void RendererGL::EndDraw()
 void RendererGL::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip)
 {
     mSpriteShaderProgram.Use();
+
+    rOwner.mTransform->ComputeWorldTransform();
+    Matrix4 scaleMat = Matrix4::CreateScale(
+        rTexture.GetWidth(),
+        rTexture.GetHeight(),
+        0.0f);
+    Matrix4 world = scaleMat * rOwner.mTransform->GetWorldTransform();
+    mSpriteShaderProgram.setMatrix4("uWorldTransform", world);
+    rTexture.SetActive();
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
 

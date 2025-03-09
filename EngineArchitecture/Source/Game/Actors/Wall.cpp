@@ -8,6 +8,7 @@ void Wall::SetupComponents()
 	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/wall.jpg", "wall");
 
 	SpriteRenderComponent* spriteComponent = new SpriteRenderComponent(this, AssetManager::GetTexture("wall"));
+	mTransform->mScale = 0.5f;
 }
 
 void Wall::Update()

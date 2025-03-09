@@ -2,7 +2,7 @@
 
 #include "Engine/GameTool/Actor.h"
 
-Transform::Transform(Vector3 pPosition, Vector3 pScale, float pRotation)
+Transform::Transform(Vector3 pPosition, Vector3 pScale, Quaternion pRotation)
 {
 	mPosition = pPosition;
 	mScale = pScale;
@@ -19,9 +19,7 @@ void Transform::ComputeWorldTransform()
 	//NeedRecomputeWorldTransform = false;
 
 	mWorldTransform = Matrix4::CreateScale(mScale);
-	mWorldTransform *= Matrix4::CreateRotationX(mRotation.x);
-	mWorldTransform *= Matrix4::CreateRotationY(mRotation.y);
-	mWorldTransform *= Matrix4::CreateRotationZ(mRotation.z);
+	mWorldTransform *= Matrix4::CreateFromQuaternion(mRotation);
 	mWorldTransform *= Matrix4::CreateTranslation(mPosition);
 
 	mOwner->UpdateComponentsTransform();
@@ -30,4 +28,19 @@ void Transform::ComputeWorldTransform()
 const Matrix4& Transform::GetWorldTransform() const
 {
 	return mWorldTransform;
+}
+
+void Transform::RotatePitch(float degrees)
+{
+	mRotation = Quaternion::Concatenate(mRotation, Quaternion(Vector3::Right, Maths::ToRad(degrees)));
+}
+
+void Transform::RotateYaw(float degrees)
+{
+	mRotation = Quaternion::Concatenate(mRotation, Quaternion(Vector3::Up, Maths::ToRad(degrees)));
+}
+
+void Transform::RotateRoll(float degrees)
+{
+	mRotation = Quaternion::Concatenate(mRotation, Quaternion(Vector3::Forward, Maths::ToRad(degrees)));
 }

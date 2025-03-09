@@ -12,6 +12,7 @@ public:
 	virtual void OnStart() {};
 	virtual void Update() {};
 	virtual void OnEnd() {};
+	virtual void OnUpdateWorldTrandform() {};
 
 	void SetActive(bool isActive);
 	void SetOwner(Actor* pOwner);

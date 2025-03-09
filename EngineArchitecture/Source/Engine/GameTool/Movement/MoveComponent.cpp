@@ -38,16 +38,16 @@ void MoveComponent::Update()
 
 	if (!Maths::NearZero(mSpeed.MagnitudeSqr() + mVelocity.MagnitudeSqr()))
 	{
-		Vector3 desiredPosition = mOwner->mTransform.mPosition
-			+ (mOwner->mTransform.Right() * mSpeed.x
-				+ mOwner->mTransform.Up() * mSpeed.y 
-				+ mOwner->mTransform.Forward() * mSpeed.z) * Time::deltaTime + mVelocity;
-		Vector3 oldPosition = mOwner->mTransform.mPosition;
+		Vector3 desiredPosition = mOwner->mTransform->mPosition
+			+ (mOwner->mTransform->Right() * mSpeed.x
+				+ mOwner->mTransform->Up() * mSpeed.y
+				+ mOwner->mTransform->Forward() * mSpeed.z) * Time::deltaTime + mVelocity;
+		Vector3 oldPosition = mOwner->mTransform->mPosition;
 
 		Vector3 newPosition = desiredPosition;
 
 		//Check collision on X axis
-		mOwner->mTransform.mPosition = { desiredPosition.x, oldPosition.y, 0 };
+		mOwner->mTransform->mPosition = { desiredPosition.x, oldPosition.y, 0 };
 		if (CheckCollision() == true)
 		{
 			newPosition.x = oldPosition.x;
@@ -55,14 +55,14 @@ void MoveComponent::Update()
 		}
 
 		//Check collision on Y axis
-		mOwner->mTransform.mPosition = { oldPosition.x, desiredPosition.y, 0 };
+		mOwner->mTransform->mPosition = { oldPosition.x, desiredPosition.y, 0 };
 		if (CheckCollision() == true)
 		{
 			newPosition.y = oldPosition.y;
 			mVelocity.y = 0;
 		}
 
-		mOwner->mTransform.mPosition = newPosition;
+		mOwner->mTransform->mPosition = newPosition;
 	}
 }
 

@@ -23,12 +23,14 @@ enum class ActorState
 class Actor
 {
 public:
+	Actor();
 	virtual ~Actor();
 
 	//Functions
 	void SetScene(Scene* pScene);
 	void AddComponent(Component* pComponent);
 	void RemoveComponent(Component* pComponent);
+	void UpdateComponentsTransform();
 
 	void SetActive(bool isActive);
 	void Render(IRenderer* pRenderer);
@@ -42,7 +44,7 @@ public:
 
 public:
 	//Variables
-	Transform mTransform {};
+	Transform* mTransform =  nullptr;
 	Scene* mScene = nullptr;
 
 	template<typename  C>

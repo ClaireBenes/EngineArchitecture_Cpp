@@ -20,6 +20,12 @@ void Actor::Start()
 	mState = ActorState::Active;
 }
 
+Actor::Actor()
+{
+	mTransform = new Transform();
+	mTransform->SetOwner(this);
+}
+
 Actor::~Actor()
 {
 	for (Component* pComponent : mComponents)
@@ -84,6 +90,14 @@ void Actor::RemoveComponent(Component* pComponent)
 
 	delete pComponent;
 	mComponents.erase(it);
+}
+
+void Actor::UpdateComponentsTransform()
+{
+	for (Component* myComponent : mComponents)
+	{
+		myComponent->OnUpdateWorldTrandform();
+	}
 }
 
 //Set state of actor (active or paused)

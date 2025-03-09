@@ -20,10 +20,7 @@ void Bush::SetupComponents()
 
 void Bush::Update()
 {
-	//printf("Bush : {%f , %f}, {%f , %f}\n", colliderComponent->GetWorldRectangle().position.x, 
-	//	colliderComponent->GetWorldRectangle().position.x + colliderComponent->GetWorldRectangle().dimensions.x,
-	//	colliderComponent->GetWorldRectangle().position.y,
-	//	colliderComponent->GetWorldRectangle().position.y + colliderComponent->GetWorldRectangle().dimensions.y);
+
 }
 
 void Bush::Destroy()

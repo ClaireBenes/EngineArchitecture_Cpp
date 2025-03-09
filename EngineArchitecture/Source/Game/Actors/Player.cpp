@@ -50,10 +50,6 @@ void Player::SetUpAnimations()
 void Player::Update()
 {
 	Actor::Update();
-	//printf("Player : {%f , %f}, {%f , %f}\n", colliderComponent->GetWorldRectangle().position.x, 
-	//	colliderComponent->GetWorldRectangle().position.x + colliderComponent->GetWorldRectangle().dimensions.x,
-	//	colliderComponent->GetWorldRectangle().position.y,
-	//	colliderComponent->GetWorldRectangle().position.y + colliderComponent->GetWorldRectangle().dimensions.y);
 }
 
 void Player::Destroy()

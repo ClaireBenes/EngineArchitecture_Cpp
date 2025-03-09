@@ -12,7 +12,6 @@ class SpriteRenderComponent : public RenderComponent
 public:
 	SpriteRenderComponent(Actor* pOwner, int pDrawOrder = 100);
 	SpriteRenderComponent(Actor* pOwner, const Texture& pTexture, int pDrawOrder = 100);
-	virtual ~SpriteRenderComponent();
 
 	SpriteRenderComponent() = delete;
 	SpriteRenderComponent(const SpriteRenderComponent&) = delete;
@@ -20,11 +19,12 @@ public:
 
 	virtual void SetTexture(const Texture& pTexture);
 	virtual void Render(IRenderer* pRenderer) override;
-	void AddSprite();
+	RenderType GetRenderType() override;
+
 	void SetNewDimensions(float x, float y);
 
 	//Getters
-	int GetDrawOrder() const;
+	int GetDrawOrder() const override;
 	int GetTexWidth() const;
 	int GetTexHeight() const;
 

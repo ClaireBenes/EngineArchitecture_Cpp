@@ -1,8 +1,9 @@
 #include "Component.h"
 #include "Actor.h"
 
-Component::Component(int pUpdateOrder) : mUpdateOrder(pUpdateOrder)
+Component::Component(Actor* pOwner, int pUpdateOrder) : mUpdateOrder(pUpdateOrder)
 {
+	SetOwner(pOwner);
 }
 
 void Component::SetActive(bool isActive)

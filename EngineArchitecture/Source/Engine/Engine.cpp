@@ -86,7 +86,9 @@ void Engine::Loop()
 void Engine::Render()
 {
     mRenderer->BeginDraw();
-    mScenes[mLoadedScene]->Render();
+
+    mRenderer->Draw();
+    //mScenes[mLoadedScene]->Render();
 
     mRenderer->EndDraw();
 }

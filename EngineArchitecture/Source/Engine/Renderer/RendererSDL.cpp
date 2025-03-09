@@ -46,6 +46,14 @@ void RendererSDL::BeginDraw()
     SDL_RenderClear(mSdlRenderer);
 }
 
+void RendererSDL::Draw()
+{
+    for (RenderComponent* rc : mViewportRenderComponents)
+    {
+        rc->Render(this);
+    }
+}
+
 //End Draw
 void RendererSDL::EndDraw()
 {
@@ -109,24 +117,3 @@ void RendererSDL::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle r
 
     delete sourceSDL;
 }
-
-void RendererSDL::AddSprite(SpriteRenderComponent* pSprite)
-{
-    int spriteDrawOrder = pSprite->GetDrawOrder();
-    std::vector<SpriteRenderComponent*>::iterator spriteIterator;
-
-    for(spriteIterator = mSprites.begin(); spriteIterator != mSprites.end(); ++spriteIterator)
-    {
-        if(spriteDrawOrder < ( *spriteIterator )->GetDrawOrder()) break;
-    }
-    mSprites.insert(spriteIterator, pSprite);
-}
-
-void RendererSDL::RemoveSprite(SpriteRenderComponent* pSprite)
-{
-    std::vector<SpriteRenderComponent*>::iterator spriteIterator;
-    spriteIterator = std::find(mSprites.begin(), mSprites.end(), pSprite);
-    mSprites.erase(spriteIterator);
-}
-
-

@@ -22,8 +22,7 @@ void Actor::Start()
 
 Actor::Actor()
 {
-	mTransform = new Transform();
-	mTransform->SetOwner(this);
+	mTransform = new Transform(this);
 }
 
 Actor::~Actor()

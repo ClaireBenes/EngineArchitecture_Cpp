@@ -8,6 +8,8 @@ class IRendererSDL;
 class ColliderComponent : public Component
 {
 public:
+	ColliderComponent(Actor* pOwner);
+
 	void OnStart() override;
 
 	virtual bool Collision(const ColliderComponent* pComponent) = 0;

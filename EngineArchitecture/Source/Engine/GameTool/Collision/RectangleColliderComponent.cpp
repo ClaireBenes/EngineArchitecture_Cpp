@@ -3,6 +3,11 @@
 #include "../Actor.h"
 #include "Engine/Renderer/IRenderer.h"
 
+RectangleColliderComponent::RectangleColliderComponent(Actor* pOwner):
+ColliderComponent(pOwner)
+{
+}
+
 void RectangleColliderComponent::DebugRender(IRenderer* pRenderer)
 {
 	pRenderer->DrawRectLine(GetWorldRectangle(), mColor);

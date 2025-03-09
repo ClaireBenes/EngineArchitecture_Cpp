@@ -17,24 +17,29 @@ public:
 	bool Initialize(Window& rWindow) override;
 	void LoadShaders();
 	void BeginDraw() override;
+	void Draw() override;
 	void EndDraw() override;
 
 	void DrawRect(const Rectangle& rRect, Color pColor) override;
 	void DrawRectLine(const Rectangle& rRect, Color pColor) override;
 
+	void DrawAllSprites();
 	void DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip = Flip::None) override;
-	void AddSprite(SpriteRenderComponent* pSprite) override;
-	void RemoveSprite(SpriteRenderComponent* pSprite) override;
+
+	void DrawAllMeshes();
+	void DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transform) override;
 
 	void Close() override;
 	RendererType GetType() override;
 
 private:
 	Window* mWindow;
-	VertexArray* mVao;
+	VertexArray* mSpriteVao;
 	SDL_GLContext mContext;
-	Matrix4 mViewProj;
-	std::vector<SpriteRenderComponent*> mSprites;
+
+	Matrix4 mSpriteViewProj;
+	Matrix4 mView;
+	Matrix4 mProjection;
 
 	//SHADERS
 	//Sprite

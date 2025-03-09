@@ -12,3 +12,8 @@ void RectangleRenderComponent::Render(IRenderer* pRenderer)
 
 	pRenderer->DrawRect(tempRectangle, mColor);
 }
+
+RenderType RectangleRenderComponent::GetRenderType()
+{
+	return RenderType::Viewport;
+}

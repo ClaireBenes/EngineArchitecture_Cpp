@@ -49,10 +49,7 @@ void Scene::Update(float deltaTime)
 
 void Scene::Render()
 {
-	for(Actor* actor : mActors)
-	{
-		actor->Render(mRenderer);
-	}
+	//UI ?
 }
 
 void Scene::SetWindow(Window* pWindow)

@@ -16,8 +16,7 @@ void Player::SetupComponents()
 	animatedSpriteComponent->SetAnimationFps(10.0f);
 	animatedSpriteComponent->SetNewDimensions(86, 86);
 
-	colliderComponent = new RectangleColliderComponent();
-	colliderComponent->SetOwner(this);
+	colliderComponent = new RectangleColliderComponent(this);
 	colliderComponent->mRectangle.dimensions.x = animatedSpriteComponent->mRectangle.dimensions.x / 2;
 	colliderComponent->mRectangle.dimensions.y = animatedSpriteComponent->mRectangle.dimensions.y / 1.3f;
 	colliderComponent->mRectangle.position.x = animatedSpriteComponent->mRectangle.position.x + (animatedSpriteComponent->mRectangle.dimensions.x / 4);

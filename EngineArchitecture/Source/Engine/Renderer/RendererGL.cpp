@@ -3,23 +3,28 @@
 #include "Engine/GameTool/Actor.h"
 #include "Engine/GameTool/Utility/Matrix/Matrix4.h"
 #include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
+#include "Engine/GameTool/Visual/Mesh/MeshComponent.h"
+#include "Engine/GameTool/Visual/Mesh/Mesh.h"
 
 #include <SDL_image.h>
 #include <glew.h>
 
-RendererGL::RendererGL() : mWindow(nullptr), mVao(nullptr), mContext(nullptr)
+RendererGL::RendererGL() : mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr)
 {
 }
 
 RendererGL::~RendererGL()
 {
-    delete mVao;
+    delete mSpriteVao;
 }
 
 bool RendererGL::Initialize(Window& rWindow)
 {
     mWindow = &rWindow;
-    mViewProj = Matrix4::CreateSimpleViewProj(mWindow->GetDimensions().x, mWindow->GetDimensions().y);
+
+    mSpriteViewProj = Matrix4::CreateSimpleViewProj(mWindow->GetDimensions().x, mWindow->GetDimensions().y);
+    mView = Matrix4::CreateLookAt(Vector3(0, 0, 5), Vector3::Right, Vector3::Forward);
+    mProjection = Matrix4::CreatePerspectiveFOV(70.0f, mWindow->GetDimensions().x, mWindow->GetDimensions().y, 0.01f, 10000.0f);
 
     //Setting OpenGL attributes
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
@@ -48,7 +53,7 @@ bool RendererGL::Initialize(Window& rWindow)
         Log::Error(LogType::Video, "Failed to initialize SDL_Image");
     }
 
-    mVao = new VertexArray(vertices, 4, indices, 6);
+    mSpriteVao = new VertexArray(vertices, 4, indices, 6);
     LoadShaders();
 
     return true;
@@ -61,7 +66,7 @@ void RendererGL::LoadShaders()
     mSpriteFragShader.Load("Simple.frag", ShaderType::FRAGMENT);
 
     mSpriteShaderProgram.Compose({ &mSpriteVertexShader,&mSpriteFragShader });
-    mSpriteShaderProgram.setMatrix4("uViewProj", mViewProj);
+    mSpriteShaderProgram.setMatrix4("uViewProj", mSpriteViewProj);
 
     //Rect 
     mRectVertexShader.Load("Simple.vert", ShaderType::VERTEX);
@@ -79,16 +84,30 @@ void RendererGL::LoadShaders()
 void RendererGL::BeginDraw()
 {
     glClearColor(0.45f, 0.45f, 1.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    mVao->SetActive();
+    mSpriteVao->SetActive();
+}
+
+void RendererGL::Draw()
+{
+    //DrawAllMeshes();
+    DrawAllSprites();
 }
 
 void RendererGL::EndDraw()
 {
     SDL_GL_SwapWindow(mWindow->GetSdlWindow());
+}
+
+void RendererGL::DrawAllSprites()
+{
+    for (RenderComponent* rc : mViewportRenderComponents)
+    {
+        rc->Render(this);
+    }
 }
 
 void RendererGL::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip)
@@ -116,28 +135,40 @@ void RendererGL::DrawRectLine(const Rectangle& rRect, Color pColor)
     mRectLineShaderProgram.Use();
 }
 
-void RendererGL::AddSprite(SpriteRenderComponent* pSprite)
+void RendererGL::DrawAllMeshes()
 {
-    int spriteDrawOrder = pSprite->GetDrawOrder();
-    std::vector<SpriteRenderComponent*>::iterator sc;
-    for(sc = mSprites.begin(); sc != mSprites.end(); ++sc)
+    glEnable(GL_DEPTH_TEST);
+    glDisable(GL_BLEND);
+
+    for (RenderComponent* rc : mWorldRenderComponents)
     {
-        if(spriteDrawOrder < ( *sc )->GetDrawOrder()) break;
+        rc->Render(this);
     }
-    mSprites.insert(sc, pSprite);
 }
 
-void RendererGL::RemoveSprite(SpriteRenderComponent* pSprite)
+void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transform)
 {
-    std::vector<SpriteRenderComponent*>::iterator sc;
-    sc = std::find(mSprites.begin(), mSprites.end(), pSprite);
-    mSprites.erase(sc);
+    if (pMesh)
+    {
+        pMesh->GetShaderProgram().Use();
+        pMesh->GetShaderProgram().setMatrix4("uViewProj", mView * mProjection);
+        pMesh->GetShaderProgram().setMatrix4("uWorldTransform", transform);
+
+        Texture* t = pMesh->GetTexture(pTextureIndex);
+        if (t)
+        {
+            t->SetActive();
+        }
+
+        pMesh->GetVertexArray()->SetActive();
+        glDrawElements(GL_TRIANGLES, pMesh->GetVertexArray()->GetIndicesCount(), GL_UNSIGNED_INT, nullptr);
+    }
 }
 
 void RendererGL::Close()
 {
     SDL_GL_DeleteContext(mContext);
-    delete mVao;
+    delete mSpriteVao;
 }
 
 IRenderer::RendererType RendererGL::GetType()

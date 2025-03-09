@@ -14,6 +14,7 @@ public:
 	//function
 	bool Initialize(Window& rWindow);
 	void BeginDraw() override;
+	void Draw() override;
 	void EndDraw() override;
 	void Close() override;
 
@@ -23,17 +24,12 @@ public:
 	void DrawRectLine(const Rectangle& rRect, Color pColor) override;
 	void DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip = Flip::None) override;
 
-	void AddSprite(SpriteRenderComponent* pSprite) override;
-	void RemoveSprite(SpriteRenderComponent* pSprite) override;
-
 	RendererType GetType() override;
 
 private:
 	//variables
 	SDL_Renderer* mSdlRenderer;
 	Color mBackgroundColor = { 120, 120, 255, 255 };
-
-	std::vector<SpriteRenderComponent*> mSprites;
 };
 
 

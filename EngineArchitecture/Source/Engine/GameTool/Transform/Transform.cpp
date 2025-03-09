@@ -2,7 +2,8 @@
 
 #include "Engine/GameTool/Actor.h"
 
-Transform::Transform(Vector3 pPosition, Vector3 pScale, Quaternion pRotation)
+Transform::Transform(Actor* pOwner, Vector3 pPosition, Vector3 pScale, Quaternion pRotation)
+	: Component(pOwner)
 {
 	mPosition = pPosition;
 	mScale = pScale;

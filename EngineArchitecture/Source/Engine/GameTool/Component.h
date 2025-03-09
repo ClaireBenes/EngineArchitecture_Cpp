@@ -7,7 +7,8 @@ class Component
 {
 public:
 	//Functions
-	Component(int pUpdateOrder = 100);
+	Component(Actor* pOwner, int pUpdateOrder = 100);
+	virtual ~Component() {};
 
 	virtual void OnStart() {};
 	virtual void Update() {};

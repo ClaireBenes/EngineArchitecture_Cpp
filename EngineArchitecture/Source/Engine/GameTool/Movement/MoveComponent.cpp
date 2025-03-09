@@ -9,9 +9,8 @@
 #include "Engine/Manager/PhysicManager.h"
 
 MoveComponent::MoveComponent(Actor* pOwner, int pUpdateOrder) :
-	Component(pUpdateOrder), mSpeed(0.0f)
+	Component(pOwner, pUpdateOrder), mSpeed(0.0f)
 {
-	SetOwner(pOwner);
 }
 
 Vector3 MoveComponent::GetSpeed() const

@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Engine\GameTool\Visual\Mesh\MeshComponent.h" />
+    <ClInclude Include="Source\Engine\GameTool\Visual\Mesh\Mesh.h" />
     <ClInclude Include="Source\Game\Scenes\GLTestScene.h" />
     <ClInclude Include="Source\Engine\Shader\ShaderProgram.h" />
     <ClInclude Include="Source\Engine\Shader\Shader.h" />
@@ -63,6 +65,8 @@
     <ClInclude Include="Source\Game\Actors\Wall.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine\GameTool\Visual\Mesh\MeshComponent.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Visual\Mesh\Mesh.cpp" />
     <ClCompile Include="Source\Game\Scenes\GLTestScene.cpp" />
     <ClCompile Include="Source\Engine\Shader\ShaderProgram.cpp" />
     <ClCompile Include="Source\Engine\Shader\Shader.cpp" />

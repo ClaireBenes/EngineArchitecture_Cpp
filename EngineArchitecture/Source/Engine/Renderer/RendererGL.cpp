@@ -52,10 +52,12 @@ constexpr unsigned int cubeIndices[] = {
 };
 
 constexpr float spriteVertices[] = {
-    -0.5f, 0.5f, 0.0f, 0.0f, 0.0f,     //top left
-    0.5f, 0.5f, 0.0f, 1.0f, 0.0f,     //top right
-    0.5f, -0.5f, 0.0f, 1.0f, 1.0f,     //bottom right
-    -0.5f, -0.5f, 0.0f, 0.0f, 1.0f };   //bottom left
+    // Position             // UVs
+    -0.5f, 0.5f, 0.0f,      0.0f, 0.0f,      //top left
+    0.5f, 0.5f, 0.0f,       1.0f, 0.0f,       //top right
+    0.5f, -0.5f, 0.0f,      1.0f, 1.0f,      //bottom right
+    -0.5f, -0.5f, 0.0f,     0.0f, 1.0f      //bottom left
+};   
 
 constexpr unsigned int spriteIndices[] = {
     0, 1, 2,
@@ -112,7 +114,7 @@ bool RendererGL::Initialize(Window& rWindow)
     mSpriteVao = new VertexArray(spriteVertices, 4, spriteIndices, 6);
     LoadShaders();
 
-    CubeMesh = new Mesh(new VertexArray(cubeVertices, 120, cubeIndices, 36), mSimpleMeshShaderProgram);
+    CubeMesh = new Mesh(new VertexArray(cubeVertices, 24, cubeIndices, 36), mSimpleMeshShaderProgram);
 
     return true;
 }
@@ -211,6 +213,10 @@ void RendererGL::DrawAllMeshes()
 {
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_BLEND);
+
+    // TODO: Cull faces when you have an actual .obj model importer
+    //glEnable(GL_CULL_FACE);
+    //glCullFace(GL_FRONT);
 
     for (RenderComponent* rc : mWorldRenderComponents)
     {

@@ -13,7 +13,7 @@ public:
 
 	Vector3 Right() const { return Vector3(Maths::Cos(mRotation.z), -Maths::Sin(mRotation.z), 0); }
 	Vector3 Up() const { return Vector3(Maths::Sin(mRotation.z), -Maths::Cos(mRotation.z), 0); }
-	Vector3 Forward() const {return Vector3::Transform(Vector3::Right, mRotation);}
+	Vector3 Forward() const {return Vector3::Transform(Vector3::Forward, mRotation);}
 
 	void ComputeWorldTransform();
 	const Matrix4& GetWorldTransform() const;

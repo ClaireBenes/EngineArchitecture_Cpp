@@ -12,6 +12,8 @@ class Mesh
 {
 public:
 	Mesh();
+	Mesh(VertexArray* pVao, ShaderProgram pShaderProgram);
+
 	void Unload();
 	void AddTexture(Texture* pTexture);
 
@@ -25,13 +27,8 @@ public:
 
 private:
 	std::vector<Texture*> mAllTextures;
-	VertexArray* mVao;
-
-	//SHADERS
-	Shader mMeshFragShader;
-	Shader mMeshVertexShader;
+	VertexArray* mVao = nullptr;
 
 	ShaderProgram mMeshShaderProgram;
-
 };
 

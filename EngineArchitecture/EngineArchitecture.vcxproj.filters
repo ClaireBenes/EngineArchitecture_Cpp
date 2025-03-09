@@ -284,5 +284,7 @@
     <None Include="Source\Game\Shaders\Fragment\SimpleFragment.shader" />
     <None Include="Resources\Shaders\Simple.frag" />
     <None Include="Resources\Shaders\Simple.vert" />
+    <None Include="Resources\Shaders\SimpleMesh.vert" />
+    <None Include="Resources\Shaders\SimpleMesh.frag" />
   </ItemGroup>
 </Project>

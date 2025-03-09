@@ -23,7 +23,7 @@ public:
 	bool CheckCollision();
 
 	// - == up && + == down
-	Vector3 mGravityDirection = { 0, 15, 0 };
+	Vector3 mGravityDirection = Vector3::Up * -15.0f;
 	Vector3 mVelocity = Vector3::Zero;
 
 	bool mInCollision = false;

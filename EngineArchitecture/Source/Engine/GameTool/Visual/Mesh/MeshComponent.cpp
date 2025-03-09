@@ -12,6 +12,7 @@ MeshComponent::MeshComponent(Actor* pOwner, Mesh* pMesh) : mMesh(pMesh), mTextur
 
 void MeshComponent::Render(IRenderer* rRenderer)
 {
+	mOwner->mTransform->ComputeWorldTransform();
 	rRenderer->DrawMesh(mMesh, mTextureIndex, mOwner->mTransform->GetWorldTransform());
 }
 

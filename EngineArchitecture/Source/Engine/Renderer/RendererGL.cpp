@@ -9,6 +9,61 @@
 #include <SDL_image.h>
 #include <glew.h>
 
+constexpr float cubeVertices[] = {
+    // Positions           // Coordonnées de texture
+    -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,   // Face avant
+    0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
+    -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+    0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+
+    -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,   // Face arrière
+    0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+    -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,
+    0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+
+    -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,   // Face gauche
+    -0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+    -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+    -0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+
+    0.5f, -0.5f, -0.5f, 0.0f, 0.0f,   // Face droite
+    0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+    0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+    0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+
+    -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,   // Face bas
+    0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
+    -0.5f, -0.5f, 0.5f, 0.0f, 1.0f,
+    0.5f, -0.5f, 0.5f, 1.0f, 1.0f,
+
+    -0.5f, 0.5f, -0.5f, 0.0f, 0.0f,   // Face haut
+    0.5f, 0.5f, -0.5f, 1.0f, 0.0f,
+    -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,
+    0.5f, 0.5f, 0.5f, 1.0f, 1.0f
+};
+
+constexpr unsigned int cubeIndices[] = {
+    0, 2, 1, 1, 2, 3,  // Face avant
+    4, 5, 6, 5, 7, 6,  // Face arrière
+    8, 9, 10, 9, 11, 10, // Face gauche
+    12, 13, 14, 13, 15, 14, // Face droite
+    16, 17, 18, 17, 19, 18, // Face bas
+    20, 21, 22, 21, 23, 22  // Face haut
+};
+
+constexpr float spriteVertices[] = {
+    -0.5f, 0.5f, 0.0f, 0.0f, 0.0f,     //top left
+    0.5f, 0.5f, 0.0f, 1.0f, 0.0f,     //top right
+    0.5f, -0.5f, 0.0f, 1.0f, 1.0f,     //bottom right
+    -0.5f, -0.5f, 0.0f, 0.0f, 1.0f };   //bottom left
+
+constexpr unsigned int spriteIndices[] = {
+    0, 1, 2,
+    2, 3, 0
+};
+
+Mesh* RendererGL::CubeMesh = nullptr;
+
 RendererGL::RendererGL() : mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr)
 {
 }
@@ -16,6 +71,7 @@ RendererGL::RendererGL() : mWindow(nullptr), mSpriteVao(nullptr), mContext(nullp
 RendererGL::~RendererGL()
 {
     delete mSpriteVao;
+    delete CubeMesh;
 }
 
 bool RendererGL::Initialize(Window& rWindow)
@@ -23,7 +79,7 @@ bool RendererGL::Initialize(Window& rWindow)
     mWindow = &rWindow;
 
     mSpriteViewProj = Matrix4::CreateSimpleViewProj(mWindow->GetDimensions().x, mWindow->GetDimensions().y);
-    mView = Matrix4::CreateLookAt(Vector3(0, 0, 5), Vector3::Right, Vector3::Forward);
+    mView = Matrix4::CreateLookAt(Vector3(0, 0, 10), Vector3::Zero, Vector3::Up);
     mProjection = Matrix4::CreatePerspectiveFOV(70.0f, mWindow->GetDimensions().x, mWindow->GetDimensions().y, 0.01f, 10000.0f);
 
     //Setting OpenGL attributes
@@ -53,8 +109,10 @@ bool RendererGL::Initialize(Window& rWindow)
         Log::Error(LogType::Video, "Failed to initialize SDL_Image");
     }
 
-    mSpriteVao = new VertexArray(vertices, 4, indices, 6);
+    mSpriteVao = new VertexArray(spriteVertices, 4, spriteIndices, 6);
     LoadShaders();
+
+    CubeMesh = new Mesh(new VertexArray(cubeVertices, 120, cubeIndices, 36), mSimpleMeshShaderProgram);
 
     return true;
 }
@@ -79,21 +137,25 @@ void RendererGL::LoadShaders()
     mRectLineFragShader.Load("Simple.frag", ShaderType::FRAGMENT);
 
     mRectLineShaderProgram.Compose({ &mRectLineVertexShader,&mRectLineFragShader });
+
+    //Mesh
+    mSimpleMeshVertexShader.Load("SimpleMesh.vert", ShaderType::VERTEX);
+    mSimpleMeshFragShader.Load("SimpleMesh.frag", ShaderType::FRAGMENT);
+
+    mSimpleMeshShaderProgram.Compose({ &mSimpleMeshVertexShader, &mSimpleMeshFragShader });
 }
 
 void RendererGL::BeginDraw()
 {
     glClearColor(0.45f, 0.45f, 1.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     mSpriteVao->SetActive();
 }
 
 void RendererGL::Draw()
 {
-    //DrawAllMeshes();
+    DrawAllMeshes();
     DrawAllSprites();
 }
 
@@ -104,6 +166,16 @@ void RendererGL::EndDraw()
 
 void RendererGL::DrawAllSprites()
 {
+    glDisable(GL_DEPTH_TEST);
+
+    glEnable(GL_BLEND);
+    glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    mSpriteShaderProgram.Use();
+    mSpriteShaderProgram.setMatrix4("uViewProj", mSpriteViewProj);
+    mSpriteVao->SetActive();
+
     for (RenderComponent* rc : mViewportRenderComponents)
     {
         rc->Render(this);
@@ -163,6 +235,9 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         pMesh->GetVertexArray()->SetActive();
         glDrawElements(GL_TRIANGLES, pMesh->GetVertexArray()->GetIndicesCount(), GL_UNSIGNED_INT, nullptr);
     }
+
+    //Unbind texture
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void RendererGL::Close()

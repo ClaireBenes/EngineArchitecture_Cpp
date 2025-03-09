@@ -32,6 +32,8 @@ public:
 	void Close() override;
 	RendererType GetType() override;
 
+	static Mesh* CubeMesh;
+
 private:
 	Window* mWindow;
 	VertexArray* mSpriteVao;
@@ -51,11 +53,15 @@ private:
 	//RectLine
 	Shader mRectLineFragShader;
 	Shader mRectLineVertexShader;
+	//Mesh
+	Shader mSimpleMeshFragShader;
+	Shader mSimpleMeshVertexShader;
 
 	//ShaderProgram
 	ShaderProgram mSpriteShaderProgram;
 	ShaderProgram mRectShaderProgram;
 	ShaderProgram mRectLineShaderProgram;
+	ShaderProgram mSimpleMeshShaderProgram;
 };
 
 

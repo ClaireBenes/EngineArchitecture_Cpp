@@ -5,12 +5,11 @@
 
 Mesh::Mesh()
 {
-	mVao = nullptr;
-	//mVao = new VertexArray(cubeVertices, 28, cubeIndices, 36);
-	//mMeshVertexShader.Load("Simple.vert", ShaderType::VERTEX);
-	//mMeshFragShader.Load("Simple.frag", ShaderType::FRAGMENT);
-	//mMeshShaderProgram.Compose({ &mMeshVertexShader, &mMeshFragShader });
-	//mAllTextures.emplace_back(&AssetManager::GetTexture("wall"));
+}
+
+Mesh::Mesh(VertexArray* pVao, ShaderProgram pShaderProgram):
+	mVao(pVao), mMeshShaderProgram(pShaderProgram)
+{
 }
 
 void Mesh::Unload()

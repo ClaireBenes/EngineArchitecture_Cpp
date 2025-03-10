@@ -3,6 +3,7 @@
 #include "Actor.h"
 
 class MoveComponent;
+class FPSController;
 
 class Camera : public Actor
 {
@@ -12,6 +13,6 @@ public:
 	void Update() override;
 
 private:
-	MoveComponent* mMoveComponent;
+	FPSController* mMoveComponent;
 };
 

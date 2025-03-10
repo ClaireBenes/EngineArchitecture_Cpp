@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Engine\GameTool\Movement\Controller\FPSController.h" />
     <ClInclude Include="Source\Engine\GameTool\Camera.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Mesh\MeshComponent.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Mesh\Mesh.h" />
@@ -66,6 +67,7 @@
     <ClInclude Include="Source\Game\Actors\Wall.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine\GameTool\Movement\Controller\FPSController.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Camera.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Mesh\MeshComponent.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Mesh\Mesh.cpp" />

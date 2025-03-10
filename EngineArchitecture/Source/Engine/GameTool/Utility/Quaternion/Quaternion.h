@@ -128,6 +128,11 @@ public:
 		return retVal;
 	}
 
+	Quaternion operator+(const Quaternion& p)
+	{
+		return Concatenate(*this, p);
+	}
+
 	class Matrix4 AsMatrix() const;
 
 	static const Quaternion Identity;

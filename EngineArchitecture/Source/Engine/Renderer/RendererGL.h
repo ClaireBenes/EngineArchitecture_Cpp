@@ -29,6 +29,8 @@ public:
 	void DrawAllMeshes();
 	void DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transform) override;
 
+	void SetViewMatrix(const Matrix4& pView) override;
+
 	void Close() override;
 	RendererType GetType() override;
 

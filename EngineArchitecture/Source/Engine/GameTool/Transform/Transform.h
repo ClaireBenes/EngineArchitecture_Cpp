@@ -11,8 +11,8 @@ class Transform : public Component
 public:
 	Transform(Actor* pOwner, Vector3 pPosition = Vector3::Zero, Vector3 pScale = Vector3::One, Quaternion pRotation = Quaternion::Identity);
 
-	Vector3 Right() const { return Vector3(Maths::Cos(mRotation.z), -Maths::Sin(mRotation.z), 0); }
-	Vector3 Up() const { return Vector3(Maths::Sin(mRotation.z), -Maths::Cos(mRotation.z), 0); }
+	Vector3 Right() const { return Vector3::Transform(Vector3::Right, mRotation); }
+	Vector3 Up() const { return Vector3::Transform(Vector3::Up, mRotation); }
 	Vector3 Forward() const {return Vector3::Transform(Vector3::Forward, mRotation);}
 
 	void ComputeWorldTransform();

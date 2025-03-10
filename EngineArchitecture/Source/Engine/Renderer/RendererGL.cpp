@@ -246,6 +246,11 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+void RendererGL::SetViewMatrix(const Matrix4& pView)
+{
+    mView = pView;
+}
+
 void RendererGL::Close()
 {
     SDL_GL_DeleteContext(mContext);

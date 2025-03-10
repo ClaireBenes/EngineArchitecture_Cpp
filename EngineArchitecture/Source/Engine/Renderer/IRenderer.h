@@ -47,6 +47,8 @@ public:
     virtual void AddRenderComponent(RenderComponent* pRenderComponent);
     virtual void RemoveRenderComponent(RenderComponent* pRenderComponent);
 
+    virtual void SetViewMatrix(const Matrix4& pView) {};
+
 protected:
     std::vector<RenderComponent*> mViewportRenderComponents;
     std::vector<RenderComponent*> mWorldRenderComponents;

@@ -13,6 +13,8 @@ public:
 	void OnStart() override;
 
 	virtual bool Collision(const ColliderComponent* pComponent) = 0;
+
+	// TODO : Have it work with the draw Refactor
 	virtual void DebugRender(IRenderer* rRenderer) = 0;
 
 	//Variables

@@ -8,6 +8,10 @@
 
 void GLTestScene::Start()
 {
+	mCamera = new Camera();
+	AddActor(mCamera);
+	mCamera->mTransform->mPosition = { 0,0,-10 };
+
 	AssetManager::LoadTexture(*GetRenderer(), "Resources/wall.jpg", "wall");
 	RendererGL::CubeMesh->AddTexture(&AssetManager::GetTexture("wall"));
 

@@ -3,6 +3,7 @@
 #include "Engine/GameTool/Utility/Maths.h"
 #include "Engine/GameTool/Actor.h"
 #include "Engine/Manager/InputManager.h"
+#include "Engine/Engine.h"
 
 FPSController::FPSController(Actor* pActor) : MoveComponent(pActor)
 {
@@ -15,6 +16,19 @@ FPSController::FPSController(Actor* pActor) : MoveComponent(pActor)
 	InputManager::Instance().SubscribeTo(SDLK_LEFT, this);
 	InputManager::Instance().SubscribeTo(SDLK_DOWN, this);
 	InputManager::Instance().SubscribeTo(SDLK_RIGHT, this);
+
+	InputManager::Instance().SubscribeTo(SDL_MOUSEMOTION, this);
+}
+
+void FPSController::Update()
+{
+	MoveComponent::Update();
+
+	int mouseDeltaX, mouseDeltaY;
+	SDL_GetRelativeMouseState(&mouseDeltaX, &mouseDeltaY);
+
+	printf("%d %d\n", mouseDeltaX, mouseDeltaY);
+
 }
 
 void FPSController::OnNotify(SDL_Event& pEvent)
@@ -36,11 +50,11 @@ void FPSController::OnNotify(SDL_Event& pEvent)
 			}
 			if(pEvent.key.keysym.sym == SDLK_RIGHT || pEvent.key.keysym.sym == SDLK_d)
 			{
-				angularSpeed += Maths::TWO_PI;
+				angularSpeed += Maths::TWO_PI / 5;
 			}
 			if(pEvent.key.keysym.sym == SDLK_LEFT || pEvent.key.keysym.sym == SDLK_q)
 			{
-				angularSpeed -= Maths::TWO_PI;
+				angularSpeed -= Maths::TWO_PI / 5;
 			}
 
 			SetSpeed(forwardSpeed * Vector3::Forward);
@@ -50,10 +64,18 @@ void FPSController::OnNotify(SDL_Event& pEvent)
 		}
 
 		case SDL_KEYUP:
+		{
 			SetSpeed(Vector3::Zero);
 			SetRotationSpeed(0.0f);
-			break;
 
+			break;
+		}
+		case SDL_MOUSEMOTION:
+			if(pEvent.motion.x || pEvent.motion.y)
+			{
+				//printf("sdfgsdfsdg\n");
+			}
+			printf("HOOOOOOOO\n");
 		default:
 			break;
 	}

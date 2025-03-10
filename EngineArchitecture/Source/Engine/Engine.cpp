@@ -88,7 +88,6 @@ void Engine::Render()
     mRenderer->BeginDraw();
 
     mRenderer->Draw();
-    //mScenes[mLoadedScene]->Render();
 
     mRenderer->EndDraw();
 }
@@ -107,12 +106,15 @@ void Engine::CheckForInputs()
         SDL_Event event;
         while(SDL_PollEvent(&event))
         {
+            InputManager::Instance().HandleInputs(event);
+
             switch(event.type)
             {
                 //Quit game
                 case SDL_QUIT:
                     mIsRunning = false;
                     break;
+
                 case SDL_KEYDOWN :
                     if(event.key.keysym.sym == SDLK_ESCAPE)
                     {
@@ -129,8 +131,8 @@ void Engine::CheckForInputs()
                             mInDebugMode = true;
                         }
                     }
+                    break;
                 default:
-                    InputManager::Instance().HandleInputs(event);
                     break;
             }
         }

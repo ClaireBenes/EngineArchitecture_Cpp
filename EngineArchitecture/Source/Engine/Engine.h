@@ -7,6 +7,7 @@
 #include "Engine/Renderer/IRenderer.h"
 #include "GameTool/Scene.h"
 #include "Time.h"
+#include "GameTool/Utility/Vector/Vector2.h"
 
 class Engine
 {
@@ -26,6 +27,7 @@ public:
 
 public:
 	static inline bool mInDebugMode = true;
+	static inline bool mMouseIsMoving = false;
 
 private:
 	//variables
@@ -36,6 +38,5 @@ private:
 
 	bool mIsRunning = true;
 	int mLoadedScene = 0;
-
 };
 

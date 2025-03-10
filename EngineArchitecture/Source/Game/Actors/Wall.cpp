@@ -24,9 +24,9 @@ void Wall::Update()
 	gameTime += Time::deltaTime;
 	//mTransform->mScale = 0.5f + Maths::Abs(Maths::Sin(gameTime * 0.75f) * 2.0f);
 
-	mTransform->RotateRoll(Time::deltaTime * 90.0f);
-	mTransform->RotatePitch(Time::deltaTime * 45.0f);
-	mTransform->RotateRoll(Time::deltaTime * 10.0f);
+	//mTransform->RotateRoll(Time::deltaTime * 90.0f);
+	//mTransform->RotatePitch(Time::deltaTime * 45.0f);
+	//mTransform->RotateRoll(Time::deltaTime * 10.0f);
 }
 
 void Wall::Destroy()

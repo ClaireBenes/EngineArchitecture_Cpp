@@ -20,7 +20,7 @@ public:
 	float GetRotationSpeed() const;
 	void SetRotationSpeed(float pRotationSpeed);
 
-	void Update() override;
+	virtual void Update() override;
 
 	void SetCollider(ColliderComponent* pCollider);
 	bool CheckCollision();

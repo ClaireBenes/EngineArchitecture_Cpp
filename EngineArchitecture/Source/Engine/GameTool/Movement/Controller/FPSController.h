@@ -8,6 +8,7 @@ class FPSController : public MoveComponent, public IInputListener
 public:
 	FPSController(Actor* pActor);
 
+	void Update() override;
 	void OnNotify(SDL_Event& pEvent) override;
 };
 

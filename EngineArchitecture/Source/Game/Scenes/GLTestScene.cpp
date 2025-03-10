@@ -8,6 +8,8 @@
 
 void GLTestScene::Start()
 {
+	//SDL_SetRelativeMouseMode(SDL_TRUE);
+
 	mCamera = new Camera();
 	AddActor(mCamera);
 	mCamera->mTransform->mPosition = { 0,0,-10 };

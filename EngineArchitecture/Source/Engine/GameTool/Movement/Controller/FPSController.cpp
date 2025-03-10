@@ -25,11 +25,12 @@ void FPSController::Update()
 	int mouseDeltaX, mouseDeltaY;
 	SDL_GetRelativeMouseState(&mouseDeltaX, &mouseDeltaY);
 
-	printf("%d\n", mouseDeltaY);
+	
+	//printf("%d\n", mouseDeltaY);
 
 	if (mouseDeltaX != 0 || mouseDeltaY != 0)
 	{
-		SetRotationSpeed(mouseDeltaX / 10);
+		SetRotationSpeed(Vector2(mouseDeltaX / 10, -mouseDeltaY / 10));
 	}
 
 }

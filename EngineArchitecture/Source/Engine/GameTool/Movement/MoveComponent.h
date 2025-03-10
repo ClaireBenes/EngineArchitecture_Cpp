@@ -17,8 +17,8 @@ public:
 	void SetSpeed(Vector3 pSpeed);
 	void AddForce(Vector3 pForce);
 
-	float GetRotationSpeed() const;
-	void SetRotationSpeed(float pRotationSpeed);
+	Vector2 GetRotationSpeed() const;
+	void SetRotationSpeed(Vector2 pRotationSpeed);
 
 	virtual void Update() override;
 
@@ -33,7 +33,7 @@ public:
 
 protected:
 	Vector3 mSpeed = 0;
-	float mRotationSpeed = 0;
+	Vector2 mRotationSpeed = 0;
 
 private:
 	ColliderComponent* mCollidercomponent = nullptr;

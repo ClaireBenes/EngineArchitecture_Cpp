@@ -28,12 +28,12 @@ void MoveComponent::AddForce(Vector3 pForce)
 	mVelocity += pForce;
 }
 
-float MoveComponent::GetRotationSpeed() const
+Vector2 MoveComponent::GetRotationSpeed() const
 {
 	return mRotationSpeed;
 }
 
-void MoveComponent::SetRotationSpeed(float pRotationSpeed)
+void MoveComponent::SetRotationSpeed(Vector2 pRotationSpeed)
 {
 	mRotationSpeed = pRotationSpeed;
 }
@@ -45,10 +45,23 @@ void MoveComponent::Update()
 		mVelocity += mGravityDirection * Time::deltaTime;
 	}
 
-	if(!Maths::NearZero(mRotationSpeed))
+	if(!Maths::NearZero(mRotationSpeed.SqrLength()))
 	{
-		Quaternion newRotation = Quaternion::Concatenate(mOwner->mTransform->mRotation, Quaternion(Vector3::Up, mRotationSpeed * Time::deltaTime));
+		Quaternion newRotation = Quaternion::Concatenate(mOwner->mTransform->mRotation, Quaternion(Vector3::Up, mRotationSpeed.x * Time::deltaTime));
 		mOwner->mTransform->mRotation = newRotation;
+
+		//Quaternion desiredRotation = Quaternion::Concatenate(mOwner->mTransform->mRotation, Quaternion(Vector3::Right, mRotationSpeed.y * Time::deltaTime));
+		//Quaternion oldPosition = mOwner->mTransform->mRotation;
+
+		//float dif = desiredRotation.x - oldPosition.x;
+
+		//if ((((desiredRotation.x * 100) >= -50) && dif < 0) || (((desiredRotation.x * 100) <= 50) && dif > 0))
+		//{
+		//	mOwner->mTransform->mRotation = desiredRotation;
+		//}
+
+		//printf("%f , %f\n", desiredRotation.x * 100, oldPosition.x * 100);
+		//printf("%f\n", oldPosition.x * 100 - desiredRotation.x * 100);
 	}
 
 	if (!Maths::NearZero(mSpeed.MagnitudeSqr() + mVelocity.MagnitudeSqr()))

@@ -16,8 +16,6 @@ FPSController::FPSController(Actor* pActor) : MoveComponent(pActor)
 	InputManager::Instance().SubscribeTo(SDLK_LEFT, this);
 	InputManager::Instance().SubscribeTo(SDLK_DOWN, this);
 	InputManager::Instance().SubscribeTo(SDLK_RIGHT, this);
-
-	InputManager::Instance().SubscribeTo(SDL_MOUSEMOTION, this);
 }
 
 void FPSController::Update()
@@ -27,13 +25,19 @@ void FPSController::Update()
 	int mouseDeltaX, mouseDeltaY;
 	SDL_GetRelativeMouseState(&mouseDeltaX, &mouseDeltaY);
 
-	printf("%d %d\n", mouseDeltaX, mouseDeltaY);
+	printf("%d\n", mouseDeltaY);
+
+	if (mouseDeltaX != 0 || mouseDeltaY != 0)
+	{
+		SetRotationSpeed(mouseDeltaX / 10);
+	}
 
 }
 
 void FPSController::OnNotify(SDL_Event& pEvent)
 {
 	float forwardSpeed = 0.0f;
+	float rightSpeed = 0.0f;
 	float angularSpeed = 0.0f;
 
 	switch(pEvent.type)
@@ -42,23 +46,24 @@ void FPSController::OnNotify(SDL_Event& pEvent)
 		{
 			if(pEvent.key.keysym.sym == SDLK_UP || pEvent.key.keysym.sym == SDLK_z)
 			{
-				forwardSpeed += 10.0f;
+				forwardSpeed += mMovementSpeed;
 			}
 			if(pEvent.key.keysym.sym == SDLK_DOWN || pEvent.key.keysym.sym == SDLK_s)
 			{
-				forwardSpeed -= 10.0f;
+				forwardSpeed -= mMovementSpeed;
 			}
 			if(pEvent.key.keysym.sym == SDLK_RIGHT || pEvent.key.keysym.sym == SDLK_d)
 			{
-				angularSpeed += Maths::TWO_PI / 5;
+				rightSpeed -= mMovementSpeed / 2;
+				//angularSpeed += Maths::TWO_PI / 5;
 			}
 			if(pEvent.key.keysym.sym == SDLK_LEFT || pEvent.key.keysym.sym == SDLK_q)
 			{
-				angularSpeed -= Maths::TWO_PI / 5;
+				rightSpeed += mMovementSpeed / 2;
+				//angularSpeed -= Maths::TWO_PI / 5;
 			}
 
-			SetSpeed(forwardSpeed * Vector3::Forward);
-			SetRotationSpeed(angularSpeed);
+			SetSpeed(Vector3(rightSpeed * Vector3::Right) + Vector3(forwardSpeed * Vector3::Forward));
 
 			break;
 		}
@@ -70,12 +75,6 @@ void FPSController::OnNotify(SDL_Event& pEvent)
 
 			break;
 		}
-		case SDL_MOUSEMOTION:
-			if(pEvent.motion.x || pEvent.motion.y)
-			{
-				//printf("sdfgsdfsdg\n");
-			}
-			printf("HOOOOOOOO\n");
 		default:
 			break;
 	}

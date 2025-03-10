@@ -10,5 +10,8 @@ public:
 
 	void Update() override;
 	void OnNotify(SDL_Event& pEvent) override;
+
+private:
+	float mMovementSpeed = 5.0f;
 };
 

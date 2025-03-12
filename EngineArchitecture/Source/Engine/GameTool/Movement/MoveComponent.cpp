@@ -56,7 +56,7 @@ void MoveComponent::Update()
 
 		const float PITCH_LIMIT = 60.0f;
 		float pitch = Maths::ToDeg(desiredRotation.GetPitch());
-		printf("Yaw=%f Pitch=%f\n", Maths::ToDeg(desiredRotation.GetYaw()), pitch);
+
 		if ((pitch > -PITCH_LIMIT && pitch < PITCH_LIMIT) || (pitch > 180 - PITCH_LIMIT) || (pitch < -180 + PITCH_LIMIT))
 		{
 			mOwner->mTransform->mRotation = desiredRotation;

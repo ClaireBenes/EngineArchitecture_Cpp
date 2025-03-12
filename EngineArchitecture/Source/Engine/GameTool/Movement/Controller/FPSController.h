@@ -13,5 +13,7 @@ public:
 
 private:
 	float mMovementSpeed = 5.0f;
+
+	Vector2 inputDirection = Vector2::ZERO;
 };
 

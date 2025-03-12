@@ -25,9 +25,6 @@ void FPSController::Update()
 	int mouseDeltaX, mouseDeltaY;
 	SDL_GetRelativeMouseState(&mouseDeltaX, &mouseDeltaY);
 
-	
-	//printf("%d\n", mouseDeltaY);
-
 	if (mouseDeltaX != 0 || mouseDeltaY != 0)
 	{
 		SetRotationSpeed(Vector2(mouseDeltaX / 10, -mouseDeltaY / 10));
@@ -41,46 +38,66 @@ void FPSController::Update()
 
 void FPSController::OnNotify(SDL_Event& pEvent)
 {
-	float forwardSpeed = 0.0f;
-	float rightSpeed = 0.0f;
-	float angularSpeed = 0.0f;
-
 	switch(pEvent.type)
 	{
+
 		case SDL_KEYDOWN:
 		{
-			if(pEvent.key.keysym.sym == SDLK_UP || pEvent.key.keysym.sym == SDLK_z)
-			{
-				forwardSpeed += mMovementSpeed;
-			}
-			if(pEvent.key.keysym.sym == SDLK_DOWN || pEvent.key.keysym.sym == SDLK_s)
-			{
-				forwardSpeed -= mMovementSpeed;
-			}
-			if(pEvent.key.keysym.sym == SDLK_RIGHT || pEvent.key.keysym.sym == SDLK_d)
-			{
-				rightSpeed -= mMovementSpeed / 2;
-				//angularSpeed += Maths::TWO_PI / 5;
-			}
-			if(pEvent.key.keysym.sym == SDLK_LEFT || pEvent.key.keysym.sym == SDLK_q)
-			{
-				rightSpeed += mMovementSpeed / 2;
-				//angularSpeed -= Maths::TWO_PI / 5;
-			}
+			if (pEvent.key.repeat) return;
 
-			SetSpeed(Vector3(rightSpeed * Vector3::Right) + Vector3(forwardSpeed * Vector3::Forward));
-
+			switch (pEvent.key.keysym.sym)
+			{
+				case SDLK_UP:
+				case SDLK_z:
+					inputDirection.y += 1.0f;
+					break;
+				case SDLK_DOWN:
+				case SDLK_s:
+					inputDirection.y -= 1.0f;
+					break;
+				case SDLK_RIGHT:
+				case SDLK_d:
+					inputDirection.x -= 0.5f;
+					break;
+				case SDLK_LEFT:
+				case SDLK_q:
+					inputDirection.x += 0.5f;
+					break;
+			}
 			break;
 		}
 
 		case SDL_KEYUP:
 		{
-			SetSpeed(Vector3::Zero);
-			SetRotationSpeed(0.0f);
+			if (pEvent.key.repeat) return;
 
+			switch (pEvent.key.keysym.sym)
+			{
+				case SDLK_UP:
+				case SDLK_z:
+					inputDirection.y -= 1.0f;
+					break;
+				case SDLK_DOWN:
+				case SDLK_s:
+					inputDirection.y += 1.0f;
+					break;
+				case SDLK_RIGHT:
+				case SDLK_d:
+					inputDirection.x += 0.5f;
+					break;
+				case SDLK_LEFT:
+				case SDLK_q:
+					inputDirection.x -= 0.5f;
+					break;
+			}
 			break;
 		}
 		default:
 			break;
 	}
+
+	Vector3 inputDirectionNormalized = inputDirection.Normalized();
+	Vector3 speed = inputDirectionNormalized.x * Vector3::Right + inputDirectionNormalized.y * Vector3::Forward;
+	speed *= mMovementSpeed;
+	SetSpeed(speed);
 }

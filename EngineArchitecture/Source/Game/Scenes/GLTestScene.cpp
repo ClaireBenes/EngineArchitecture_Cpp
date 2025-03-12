@@ -19,16 +19,15 @@ void GLTestScene::Start()
 	RendererGL::CubeMesh->AddTexture(&AssetManager::GetTexture("wall"));
 
 	Wall* wall = new Wall();
-	wall->mTransform->mPosition.x = 0;
-	wall->mTransform->mScale = 0.5f;
+	//wall->mTransform->mPosition.x = 0;
 	AddActor(wall);
 
-	Wall* cube = new Wall();
-	cube->mTransform->mPosition.x = 2;
-	cube->mTransform->mPosition.y = -1;
-	cube->mTransform->mPosition.z = 5;
-	cube->mTransform->mScale = 1.5f;
-	AddActor(cube);
+	//Wall* cube = new Wall();
+	//cube->mTransform->mPosition.x = 2;
+	//cube->mTransform->mPosition.y = -1;
+	//cube->mTransform->mPosition.z = 5;
+	//cube->mTransform->mScale = 1.5f;
+	//AddActor(cube);
 }
 
 void GLTestScene::Update(float deltaTime)

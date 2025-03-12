@@ -23,6 +23,8 @@
     <ClInclude Include="Source\Engine\GameTool\Camera.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Mesh\MeshComponent.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Mesh\Mesh.h" />
+    <ClInclude Include="Source\Engine\GameTool\Visual\Mesh\tiny_obj_loader.h" />
+    <ClInclude Include="Source\Engine\Vertex\Vertex.h" />
     <ClInclude Include="Source\Game\Scenes\GLTestScene.h" />
     <ClInclude Include="Source\Engine\Shader\ShaderProgram.h" />
     <ClInclude Include="Source\Engine\Shader\Shader.h" />

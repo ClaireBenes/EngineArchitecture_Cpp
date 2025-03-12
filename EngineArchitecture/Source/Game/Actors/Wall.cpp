@@ -11,9 +11,9 @@ void Wall::SetupComponents()
 	//SpriteRenderComponent* spriteComponent = new SpriteRenderComponent(this, AssetManager::GetTexture("wall"));
 
 	//mTransform->mScale = 0.5f;
-	mTransform->RotateRoll(45);
-	mTransform->RotatePitch(45);
-	mTransform->RotateRoll(45);
+	//mTransform->RotateRoll(45);
+	//mTransform->RotatePitch(45);
+	//mTransform->RotateRoll(45);
 
 	MeshComponent* meshComponent = new MeshComponent(this, RendererGL::CubeMesh);
 }

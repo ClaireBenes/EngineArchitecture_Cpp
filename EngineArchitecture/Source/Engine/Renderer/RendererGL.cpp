@@ -5,6 +5,7 @@
 #include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
 #include "Engine/GameTool/Visual/Mesh/MeshComponent.h"
 #include "Engine/GameTool/Visual/Mesh/Mesh.h"
+#include "Engine/Manager/AssetManager.h"
 
 #include <SDL_image.h>
 #include <glew.h>
@@ -52,11 +53,12 @@ constexpr unsigned int cubeIndices[] = {
 };
 
 constexpr float spriteVertices[] = {
-    // Position             // UVs
-    -0.5f, 0.5f, 0.0f,      0.0f, 0.0f,      //top left
-    0.5f, 0.5f, 0.0f,       1.0f, 0.0f,       //top right
-    0.5f, -0.5f, 0.0f,      1.0f, 1.0f,      //bottom right
-    -0.5f, -0.5f, 0.0f,     0.0f, 1.0f      //bottom left
+    //POSITION                   NORMALS                    TEXCOORDS
+    -0.5f, 0.5f, 0.0f,           0.0f, 0.0f, 0.0f,          0.0f, 0.0f,     //top left
+    0.5f, 0.5f, 0.0f,            0.0f, 0.0f, 0.0f,          1.0f, 0.0f,     //top right
+    -0.5f, -0.5f, 0.0f,          0.0f, 0.0f, 0.0f,          0.0f, 1.0f,      //bottom left
+    0.5f, -0.5f, 0.0f,           0.0f, 0.0f, 0.0f,          1.0f, 1.0f,     //bottom right
+
 };   
 
 constexpr unsigned int spriteIndices[] = {
@@ -111,10 +113,11 @@ bool RendererGL::Initialize(Window& rWindow)
         Log::Error(LogType::Video, "Failed to initialize SDL_Image");
     }
 
-    mSpriteVao = new VertexArray(spriteVertices, 4, spriteIndices, 6);
+    mSpriteVao = new VertexArray(spriteVertices, 4);
     LoadShaders();
 
-    CubeMesh = new Mesh(new VertexArray(cubeVertices, 24, cubeIndices, 36), mSimpleMeshShaderProgram);
+    CubeMesh = AssetManager::LoadMesh("cube.obj","cube");
+    CubeMesh->SetShaderProgram(mSimpleMeshShaderProgram);
 
     return true;
 }
@@ -196,7 +199,7 @@ void RendererGL::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle re
     Matrix4 world = scaleMat * rOwner.mTransform->GetWorldTransform();
     mSpriteShaderProgram.setMatrix4("uWorldTransform", world);
     rTexture.SetActive();
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
 void RendererGL::DrawRect(const Rectangle& rRect, Color pColor)
@@ -239,7 +242,9 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         }
 
         pMesh->GetVertexArray()->SetActive();
-        glDrawElements(GL_TRIANGLES, pMesh->GetVertexArray()->GetIndicesCount(), GL_UNSIGNED_INT, nullptr);
+        //glDrawElements(GL_TRIANGLES, pMesh->GetVertexArray()->GetIndicesCount(), GL_UNSIGNED_INT, nullptr);
+        glDrawArrays(GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
+
     }
 
     //Unbind texture

@@ -3,7 +3,7 @@
 class VertexArray
 {
 public:
-	VertexArray(const float* pVertices, unsigned int pVerticeCount, const unsigned int* pIndices, unsigned int pIndexCount);
+	VertexArray(const float* pVertices, unsigned int pVerticeCount);
 	~VertexArray();
 
 	//functions
@@ -11,11 +11,11 @@ public:
 
 	//Getters
 	unsigned int GetVerticeCount() const;
-	unsigned int GetIndicesCount() const;
+	//unsigned int GetIndicesCount() const;
 
 private:
 	unsigned int mVerticeCount;
-	unsigned int mIndexCount;
+	//unsigned int mIndexCount;
 
 	unsigned int mVertexArrayId;
 	unsigned int mVertexBufferId;

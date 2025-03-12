@@ -3,6 +3,9 @@
 #include "../Texture.h"
 #include "Engine/Shader/ShaderProgram.h"
 
+
+#include "Engine/Vertex/Vertex.h"
+
 #include <vector>
 
 class VertexArray;
@@ -12,10 +15,12 @@ class Mesh
 {
 public:
 	Mesh();
-	Mesh(VertexArray* pVao, ShaderProgram pShaderProgram);
+	Mesh(const std::vector<Vertex>& pVertices);
 
 	void Unload();
 	void AddTexture(Texture* pTexture);
+
+	float* ToVerticeArray();
 
 	//Getters & Setters
 	Texture* GetTexture(int index);
@@ -28,6 +33,8 @@ public:
 private:
 	std::vector<Texture*> mAllTextures;
 	VertexArray* mVao = nullptr;
+
+	std::vector<Vertex> mVertices;
 
 	ShaderProgram mMeshShaderProgram;
 };

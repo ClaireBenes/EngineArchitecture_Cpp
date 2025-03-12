@@ -39,3 +39,5 @@
 [Rr]elease/
 
 CMakeSettings.json
+
+!*/Resources/**/*.obj

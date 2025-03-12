@@ -47,21 +47,20 @@ void MoveComponent::Update()
 
 	if(!Maths::NearZero(mRotationSpeed.SqrLength()))
 	{
-		Quaternion newRotation = Quaternion::Concatenate(mOwner->mTransform->mRotation, Quaternion(Vector3::Up, mRotationSpeed.x * Time::deltaTime));
+		Quaternion newRotation = mOwner->mTransform->mRotation + Quaternion(Vector3::Up, mRotationSpeed.x * Time::deltaTime);
+		newRotation.Normalize();
 		mOwner->mTransform->mRotation = newRotation;
 
-		//Quaternion desiredRotation = Quaternion::Concatenate(mOwner->mTransform->mRotation, Quaternion(Vector3::Right, mRotationSpeed.y * Time::deltaTime));
-		//Quaternion oldPosition = mOwner->mTransform->mRotation;
+		Quaternion desiredRotation = mOwner->mTransform->mRotation + Quaternion(Vector3::Transform(Vector3::Right, newRotation), mRotationSpeed.y * Time::deltaTime);
+		desiredRotation.Normalize();
 
-		//float dif = desiredRotation.x - oldPosition.x;
-
-		//if ((((desiredRotation.x * 100) >= -50) && dif < 0) || (((desiredRotation.x * 100) <= 50) && dif > 0))
-		//{
-		//	mOwner->mTransform->mRotation = desiredRotation;
-		//}
-
-		//printf("%f , %f\n", desiredRotation.x * 100, oldPosition.x * 100);
-		//printf("%f\n", oldPosition.x * 100 - desiredRotation.x * 100);
+		const float PITCH_LIMIT = 60.0f;
+		float pitch = Maths::ToDeg(desiredRotation.GetPitch());
+		printf("Yaw=%f Pitch=%f\n", Maths::ToDeg(desiredRotation.GetYaw()), pitch);
+		if ((pitch > -PITCH_LIMIT && pitch < PITCH_LIMIT) || (pitch > 180 - PITCH_LIMIT) || (pitch < -180 + PITCH_LIMIT))
+		{
+			mOwner->mTransform->mRotation = desiredRotation;
+		}
 	}
 
 	if (!Maths::NearZero(mSpeed.MagnitudeSqr() + mVelocity.MagnitudeSqr()))

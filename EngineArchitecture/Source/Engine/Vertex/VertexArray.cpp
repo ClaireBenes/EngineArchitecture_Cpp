@@ -14,11 +14,6 @@ VertexArray::VertexArray(const float* pVertices, unsigned int pVerticeCount) :
 	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferId);
 	glBufferData(GL_ARRAY_BUFFER, mVerticeCount * 8 * sizeof(float), pVertices, GL_STATIC_DRAW);
 
-	//Generate Index Buffer
-	//glGenBuffers(1, &mIndexBufferId);
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferId);
-	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, mIndexCount * sizeof(float), pIndices, GL_STATIC_DRAW);
-
 	//Position
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 8, (void*) 0);

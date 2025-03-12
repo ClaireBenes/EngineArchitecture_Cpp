@@ -48,6 +48,29 @@ void Quaternion::Normalize()
 	w /= len;
 }
 
+float Quaternion::GetPitch() const
+{
+	return Maths::ATan2(
+		2.0f * (w * x + y * z),
+		1.0f - 2.0f * (x * x + y * y));
+}
+
+float Quaternion::GetYaw() const
+{
+	double sinp = 2 * (w * y - z * x);
+	if (std::abs(sinp) >= 1)
+		return std::copysign(Maths::PI_HALVED, sinp); // use 90 degrees if out of range
+	else
+		return std::asin(sinp);
+}
+
+float Quaternion::GetRoll() const
+{
+	return Maths::ATan2(
+		2.0f * (w * z + x * y),
+		1.0f - 2.0f * (y * y + z * z));
+}
+
 Matrix4 Quaternion::AsMatrix() const
 {
 	Matrix4 m;

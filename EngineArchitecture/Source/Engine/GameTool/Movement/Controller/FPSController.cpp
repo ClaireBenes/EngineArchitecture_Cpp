@@ -32,6 +32,10 @@ void FPSController::Update()
 	{
 		SetRotationSpeed(Vector2(mouseDeltaX / 10, -mouseDeltaY / 10));
 	}
+	else
+	{
+		SetRotationSpeed(Vector2::ZERO);
+	}
 
 }
 

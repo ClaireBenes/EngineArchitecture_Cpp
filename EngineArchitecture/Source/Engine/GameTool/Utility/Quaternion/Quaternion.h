@@ -39,6 +39,10 @@ public:
 		return Maths::Sqrt(LengthSqr());
 	}
 
+	float GetPitch() const;
+	float GetYaw() const;
+	float GetRoll() const;
+
 	// Normalize the provided quaternion
 	static Quaternion Normalize(const Quaternion& q)
 	{

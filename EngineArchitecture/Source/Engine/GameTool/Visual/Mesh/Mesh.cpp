@@ -30,6 +30,7 @@ float* Mesh::ToVerticeArray()
 {
 	float* array = new float[mVertices.size() * 8];
 	int counter = 0;
+
 	for (int i = 0; i < mVertices.size(); i++)
 	{
 		array[counter + 0] = mVertices[i].position.x;
@@ -42,6 +43,7 @@ float* Mesh::ToVerticeArray()
 		array[counter + 7] = mVertices[i].uv.y;
 		counter += 8;
 	}
+
 	return array;
 }
 

@@ -1,10 +1,8 @@
 #include "GLTestScene.h"
 
-#include "Engine/Manager/AssetManager.h"
-#include "Engine/Renderer/RendererGL.h"
-#include "Engine/GameTool/Visual/Mesh/Mesh.h"
-
 #include "Game/Actors/Wall.h"
+
+#include "Game/Actors/Bush.h"
 
 void GLTestScene::Start()
 {
@@ -15,11 +13,10 @@ void GLTestScene::Start()
 	AddActor(mCamera);
 	mCamera->mTransform->mPosition = { 0,0,-10 };
 
-	AssetManager::LoadTexture(*GetRenderer(), "Resources/wall.jpg", "wall");
-	RendererGL::CubeMesh->AddTexture(&AssetManager::GetTexture("wall"));
+	//Bush* platform = new Bush();
+	//AddActor(platform);
 
 	Wall* wall = new Wall();
-	//wall->mTransform->mPosition.x = 0;
 	AddActor(wall);
 
 	//Wall* cube = new Wall();

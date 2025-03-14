@@ -34,7 +34,7 @@ public:
 	void Close() override;
 	RendererType GetType() override;
 
-	static Mesh* CubeMesh;
+	static ShaderProgram GetMeshShaderProgram();
 
 private:
 	Window* mWindow;
@@ -60,10 +60,11 @@ private:
 	Shader mSimpleMeshVertexShader;
 
 	//ShaderProgram
+	static ShaderProgram mSimpleMeshShaderProgram;
 	ShaderProgram mSpriteShaderProgram;
 	ShaderProgram mRectShaderProgram;
 	ShaderProgram mRectLineShaderProgram;
-	ShaderProgram mSimpleMeshShaderProgram;
+
 };
 
 

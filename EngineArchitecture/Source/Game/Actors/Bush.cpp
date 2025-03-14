@@ -7,7 +7,7 @@
 
 void Bush::SetupComponents()
 {
-	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Ground.png", "ground");
+	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/Ground.png", "ground");
 
 	SpriteRenderComponent* spriteComponent = new SpriteRenderComponent(this, AssetManager::GetTexture("ground"));
 	spriteComponent->SetNewDimensions(186, 31);

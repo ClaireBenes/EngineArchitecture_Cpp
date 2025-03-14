@@ -2,20 +2,34 @@
 
 #include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
 #include "Engine/GameTool/Visual/Mesh/MeshComponent.h"
+
+#include "Engine/GameTool/Visual/Mesh/Mesh.h"
 #include "Engine/Renderer/RendererGL.h"
 #include "Engine/Manager/AssetManager.h"
+
 #include "Engine/GameTool/Utility/Maths.h"
+
+void Wall::Start()
+{
+	mPinMesh = new Mesh();
+	mPinMesh = AssetManager::LoadMesh("pin.obj", "pin");
+	mPinMesh->SetShaderProgram(RendererGL::GetMeshShaderProgram());
+
+	Actor::Start();
+}
 
 void Wall::SetupComponents()
 {
 	//SpriteRenderComponent* spriteComponent = new SpriteRenderComponent(this, AssetManager::GetTexture("wall"));
 
-	mTransform->mScale = 5.0f;
-	//mTransform->RotateRoll(45);
-	//mTransform->RotatePitch(45);
-	//mTransform->RotateRoll(45);
+	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/pin.png", "pin");
 
-	MeshComponent* meshComponent = new MeshComponent(this, RendererGL::CubeMesh);
+	mTransform->mScale = 0.5f;
+	mTransform->RotatePitch(180);
+
+	mPinMesh->AddTexture(&AssetManager::GetTexture("pin"));
+
+	MeshComponent* meshComponent = new MeshComponent(this, mPinMesh);
 }
 
 void Wall::Update()
@@ -31,4 +45,5 @@ void Wall::Update()
 
 void Wall::Destroy()
 {
+	delete mPinMesh;
 }

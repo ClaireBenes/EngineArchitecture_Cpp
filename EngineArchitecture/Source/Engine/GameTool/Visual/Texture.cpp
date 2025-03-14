@@ -9,11 +9,13 @@ bool Texture::Load(IRenderer& pRenderer, const std::string& pFileName)
 {
     mFileName = pFileName;
     SDL_Surface* surface = IMG_Load(mFileName.c_str());
+
     if (!surface)
     {
         Log::Error(LogType::Application, "Failed to load texture file :" + mFileName);
         return false;
     }
+
     mWidth = surface->w;
     mHeight = surface->h;
 

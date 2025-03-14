@@ -71,7 +71,6 @@ Texture AssetManager::LoadTextureFromFile(IRenderer& pRenderer, const std::strin
 
 Mesh* AssetManager::LoadMeshFromFile(const std::string& pFileName)
 {
-	Mesh loaded;
 	tinyobj::attrib_t attributes;
 
 	std::vector<tinyobj::shape_t> shapes;

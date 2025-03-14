@@ -172,8 +172,8 @@ void RendererGL::DrawAllMeshes()
     glDisable(GL_BLEND);
 
     // TODO: Cull faces when you have an actual .obj model importer
-    //glEnable(GL_CULL_FACE);
-    //glCullFace(GL_FRONT);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT);
 
     for (RenderComponent* rc : mWorldRenderComponents)
     {

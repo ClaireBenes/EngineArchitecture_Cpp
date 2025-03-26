@@ -86,7 +86,7 @@ void RendererSDL::DrawRectLine(const Rectangle& rRect, Color pColor)
     SDL_RenderDrawRect(mSdlRenderer, &sdlRect);
 }
 
-void RendererSDL::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip)
+void RendererSDL::DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle rec, Flip flip)
 {
     SDL_Rect destinationRect;
     Transform transform = *rOwner.mTransform;
@@ -102,13 +102,13 @@ void RendererSDL::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle r
         {
             Maths::Round(0),
             Maths::Round(0),
-            Maths::Round(static_cast<float>(rTexture.GetWidth())),
-            Maths::Round(static_cast<float>(rTexture.GetHeight()))
+            Maths::Round(static_cast<float>(rTexture->GetWidth())),
+            Maths::Round(static_cast<float>(rTexture->GetHeight()))
         };
     }
 
     SDL_RenderCopyEx(mSdlRenderer,
-        rTexture.GetSDLTexture(),
+        rTexture->GetSDLTexture(),
         sourceSDL,
         &destinationRect,
         -Maths::ToDeg(transform.mRotation.z),

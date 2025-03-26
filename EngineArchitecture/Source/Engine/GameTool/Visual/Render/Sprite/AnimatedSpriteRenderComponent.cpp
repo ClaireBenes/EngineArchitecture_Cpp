@@ -25,7 +25,7 @@ void AnimatedSpriteRenderComponent::SetCurrentAnimation(std::string pAnimation)
 	}
 }
 
-void AnimatedSpriteRenderComponent::AddAnimation(std::string pName, std::vector<Texture> pTextures)
+void AnimatedSpriteRenderComponent::AddAnimation(std::string pName, std::vector<Texture*> pTextures)
 {
 	mTextureMap.emplace(pName, pTextures);
 }

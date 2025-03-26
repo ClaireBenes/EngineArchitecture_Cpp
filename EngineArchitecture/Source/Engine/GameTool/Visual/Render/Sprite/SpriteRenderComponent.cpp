@@ -10,19 +10,19 @@ RenderComponent(pOwner)
 {
 }
 
-SpriteRenderComponent::SpriteRenderComponent(Actor* pOwner, const Texture& pTexture, int pDrawOrder):
+SpriteRenderComponent::SpriteRenderComponent(Actor* pOwner, Texture* pTexture, int pDrawOrder):
 mTexture(pTexture),
 mDrawOrder(pDrawOrder),
-mTexWidth(pTexture.GetWidth()),
-mTexHeight(pTexture.GetHeight()),
+mTexWidth(pTexture->GetWidth()),
+mTexHeight(pTexture->GetHeight()),
 RenderComponent(pOwner)
 {
 }
 
-void SpriteRenderComponent::SetTexture(const Texture& pTexture)
+void SpriteRenderComponent::SetTexture(Texture* pTexture)
 {
 	mTexture = pTexture;
-	mTexture.UpdateInfo(mTexWidth, mTexHeight);
+	mTexture->UpdateInfo(mTexWidth, mTexHeight);
 }
 
 void SpriteRenderComponent::Render(IRenderer* pRenderer)

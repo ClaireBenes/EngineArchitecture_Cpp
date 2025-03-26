@@ -41,3 +41,17 @@ void IRenderer::RemoveRenderComponent(RenderComponent* pRenderComponent)
 	}
 
 }
+
+void IRenderer::AddDebugRender(DebugRenderInterface* pDebugRender)
+{
+	mDebugRenders.push_back(pDebugRender);
+}
+
+void IRenderer::RemoveDebugRender(DebugRenderInterface* pDebugRender)
+{
+	auto it = std::find(mDebugRenders.begin(), mDebugRenders.end(), pDebugRender);
+	if (it != mDebugRenders.end())
+	{
+		mDebugRenders.erase(it);
+	}
+}

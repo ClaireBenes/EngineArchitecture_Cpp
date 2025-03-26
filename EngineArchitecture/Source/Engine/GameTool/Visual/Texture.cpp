@@ -21,10 +21,10 @@ bool Texture::Load(IRenderer& pRenderer, const std::string& pFileName)
 
     if(pRenderer.GetType() == IRenderer::RendererType::SDL)
     {
-        return LoadSDL(dynamic_cast< RendererSDL* >( &pRenderer ), pFileName, surface);
+        return LoadSDL(dynamic_cast<RendererSDL*>( &pRenderer ), pFileName, surface);
     }
 
-    return LoadGL(dynamic_cast< RendererGL* >( &pRenderer ), pFileName, surface);
+    return LoadGL(dynamic_cast<RendererGL*>( &pRenderer ), pFileName, surface);
 }
 
 //Unload Texture

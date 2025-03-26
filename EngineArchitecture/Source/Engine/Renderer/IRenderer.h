@@ -11,6 +11,7 @@ class Actor;
 class Texture;
 class Mesh;
 class RenderComponent;
+class DebugRenderInterface;
 
 class IRenderer
 {
@@ -41,17 +42,21 @@ public:
     virtual void DrawRect(const Rectangle& rRect, Color pColor) = 0;
     virtual void DrawRectLine(const Rectangle& rRect, Color pColor) = 0;
 
-    virtual void DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip = Flip::None) = 0;
+    virtual void DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle rec, Flip flip = Flip::None) = 0;
     virtual void DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transform) {};
 
-    virtual void AddRenderComponent(RenderComponent* pRenderComponent);
-    virtual void RemoveRenderComponent(RenderComponent* pRenderComponent);
+    void AddRenderComponent(RenderComponent* pRenderComponent);
+    void RemoveRenderComponent(RenderComponent* pRenderComponent);
+
+    void AddDebugRender(DebugRenderInterface* pDebugRender);
+    void RemoveDebugRender(DebugRenderInterface* pDebugRender);
 
     virtual void SetViewMatrix(const Matrix4& pView) {};
 
 protected:
     std::vector<RenderComponent*> mViewportRenderComponents;
     std::vector<RenderComponent*> mWorldRenderComponents;
+    std::vector<DebugRenderInterface*> mDebugRenders;
 };
 
 

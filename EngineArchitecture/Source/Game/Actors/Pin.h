@@ -4,13 +4,12 @@
 
 class Mesh;
 
-class Wall : public Actor
+class Pin : public Actor
 {
 public:
 	void Start() override;
 	void SetupComponents() override;
 	void Update() override;
-	void Destroy() override;
 
 private:
 	Mesh* mPinMesh = nullptr;

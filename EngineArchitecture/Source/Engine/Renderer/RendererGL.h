@@ -24,7 +24,7 @@ public:
 	void DrawRectLine(const Rectangle& rRect, Color pColor) override;
 
 	void DrawAllSprites();
-	void DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip = Flip::None) override;
+	void DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle rec, Flip flip = Flip::None) override;
 
 	void DrawAllMeshes();
 	void DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transform) override;
@@ -35,6 +35,7 @@ public:
 	RendererType GetType() override;
 
 	static ShaderProgram GetMeshShaderProgram();
+	static Mesh* GetCubeMesh();
 
 private:
 	Window* mWindow;
@@ -58,6 +59,8 @@ private:
 	//Mesh
 	Shader mSimpleMeshFragShader;
 	Shader mSimpleMeshVertexShader;
+
+	static Mesh* mCubeMesh;
 
 	//ShaderProgram
 	static ShaderProgram mSimpleMeshShaderProgram;

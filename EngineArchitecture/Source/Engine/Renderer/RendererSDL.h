@@ -22,7 +22,7 @@ public:
 
 	void DrawRect(const Rectangle& rRect, Color pColor) override;
 	void DrawRectLine(const Rectangle& rRect, Color pColor) override;
-	void DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip = Flip::None) override;
+	void DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle rec, Flip flip = Flip::None) override;
 
 	RendererType GetType() override;
 

@@ -7,10 +7,10 @@
 #include <sstream>
 
 
-std::map<std::string, Texture> AssetManager::mTextures = {};
+std::map<std::string, Texture*> AssetManager::mTextures = {};
 std::map<std::string, Mesh*> AssetManager::mMeshes = {};
 
-Texture AssetManager::LoadTexture(IRenderer& pRenderer, const std::string& pFileName, const std::string& pName)
+Texture* AssetManager::LoadTexture(IRenderer& pRenderer, const std::string& pFileName, const std::string& pName)
 {
 	printf("fileName : %s, Name : %s\n", pFileName.c_str(), pName.c_str());
 
@@ -19,7 +19,7 @@ Texture AssetManager::LoadTexture(IRenderer& pRenderer, const std::string& pFile
 
 }
 
-void AssetManager::LoadTexturesFromFolder(IRenderer& pRenderer, const std::string& pPathName, std::vector<Texture>& pAllTextures)
+void AssetManager::LoadTexturesFromFolder(IRenderer& pRenderer, const std::string& pPathName, std::vector<Texture*>& pAllTextures)
 {
 	std::filesystem::directory_iterator it(pPathName);
 
@@ -36,7 +36,7 @@ void AssetManager::LoadTexturesFromFolder(IRenderer& pRenderer, const std::strin
 	}
 }
 
-Texture& AssetManager::GetTexture(const std::string& pName)
+Texture* AssetManager::GetTexture(const std::string& pName)
 {
 	if (mTextures.find(pName) == mTextures.end())
 	{
@@ -55,17 +55,24 @@ Mesh* AssetManager::LoadMesh(const std::string& pFileName, const std::string& pN
 
 void AssetManager::Clear()
 {
-	for (auto texture : mTextures)
+	for (auto& pair : mMeshes)
 	{
-		texture.second.Unload();
+		delete pair.second;
+	}
+	mMeshes.clear();
+
+	for (auto& pair : mTextures)
+	{
+		pair.second->Unload();
+		delete pair.second;
 	}
 	mTextures.clear();
 }
 
-Texture AssetManager::LoadTextureFromFile(IRenderer& pRenderer, const std::string& pFileName)
+Texture* AssetManager::LoadTextureFromFile(IRenderer& pRenderer, const std::string& pFileName)
 {
-	Texture texture;
-	texture.Load(pRenderer, pFileName);
+	Texture* texture = new Texture();
+	texture->Load(pRenderer, pFileName);
 	return texture;
 }
 

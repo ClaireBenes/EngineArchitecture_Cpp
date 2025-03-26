@@ -50,7 +50,7 @@ void Actor::AddComponent(Component* pComponent)
 	}
 
 	//check if the component is a collider component
-	if(ColliderComponent* pColliderComponent = dynamic_cast< ColliderComponent* >( pComponent ))
+	if(ColliderComponent* pColliderComponent = dynamic_cast<ColliderComponent*>( pComponent ))
 	{
 		mColliderComponents.push_back(pColliderComponent);
 	}
@@ -119,6 +119,8 @@ void Actor::SetActive(bool isActive)
 
 void Actor::Render(IRenderer* pRenderer)
 {
+	// TODO: Remove this useless function
+
 	for(RenderComponent* renderComponent : mRenderComponents)
 	{
 		renderComponent->Render(pRenderer);

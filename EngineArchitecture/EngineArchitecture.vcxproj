@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Engine\GameTool\Utility\Geometry\Box.h" />
+    <ClInclude Include="Source\Engine\GameTool\Collision\BoxColliderComponent.h" />
+    <ClInclude Include="Source\Engine\Renderer\DebugRenderInterface.h" />
+    <ClInclude Include="Source\Game\Actors\Floor.h" />
     <ClInclude Include="Source\Engine\GameTool\Movement\Controller\FPSController.h" />
     <ClInclude Include="Source\Engine\GameTool\Camera.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Mesh\MeshComponent.h" />
@@ -66,9 +70,12 @@
     <ClInclude Include="Source\Engine\GameTool\Visual\Texture.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.h" />
     <ClInclude Include="Source\Engine\Vertex\VertexArray.h" />
-    <ClInclude Include="Source\Game\Actors\Wall.h" />
+    <ClInclude Include="Source\Game\Actors\Pin.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine\GameTool\Utility\Geometry\Box.cpp" />
+    <ClCompile Include="Source\Engine\GameTool\Collision\BoxColliderComponent.cpp" />
+    <ClCompile Include="Source\Game\Actors\Floor.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Movement\Controller\FPSController.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Camera.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Mesh\MeshComponent.cpp" />
@@ -115,7 +122,7 @@
     <ClCompile Include="Source\Engine\GameTool\Visual\Texture.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.cpp" />
     <ClCompile Include="Source\Engine\Vertex\VertexArray.cpp" />
-    <ClCompile Include="Source\Game\Actors\Wall.cpp" />
+    <ClCompile Include="Source\Game\Actors\Pin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Simple.frag" />

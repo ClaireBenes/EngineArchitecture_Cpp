@@ -49,6 +49,7 @@ void Scene::Update(float deltaTime)
 
 void Scene::Render()
 {
+	// TODO: Erase this function.
 	//UI ?
 }
 

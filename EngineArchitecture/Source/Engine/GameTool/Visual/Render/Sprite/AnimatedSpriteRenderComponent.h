@@ -18,7 +18,7 @@ public:
 	void SetAnimationFps(float pFps);
 	void SetCurrentAnimation(std::string pAnimation);
 
-	void AddAnimation(std::string pName, std::vector<Texture > pTextures);
+	void AddAnimation(std::string pName, std::vector<Texture*> pTextures);
 
 	void Update() override;
 
@@ -28,7 +28,7 @@ public:
 private:
 	std::vector<Texture> mAnimationTextures;
 
-	std::unordered_map<std::string, std::vector<Texture>> mTextureMap;
+	std::unordered_map<std::string, std::vector<Texture*>> mTextureMap;
 	std::string mCurrentAnimation;
 
 	float mCurrentFrame;

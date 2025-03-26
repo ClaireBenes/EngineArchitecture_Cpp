@@ -9,7 +9,6 @@ class RectangleColliderComponent : public ColliderComponent
 public:
 	RectangleColliderComponent(Actor* pOwner);
 
-	//Variables
 	void DebugRender(IRenderer* pRenderer) override;
 
 	Rectangle GetWorldRectangle() const;

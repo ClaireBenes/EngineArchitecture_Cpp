@@ -6,6 +6,8 @@
 #include "Engine/GameTool/Visual/Mesh/MeshComponent.h"
 #include "Engine/GameTool/Visual/Mesh/Mesh.h"
 #include "Engine/Manager/AssetManager.h"
+#include "Engine/Renderer/DebugRenderInterface.h"
+#include "Engine/Engine.h"
 
 #include <SDL_image.h>
 #include <glew.h>
@@ -24,6 +26,7 @@ constexpr unsigned int spriteIndices[] = {
     2, 3, 0
 };
 
+Mesh* RendererGL::mCubeMesh = nullptr;
 ShaderProgram RendererGL::mSimpleMeshShaderProgram = ShaderProgram();
 
 RendererGL::RendererGL() : mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr)
@@ -73,6 +76,11 @@ bool RendererGL::Initialize(Window& rWindow)
     mSpriteVao = new VertexArray(spriteVertices, 4);
     LoadShaders();
 
+    // TODO: To move in its own LoadMeshes function
+    mCubeMesh = AssetManager::LoadMesh("cube.obj", "engineCube");
+    mCubeMesh->SetShaderProgram(mSimpleMeshShaderProgram);
+    mCubeMesh->AddTexture(AssetManager::LoadTexture(*this, "Resources/Textures/pokeball.png", "engineGround"));
+
     return true;
 }
 
@@ -115,6 +123,15 @@ void RendererGL::BeginDraw()
 void RendererGL::Draw()
 {
     DrawAllMeshes();
+
+    if (Engine::mInDebugMode)
+    {
+        for (DebugRenderInterface* debugRender : mDebugRenders)
+        {
+            debugRender->DebugRender(this);
+        }
+    }
+
     DrawAllSprites();
 }
 
@@ -141,18 +158,18 @@ void RendererGL::DrawAllSprites()
     }
 }
 
-void RendererGL::DrawSprite(const Actor& rOwner, Texture& rTexture, Rectangle rec, Flip flip)
+void RendererGL::DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle rec, Flip flip)
 {
     mSpriteShaderProgram.Use();
 
     rOwner.mTransform->ComputeWorldTransform();
     Matrix4 scaleMat = Matrix4::CreateScale(
-        rTexture.GetWidth(),
-        rTexture.GetHeight(),
+        rTexture->GetWidth(),
+        rTexture->GetHeight(),
         0.0f);
     Matrix4 world = scaleMat * rOwner.mTransform->GetWorldTransform();
     mSpriteShaderProgram.setMatrix4("uWorldTransform", world);
-    rTexture.SetActive();
+    rTexture->SetActive();
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
@@ -224,4 +241,9 @@ IRenderer::RendererType RendererGL::GetType()
 ShaderProgram RendererGL::GetMeshShaderProgram()
 {
     return mSimpleMeshShaderProgram;
+}
+
+Mesh* RendererGL::GetCubeMesh()
+{
+    return mCubeMesh;
 }

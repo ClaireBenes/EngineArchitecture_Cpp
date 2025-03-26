@@ -138,7 +138,7 @@
     <ClInclude Include="Source\Game\Scenes\GLTestScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Actors\Wall.h">
+    <ClInclude Include="Source\Game\Actors\Pin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\GameTool\Visual\Mesh\Mesh.h">
@@ -157,6 +157,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Vertex\Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Actors\Floor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GameTool\Collision\BoxColliderComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GameTool\Utility\Geometry\Box.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Renderer\DebugRenderInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -281,7 +293,7 @@
     <ClCompile Include="Source\Game\Scenes\GLTestScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Actors\Wall.cpp">
+    <ClCompile Include="Source\Game\Actors\Pin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\GameTool\Visual\Mesh\Mesh.cpp">
@@ -294,6 +306,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\GameTool\Movement\Controller\FPSController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Actors\Floor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GameTool\Collision\BoxColliderComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GameTool\Utility\Geometry\Box.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

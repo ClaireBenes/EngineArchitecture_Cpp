@@ -1,6 +1,7 @@
 #include "GLTestScene.h"
 
-#include "Game/Actors/Wall.h"
+#include "Game/Actors/Pin.h"
+#include "Game/Actors/Floor.h"
 
 #include "Game/Actors/Bush.h"
 
@@ -11,15 +12,22 @@ void GLTestScene::Start()
 
 	mCamera = new Camera();
 	AddActor(mCamera);
-	mCamera->mTransform->mPosition = { 0,0,-10 };
+	mCamera->mTransform->mPosition = { 0, 10, -10 };
 
 	//Bush* platform = new Bush();
 	//AddActor(platform);
+	Floor* floor = new Floor();
+	AddActor(floor);
+	floor->mTransform->mPosition = { 0, 10, 0 };
 
-	Wall* wall = new Wall();
-	AddActor(wall);
+	for (int i = 0; i < 10; i++)
+	{
+		Pin* pin = new Pin();
+		pin->mTransform->mPosition = { static_cast<float>(i) * 1.5f, 0, 0 };
+		AddActor(pin);
+	}
 
-	//Wall* cube = new Wall();
+	//Pin* cube = new Pin();
 	//cube->mTransform->mPosition.x = 2;
 	//cube->mTransform->mPosition.y = -1;
 	//cube->mTransform->mPosition.z = 5;

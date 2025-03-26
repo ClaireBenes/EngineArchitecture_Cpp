@@ -24,6 +24,7 @@ void Player::SetupComponents()
 
 	PlatformerPlayerController* platformPlayercontroller = new PlatformerPlayerController(this);
 	platformPlayercontroller->SetCollider(colliderComponent);
+	platformPlayercontroller->mGravityDirection = Vector3::Up * -15;
 
 	animatedSpriteComponent->SetCurrentAnimation("Idle");
 }
@@ -31,13 +32,13 @@ void Player::SetupComponents()
 
 void Player::SetUpAnimations()
 {
-	std::vector<Texture> walkTextures{};
+	std::vector<Texture*> walkTextures{};
 	AssetManager::LoadTexturesFromFolder(*mScene->GetRenderer(), "Resources/Characters/Walk", walkTextures);
 
-	std::vector<Texture> jumpTextures{};
+	std::vector<Texture*> jumpTextures{};
 	AssetManager::LoadTexturesFromFolder(*mScene->GetRenderer(), "Resources/Characters/Jump", jumpTextures);
 
-	std::vector<Texture> idleTextures{};
+	std::vector<Texture*> idleTextures{};
 	AssetManager::LoadTexturesFromFolder(*mScene->GetRenderer(), "Resources/Characters/Idle", idleTextures);
 
 	animatedSpriteComponent = new AnimatedSpriteRenderComponent(this);

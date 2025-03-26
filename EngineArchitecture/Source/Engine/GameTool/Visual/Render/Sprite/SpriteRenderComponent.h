@@ -11,13 +11,13 @@ class SpriteRenderComponent : public RenderComponent
 {
 public:
 	SpriteRenderComponent(Actor* pOwner, int pDrawOrder = 100);
-	SpriteRenderComponent(Actor* pOwner, const Texture& pTexture, int pDrawOrder = 100);
+	SpriteRenderComponent(Actor* pOwner, Texture* pTexture, int pDrawOrder = 100);
 
 	SpriteRenderComponent() = delete;
 	SpriteRenderComponent(const SpriteRenderComponent&) = delete;
 	SpriteRenderComponent& operator= (const SpriteRenderComponent&) = delete;
 
-	virtual void SetTexture(const Texture& pTexture);
+	virtual void SetTexture(Texture* pTexture);
 	virtual void Render(IRenderer* pRenderer) override;
 	RenderType GetRenderType() override;
 
@@ -34,7 +34,7 @@ public:
 	IRenderer::Flip mFlip = IRenderer::Flip::None;
 
 protected:
-	Texture mTexture;
+	Texture* mTexture;
 
 	int mDrawOrder;
 	int mTexWidth;

@@ -23,14 +23,11 @@ void GLTestScene::Load()
     mFloorMesh->SetShaderProgram(RendererGL::GetMeshShaderProgram());
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/bowling.png", "floor");
-    mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
-
-    //Wall
-    mWallMesh = AssetManager::GetMesh("cube");
-    mWallMesh->SetShaderProgram(RendererGL::GetMeshShaderProgram());
-
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/bowlingWall.jpg", "wall");
-    mWallMesh->AddTexture(AssetManager::GetTexture("wall"));
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/back.jpg", "back");
+    mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
+    mFloorMesh->AddTexture(AssetManager::GetTexture("wall"));
+    mFloorMesh->AddTexture(AssetManager::GetTexture("back"));
 }
 
 void GLTestScene::Start()
@@ -47,20 +44,24 @@ void GLTestScene::Start()
 	floor->mTransform->mPosition = { 0, 15, -10 };
 
     Floor* leftWall = new Floor();
+    leftWall->SetTextureIndex(1);
     AddActor(leftWall);
     leftWall->mTransform->mScale = { 5, 5, 20 };
     leftWall->mTransform->mPosition = { 10, 10, -10 };
 
     Floor* rightWall = new Floor();
+    rightWall->SetTextureIndex(1);
     AddActor(rightWall);
     rightWall->mTransform->mScale = leftWall->mTransform->mScale;
     rightWall->mTransform->mPosition = { -10, 10, -10 };
 
     Floor* ceiling = new Floor();
+    ceiling->SetTextureIndex(1);
     AddActor(ceiling);
     ceiling->mTransform->mPosition = { 0, 4, -10 };
 
     Floor* back = new Floor();
+    back->SetTextureIndex(1);
     AddActor(back);
     back->mTransform->mScale = { 5, 5, 2 };
     back->mTransform->mPosition = { 0, 10, 10 };

@@ -16,5 +16,11 @@ void Floor::SetupComponents()
 	mTransform->mScale = { 5.0f, 1.0f, 20.0f };
 
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("cube"));
+	meshComponent->SetTextureIndex(mTextureIndex);
 	BoxColliderComponent* boxComponent = new BoxColliderComponent(this);
+}
+
+void Floor::SetTextureIndex(size_t newIndex)
+{
+	mTextureIndex = newIndex;
 }

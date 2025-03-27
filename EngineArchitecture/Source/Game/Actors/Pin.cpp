@@ -20,7 +20,7 @@ void Pin::Start()
 	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/pin.png", "pin");
 	mPinMesh->AddTexture(AssetManager::GetTexture("pin"));
 
-	mTransform->mScale = 0.5f;
+	mTransform->mScale = 0.3f;
 	mTransform->RotatePitch(180);
 
 	Actor::Start();

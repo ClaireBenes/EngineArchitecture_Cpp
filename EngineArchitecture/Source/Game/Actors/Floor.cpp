@@ -16,12 +16,12 @@ void Floor::Start()
 
 void Floor::SetupComponents()
 {
-	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/wall.jpg", "wall");
+	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/bowling.png", "floor");
 
-	mTransform->mScale = { 10.0f, 1.0f, 10.0f };
-	//mTransform->RotatePitch(180);
+	mTransform->mScale = { 5.0f, 1.0f, 20.0f };
+	//mTransform->RotateYaw(90);
 
-	mFloorMesh->AddTexture(AssetManager::GetTexture("wall"));
+	mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
 
 	MeshComponent* meshComponent = new MeshComponent(this, mFloorMesh);
 	BoxColliderComponent* boxComponent = new BoxColliderComponent(this);

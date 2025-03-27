@@ -75,7 +75,7 @@ void MoveComponent::Update()
 
 		//Check collision on X axis
 		// TODO: Maybe replace the 0 on the Z-axis
-		mOwner->mTransform->mPosition = { desiredPosition.x, oldPosition.y, 0 };
+		mOwner->mTransform->mPosition = { desiredPosition.x, oldPosition.y, oldPosition.z };
 		if (CheckCollision() == true)
 		{
 			newPosition.x = oldPosition.x;
@@ -84,14 +84,20 @@ void MoveComponent::Update()
 
 		//Check collision on Y axis
 		// TODO: Maybe replace the 0 on the Z-axis
-		mOwner->mTransform->mPosition = { oldPosition.x, desiredPosition.y, 0 };
+		mOwner->mTransform->mPosition = { oldPosition.x, desiredPosition.y, oldPosition.z };
 		if (CheckCollision() == true)
 		{
 			newPosition.y = oldPosition.y;
 			mVelocity.y = 0;
 		}
-
 		// TODO: Check collision on Z-axis
+
+		mOwner->mTransform->mPosition = { oldPosition.x, oldPosition.y, desiredPosition.z };
+		if (CheckCollision() == true)
+		{
+			newPosition.z = oldPosition.z;
+			mVelocity.z = 0;
+		}
 
 		mOwner->mTransform->mPosition = newPosition;
 	}

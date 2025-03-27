@@ -1,5 +1,9 @@
 #include "GLTestScene.h"
 
+#include "Engine/GameTool/Visual/Mesh/Mesh.h"
+#include "Engine/Renderer/RendererGL.h"
+#include "Engine/Manager/AssetManager.h"
+
 #include "Game/Actors/Pin.h"
 #include "Game/Actors/Floor.h"
 
@@ -7,6 +11,26 @@
 
 void GLTestScene::Load()
 {
+    //Pin
+    mPinMesh = AssetManager::LoadMesh("pin.obj", "pin");
+    mPinMesh->SetShaderProgram(RendererGL::GetMeshShaderProgram());
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/pin.png", "pin");
+    mPinMesh->AddTexture(AssetManager::GetTexture("pin"));
+
+    //Floor
+    mFloorMesh = AssetManager::LoadMesh("cube.obj", "cube");
+    mFloorMesh->SetShaderProgram(RendererGL::GetMeshShaderProgram());
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/bowling.png", "floor");
+    mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
+
+    //Wall
+    mWallMesh = AssetManager::GetMesh("cube");
+    mWallMesh->SetShaderProgram(RendererGL::GetMeshShaderProgram());
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/bowlingWall.jpg", "wall");
+    mWallMesh->AddTexture(AssetManager::GetTexture("wall"));
 }
 
 void GLTestScene::Start()

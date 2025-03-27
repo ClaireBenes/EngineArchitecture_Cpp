@@ -14,12 +14,6 @@
 
 void Pin::Start()
 {
-	mPinMesh = AssetManager::LoadMesh("pin.obj", "pin");
-	mPinMesh->SetShaderProgram(RendererGL::GetMeshShaderProgram());
-
-	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/pin.png", "pin");
-	mPinMesh->AddTexture(AssetManager::GetTexture("pin"));
-
 	mTransform->mScale = 0.3f;
 	mTransform->RotatePitch(180);
 
@@ -28,7 +22,7 @@ void Pin::Start()
 
 void Pin::SetupComponents()
 {
-	MeshComponent* meshComponent = new MeshComponent(this, mPinMesh);
+	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("pin"));
 	BoxColliderComponent* boxComponent = new BoxColliderComponent(this, Box { { -1.5, -9, -1.5 }, { 1.5, 0, 1.5 } });
 
 	MoveComponent* moveComponent = new MoveComponent(this);
@@ -39,12 +33,4 @@ void Pin::SetupComponents()
 void Pin::Update()
 {
 	Actor::Update();
-
-	static float gameTime = 0.0f;
-	gameTime += Time::deltaTime;
-	//mTransform->mScale = 0.5f + Maths::Abs(Maths::Sin(gameTime * 0.75f) * 2.0f);
-
-	/*mTransform->RotateRoll(Time::deltaTime * 90.0f);
-	mTransform->RotatePitch(Time::deltaTime * 45.0f);
-	mTransform->RotateRoll(Time::deltaTime * 10.0f);*/
 }

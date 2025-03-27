@@ -22,6 +22,7 @@ public:
 	static Texture* GetTexture(const std::string& pName);
 
 	static Mesh* LoadMesh(const std::string& pFileName, const std::string& pName);
+	static Mesh* GetMesh(const std::string& pName);
 
 	static void Clear();
 

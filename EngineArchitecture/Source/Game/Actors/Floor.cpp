@@ -8,21 +8,13 @@
 
 void Floor::Start()
 {
-	mFloorMesh = AssetManager::LoadMesh("cube.obj", "cube");
-	mFloorMesh->SetShaderProgram(RendererGL::GetMeshShaderProgram());
-
 	Actor::Start();
 }
 
 void Floor::SetupComponents()
 {
-	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/bowling.png", "floor");
-
 	mTransform->mScale = { 5.0f, 1.0f, 20.0f };
-	//mTransform->RotateYaw(90);
 
-	mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
-
-	MeshComponent* meshComponent = new MeshComponent(this, mFloorMesh);
+	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("cube"));
 	BoxColliderComponent* boxComponent = new BoxColliderComponent(this);
 }

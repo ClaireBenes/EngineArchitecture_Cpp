@@ -3,6 +3,8 @@
 #include "Engine/GameTool/Scene.h"
 #include "Engine/GameTool/Camera.h"
 
+class Mesh;
+
 class GLTestScene : public Scene
 {
 public:
@@ -13,5 +15,8 @@ public:
 
 private:
 	Camera* mCamera = nullptr;
+	Mesh* mPinMesh = nullptr;
+	Mesh* mFloorMesh = nullptr;
+	Mesh* mWallMesh = nullptr;
 };
 

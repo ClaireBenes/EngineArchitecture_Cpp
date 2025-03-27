@@ -43,6 +43,7 @@ Texture* AssetManager::GetTexture(const std::string& pName)
 		std::ostringstream loadError;
 		loadError << "Texture " << pName << " does not exist in assets manager\n";
 		Log::Error(LogType::Application, loadError.str());
+		return nullptr;
 	}
 	return mTextures[pName];
 }
@@ -50,6 +51,17 @@ Texture* AssetManager::GetTexture(const std::string& pName)
 Mesh* AssetManager::LoadMesh(const std::string& pFileName, const std::string& pName)
 {
 	mMeshes[pName] = LoadMeshFromFile(pFileName);
+	return mMeshes[pName];
+}
+
+Mesh* AssetManager::GetMesh(const std::string& pName)
+{
+	if (mMeshes.find(pName) == mMeshes.end())
+	{
+		std::ostringstream loadError;
+		loadError << "Texture " << pName << " does not exist in assets manager\n";
+		Log::Error(LogType::Application, loadError.str());
+	}
 	return mMeshes[pName];
 }
 

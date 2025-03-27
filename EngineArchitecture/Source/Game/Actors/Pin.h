@@ -10,8 +10,5 @@ public:
 	void Start() override;
 	void SetupComponents() override;
 	void Update() override;
-
-private:
-	Mesh* mPinMesh = nullptr;
 };
 

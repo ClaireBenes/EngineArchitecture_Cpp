@@ -95,11 +95,22 @@ void GLTestScene::Start()
     BowlingBall* ball = new BowlingBall();
     AddActor(ball);
     ball->mTransform->mPosition = { 0, 10, -30 };
+
+
 }
 
 void GLTestScene::Update(float deltaTime)
 {
 	Scene::Update(deltaTime);
+
+    //change camera placement
+    mCameraDelay -= deltaTime;
+    if (mCameraDelay <= 0.0f && !mCameraHasMoved)
+    {
+        mCamera->mTransform->mPosition = { 0, 3, -9 };
+        mCamera->mTransform->RotatePitch(-40);
+        mCameraHasMoved = true;
+    }
 }
 
 void GLTestScene::Render()

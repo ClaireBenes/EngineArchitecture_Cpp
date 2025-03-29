@@ -25,7 +25,7 @@ void Pin::SetupComponents()
 	moveComponent = new MoveComponent(this);
 	moveComponent->SetCollider(boxColliderComponent);
 	moveComponent->mGravityDirection = Vector3::Up * -0.3;
-	moveComponent->mFriction = 0.18f;
+	moveComponent->mFriction = 0.98f;
 }
 
 void Pin::Update()

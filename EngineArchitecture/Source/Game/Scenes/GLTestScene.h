@@ -15,8 +15,12 @@ public:
 
 private:
 	Camera* mCamera = nullptr;
+
 	Mesh* mPinMesh = nullptr;
 	Mesh* mFloorMesh = nullptr;
 	Mesh* mBall = nullptr;
+
+	float mCameraDelay = 0.5f;
+	bool mCameraHasMoved = false;
 };
 

@@ -33,7 +33,6 @@ public:
 	void UpdateComponentsTransform();
 
 	void SetActive(bool isActive);
-	void Render(IRenderer* pRenderer);
 
 	ActorState GetState() const;
 	Vector3 GetPosition() const;

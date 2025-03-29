@@ -117,26 +117,6 @@ void Actor::SetActive(bool isActive)
 	}
 }
 
-void Actor::Render(IRenderer* pRenderer)
-{
-	// TODO: Remove this useless function
-
-	for(RenderComponent* renderComponent : mRenderComponents)
-	{
-		renderComponent->Render(pRenderer);
-	}
-
-	//for debug
-	if (Engine::mInDebugMode) 
-	{
-		for (ColliderComponent* colliderComponent : mColliderComponents)
-		{
-			colliderComponent->DebugRender(pRenderer);
-		}
-	}
-
-}
-
 ActorState Actor::GetState() const
 {
 	return mState;

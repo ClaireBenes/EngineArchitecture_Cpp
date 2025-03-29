@@ -188,7 +188,6 @@ void RendererGL::DrawAllMeshes()
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_BLEND);
 
-    // TODO: Cull faces when you have an actual .obj model importer
     glEnable(GL_CULL_FACE);
     glCullFace(GL_FRONT);
 

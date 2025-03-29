@@ -110,11 +110,6 @@ ColliderComponent* MoveComponent::CheckCollision()
 	if (mCollidercomponent != nullptr)
 	{
 		PhysicManager& physicManager = PhysicManager::Instance();
-
-		// TODO: Return ColliderComponent to know with whom you collided
-		// Then use GetOwner() to retrieve the actor, then call GetComponentOfType<MoveComponent>().
-		// With that, you can transfer your mVelocity to that one MoveComponent.
-
 		ColliderComponent* collidedComponent = physicManager.Collision(mCollidercomponent);
 
 		if (collidedComponent != nullptr)
@@ -125,7 +120,7 @@ ColliderComponent* MoveComponent::CheckCollision()
 				float impactStrength = mVelocity.Dot(mVelocity, collisionNormal);
 
 				// Ensure some movement
-				if (impactStrength < 0.5f)
+				if (impactStrength < 0.3f)
 				{
 					impactStrength = 0.2f; 
 				}

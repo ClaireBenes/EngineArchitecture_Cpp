@@ -36,6 +36,7 @@ public:
 	void Render(IRenderer* pRenderer);
 
 	ActorState GetState() const;
+	Vector3 GetPosition() const;
 
 	virtual void SetupComponents() = 0;
 	virtual void Start();

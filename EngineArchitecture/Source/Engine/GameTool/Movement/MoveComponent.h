@@ -23,7 +23,7 @@ public:
 	virtual void Update() override;
 
 	void SetCollider(ColliderComponent* pCollider);
-	bool CheckCollision();
+	ColliderComponent* CheckCollision();
 
 	// - == up && + == down
 	Vector3 mGravityDirection = Vector3::Zero; //Vector3::Up * -15.0f;

@@ -142,6 +142,11 @@ ActorState Actor::GetState() const
 	return mState;
 }
 
+Vector3 Actor::GetPosition() const
+{
+	return mTransform->mPosition;
+}
+
 void Actor::Update()
 {
 	for(Component* myComponent : mComponents)

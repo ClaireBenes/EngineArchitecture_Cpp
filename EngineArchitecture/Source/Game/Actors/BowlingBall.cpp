@@ -20,7 +20,8 @@ void BowlingBall::SetupComponents()
 	MoveComponent* moveComponent = new MoveComponent(this);
 	moveComponent->SetCollider(boxComponent);
 	moveComponent->mGravityDirection = Vector3::Up * -2;
-	moveComponent->AddForce(Vector3(0, 0, 0.5f));
+	moveComponent->SetSpeed(Vector3(0, 0, 15));
+	moveComponent->AddForce(Vector3(0, 0, 0.1f));
 }
 
 void BowlingBall::Update()

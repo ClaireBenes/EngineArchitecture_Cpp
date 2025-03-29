@@ -2,6 +2,9 @@
 
 #include "../GameTool/Collision/ColliderComponent.h"
 
+#include "Engine/GameTool/Utility/Vector/Vector3.h"
+#include "Engine/GameTool/Actor.h"
+
 PhysicManager& PhysicManager::Instance()
 {
     static PhysicManager physicManager;
@@ -33,4 +36,19 @@ ColliderComponent* PhysicManager::Collision(ColliderComponent* pComponent)
         }
     }
     return nullptr;
+}
+
+Vector3 PhysicManager::GetCollisionNormal(ColliderComponent* A, ColliderComponent* B)
+{
+    if (!A || !B)
+    {
+        return Vector3(0, 0, 0);
+    }
+
+    Vector3 posA = A->GetOwner()->GetPosition();
+    Vector3 posB = B->GetOwner()->GetPosition();
+
+    Vector3 collisionNormal = (posB - posA).Normalized();
+
+    return collisionNormal;
 }

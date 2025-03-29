@@ -75,7 +75,7 @@ void MoveComponent::Update()
 
 		//Check collision on X axis
 		mOwner->mTransform->mPosition = { desiredPosition.x, oldPosition.y, oldPosition.z };
-		if (CheckCollision() == true)
+		if (CheckCollision() != nullptr)
 		{
 			newPosition.x = oldPosition.x;
 			mVelocity.x = 0;
@@ -83,14 +83,14 @@ void MoveComponent::Update()
 
 		//Check collision on Y axis
 		mOwner->mTransform->mPosition = { oldPosition.x, desiredPosition.y, oldPosition.z };
-		if (CheckCollision() == true)
+		if (CheckCollision() != nullptr)
 		{
 			newPosition.y = oldPosition.y;
 			mVelocity.y = 0;
 		}
 
 		mOwner->mTransform->mPosition = { oldPosition.x, oldPosition.y, desiredPosition.z };
-		if (CheckCollision() == true)
+		if (CheckCollision() != nullptr)
 		{
 			newPosition.z = oldPosition.z;
 			mVelocity.z = 0;
@@ -105,27 +105,13 @@ void MoveComponent::SetCollider(ColliderComponent* pCollider)
 	mCollidercomponent = pCollider;
 }
 
-bool MoveComponent::CheckCollision()
+ColliderComponent* MoveComponent::CheckCollision()
 {
 	if (mCollidercomponent != nullptr)
 	{
 		PhysicManager& physicManager = PhysicManager::Instance();
-
-		// TODO: Return ColliderComponent to know with whom you collided
-		// Then use GetOwner() to retrieve the actor, then call GetComponentOfType<MoveComponent>().
-		// With that, you can transfer your mVelocity to that one MoveComponent.
-
-		ColliderComponent* collidedComponent = physicManager.Collision(mCollidercomponent);
-
-		if (collidedComponent != nullptr)
-		{
-			return true;
-			
-		}
-		return false;
-		//mInCollision = physicManager.Collision(mCollidercomponent);
-		//return mInCollision;
+		return physicManager.Collision(mCollidercomponent);
 	}
 
-	return false;
+	return nullptr;
 }

@@ -3,6 +3,7 @@
 #include <vector>
 
 class ColliderComponent;
+class Vector3;
 
 class PhysicManager
 {
@@ -16,6 +17,7 @@ public:
 	void RemoveComponent(ColliderComponent* pComponent);
 
 	ColliderComponent* Collision(ColliderComponent* pComponent);
+	Vector3 GetCollisionNormal(ColliderComponent* A, ColliderComponent* B);
 
 private:
 	PhysicManager() {};

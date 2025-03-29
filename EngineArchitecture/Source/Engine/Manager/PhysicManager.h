@@ -15,7 +15,7 @@ public:
 	void AddComponent(ColliderComponent* pComponent);
 	void RemoveComponent(ColliderComponent* pComponent);
 
-	bool Collision(ColliderComponent* pComponent);
+	ColliderComponent* Collision(ColliderComponent* pComponent);
 
 private:
 	PhysicManager() {};

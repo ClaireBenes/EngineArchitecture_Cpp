@@ -22,3 +22,8 @@ int Component::GetUpdateOrder() const
 {
 	return mUpdateOrder;
 }
+
+Actor* Component::GetOwner() const
+{
+	return mOwner;
+}

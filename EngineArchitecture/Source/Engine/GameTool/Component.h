@@ -19,6 +19,7 @@ public:
 	void SetOwner(Actor* pOwner);
 
 	int GetUpdateOrder() const;
+	Actor* GetOwner() const;
 
 //Variables
 protected:

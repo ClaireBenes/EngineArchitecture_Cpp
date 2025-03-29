@@ -17,5 +17,6 @@ private:
 	Camera* mCamera = nullptr;
 	Mesh* mPinMesh = nullptr;
 	Mesh* mFloorMesh = nullptr;
+	Mesh* mBall = nullptr;
 };
 

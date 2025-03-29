@@ -6,6 +6,7 @@
 
 #include "Game/Actors/Pin.h"
 #include "Game/Actors/Floor.h"
+#include "Game/Actors/BowlingBall.h"
 
 #include "Game/Actors/Bush.h"
 
@@ -28,6 +29,12 @@ void GLTestScene::Load()
     mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
     mFloorMesh->AddTexture(AssetManager::GetTexture("wall"));
     mFloorMesh->AddTexture(AssetManager::GetTexture("back"));
+
+    mBall = AssetManager::LoadMesh("sphere.obj", "ball");
+    mBall->SetShaderProgram(RendererGL::GetMeshShaderProgram());
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/bowlingBall.png", "ballTex");
+    mBall->AddTexture(AssetManager::GetTexture("ballTex"));
 }
 
 void GLTestScene::Start()
@@ -37,7 +44,7 @@ void GLTestScene::Start()
 
 	mCamera = new Camera();
 	AddActor(mCamera);
-	mCamera->mTransform->mPosition = { 0, 10, -30 };
+	mCamera->mTransform->mPosition = { 0, 10, -35 };
 
 	Floor* floor = new Floor();
 	AddActor(floor);
@@ -81,9 +88,13 @@ void GLTestScene::Start()
         float z = static_cast<float>(row) * -2.0f;  // Push row forward
 
         Pin* pin = new Pin();
-        pin->mTransform->mPosition = { x * 1.5f, 10, z };
+        pin->mTransform->mPosition = { x * 1.5f, 13.5, z };
         AddActor(pin);
     }
+
+    BowlingBall* ball = new BowlingBall();
+    AddActor(ball);
+    ball->mTransform->mPosition = { 0, 7, -30 };
 }
 
 void GLTestScene::Update(float deltaTime)

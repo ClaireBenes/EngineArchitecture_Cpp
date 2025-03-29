@@ -1,12 +1,8 @@
 #include "Pin.h"
 
-#include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
-#include "Engine/GameTool/Visual/Mesh/MeshComponent.h"
-
-#include "Engine/GameTool/Visual/Mesh/Mesh.h"
-#include "Engine/Renderer/RendererGL.h"
 #include "Engine/Manager/AssetManager.h"
 
+#include "Engine/GameTool/Visual/Mesh/MeshComponent.h"
 #include "Engine/GameTool/Movement/MoveComponent.h"
 #include "Engine/GameTool/Collision/BoxColliderComponent.h"
 
@@ -27,7 +23,7 @@ void Pin::SetupComponents()
 
 	MoveComponent* moveComponent = new MoveComponent(this);
 	moveComponent->SetCollider(boxComponent);
-	moveComponent->mGravityDirection = Vector3::Up * -0.1;
+	moveComponent->mGravityDirection = Vector3::Up * -0.3;
 }
 
 void Pin::Update()

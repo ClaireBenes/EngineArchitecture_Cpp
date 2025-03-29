@@ -23,14 +23,14 @@ void PhysicManager::RemoveComponent(ColliderComponent* pComponent)
     }
 }
 
-bool PhysicManager::Collision(ColliderComponent* pComponent)
+ColliderComponent* PhysicManager::Collision(ColliderComponent* pComponent)
 {
     for(ColliderComponent* pCollider : colliderComponents)
     {
         if((pCollider != pComponent) && (pCollider->Collision(pComponent)))
         {
-            return true;
+            return pCollider;
         }
     }
-    return false;
+    return nullptr;
 }

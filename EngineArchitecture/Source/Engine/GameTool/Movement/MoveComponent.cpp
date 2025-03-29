@@ -74,7 +74,6 @@ void MoveComponent::Update()
 		Vector3 newPosition = desiredPosition;
 
 		//Check collision on X axis
-		// TODO: Maybe replace the 0 on the Z-axis
 		mOwner->mTransform->mPosition = { desiredPosition.x, oldPosition.y, oldPosition.z };
 		if (CheckCollision() == true)
 		{
@@ -83,14 +82,12 @@ void MoveComponent::Update()
 		}
 
 		//Check collision on Y axis
-		// TODO: Maybe replace the 0 on the Z-axis
 		mOwner->mTransform->mPosition = { oldPosition.x, desiredPosition.y, oldPosition.z };
 		if (CheckCollision() == true)
 		{
 			newPosition.y = oldPosition.y;
 			mVelocity.y = 0;
 		}
-		// TODO: Check collision on Z-axis
 
 		mOwner->mTransform->mPosition = { oldPosition.x, oldPosition.y, desiredPosition.z };
 		if (CheckCollision() == true)
@@ -117,8 +114,17 @@ bool MoveComponent::CheckCollision()
 		// TODO: Return ColliderComponent to know with whom you collided
 		// Then use GetOwner() to retrieve the actor, then call GetComponentOfType<MoveComponent>().
 		// With that, you can transfer your mVelocity to that one MoveComponent.
-		mInCollision = physicManager.Collision(mCollidercomponent);
-		return mInCollision;
+
+		ColliderComponent* collidedComponent = physicManager.Collision(mCollidercomponent);
+
+		if (collidedComponent != nullptr)
+		{
+			return true;
+			
+		}
+		return false;
+		//mInCollision = physicManager.Collision(mCollidercomponent);
+		//return mInCollision;
 	}
 
 	return false;

@@ -2,7 +2,7 @@
 
 #include "Engine/GameTool/Actor.h"
 
-class Pin : public Actor
+class BowlingBall : public Actor
 {
 public:
 	void Start() override;

@@ -17,11 +17,12 @@ void BowlingBall::SetupComponents()
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("ball"));
 	BoxColliderComponent* boxComponent = new BoxColliderComponent(this);
 
-	MoveComponent* moveComponent = new MoveComponent(this);
+	moveComponent = new MoveComponent(this);
 	moveComponent->SetCollider(boxComponent);
 	moveComponent->mGravityDirection = Vector3::Up * -2;
-	moveComponent->SetSpeed(Vector3(0, 0, 15));
-	moveComponent->AddForce(Vector3(0, 0, 0.1f));
+	moveComponent->SetSpeed(Vector3(0,0,10));
+	moveComponent->AddForce(Vector3(0, 0, 0.4f));
+	moveComponent->mFriction = 0.5f;
 }
 
 void BowlingBall::Update()

@@ -85,7 +85,7 @@ void GLTestScene::Start()
 
         int count = rows[row];  // Pins in the current row
         float x = (i - rowStart) - (count - 1) / 2.0f; // Center the row
-        float z = static_cast<float>(row) * -2.0f;  // Push row forward
+        float z = static_cast<float>(row) * -1.5f;  // Push row forward
 
         Pin* pin = new Pin();
         pin->mTransform->mPosition = { x * 1.5f, 13.5, z };
@@ -94,7 +94,7 @@ void GLTestScene::Start()
 
     BowlingBall* ball = new BowlingBall();
     AddActor(ball);
-    ball->mTransform->mPosition = { 0, 7, -30 };
+    ball->mTransform->mPosition = { 0, 10, -30 };
 }
 
 void GLTestScene::Update(float deltaTime)

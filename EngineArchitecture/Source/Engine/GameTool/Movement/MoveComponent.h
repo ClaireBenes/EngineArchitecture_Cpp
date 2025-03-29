@@ -30,6 +30,7 @@ public:
 	Vector3 mVelocity = Vector3::Zero;
 
 	bool mInCollision = false;
+	float mFriction = 0.8f;
 
 protected:
 	Vector3 mSpeed = 0;

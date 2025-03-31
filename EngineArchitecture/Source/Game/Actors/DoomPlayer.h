@@ -2,6 +2,8 @@
 #include "Engine/GameTool/Actor.h"
 #include "Engine/GameTool/Camera.h"
 
+class FPSController;
+
 class DoomPlayer : public Actor
 {
 public:
@@ -11,5 +13,6 @@ public:
 
 private:
 	Camera* mCamera = nullptr;
+	FPSController* mMoveComponent = nullptr;
 };
 

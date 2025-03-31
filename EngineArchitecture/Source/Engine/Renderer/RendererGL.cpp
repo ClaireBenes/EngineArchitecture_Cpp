@@ -186,7 +186,7 @@ void RendererGL::DrawRectLine(const Rectangle& rRect, Color pColor)
 void RendererGL::DrawAllMeshes()
 {
     glEnable(GL_DEPTH_TEST);
-    glDisable(GL_BLEND);
+    //glDisable(GL_BLEND);
 
     glEnable(GL_CULL_FACE);
     glCullFace(GL_FRONT);

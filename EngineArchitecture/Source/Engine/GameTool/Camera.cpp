@@ -4,13 +4,6 @@
 #include "Utility/Matrix/Matrix4.h"
 #include "Engine/Log.h"
 
-#include "Movement/Controller/FPSController.h"
-
-Camera::Camera()
-{
-	mMoveComponent = new FPSController(this);
-}
-
 void Camera::Update()
 {
 	Actor::Update();

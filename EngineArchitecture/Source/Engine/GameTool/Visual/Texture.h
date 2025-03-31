@@ -17,6 +17,9 @@ public:
 
 	void UpdateInfo(int& pWidthOut, int& pHeightOut); 
 
+	//Getters & Setters
+	void SetTextureSize(int width, int height);
+
 	int GetWidth() const;
 	int GetHeight() const;
 	SDL_Texture* GetSDLTexture() const;

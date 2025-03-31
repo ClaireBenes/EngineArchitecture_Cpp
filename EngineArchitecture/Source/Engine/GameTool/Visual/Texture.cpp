@@ -18,6 +18,7 @@ bool Texture::Load(IRenderer& pRenderer, const std::string& pFileName)
 
     mWidth = surface->w;
     mHeight = surface->h;
+    printf("%d %d\n", mWidth, mHeight);
 
     if(pRenderer.GetType() == IRenderer::RendererType::SDL)
     {
@@ -50,6 +51,12 @@ void Texture::UpdateInfo(int& pWidthOut, int& pHeightOut)
 {
     pWidthOut = mWidth;
     pHeightOut = mHeight;
+}
+
+void Texture::SetTextureSize(int width, int height)
+{
+    mWidth = width;
+    mHeight = height;
 }
 
 //Get Texture Width
@@ -90,24 +97,41 @@ bool Texture::LoadGL(RendererGL* pRenderer, const std::string& pFileName, SDL_Su
 {
     int format = 0;
 
-    if(pSurface->format->format == SDL_PIXELFORMAT_RGB24)
+    if(pSurface->format->BytesPerPixel == 4)
     {
-        format = GL_RGB;
+        if(pSurface->format->Rmask == 0x000000FF)
+        {
+            format = GL_RGBA;
+        }
+        else
+        {
+            format = GL_BGRA;
+        }
     }
-    else if(pSurface->format->format == SDL_PIXELFORMAT_RGBA32)
+    else
     {
-        format = GL_RGBA;
+        if(pSurface->format->Rmask == 0x000000FF)
+        {
+            format = GL_RGB;
+        }
+        else
+        {
+            format = GL_BGR;
+        }
     }
+
 
     glGenTextures(1, &mTextureId);
     glBindTexture(GL_TEXTURE_2D, mTextureId);
-    glTexImage2D(GL_TEXTURE_2D, 0, format, mWidth, mHeight, 0, format, GL_UNSIGNED_BYTE, pSurface->pixels);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, pSurface->w, pSurface->h, 0, format, GL_UNSIGNED_BYTE, pSurface->pixels);
+
     SDL_FreeSurface(pSurface);
 
     Log::Info("Loaded GL texture : " + mFileName);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    //glGenerateMipmap(GL_TEXTURE_2D); // TODO: Maybe after or before? Idk?
 
     return true;
 }

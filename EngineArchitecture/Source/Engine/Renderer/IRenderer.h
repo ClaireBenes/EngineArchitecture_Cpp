@@ -43,7 +43,7 @@ public:
     virtual void DrawRectLine(const Rectangle& rRect, Color pColor) = 0;
 
     virtual void DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle rec, Flip flip = Flip::None) = 0;
-    virtual void DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transform) {};
+    virtual void DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transform, Vector2 tiling = Vector2::ONE) {};
 
     void AddRenderComponent(RenderComponent* pRenderComponent);
     void RemoveRenderComponent(RenderComponent* pRenderComponent);

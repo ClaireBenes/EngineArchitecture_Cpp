@@ -17,9 +17,12 @@ public:
 	virtual void SetMesh(Mesh& pMesh);
 
 	void SetTextureIndex(size_t pTextureIndex);
+	void SetTextureTiling(float x, float y);
 
 protected:
 	Mesh* mMesh;
 	size_t mTextureIndex;
+
+	Vector2 mTiling = Vector2::ONE;
 };
 

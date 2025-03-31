@@ -95,8 +95,6 @@ void GLTestScene::Start()
     BowlingBall* ball = new BowlingBall();
     AddActor(ball);
     ball->mTransform->mPosition = { 0, 10, -30 };
-
-
 }
 
 void GLTestScene::Update(float deltaTime)

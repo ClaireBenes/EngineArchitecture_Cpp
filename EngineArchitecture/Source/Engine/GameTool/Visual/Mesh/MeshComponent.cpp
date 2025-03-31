@@ -13,7 +13,7 @@ MeshComponent::MeshComponent(Actor* pOwner, Mesh* pMesh) : mMesh(pMesh), mTextur
 void MeshComponent::Render(IRenderer* rRenderer)
 {
 	mOwner->mTransform->ComputeWorldTransform();
-	rRenderer->DrawMesh(mMesh, mTextureIndex, mOwner->mTransform->GetWorldTransform());
+	rRenderer->DrawMesh(mMesh, mTextureIndex, mOwner->mTransform->GetWorldTransform(), mTiling);
 }
 
 RenderType MeshComponent::GetRenderType()
@@ -29,4 +29,9 @@ void MeshComponent::SetMesh(Mesh& pMesh)
 void MeshComponent::SetTextureIndex(size_t pTextureIndex)
 {
 	mTextureIndex = pTextureIndex;
+}
+
+void MeshComponent::SetTextureTiling(float x, float y)
+{
+	mTiling = Vector2(x, y);
 }

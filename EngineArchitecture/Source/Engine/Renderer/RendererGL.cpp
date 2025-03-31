@@ -197,13 +197,14 @@ void RendererGL::DrawAllMeshes()
     }
 }
 
-void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transform)
+void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transform, Vector2 tiling)
 {
     if (pMesh)
     {
         pMesh->GetShaderProgram().Use();
         pMesh->GetShaderProgram().setMatrix4("uViewProj", mView * mProjection);
         pMesh->GetShaderProgram().setMatrix4("uWorldTransform", transform);
+        pMesh->GetShaderProgram().setVector2f("uTileSize", tiling);
 
         Texture* t = pMesh->GetTexture(pTextureIndex);
         if (t)
@@ -212,9 +213,7 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         }
 
         pMesh->GetVertexArray()->SetActive();
-        //glDrawElements(GL_TRIANGLES, pMesh->GetVertexArray()->GetIndicesCount(), GL_UNSIGNED_INT, nullptr);
         glDrawArrays(GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
-
     }
 
     //Unbind texture

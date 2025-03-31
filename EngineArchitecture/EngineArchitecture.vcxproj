@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Game\Actors\DoomPlayer.h" />
+    <ClInclude Include="Source\Game\Scenes\Doom.h" />
     <ClInclude Include="Source\Game\Actors\BowlingBall.h" />
     <ClInclude Include="Source\Engine\GameTool\Utility\Geometry\Box.h" />
     <ClInclude Include="Source\Engine\GameTool\Collision\BoxColliderComponent.h" />
@@ -74,6 +76,8 @@
     <ClInclude Include="Source\Game\Actors\Pin.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\Actors\DoomPlayer.cpp" />
+    <ClCompile Include="Source\Game\Scenes\Doom.cpp" />
     <ClCompile Include="Source\Game\Actors\BowlingBall.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Utility\Geometry\Box.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Collision\BoxColliderComponent.cpp" />

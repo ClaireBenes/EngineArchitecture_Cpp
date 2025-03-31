@@ -18,6 +18,7 @@ void Doom::Load()
 
 void Doom::Start()
 {
+    SDL_SetHintWithPriority(SDL_HINT_MOUSE_RELATIVE_MODE_WARP, "1", SDL_HINT_OVERRIDE);
     SDL_SetRelativeMouseMode(SDL_TRUE);
 
     Floor* floor = new Floor();

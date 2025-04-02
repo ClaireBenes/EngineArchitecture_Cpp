@@ -48,12 +48,22 @@ Vector3::Vector3(Vector2 vec2)
 
 float Vector3::Magnitude() const
 {
-	return std::sqrt(x * x + y * y + z * z);
+	return std::sqrt(MagnitudeSqr());
 }
 
 float Vector3::MagnitudeSqr() const
 {
 	return ( x * x + y * y + z * z );
+}
+
+float Vector3::Magnitude2D() const
+{
+	return std::sqrt(Magnitude2DSqr());
+}
+
+float Vector3::Magnitude2DSqr() const
+{
+	return (x * x + y * y);
 }
 
 void Vector3::Normalize()
@@ -72,16 +82,9 @@ void Vector3::Normalize()
 
 Vector3 Vector3::Normalized()
 {
-	float lenght = Magnitude();
-
-	if(lenght == 0.0f)
-	{
-		return Zero;
-	}
-	else
-	{
-		return ( *this ) / lenght;
-	}
+	Vector3 temp(x, y, z);
+	temp.Normalize();
+	return temp;
 }
 
 // Normalize the provided vector
@@ -89,6 +92,29 @@ Vector3 Vector3::Normalize(const Vector3& vec)
 {
 	Vector3 temp = vec;
 	temp.Normalize();
+	return temp;
+}
+
+void Vector3::Normalize2D()
+{
+	float lenght = Magnitude2D();
+
+	if (lenght == 0.0f)
+	{
+		return;
+	}
+	else
+	{
+		x /= lenght;
+		y /= lenght;
+		z = 0.0f;
+	}
+}
+
+Vector3 Vector3::Normalized2D()
+{
+	Vector3 temp(x, y, 0.0f);
+	temp.Normalize2D();
 	return temp;
 }
 
@@ -210,6 +236,11 @@ void Vector3::operator/=(const float value)
 	x /= value;
 	y /= value;
 	z /= value;
+}
+
+Vector3 Vector3::operator-() const
+{
+	return Vector3 { -x, -y, -z };
 }
 
 bool operator==(const Vector3& left, const Vector3& right)

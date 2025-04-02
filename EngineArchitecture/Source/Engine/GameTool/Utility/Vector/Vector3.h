@@ -28,9 +28,15 @@ public:
 	float Magnitude() const;
 	float MagnitudeSqr() const;
 
+	float Magnitude2D() const;
+	float Magnitude2DSqr() const;
+
 	void Normalize();
 	Vector3 Normalized();
 	static Vector3 Normalize(const Vector3& vec);
+
+	void Normalize2D();
+	Vector3 Normalized2D();
 
 	static float Dot(const Vector3& left, const Vector3& right);
 	static float Distance(Vector3& a, Vector3& b);
@@ -48,6 +54,8 @@ public:
 	static Vector3 Transform(const Vector3& v, const class Quaternion& q);
 
 	//Operator
+	Vector3 operator-() const;
+
 	void operator+=(const Vector3& vector);
 	void operator-=(const Vector3& vector);
 	void operator*=(const float value);

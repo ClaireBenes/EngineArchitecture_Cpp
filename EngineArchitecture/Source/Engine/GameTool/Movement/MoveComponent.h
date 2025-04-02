@@ -21,6 +21,7 @@ public:
 	void SetRotationSpeed(Vector2 pRotationSpeed);
 
 	virtual void Update() override;
+	virtual Vector3 GetDesiredPos();
 
 	void SetCollider(ColliderComponent* pCollider);
 	ColliderComponent* CheckCollision();

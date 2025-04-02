@@ -67,39 +67,45 @@ void MoveComponent::Update()
 	{
 		//TODO : GetDesiredPos as virtualFunc
 		//TODO: FPSController should Normalize2D Forward vector with X and Z axes: https://github.com/arkaht/cpp-suprengine/blob/main/src/suprengine/math/vec3.cpp#L68
-		Vector3 desiredPosition = mOwner->mTransform->mPosition
-			+ (mOwner->mTransform->Right() * mSpeed.x
-				+ mOwner->mTransform->Up() * mSpeed.y
-				+ mOwner->mTransform->Forward() * mSpeed.z) * Time::deltaTime + mVelocity;
-		Vector3 oldPosition = mOwner->mTransform->mPosition;
 
-		Vector3 newPosition = desiredPosition;
-
-		//Check collision on X axis
-		mOwner->mTransform->mPosition = { desiredPosition.x, oldPosition.y, oldPosition.z };
-		if (CheckCollision() != nullptr)
-		{
-			newPosition.x = oldPosition.x;
-			mVelocity.x = 0;
-		}
-
-		//Check collision on Y axis
-		mOwner->mTransform->mPosition = { oldPosition.x, desiredPosition.y, oldPosition.z };
-		if (CheckCollision() != nullptr)
-		{
-			newPosition.y = oldPosition.y;
-			mVelocity.y = 0;
-		}
-
-		mOwner->mTransform->mPosition = { oldPosition.x, oldPosition.y, desiredPosition.z };
-		if (CheckCollision() != nullptr)
-		{
-			newPosition.z = oldPosition.z;
-			mVelocity.z = 0;
-		}
-
-		mOwner->mTransform->mPosition = newPosition;
+		mOwner->mTransform->mPosition = GetDesiredPos();
 	}
+}
+
+Vector3 MoveComponent::GetDesiredPos()
+{
+	Vector3 desiredPosition = mOwner->mTransform->mPosition
+		+ (mOwner->mTransform->Right() * mSpeed.x
+			+ mOwner->mTransform->Up() * mSpeed.y
+			+ mOwner->mTransform->Forward() * mSpeed.z) * Time::deltaTime + mVelocity;
+	Vector3 oldPosition = mOwner->mTransform->mPosition;
+
+	Vector3 newPosition = desiredPosition;
+
+	//Check collision on X axis
+	mOwner->mTransform->mPosition = { desiredPosition.x, oldPosition.y, oldPosition.z };
+	if (CheckCollision() != nullptr)
+	{
+		newPosition.x = oldPosition.x;
+		mVelocity.x = 0;
+	}
+
+	//Check collision on Y axis
+	mOwner->mTransform->mPosition = { oldPosition.x, desiredPosition.y, oldPosition.z };
+	if (CheckCollision() != nullptr)
+	{
+		newPosition.y = oldPosition.y;
+		mVelocity.y = 0;
+	}
+
+	mOwner->mTransform->mPosition = { oldPosition.x, oldPosition.y, desiredPosition.z };
+	if (CheckCollision() != nullptr)
+	{
+		newPosition.z = oldPosition.z;
+		mVelocity.z = 0;
+	}
+
+	return newPosition;
 }
 
 void MoveComponent::SetCollider(ColliderComponent* pCollider)

@@ -11,6 +11,8 @@ public:
 	void Update() override;
 	void OnNotify(SDL_Event& pEvent) override;
 
+	Vector3 GetDesiredPos() override;
+
 private:
 	float mMovementSpeed = 5.0f;
 

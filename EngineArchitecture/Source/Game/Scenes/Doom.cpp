@@ -40,6 +40,7 @@ void Doom::Start()
 
     FirstEnemy* firstEnemy = new FirstEnemy();
     firstEnemy->mTransform->mPosition = { 0, -1, 10 };
+    firstEnemy->SetPlayer(mPlayer);
     AddActor(firstEnemy);
 }
 

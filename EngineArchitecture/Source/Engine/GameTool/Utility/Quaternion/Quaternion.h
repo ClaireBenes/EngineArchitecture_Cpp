@@ -25,6 +25,9 @@ public:
 	// and the angle is in radians
 	explicit Quaternion(const Vector3& axis, float angle);
 
+	// Construct quaternion from a specific angle
+	explicit Quaternion(float pitch, float yaw, float roll);
+
 	void Set(float inX, float inY, float inZ, float inW);
 	void Conjugate();
 	void Normalize();
@@ -43,6 +46,9 @@ public:
 	static Quaternion Lerp(const Quaternion& a, const Quaternion& b, float f);
 	static Quaternion Slerp(const Quaternion& a, const Quaternion& b, float f);
 	static Quaternion Concatenate(const Quaternion& q, const Quaternion& p);
+
+	static Quaternion LookAt(const Vector3& forward,const Vector3& up);
+	static Quaternion LookAt(const Vector3& origin,const Vector3& target,const Vector3& up);
 
 	Quaternion operator+(const Quaternion& p)
 	{

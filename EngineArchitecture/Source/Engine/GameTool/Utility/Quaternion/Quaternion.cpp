@@ -24,6 +24,27 @@ Quaternion::Quaternion(const Vector3& axis, float angle)
 	w = Maths::Cos(angle / 2.0f);
 }
 
+Quaternion::Quaternion(float pitch, float yaw, float roll)
+{
+	pitch *= 0.5f;
+	yaw *= 0.5f;
+	roll *= 0.5f;
+
+	float sp = Maths::Sin(pitch);
+	float cp = Maths::Cos(pitch);
+
+	float sy = Maths::Sin(yaw);
+	float cy = Maths::Cos(yaw);
+
+	float sr = Maths::Sin(roll);
+	float cr = Maths::Cos(roll);
+
+	x = cr * sp * sy - sr * cp * cy;
+	y = cr * sp * cy + sr * cp * sy;
+	z = cr * cp * sy - sr * sp * cy;
+	w = cr * cp * cy + sr * sp * sy;
+}
+
 void Quaternion::Set(float inX, float inY, float inZ, float inW)
 {
 	x = inX;
@@ -168,6 +189,26 @@ Quaternion Quaternion::Concatenate(const Quaternion& q, const Quaternion& p)
 	retVal.w = p.w * q.w - Vector3::Dot(pv, qv);
 
 	return retVal;
+}
+
+Quaternion Quaternion::LookAt(const Vector3& forward, const Vector3& up)
+{
+	Vector3 dir = forward;
+	dir = dir.Normalized();
+
+	Vector3 right = up.Cross(dir).Normalized();
+	Vector3 newUp = dir.Cross(right);
+
+	float pitch = Maths::ATan2(-dir.y, Maths::Sqrt(dir.x * dir.x + dir.z * dir.z)); 
+	float yaw = Maths::ATan2(dir.x, dir.z);
+	float roll = 0.0f;
+
+	return Quaternion(pitch, yaw, roll);
+}
+
+Quaternion Quaternion::LookAt(const Vector3& origin, const Vector3& target, const Vector3& up)
+{
+	return LookAt(target - origin, up);
 }
 
 Matrix4 Quaternion::AsMatrix() const

@@ -27,4 +27,25 @@ void FirstEnemy::SetupComponents()
 void FirstEnemy::Update()
 {
 	Actor::Update();
+
+	if (mPlayer != nullptr)
+	{
+		Vector3 playerPos = mPlayer->mTransform->mPosition - mTransform->mPosition;
+		playerPos.y = 0.0f;
+		playerPos = playerPos.Normalized();
+
+		mTransform->LookAt(playerPos);
+
+		float yaw = -Maths::ATan2(playerPos.x, playerPos.z);
+
+		mTransform->mRotation = Quaternion(0.0f, yaw, 0.0f);
+		mTransform->RotatePitch(90);
+
+		//mTransform->RotateYaw(Maths::ToDeg(yaw));
+	}
+}
+
+void FirstEnemy::SetPlayer(DoomPlayer* pNewPlayer)
+{
+	mPlayer = pNewPlayer;
 }

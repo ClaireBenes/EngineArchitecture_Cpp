@@ -63,7 +63,7 @@ float Vector3::Magnitude2D() const
 
 float Vector3::Magnitude2DSqr() const
 {
-	return (x * x + y * y);
+	return (x * x + z * z);
 }
 
 void Vector3::Normalize()
@@ -106,14 +106,14 @@ void Vector3::Normalize2D()
 	else
 	{
 		x /= lenght;
-		y /= lenght;
-		z = 0.0f;
+		y = 0.0f;
+		z /= lenght;
 	}
 }
 
 Vector3 Vector3::Normalized2D()
 {
-	Vector3 temp(x, y, 0.0f);
+	Vector3 temp(x, 0.0f, z);
 	temp.Normalize2D();
 	return temp;
 }

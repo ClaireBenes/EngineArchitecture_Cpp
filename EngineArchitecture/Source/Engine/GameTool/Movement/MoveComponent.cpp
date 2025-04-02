@@ -65,7 +65,6 @@ void MoveComponent::Update()
 
 	if (!Maths::NearZero(mSpeed.MagnitudeSqr() + mVelocity.MagnitudeSqr()))
 	{
-		//TODO: FPSController should Normalize2D Forward vector with X and Z axes: https://github.com/arkaht/cpp-suprengine/blob/main/src/suprengine/math/vec3.cpp#L68
 		mOwner->mTransform->mPosition = GetDesiredPos();
 	}
 }

@@ -97,6 +97,7 @@ void FPSController::OnNotify(SDL_Event& pEvent)
 
 	Vector3 inputDirectionNormalized = inputDirection.Normalized();
 	// TODO: Flatten Vector3::Forward
+
 	Vector3 speed = inputDirectionNormalized.x * Vector3::Right + inputDirectionNormalized.y * Vector3::Forward;
 	speed *= mMovementSpeed;
 	SetSpeed(speed);
@@ -107,7 +108,7 @@ Vector3 FPSController::GetDesiredPos()
 	Vector3 desiredPosition = mOwner->mTransform->mPosition
 		+ (mOwner->mTransform->Right() * mSpeed.x
 			+ mOwner->mTransform->Up() * mSpeed.y
-			+ mOwner->mTransform->Forward() * mSpeed.z) * Time::deltaTime + mVelocity;
+			+ mOwner->mTransform->Forward().Normalized2D() * mSpeed.z) * Time::deltaTime + mVelocity;
 	Vector3 oldPosition = mOwner->mTransform->mPosition;
 
 	Vector3 newPosition = desiredPosition;

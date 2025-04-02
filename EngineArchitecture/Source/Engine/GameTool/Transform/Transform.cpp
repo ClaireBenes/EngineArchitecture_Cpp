@@ -31,6 +31,10 @@ const Matrix4& Transform::GetWorldTransform() const
 	return mWorldTransform;
 }
 
+void Transform::LookAt(Vector3 target)
+{
+}
+
 void Transform::RotatePitch(float degrees)
 {
 	mRotation = Quaternion::Concatenate(mRotation, Quaternion(Vector3::Right, Maths::ToRad(degrees)));

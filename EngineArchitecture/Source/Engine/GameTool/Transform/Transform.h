@@ -18,6 +18,8 @@ public:
 	void ComputeWorldTransform();
 	const Matrix4& GetWorldTransform() const;
 
+	void LookAt(Vector3 target);
+
 	//Rotation
 	void RotatePitch(float degrees);
 	void RotateYaw(float degrees);

@@ -3,7 +3,7 @@
 #include "../RenderComponent.h"
 
 #include "Engine/GameTool/Visual/Texture.h"
-#include "Engine/GameTool/Rectangle.h"
+#include "Engine/GameTool/Utility/Geometry/Rectangle.h"
 
 #include "Engine/Renderer/IRenderer.h"
 

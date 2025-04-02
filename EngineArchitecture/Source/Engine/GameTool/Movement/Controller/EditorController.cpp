@@ -1,11 +1,11 @@
-#include "FPSController.h"
+#include "EditorController.h"
 
 #include "Engine/GameTool/Utility/Maths.h"
 #include "Engine/GameTool/Actor.h"
 #include "Engine/Manager/InputManager.h"
 #include "Engine/Engine.h"
 
-FPSController::FPSController(Actor* pActor) : MoveComponent(pActor)
+EditorController::EditorController(Actor* pActor) : MoveComponent(pActor)
 {
 	InputManager::Instance().SubscribeTo(SDLK_z, this);
 	InputManager::Instance().SubscribeTo(SDLK_q, this);
@@ -18,7 +18,7 @@ FPSController::FPSController(Actor* pActor) : MoveComponent(pActor)
 	InputManager::Instance().SubscribeTo(SDLK_RIGHT, this);
 }
 
-void FPSController::Update()
+void EditorController::Update()
 {
 	MoveComponent::Update();
 
@@ -36,7 +36,7 @@ void FPSController::Update()
 
 }
 
-void FPSController::OnNotify(SDL_Event& pEvent)
+void EditorController::OnNotify(SDL_Event& pEvent)
 {
 	switch(pEvent.type)
 	{

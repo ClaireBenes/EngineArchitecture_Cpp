@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ColliderComponent.h"
-#include "../Rectangle.h"
+#include "Engine/GameTool/Utility/Geometry/Rectangle.h"
 
 //Rectangle
 class RectangleColliderComponent : public ColliderComponent

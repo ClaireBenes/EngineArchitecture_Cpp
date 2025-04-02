@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Engine/GameTool/Rectangle.h"
+#include "Engine/GameTool/Utility/Geometry/Rectangle.h"
 #include "Engine/GameTool/Utility/Vector/Vector4.h"
 #include "Engine/GameTool/Utility/Matrix/Matrix4.h"
 #include "Engine/Window.h"

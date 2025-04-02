@@ -4,7 +4,7 @@
 #include "Engine/GameTool/Collision/RectangleColliderComponent.h"
 #include "Engine/GameTool/Movement/Controller/PlayerController.h"
 
-#include "Engine/GameTool/Movement/Controller/PlatformerPlayerController.h"
+#include "Game/Controller/PlatformerPlayerController.h"
 
 #include "Engine/Manager/AssetManager.h"
 

@@ -1,10 +1,10 @@
-#include "SpaceInvaders.h"
+#include "Platformer2D.h"
 
 #include "Engine/Window.h"
 #include "Game/Actors/Player.h"
 #include "Game/Actors/Bush.h"
 
-void SpaceInvaders::Start()
+void Platformer2D::Start()
 {
 	Vector2 winDimension = mWindow->GetDimensions();
 
@@ -23,12 +23,12 @@ void SpaceInvaders::Start()
 	AddActor(secondPlatform);
 }
 
-void SpaceInvaders::Update(float deltaTime)
+void Platformer2D::Update(float deltaTime)
 {
 	Scene::Update(deltaTime);
 }
 
-void SpaceInvaders::Render()
+void Platformer2D::Render()
 {
 	Scene::Render();
 }

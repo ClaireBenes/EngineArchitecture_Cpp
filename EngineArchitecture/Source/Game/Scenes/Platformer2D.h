@@ -4,7 +4,7 @@
 
 class Player;
 
-class SpaceInvaders : public Scene
+class Platformer2D : public Scene
 {
 public:
 	void Start() override;

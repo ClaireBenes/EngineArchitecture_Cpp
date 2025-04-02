@@ -29,7 +29,6 @@ public:
 	Vector3 mGravityDirection = Vector3::Zero; //Vector3::Up * -15.0f;
 	Vector3 mVelocity = Vector3::Zero;
 
-	bool mInCollision = false;
 	float mFriction = 0.8f;
 
 protected:

@@ -131,11 +131,9 @@ ColliderComponent* MoveComponent::CheckCollision()
 
 				mVelocity *= mFriction;
 			}
-			return collidedComponent;
-			
+			return collidedComponent;		
 		}
 		return nullptr;
 	}
-
 	return nullptr;
 }

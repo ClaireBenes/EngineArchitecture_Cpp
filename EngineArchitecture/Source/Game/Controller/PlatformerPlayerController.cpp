@@ -28,7 +28,7 @@ void PlatformerPlayerController::OnNotify(SDL_Event& pEvent)
 		Vector3 direction = Vector3::Zero;
 		if (pEvent.key.keysym.sym == SDLK_SPACE || pEvent.key.keysym.sym == SDLK_UP)
 		{
-			if (!mIsJumping && mInCollision) 
+			if (!mIsJumping) 
 			{
 				direction.y = 1;
 				AddForce({GetSpeed().x / 75, mForce.y, 0.0f});

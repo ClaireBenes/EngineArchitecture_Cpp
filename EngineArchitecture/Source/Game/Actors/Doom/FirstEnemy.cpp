@@ -37,7 +37,6 @@ void FirstEnemy::Update()
 		mTransform->LookAt(playerPos);
 
 		float yaw = -Maths::ATan2(playerPos.x, playerPos.z);
-
 		mTransform->mRotation = Quaternion(0.0f, yaw, 0.0f);
 		mTransform->RotatePitch(90);
 

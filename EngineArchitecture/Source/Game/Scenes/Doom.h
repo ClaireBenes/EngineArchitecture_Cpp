@@ -16,5 +16,6 @@ public:
 private:
 	DoomPlayer* mPlayer = nullptr;
 	Mesh* mFloorMesh = nullptr;
+	Mesh* mFirstEnemy = nullptr;
 };
 

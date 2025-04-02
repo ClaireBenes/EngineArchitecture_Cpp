@@ -4,7 +4,8 @@
 #include "Engine/Manager/AssetManager.h"
 
 #include "Game/Actors/Floor.h"
-#include "Game/Actors/DoomPlayer.h"
+#include "Game/Actors/Doom/DoomPlayer.h"
+#include "Game/Actors/Doom/FirstEnemy.h"
 
 void Doom::Load()
 {
@@ -14,6 +15,13 @@ void Doom::Load()
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/grass.png", "floor");
     mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
+
+    //FirstEnemy
+    mFirstEnemy = AssetManager::LoadMesh("plane.obj", "plane");
+    mFirstEnemy->SetShaderProgram(RendererGL::GetMeshShaderProgram());
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Coco.png", "coco");
+    mFirstEnemy->AddTexture(AssetManager::GetTexture("coco"));
 }
 
 void Doom::Start()
@@ -23,12 +31,16 @@ void Doom::Start()
 
     Floor* floor = new Floor();
     AddActor(floor);
-    floor->mTransform->mScale = Vector3(5, 0.2f, 5);
+    floor->mTransform->mScale = Vector3(5, 0.01f, 5);
     floor->mTransform->mPosition = { 0, 5, 10 };
 
     mPlayer = new DoomPlayer();
     AddActor(mPlayer);
     mPlayer->mTransform->mPosition = { 0, 0, 0 };
+
+    FirstEnemy* firstEnemy = new FirstEnemy();
+    firstEnemy->mTransform->mPosition = { 0, -1, 10 };
+    AddActor(firstEnemy);
 }
 
 void Doom::Update(float deltaTime)

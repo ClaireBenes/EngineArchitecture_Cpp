@@ -57,7 +57,7 @@
     <ClInclude Include="Source\Engine\GameTool\Transform\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Actors\Player.h">
+    <ClInclude Include="Source\Game\Actors\Platformer\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\GameTool\Visual\Render\RenderComponent.h">
@@ -69,7 +69,7 @@
     <ClInclude Include="Source\Game\Scenes\Platformer2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Actors\Bush.h">
+    <ClInclude Include="Source\Game\Actors\Platformer\Bush.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\GameTool\Collision\ColliderComponent.h">
@@ -135,10 +135,10 @@
     <ClInclude Include="Source\Engine\Shader\ShaderProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Scenes\GLTestScene.h">
+    <ClInclude Include="Source\Game\Scenes\Bowling.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Actors\Pin.h">
+    <ClInclude Include="Source\Game\Actors\Bowling\Pin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\GameTool\Visual\Mesh\Mesh.h">
@@ -171,16 +171,19 @@
     <ClInclude Include="Source\Engine\Renderer\DebugRenderInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Actors\BowlingBall.h">
+    <ClInclude Include="Source\Game\Actors\Bowling\BowlingBall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\Scenes\Doom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Actors\DoomPlayer.h">
+    <ClInclude Include="Source\Game\Actors\Doom\DoomPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\Controller\FPSController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Actors\Doom\FirstEnemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -230,7 +233,7 @@
     <ClCompile Include="Source\Engine\GameTool\Transform\Transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Actors\Player.cpp">
+    <ClCompile Include="Source\Game\Actors\Platformer\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\GameTool\Visual\Render\RenderComponent.cpp">
@@ -242,7 +245,7 @@
     <ClCompile Include="Source\Game\Scenes\Platformer2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Actors\Bush.cpp">
+    <ClCompile Include="Source\Game\Actors\Platformer\Bush.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\GameTool\Collision\ColliderComponent.cpp">
@@ -302,10 +305,10 @@
     <ClCompile Include="Source\Engine\Shader\ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Scenes\GLTestScene.cpp">
+    <ClCompile Include="Source\Game\Scenes\Bowling.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Actors\Pin.cpp">
+    <ClCompile Include="Source\Game\Actors\Bowling\Pin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\GameTool\Visual\Mesh\Mesh.cpp">
@@ -329,16 +332,19 @@
     <ClCompile Include="Source\Engine\GameTool\Utility\Geometry\Box.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Actors\BowlingBall.cpp">
+    <ClCompile Include="Source\Game\Actors\Bowling\BowlingBall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Scenes\Doom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Actors\DoomPlayer.cpp">
+    <ClCompile Include="Source\Game\Actors\Doom\DoomPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Controller\FPSController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Actors\Doom\FirstEnemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -26,7 +26,7 @@ public:
 	void Close();
 
 public:
-	static inline bool mInDebugMode = false;
+	static inline bool mInDebugMode = true;
 
 private:
 	//variables

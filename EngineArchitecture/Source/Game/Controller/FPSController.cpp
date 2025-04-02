@@ -96,8 +96,6 @@ void FPSController::OnNotify(SDL_Event& pEvent)
 	}
 
 	Vector3 inputDirectionNormalized = inputDirection.Normalized();
-	// TODO: Flatten Vector3::Forward
-
 	Vector3 speed = inputDirectionNormalized.x * Vector3::Right + inputDirectionNormalized.y * Vector3::Forward;
 	speed *= mMovementSpeed;
 	SetSpeed(speed);

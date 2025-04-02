@@ -188,7 +188,8 @@ void RendererGL::DrawAllMeshes()
     glEnable(GL_DEPTH_TEST);
     //glDisable(GL_BLEND);
 
-    glEnable(GL_CULL_FACE);
+    //TODO : Choose to see or not inside faces (by enabling GL_CULL_FACE)
+    //glEnable(GL_CULL_FACE);
     glCullFace(GL_FRONT);
 
     for (RenderComponent* rc : mWorldRenderComponents)

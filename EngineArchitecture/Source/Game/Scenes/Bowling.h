@@ -5,7 +5,7 @@
 
 class Mesh;
 
-class GLTestScene : public Scene
+class Bowling : public Scene
 {
 public:
 	void Load() override;

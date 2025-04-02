@@ -1,8 +1,8 @@
 #include "Platformer2D.h"
 
 #include "Engine/Window.h"
-#include "Game/Actors/Player.h"
-#include "Game/Actors/Bush.h"
+#include "Game/Actors/Platformer/Player.h"
+#include "Game/Actors/Platformer/Bush.h"
 
 void Platformer2D::Start()
 {

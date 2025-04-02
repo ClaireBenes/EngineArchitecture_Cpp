@@ -19,10 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Game\Actors\Doom\FirstEnemy.h" />
     <ClInclude Include="Source\Game\Controller\FPSController.h" />
-    <ClInclude Include="Source\Game\Actors\DoomPlayer.h" />
+    <ClInclude Include="Source\Game\Actors\Doom\DoomPlayer.h" />
     <ClInclude Include="Source\Game\Scenes\Doom.h" />
-    <ClInclude Include="Source\Game\Actors\BowlingBall.h" />
+    <ClInclude Include="Source\Game\Actors\Bowling\BowlingBall.h" />
     <ClInclude Include="Source\Engine\GameTool\Utility\Geometry\Box.h" />
     <ClInclude Include="Source\Engine\GameTool\Collision\BoxColliderComponent.h" />
     <ClInclude Include="Source\Engine\Renderer\DebugRenderInterface.h" />
@@ -33,7 +34,7 @@
     <ClInclude Include="Source\Engine\GameTool\Visual\Mesh\Mesh.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Mesh\tiny_obj_loader.h" />
     <ClInclude Include="Source\Engine\Vertex\Vertex.h" />
-    <ClInclude Include="Source\Game\Scenes\GLTestScene.h" />
+    <ClInclude Include="Source\Game\Scenes\Bowling.h" />
     <ClInclude Include="Source\Engine\Shader\ShaderProgram.h" />
     <ClInclude Include="Source\Engine\Shader\Shader.h" />
     <ClInclude Include="Source\Engine\Renderer\RendererGL.h" />
@@ -52,10 +53,10 @@
     <ClInclude Include="Source\Engine\Manager\PhysicManager.h" />
     <ClInclude Include="Source\Engine\GameTool\Collision\RectangleColliderComponent.h" />
     <ClInclude Include="Source\Engine\GameTool\Collision\ColliderComponent.h" />
-    <ClInclude Include="Source\Game\Actors\Bush.h" />
+    <ClInclude Include="Source\Game\Actors\Platformer\Bush.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Render\RectangleRenderComponent.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Render\RenderComponent.h" />
-    <ClInclude Include="Source\Game\Actors\Player.h" />
+    <ClInclude Include="Source\Game\Actors\Platformer\Player.h" />
     <ClInclude Include="Source\Engine\GameTool\Actor.h" />
     <ClInclude Include="Source\Engine\GameTool\Component.h" />
     <ClInclude Include="Source\Engine\Engine.h" />
@@ -74,13 +75,14 @@
     <ClInclude Include="Source\Engine\GameTool\Visual\Texture.h" />
     <ClInclude Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.h" />
     <ClInclude Include="Source\Engine\Vertex\VertexArray.h" />
-    <ClInclude Include="Source\Game\Actors\Pin.h" />
+    <ClInclude Include="Source\Game\Actors\Bowling\Pin.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\Actors\Doom\FirstEnemy.cpp" />
     <ClCompile Include="Source\Game\Controller\FPSController.cpp" />
-    <ClCompile Include="Source\Game\Actors\DoomPlayer.cpp" />
+    <ClCompile Include="Source\Game\Actors\Doom\DoomPlayer.cpp" />
     <ClCompile Include="Source\Game\Scenes\Doom.cpp" />
-    <ClCompile Include="Source\Game\Actors\BowlingBall.cpp" />
+    <ClCompile Include="Source\Game\Actors\Bowling\BowlingBall.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Utility\Geometry\Box.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Collision\BoxColliderComponent.cpp" />
     <ClCompile Include="Source\Game\Actors\Floor.cpp" />
@@ -88,7 +90,7 @@
     <ClCompile Include="Source\Engine\GameTool\Camera.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Mesh\MeshComponent.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Mesh\Mesh.cpp" />
-    <ClCompile Include="Source\Game\Scenes\GLTestScene.cpp" />
+    <ClCompile Include="Source\Game\Scenes\Bowling.cpp" />
     <ClCompile Include="Source\Engine\Shader\ShaderProgram.cpp" />
     <ClCompile Include="Source\Engine\Shader\Shader.cpp" />
     <ClCompile Include="Source\Engine\Renderer\RendererGL.cpp" />
@@ -105,10 +107,10 @@
     <ClCompile Include="Source\Engine\Manager\PhysicManager.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Collision\RectangleColliderComponent.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Collision\ColliderComponent.cpp" />
-    <ClCompile Include="Source\Game\Actors\Bush.cpp" />
+    <ClCompile Include="Source\Game\Actors\Platformer\Bush.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Render\RectangleRenderComponent.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Render\RenderComponent.cpp" />
-    <ClCompile Include="Source\Game\Actors\Player.cpp" />
+    <ClCompile Include="Source\Game\Actors\Platformer\Player.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Actor.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Component.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
@@ -130,7 +132,7 @@
     <ClCompile Include="Source\Engine\GameTool\Visual\Texture.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.cpp" />
     <ClCompile Include="Source\Engine\Vertex\VertexArray.cpp" />
-    <ClCompile Include="Source\Game\Actors\Pin.cpp" />
+    <ClCompile Include="Source\Game\Actors\Bowling\Pin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Simple.frag" />

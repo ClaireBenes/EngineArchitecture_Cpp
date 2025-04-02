@@ -1,16 +1,14 @@
-#include "GLTestScene.h"
+#include "Bowling.h"
 
 #include "Engine/GameTool/Visual/Mesh/Mesh.h"
 #include "Engine/Renderer/RendererGL.h"
 #include "Engine/Manager/AssetManager.h"
 
-#include "Game/Actors/Pin.h"
+#include "Game/Actors/Bowling/Pin.h"
 #include "Game/Actors/Floor.h"
-#include "Game/Actors/BowlingBall.h"
+#include "Game/Actors/Bowling/BowlingBall.h"
 
-#include "Game/Actors/Bush.h"
-
-void GLTestScene::Load()
+void Bowling::Load()
 {
     //Pin
     mPinMesh = AssetManager::LoadMesh("pin.obj", "pin");
@@ -37,7 +35,7 @@ void GLTestScene::Load()
     mBall->AddTexture(AssetManager::GetTexture("ballTex"));
 }
 
-void GLTestScene::Start()
+void Bowling::Start()
 {
     SDL_SetHintWithPriority(SDL_HINT_MOUSE_RELATIVE_MODE_WARP, "1", SDL_HINT_OVERRIDE);
 	SDL_SetRelativeMouseMode(SDL_TRUE);
@@ -97,7 +95,7 @@ void GLTestScene::Start()
     ball->mTransform->mPosition = { 0, 10, -30 };
 }
 
-void GLTestScene::Update(float deltaTime)
+void Bowling::Update(float deltaTime)
 {
 	Scene::Update(deltaTime);
 
@@ -111,7 +109,7 @@ void GLTestScene::Update(float deltaTime)
     }
 }
 
-void GLTestScene::Render()
+void Bowling::Render()
 {
 	Scene::Render();
 }

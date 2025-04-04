@@ -20,7 +20,7 @@ void FirstEnemy::SetupComponents()
 
 	moveComponent = new MoveComponent(this);
 	moveComponent->SetCollider(boxComponent);
-	moveComponent->mGravityDirection = Vector3::Up * -0.3;
+	moveComponent->mGravityDirection = -Vector3::Up * 0.3;
 	//moveComponent->mFriction = 0.98f;
 }
 

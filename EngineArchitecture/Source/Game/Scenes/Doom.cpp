@@ -32,14 +32,14 @@ void Doom::Start()
     Floor* floor = new Floor();
     AddActor(floor);
     floor->mTransform->mScale = Vector3(5, 0.01f, 5);
-    floor->mTransform->mPosition = { 0, 5, 10 };
+    floor->mTransform->mPosition = { 0, -5, 10 };
 
     mPlayer = new DoomPlayer();
     AddActor(mPlayer);
     mPlayer->mTransform->mPosition = { 0, 0, 0 };
 
     FirstEnemy* firstEnemy = new FirstEnemy();
-    firstEnemy->mTransform->mPosition = { 0, -1, 10 };
+    firstEnemy->mTransform->mPosition = { 0, 1, 10 };
     firstEnemy->SetPlayer(mPlayer);
     AddActor(firstEnemy);
 }

@@ -215,6 +215,7 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         Texture* t = pMesh->GetTexture(pTextureIndex);
         if (t)
         {
+            //t.
             t->SetActive();
         }
 

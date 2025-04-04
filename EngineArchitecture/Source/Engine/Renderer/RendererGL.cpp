@@ -162,8 +162,6 @@ void RendererGL::DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle re
 {
     mSpriteShaderProgram.Use();
 
-    rOwner.mTransform->ComputeWorldTransform();
-
     Matrix4 screen = Matrix4::CreateScale(
         rec.dimensions.x,
         rec.dimensions.y,

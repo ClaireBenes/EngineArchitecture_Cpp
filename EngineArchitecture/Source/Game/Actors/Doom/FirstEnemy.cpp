@@ -35,7 +35,7 @@ void FirstEnemy::Update()
 		playerPos = playerPos.Normalized();
 
 		mTransform->LookAt(playerPos);
-		mTransform->RotatePitch(90);
+		mTransform->RotatePitch(-90);
 	}
 }
 

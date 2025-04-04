@@ -200,7 +200,7 @@ Quaternion Quaternion::LookAt(const Vector3& forward, const Vector3& up)
 	Vector3 newUp = dir.Cross(right);
 
 	float pitch = Maths::ATan2(-dir.y, Maths::Sqrt(dir.x * dir.x + dir.z * dir.z)); 
-	float yaw = -Maths::ATan2(dir.x, dir.z);
+	float yaw = Maths::ATan2(dir.x, dir.z);
 	float roll = 0.0f;
 
 	return Quaternion(pitch, yaw, roll);

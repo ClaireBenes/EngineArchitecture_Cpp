@@ -22,6 +22,7 @@ public:
 	RenderType GetRenderType() override;
 
 	void SetNewDimensions(float x, float y);
+	void SetNewPositions(float x, float y);
 
 	//Getters
 	int GetDrawOrder() const override;

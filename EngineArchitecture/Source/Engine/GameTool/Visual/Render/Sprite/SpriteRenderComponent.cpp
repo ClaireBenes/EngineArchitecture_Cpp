@@ -50,6 +50,12 @@ void SpriteRenderComponent::SetNewDimensions(float x, float y)
 	mRectangle.dimensions.y = y;
 }
 
+void SpriteRenderComponent::SetNewPositions(float x, float y)
+{
+	mRectangle.position.x = x;
+	mRectangle.position.y = y;
+}
+
 int SpriteRenderComponent::GetDrawOrder() const
 {
 	return mDrawOrder;

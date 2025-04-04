@@ -163,11 +163,16 @@ void RendererGL::DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle re
     mSpriteShaderProgram.Use();
 
     rOwner.mTransform->ComputeWorldTransform();
-    Matrix4 scaleMat = Matrix4::CreateScale(
-        rTexture->GetWidth(),
-        rTexture->GetHeight(),
+    Matrix4 world = Matrix4::CreateScale(
+        rec.dimensions.x,
+        rec.dimensions.y,
         0.0f);
-    Matrix4 world = scaleMat * rOwner.mTransform->GetWorldTransform();
+
+    world *= Matrix4::CreateTranslation(Vector3(
+        rec.position.x,
+        rec.position.y,
+        0.0f));
+
     mSpriteShaderProgram.setMatrix4("uWorldTransform", world);
     rTexture->SetActive();
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);

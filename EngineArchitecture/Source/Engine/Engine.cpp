@@ -38,7 +38,7 @@ Engine::~Engine()
 void Engine::Initialize(IRenderer::RendererType pRendererType)
 {
     //Create Window
-    mWindow = new Window(800, 800, mTitle);
+    mWindow = new Window(1280, 720, mTitle);
 
     //Create Renderer
     switch(pRendererType)

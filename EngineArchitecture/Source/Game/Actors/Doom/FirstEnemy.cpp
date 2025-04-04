@@ -16,7 +16,7 @@ void FirstEnemy::Start()
 void FirstEnemy::SetupComponents()
 {
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("plane"));
-	BoxColliderComponent* boxComponent = new BoxColliderComponent(this, {{ -1, -1.8, 0 }, { 1, 1.8, 0 }});
+	boxComponent = new BoxColliderComponent(this, {{ -1, -1.8, -0.5 }, { 1, 1.8, 0.5 }});
 
 	moveComponent = new MoveComponent(this);
 	moveComponent->SetCollider(boxComponent);

@@ -19,9 +19,14 @@ void DoomPlayer::SetupComponents()
 
 	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/lancePierre.png", "lance");
 
-	SpriteRenderComponent* spriteComponent = new SpriteRenderComponent(this, AssetManager::GetTexture("lance"));
-	spriteComponent->SetNewDimensions(500, 380);
-	spriteComponent->SetNewPositions(0, -300);
+	SpriteRenderComponent* slingshot = new SpriteRenderComponent(this, AssetManager::GetTexture("lance"));
+	slingshot->SetNewDimensions(500, 380);
+	slingshot->SetNewPositions(0, -300);
+
+	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/whiteOutlineCrosshair.png", "crosshair");
+
+	SpriteRenderComponent* cursor = new SpriteRenderComponent(this, AssetManager::GetTexture("crosshair"));
+	cursor->SetNewDimensions(64, 64);
 }
 
 void DoomPlayer::Update()

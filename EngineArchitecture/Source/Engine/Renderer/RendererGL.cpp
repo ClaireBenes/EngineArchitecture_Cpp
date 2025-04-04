@@ -163,17 +163,18 @@ void RendererGL::DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle re
     mSpriteShaderProgram.Use();
 
     rOwner.mTransform->ComputeWorldTransform();
-    Matrix4 world = Matrix4::CreateScale(
+
+    Matrix4 screen = Matrix4::CreateScale(
         rec.dimensions.x,
         rec.dimensions.y,
         0.0f);
 
-    world *= Matrix4::CreateTranslation(Vector3(
+    screen *= Matrix4::CreateTranslation(Vector3(
         rec.position.x,
         rec.position.y,
         0.0f));
 
-    mSpriteShaderProgram.setMatrix4("uWorldTransform", world);
+    mSpriteShaderProgram.setMatrix4("uWorldTransform", screen);
     rTexture->SetActive();
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
@@ -191,10 +192,9 @@ void RendererGL::DrawRectLine(const Rectangle& rRect, Color pColor)
 void RendererGL::DrawAllMeshes()
 {
     glEnable(GL_DEPTH_TEST);
-    //glDisable(GL_BLEND);
 
     //TODO : Choose to see or not inside faces (by enabling GL_CULL_FACE)
-    //glEnable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
     glCullFace(GL_FRONT);
 
     for (RenderComponent* rc : mWorldRenderComponents)
@@ -215,7 +215,6 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         Texture* t = pMesh->GetTexture(pTextureIndex);
         if (t)
         {
-            //t.
             t->SetActive();
         }
 

@@ -135,6 +135,10 @@
     <ClCompile Include="Source\Game\Actors\Bowling\Pin.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Shaders\TesselationMesh.vert" />
+    <None Include="Resources\Shaders\TesselationMesh.frag" />
+    <None Include="Resources\Shaders\Simple.tese" />
+    <None Include="Resources\Shaders\Simple.tesc" />
     <None Include="Resources\Shaders\Simple.frag" />
     <None Include="Resources\Shaders\Simple.vert" />
     <None Include="Resources\Shaders\SimpleMesh.frag" />

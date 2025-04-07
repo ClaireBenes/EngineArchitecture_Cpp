@@ -21,7 +21,7 @@ void Doom::Load()
     mFirstEnemy = AssetManager::LoadMesh("plane.obj", "plane");
     mFirstEnemy->SetShaderProgram(RendererGL::GetMeshShaderProgram());
 
-    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Coco.png", "coco");
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/coco.png", "coco");
     mFirstEnemy->AddTexture(AssetManager::GetTexture("coco"));
 }
 

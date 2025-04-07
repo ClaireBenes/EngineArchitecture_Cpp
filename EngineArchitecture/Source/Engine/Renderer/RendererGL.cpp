@@ -115,8 +115,10 @@ void RendererGL::LoadShaders()
     //Tesselation Mesh
     mTesselationMeshVertexShader.Load("TesselationMesh.vert", ShaderType::VERTEX);
     mTesselationMeshFragShader.Load("TesselationMesh.frag", ShaderType::FRAGMENT);
+    mTesselationControlShader.Load("Simple.tesc", ShaderType::TESSELLATION_CONTROL);
+    mTesselationEvaluationShader.Load("Simple.tese", ShaderType::TESSELLATION_EVALUATION);
 
-    mTesselationMeshShaderProgram.Compose({ &mSimpleMeshVertexShader, &mSimpleMeshFragShader });
+    mTesselationMeshShaderProgram.Compose({ &mTesselationMeshVertexShader, &mTesselationControlShader, &mTesselationEvaluationShader, &mTesselationMeshFragShader });
 }
 
 void RendererGL::BeginDraw()
@@ -199,7 +201,7 @@ void RendererGL::DrawAllMeshes()
     glEnable(GL_DEPTH_TEST);
 
     //TODO : Choose to see or not inside faces (by enabling GL_CULL_FACE)
-    glEnable(GL_CULL_FACE);
+    //glEnable(GL_CULL_FACE);
     glCullFace(GL_FRONT);
 
     for (RenderComponent* rc : mWorldRenderComponents)
@@ -224,8 +226,8 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         }
 
         pMesh->GetVertexArray()->SetActive();
-        glDrawArrays(GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
-
+        glDrawArrays(GL_PATCHES, 0, pMesh->GetVertexArray()->GetVerticeCount());
+        glLineWidth(3);
         glPolygonMode(GL_FRONT_AND_BACK, Engine::mInWireframeMode ? GL_LINE : GL_FILL);
     }
 

@@ -28,6 +28,7 @@ constexpr unsigned int spriteIndices[] = {
 
 Mesh* RendererGL::mCubeMesh = nullptr;
 ShaderProgram RendererGL::mSimpleMeshShaderProgram = ShaderProgram();
+ShaderProgram RendererGL::mTesselationMeshShaderProgram = ShaderProgram();
 
 RendererGL::RendererGL() : mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr)
 {
@@ -79,7 +80,7 @@ bool RendererGL::Initialize(Window& rWindow)
     // TODO: To move in its own LoadMeshes function
     mCubeMesh = AssetManager::LoadMesh("cube.obj", "engineCube");
     mCubeMesh->SetShaderProgram(mSimpleMeshShaderProgram);
-    mCubeMesh->AddTexture(AssetManager::LoadTexture(*this, "Resources/Textures/pokeball.png", "engineGround"));
+    mCubeMesh->AddTexture(AssetManager::LoadTexture(*this, "Resources/Textures/wall.jpg", "engineGround"));
 
     return true;
 }
@@ -110,6 +111,12 @@ void RendererGL::LoadShaders()
     mSimpleMeshFragShader.Load("SimpleMesh.frag", ShaderType::FRAGMENT);
 
     mSimpleMeshShaderProgram.Compose({ &mSimpleMeshVertexShader, &mSimpleMeshFragShader });
+
+    //Tesselation Mesh
+    mTesselationMeshVertexShader.Load("TesselationMesh.vert", ShaderType::VERTEX);
+    mTesselationMeshFragShader.Load("TesselationMesh.frag", ShaderType::FRAGMENT);
+
+    mTesselationMeshShaderProgram.Compose({ &mSimpleMeshVertexShader, &mSimpleMeshFragShader });
 }
 
 void RendererGL::BeginDraw()
@@ -244,7 +251,7 @@ IRenderer::RendererType RendererGL::GetType()
 
 ShaderProgram RendererGL::GetMeshShaderProgram()
 {
-    return mSimpleMeshShaderProgram;
+    return mTesselationMeshShaderProgram;
 }
 
 Mesh* RendererGL::GetCubeMesh()

@@ -59,11 +59,15 @@ private:
 	//Mesh
 	Shader mSimpleMeshFragShader;
 	Shader mSimpleMeshVertexShader;
+	//Tesselation Mesh
+	Shader mTesselationMeshFragShader;
+	Shader mTesselationMeshVertexShader;
 
 	static Mesh* mCubeMesh;
 
 	//ShaderProgram
 	static ShaderProgram mSimpleMeshShaderProgram;
+	static ShaderProgram mTesselationMeshShaderProgram;
 	ShaderProgram mSpriteShaderProgram;
 	ShaderProgram mRectShaderProgram;
 	ShaderProgram mRectLineShaderProgram;

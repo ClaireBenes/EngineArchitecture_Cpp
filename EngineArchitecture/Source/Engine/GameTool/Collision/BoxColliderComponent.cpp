@@ -2,6 +2,7 @@
 
 #include "Engine/GameTool/Actor.h"
 #include "Engine/Renderer/RendererGL.h"
+#include "Engine/Engine.h"
 
 BoxColliderComponent::BoxColliderComponent(Actor* pOwner, Box pBox) : mBox(pBox), ColliderComponent(pOwner)
 {
@@ -18,7 +19,6 @@ void BoxColliderComponent::DebugRender(IRenderer* pRenderer)
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	pRenderer->DrawMesh(RendererGL::GetCubeMesh(), 0, cubeTransform);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 bool BoxColliderComponent::Collision(const ColliderComponent* pComponent)

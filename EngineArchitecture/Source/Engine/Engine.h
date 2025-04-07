@@ -27,6 +27,7 @@ public:
 
 public:
 	static inline bool mInDebugMode = true;
+	static inline bool mInWireframeMode = false;
 
 private:
 	//variables

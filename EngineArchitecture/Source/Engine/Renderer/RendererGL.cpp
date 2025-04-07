@@ -218,6 +218,8 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
 
         pMesh->GetVertexArray()->SetActive();
         glDrawArrays(GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
+
+        glPolygonMode(GL_FRONT_AND_BACK, Engine::mInWireframeMode ? GL_LINE : GL_FILL);
     }
 
     //Unbind texture

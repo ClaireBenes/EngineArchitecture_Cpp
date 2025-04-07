@@ -1,5 +1,6 @@
 #include "Doom.h"
 
+#include "Engine/Engine.h"
 #include "Engine/Renderer/RendererGL.h"
 #include "Engine/Manager/AssetManager.h"
 
@@ -31,7 +32,7 @@ void Doom::Start()
 
     Floor* floor = new Floor();
     AddActor(floor);
-    floor->mTransform->mScale = Vector3(5, 0.01f, 5);
+    floor->mTransform->mScale = Vector3(10, 0.01f, 10);
     floor->mTransform->mPosition = { 0, -2.5f, 10 };
 
     mPlayer = new DoomPlayer();

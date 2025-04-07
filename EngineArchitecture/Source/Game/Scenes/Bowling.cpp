@@ -42,34 +42,34 @@ void Bowling::Start()
 
 	mCamera = new Camera();
 	AddActor(mCamera);
-	mCamera->mTransform->mPosition = { 0, 10, -35 };
+	mCamera->mTransform->mPosition = { 0,-10, -35 };
 
 	Floor* floor = new Floor();
 	AddActor(floor);
-	floor->mTransform->mPosition = { 0, 15, -10 };
+	floor->mTransform->mPosition = { 0, -15, -10 };
 
     Floor* leftWall = new Floor();
     leftWall->SetTextureIndex(1);
     AddActor(leftWall);
     leftWall->mTransform->mScale = { 5, 5, 20 };
-    leftWall->mTransform->mPosition = { 10, 10, -10 };
+    leftWall->mTransform->mPosition = { 10, -10, -10 };
 
     Floor* rightWall = new Floor();
     rightWall->SetTextureIndex(1);
     AddActor(rightWall);
     rightWall->mTransform->mScale = leftWall->mTransform->mScale;
-    rightWall->mTransform->mPosition = { -10, 10, -10 };
+    rightWall->mTransform->mPosition = { -10, -10, -10 };
 
     Floor* ceiling = new Floor();
     ceiling->SetTextureIndex(1);
     AddActor(ceiling);
-    ceiling->mTransform->mPosition = { 0, 4, -10 };
+    ceiling->mTransform->mPosition = { 0, -4, -10 };
 
     Floor* back = new Floor();
     back->SetTextureIndex(1);
     AddActor(back);
     back->mTransform->mScale = { 5, 5, 2 };
-    back->mTransform->mPosition = { 0, 10, 10 };
+    back->mTransform->mPosition = { 0, -10, 10 };
 
     //Pins
     for (int i = 0, row = 0, rowStart = 0; i < 10; i++)
@@ -86,13 +86,13 @@ void Bowling::Start()
         float z = static_cast<float>(row) * -1.5f;  // Push row forward
 
         Pin* pin = new Pin();
-        pin->mTransform->mPosition = { x * 1.5f, 13.5, z };
+        pin->mTransform->mPosition = { x * 1.5f, -13.5, z };
         AddActor(pin);
     }
 
     BowlingBall* ball = new BowlingBall();
     AddActor(ball);
-    ball->mTransform->mPosition = { 0, 10, -30 };
+    ball->mTransform->mPosition = { 0, -10, -30 };
 }
 
 void Bowling::Update(float deltaTime)
@@ -103,8 +103,8 @@ void Bowling::Update(float deltaTime)
     mCameraDelay -= deltaTime;
     if (mCameraDelay <= 0.0f && !mCameraHasMoved)
     {
-        mCamera->mTransform->mPosition = { 0, 3, -9 };
-        mCamera->mTransform->RotatePitch(-40);
+        mCamera->mTransform->mPosition = { 0, -3, -9 };
+        mCamera->mTransform->RotatePitch(40);
         mCameraHasMoved = true;
     }
 }

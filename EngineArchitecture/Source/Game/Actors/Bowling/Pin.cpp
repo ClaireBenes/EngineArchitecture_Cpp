@@ -12,7 +12,6 @@
 void Pin::Start()
 {
 	mTransform->mScale = 0.3f;
-	mTransform->RotatePitch(180);
 
 	Actor::Start();
 }
@@ -20,11 +19,11 @@ void Pin::Start()
 void Pin::SetupComponents()
 {
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("pin"));
-	boxColliderComponent = new BoxColliderComponent(this, Box { { -1.5, -9, -1.5 }, { 1.5, 0, 1.5 } });
+	boxColliderComponent = new BoxColliderComponent(this, Box { { -1.5, 9, -1.5 }, { 1.5, 0, 1.5 } });
 
 	moveComponent = new MoveComponent(this);
 	moveComponent->SetCollider(boxColliderComponent);
-	moveComponent->mGravityDirection = Vector3::Up * -0.3;
+	moveComponent->mGravityDirection = -Vector3::Up * 0.3;
 	moveComponent->mFriction = 0.98f;
 }
 

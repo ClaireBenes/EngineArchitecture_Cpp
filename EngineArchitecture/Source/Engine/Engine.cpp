@@ -18,7 +18,6 @@ Engine::Engine(std::string pTitle, std::vector<Scene*> pScene, IRenderer::Render
 
     mTitle = pTitle;
     
-
     Initialize(pRendererType);
 }
 
@@ -129,6 +128,17 @@ void Engine::CheckForInputs()
                         else 
                         {
                             mInDebugMode = true;
+                        }
+                    }
+                    if(event.key.keysym.sym == SDLK_w)
+                    {
+                        if(mInWireframeMode)
+                        {
+                            mInWireframeMode = false;
+                        }
+                        else
+                        {
+                            mInWireframeMode = true;
                         }
                     }
                     break;

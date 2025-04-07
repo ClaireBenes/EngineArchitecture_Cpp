@@ -127,11 +127,12 @@ bool Texture::LoadGL(RendererGL* pRenderer, const std::string& pFileName, SDL_Su
 
     SDL_FreeSurface(pSurface);
 
-    Log::Info("Loaded GL texture : " + mFileName);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    //glGenerateMipmap(GL_TEXTURE_2D); // TODO: Maybe after or before? Idk?
+    glGenerateMipmap(GL_TEXTURE_2D);
+
+    Log::Info("Loaded GL texture : " + mFileName);
 
     return true;
 }

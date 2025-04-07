@@ -251,9 +251,14 @@ IRenderer::RendererType RendererGL::GetType()
     return RendererType::OPENGL;
 }
 
-ShaderProgram RendererGL::GetMeshShaderProgram()
+ShaderProgram RendererGL::GetMeshShaderProgram(bool wantTesselation)
 {
-    return mTesselationMeshShaderProgram;
+    if (wantTesselation) 
+    {
+        return mTesselationMeshShaderProgram;
+    }
+
+    return mSimpleMeshShaderProgram;
 }
 
 Mesh* RendererGL::GetCubeMesh()

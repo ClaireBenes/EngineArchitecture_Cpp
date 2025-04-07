@@ -34,7 +34,7 @@ public:
 	void Close() override;
 	RendererType GetType() override;
 
-	static ShaderProgram GetMeshShaderProgram();
+	static ShaderProgram GetMeshShaderProgram(bool wantTesselation = false);
 	static Mesh* GetCubeMesh();
 
 private:

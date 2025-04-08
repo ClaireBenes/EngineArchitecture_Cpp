@@ -12,14 +12,14 @@ void Bowling::Load()
 {
     //Pin
     mPinMesh = AssetManager::LoadMesh("pin.obj", "pin");
-    mPinMesh->SetShaderProgram(RendererGL::GetMeshShaderProgram());
+    mPinMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/pin.png", "pin");
     mPinMesh->AddTexture(AssetManager::GetTexture("pin"));
 
     //Floor
     mFloorMesh = AssetManager::LoadMesh("cube.obj", "cube");
-    mFloorMesh->SetShaderProgram(RendererGL::GetMeshShaderProgram());
+    mFloorMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/bowling.png", "floor");
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/bowlingWall.jpg", "wall");
@@ -29,7 +29,7 @@ void Bowling::Load()
     mFloorMesh->AddTexture(AssetManager::GetTexture("back"));
 
     mBall = AssetManager::LoadMesh("sphere.obj", "ball");
-    mBall->SetShaderProgram(RendererGL::GetMeshShaderProgram());
+    mBall->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/bowlingBall.png", "ballTex");
     mBall->AddTexture(AssetManager::GetTexture("ballTex"));

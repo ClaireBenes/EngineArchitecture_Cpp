@@ -226,8 +226,10 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         }
 
         pMesh->GetVertexArray()->SetActive();
-        glDrawArrays(GL_PATCHES, 0, pMesh->GetVertexArray()->GetVerticeCount());
-        glLineWidth(3);
+
+        int TesselationshaderProgram = pMesh->GetShaderProgram().GetID() == mTesselationMeshShaderProgram.GetID();
+        glDrawArrays(TesselationshaderProgram ? GL_PATCHES : GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
+        glLineWidth(2);
         glPolygonMode(GL_FRONT_AND_BACK, Engine::mInWireframeMode ? GL_LINE : GL_FILL);
     }
 
@@ -249,16 +251,6 @@ void RendererGL::Close()
 IRenderer::RendererType RendererGL::GetType()
 {
     return RendererType::OPENGL;
-}
-
-ShaderProgram RendererGL::GetMeshShaderProgram(bool wantTesselation)
-{
-    if (wantTesselation) 
-    {
-        return mTesselationMeshShaderProgram;
-    }
-
-    return mSimpleMeshShaderProgram;
 }
 
 Mesh* RendererGL::GetCubeMesh()

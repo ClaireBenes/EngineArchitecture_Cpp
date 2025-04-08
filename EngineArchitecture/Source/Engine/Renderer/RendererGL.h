@@ -34,8 +34,9 @@ public:
 	void Close() override;
 	RendererType GetType() override;
 
-	static ShaderProgram GetMeshShaderProgram(bool wantTesselation = false);
 	static Mesh* GetCubeMesh();
+	static ShaderProgram mSimpleMeshShaderProgram;
+	static ShaderProgram mTesselationMeshShaderProgram;
 
 private:
 	Window* mWindow;
@@ -65,16 +66,12 @@ private:
 	Shader mTesselationMeshVertexShader;
 	Shader mTesselationControlShader;
 	Shader mTesselationEvaluationShader;
-
 	static Mesh* mCubeMesh;
 
 	//ShaderProgram
-	static ShaderProgram mSimpleMeshShaderProgram;
-	static ShaderProgram mTesselationMeshShaderProgram;
 	ShaderProgram mSpriteShaderProgram;
 	ShaderProgram mRectShaderProgram;
 	ShaderProgram mRectLineShaderProgram;
-
 };
 
 

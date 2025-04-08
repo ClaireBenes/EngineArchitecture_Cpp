@@ -12,14 +12,14 @@ void Doom::Load()
 {
     //Floor
     mFloorMesh = AssetManager::LoadMesh("cube.obj", "cube");
-    mFloorMesh->SetShaderProgram(RendererGL::GetMeshShaderProgram());
+    mFloorMesh->SetShaderProgram(RendererGL::mTesselationMeshShaderProgram);
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/grass.png", "floor");
     mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
 
     //FirstEnemy
     mFirstEnemy = AssetManager::LoadMesh("plane.obj", "plane");
-    mFirstEnemy->SetShaderProgram(RendererGL::GetMeshShaderProgram());
+    mFirstEnemy->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/coco.png", "coco");
     mFirstEnemy->AddTexture(AssetManager::GetTexture("coco"));

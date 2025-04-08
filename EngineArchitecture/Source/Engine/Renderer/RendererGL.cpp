@@ -29,6 +29,7 @@ constexpr unsigned int spriteIndices[] = {
 Mesh* RendererGL::mCubeMesh = nullptr;
 ShaderProgram RendererGL::mSimpleMeshShaderProgram = ShaderProgram();
 ShaderProgram RendererGL::mTesselationMeshShaderProgram = ShaderProgram();
+ShaderProgram RendererGL::mTerrainShaderProgram = ShaderProgram();
 
 RendererGL::RendererGL() : mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr)
 {

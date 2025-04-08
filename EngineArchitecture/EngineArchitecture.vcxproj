@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Game\Scenes\OpenGLTestScene.h" />
     <ClInclude Include="Source\Game\Actors\Doom\FirstEnemy.h" />
     <ClInclude Include="Source\Game\Controller\FPSController.h" />
     <ClInclude Include="Source\Game\Actors\Doom\DoomPlayer.h" />
@@ -126,6 +127,7 @@
     <ClCompile Include="Source\Game\EngineArchitecture.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\Dependencies\GL\SDL\include;$(SolutionDir)\Dependencies\glew-2.2.0-win32\glew-2.2.0\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="Source\Game\Scenes\OpenGLTestScene.cpp" />
     <ClCompile Include="Source\Game\Scenes\Pong.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Transform\Transform.cpp" />
     <ClCompile Include="Source\Game\Scenes\Platformer2D.cpp" />

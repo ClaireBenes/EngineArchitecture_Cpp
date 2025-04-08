@@ -27,7 +27,7 @@ void EditorController::Update()
 
 	if (mouseDeltaX != 0 || mouseDeltaY != 0)
 	{
-		SetRotationSpeed(Vector2(mouseDeltaX / 10, -mouseDeltaY / 10));
+		SetRotationSpeed(Vector2(mouseDeltaX / 10, mouseDeltaY / 10));
 	}
 	else
 	{
@@ -57,11 +57,11 @@ void EditorController::OnNotify(SDL_Event& pEvent)
 					break;
 				case SDLK_RIGHT:
 				case SDLK_d:
-					inputDirection.x -= 0.5f;
+					inputDirection.x += 0.5f;
 					break;
 				case SDLK_LEFT:
 				case SDLK_q:
-					inputDirection.x += 0.5f;
+					inputDirection.x -= 0.5f;
 					break;
 			}
 			break;
@@ -83,11 +83,11 @@ void EditorController::OnNotify(SDL_Event& pEvent)
 					break;
 				case SDLK_RIGHT:
 				case SDLK_d:
-					inputDirection.x += 0.5f;
+					inputDirection.x -= 0.5f;
 					break;
 				case SDLK_LEFT:
 				case SDLK_q:
-					inputDirection.x -= 0.5f;
+					inputDirection.x += 0.5f;
 					break;
 			}
 			break;

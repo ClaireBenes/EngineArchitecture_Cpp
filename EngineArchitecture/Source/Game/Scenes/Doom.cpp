@@ -12,7 +12,7 @@ void Doom::Load()
 {
     //Floor
     mFloorMesh = AssetManager::LoadMesh("cube.obj", "cube");
-    mFloorMesh->SetShaderProgram(RendererGL::mTesselationMeshShaderProgram);
+    mFloorMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/grass.png", "floor");
     mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));

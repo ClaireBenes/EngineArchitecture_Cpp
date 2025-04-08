@@ -19,7 +19,8 @@ public:
 	Shader(int pId, std::string pFile, ShaderType pShaderType);
 	~Shader() {};
 
-	int GetID() const { return mId; }
+	int GetID() const;
+	ShaderType GetType() const;
 	void Load(std::string pFileName, ShaderType pShaderType);
 
 	//Feel free to change the shader path  if needed

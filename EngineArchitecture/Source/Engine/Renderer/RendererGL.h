@@ -47,31 +47,13 @@ private:
 	Matrix4 mView;
 	Matrix4 mProjection;
 
-	//SHADERS
-	//Sprite
-	Shader mSpriteFragShader;
-	Shader mSpriteVertexShader;
-	//Rect
-	Shader mRectFragShader;
-	Shader mRectVertexShader;
-	//RectLine
-	Shader mRectLineFragShader;
-	Shader mRectLineVertexShader;
-	//Mesh
-	Shader mSimpleMeshFragShader;
-	Shader mSimpleMeshVertexShader;
-
-	//Tesselation Mesh
-	Shader mTesselationMeshFragShader;
-	Shader mTesselationMeshVertexShader;
-	Shader mTesselationControlShader;
-	Shader mTesselationEvaluationShader;
 	static Mesh* mCubeMesh;
 
 	//ShaderProgram
 	ShaderProgram mSpriteShaderProgram;
 	ShaderProgram mRectShaderProgram;
 	ShaderProgram mRectLineShaderProgram;
+	ShaderProgram mTerrainShaderProgram;
 };
 
 

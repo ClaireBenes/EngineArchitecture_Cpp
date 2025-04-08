@@ -88,37 +88,67 @@ bool RendererGL::Initialize(Window& rWindow)
 void RendererGL::LoadShaders()
 {
     //Sprite 
-    mSpriteVertexShader.Load("Simple.vert", ShaderType::VERTEX);
-    mSpriteFragShader.Load("Simple.frag", ShaderType::FRAGMENT);
+    Shader spriteVertexShader = Shader();
+    Shader spriteFragShader = Shader();
 
-    mSpriteShaderProgram.Compose({ &mSpriteVertexShader,&mSpriteFragShader });
+    spriteVertexShader.Load("Simple.vert", ShaderType::VERTEX);
+    spriteFragShader.Load("Simple.frag", ShaderType::FRAGMENT);
+
+    mSpriteShaderProgram.Compose({ &spriteVertexShader,&spriteFragShader });
     mSpriteShaderProgram.setMatrix4("uViewProj", mSpriteViewProj);
 
     //Rect 
-    mRectVertexShader.Load("Simple.vert", ShaderType::VERTEX);
-    mRectFragShader.Load("Simple.frag", ShaderType::FRAGMENT);
+    Shader rectVertexShader = Shader();
+    Shader rectFragShader = Shader();
 
-    mRectShaderProgram.Compose({ &mRectVertexShader,&mRectFragShader });
+    rectVertexShader.Load("Simple.vert", ShaderType::VERTEX);
+    rectFragShader.Load("Simple.frag", ShaderType::FRAGMENT);
+
+    mRectShaderProgram.Compose({ &rectVertexShader,&rectFragShader });
 
     //RectLine 
-    mRectLineVertexShader.Load("Simple.vert", ShaderType::VERTEX);
-    mRectLineFragShader.Load("Simple.frag", ShaderType::FRAGMENT);
+    Shader rectLineVertexShader = Shader();
+    Shader rectLineFragShader = Shader();
 
-    mRectLineShaderProgram.Compose({ &mRectLineVertexShader,&mRectLineFragShader });
+    rectLineVertexShader.Load("Simple.vert", ShaderType::VERTEX);
+    rectLineFragShader.Load("Simple.frag", ShaderType::FRAGMENT);
+
+    mRectLineShaderProgram.Compose({ &rectLineVertexShader,&rectLineFragShader });
 
     //Mesh
-    mSimpleMeshVertexShader.Load("SimpleMesh.vert", ShaderType::VERTEX);
-    mSimpleMeshFragShader.Load("SimpleMesh.frag", ShaderType::FRAGMENT);
+    Shader simpleMeshVertexShader = Shader();
+    Shader simpleMeshFragShader = Shader();
 
-    mSimpleMeshShaderProgram.Compose({ &mSimpleMeshVertexShader, &mSimpleMeshFragShader });
+    simpleMeshVertexShader.Load("SimpleMesh.vert", ShaderType::VERTEX);
+    simpleMeshFragShader.Load("SimpleMesh.frag", ShaderType::FRAGMENT);
+
+    mSimpleMeshShaderProgram.Compose({ &simpleMeshVertexShader, &simpleMeshFragShader });
 
     //Tesselation Mesh
-    mTesselationMeshVertexShader.Load("TesselationMesh.vert", ShaderType::VERTEX);
-    mTesselationMeshFragShader.Load("TesselationMesh.frag", ShaderType::FRAGMENT);
-    mTesselationControlShader.Load("Simple.tesc", ShaderType::TESSELLATION_CONTROL);
-    mTesselationEvaluationShader.Load("Simple.tese", ShaderType::TESSELLATION_EVALUATION);
+    Shader tesselationMeshVertexShader = Shader();
+    Shader tesselationMeshFragShader = Shader();
+    Shader tesselationControlShader = Shader();
+    Shader tesselationEvaluationShader = Shader();
 
-    mTesselationMeshShaderProgram.Compose({ &mTesselationMeshVertexShader, &mTesselationControlShader, &mTesselationEvaluationShader, &mTesselationMeshFragShader });
+    tesselationMeshVertexShader.Load("TesselationMesh.vert", ShaderType::VERTEX);
+    tesselationMeshFragShader.Load("TesselationMesh.frag", ShaderType::FRAGMENT);
+    tesselationControlShader.Load("Simple.tesc", ShaderType::TESSELLATION_CONTROL);
+    tesselationEvaluationShader.Load("Simple.tese", ShaderType::TESSELLATION_EVALUATION);
+
+    mTesselationMeshShaderProgram.Compose({ &tesselationMeshVertexShader, &tesselationControlShader, &tesselationEvaluationShader, &tesselationMeshFragShader });
+
+    //Terrain
+    Shader terrainVertexShader = Shader();
+    Shader terrainFragShader = Shader();
+    Shader terrainControlShader = Shader();
+    Shader terrainEvaluationShader = Shader();
+
+    terrainVertexShader.Load("Terrain.vert", ShaderType::VERTEX);
+    terrainFragShader.Load("Terrain.frag", ShaderType::FRAGMENT);
+    terrainControlShader.Load("Terrain.tesc", ShaderType::TESSELLATION_CONTROL);
+    terrainEvaluationShader.Load("Terrain.tese", ShaderType::TESSELLATION_EVALUATION);
+
+    mTerrainShaderProgram.Compose({ &terrainVertexShader, &terrainControlShader, &terrainEvaluationShader, &terrainFragShader });
 }
 
 void RendererGL::BeginDraw()
@@ -227,8 +257,7 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
 
         pMesh->GetVertexArray()->SetActive();
 
-        int TesselationshaderProgram = pMesh->GetShaderProgram().GetID() == mTesselationMeshShaderProgram.GetID();
-        glDrawArrays(TesselationshaderProgram ? GL_PATCHES : GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
+        glDrawArrays(pMesh->GetShaderProgram().GetHasTesselation() ? GL_PATCHES : GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
         glLineWidth(2);
         glPolygonMode(GL_FRONT_AND_BACK, Engine::mInWireframeMode ? GL_LINE : GL_FILL);
     }

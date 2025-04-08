@@ -359,5 +359,9 @@
     <None Include="Resources\Shaders\Simple.tese" />
     <None Include="Resources\Shaders\TesselationMesh.frag" />
     <None Include="Resources\Shaders\TesselationMesh.vert" />
+    <None Include="Resources\Shaders\Terrain.vert" />
+    <None Include="Resources\Shaders\Terrain.frag" />
+    <None Include="Resources\Shaders\Terrain.tesc" />
+    <None Include="Resources\Shaders\Terrain.tese" />
   </ItemGroup>
 </Project>

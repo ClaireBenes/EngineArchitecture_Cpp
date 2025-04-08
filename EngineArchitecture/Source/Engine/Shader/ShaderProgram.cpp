@@ -16,6 +16,11 @@ void ShaderProgram::Compose(std::vector<Shader*> shaders)
 	//now attach shaders to use to the program
 	for(size_t s = 0; s < shaders.size(); s++)
 	{
+		if ((shaders[s]->GetType() == ShaderType::TESSELLATION_CONTROL) || (shaders[s]->GetType() == ShaderType::TESSELLATION_EVALUATION)) 
+		{
+			mHasTesselation = true;
+		}
+
 		glAttachShader(mId, shaders[s]->GetID());
 	}
 	//and link it
@@ -26,6 +31,11 @@ void ShaderProgram::Compose(std::vector<Shader*> shaders)
 unsigned int ShaderProgram::GetID()
 {
 	return mId;
+}
+
+bool ShaderProgram::GetHasTesselation()
+{
+	return mHasTesselation;
 }
 
 void ShaderProgram::Use()

@@ -19,6 +19,7 @@ public:
 	void Compose(std::vector<Shader*> shaders);
 
 	unsigned int GetID();
+	bool GetHasTesselation();
 	void Use();
 
 	void setFloat(const GLchar* name, GLfloat value);
@@ -33,6 +34,7 @@ public:
 
 private:
 	unsigned int mId;
+	bool mHasTesselation = false;
 };
 
 

@@ -13,6 +13,16 @@ Shader::Shader(int pId, std::string pFile, ShaderType pShaderType) :mId(pId), mC
 {
 }
 
+int Shader::GetID() const
+{
+    return mId;
+}
+
+ShaderType Shader::GetType() const
+{
+    return mType;
+}
+
 void Shader::Load(std::string pFileName, ShaderType pShaderType)
 {
     mType = pShaderType;

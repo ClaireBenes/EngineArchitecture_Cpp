@@ -19,7 +19,7 @@ public:
 	void Compose(std::vector<Shader*> shaders);
 
 	unsigned int GetID();
-	bool GetHasTesselation();
+	bool GetTesselation();
 	void Use();
 
 	void setFloat(const GLchar* name, GLfloat value);

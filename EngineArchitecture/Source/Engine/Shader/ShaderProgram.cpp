@@ -33,7 +33,7 @@ unsigned int ShaderProgram::GetID()
 	return mId;
 }
 
-bool ShaderProgram::GetHasTesselation()
+bool ShaderProgram::GetTesselation()
 {
 	return mHasTesselation;
 }

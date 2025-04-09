@@ -9,6 +9,7 @@ public:
 	//static function
 	static unsigned int ComputeDeltaTime();
 	static void DelayTime();
+	static float GetGameTime();
 
 	//static variable
 	static float deltaTime;
@@ -26,5 +27,7 @@ private:
 	static unsigned int mLastFrame;
 	//Time needed to run the loop 
 	static unsigned int mFrameTime;
+	//Time from game start
+	static float mGameTime;
 };
 

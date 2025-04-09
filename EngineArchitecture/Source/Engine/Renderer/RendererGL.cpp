@@ -29,7 +29,7 @@ constexpr unsigned int spriteIndices[] = {
 Mesh* RendererGL::mCubeMesh = nullptr;
 ShaderProgram RendererGL::mSimpleMeshShaderProgram = ShaderProgram();
 ShaderProgram RendererGL::mTesselationMeshShaderProgram = ShaderProgram();
-ShaderProgram RendererGL::mTerrainShaderProgram = ShaderProgram();
+ShaderProgram RendererGL::mGrassShaderProgram = ShaderProgram();
 
 RendererGL::RendererGL() : mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr)
 {
@@ -150,6 +150,15 @@ void RendererGL::LoadShaders()
     terrainEvaluationShader.Load("Terrain.tese", ShaderType::TESSELLATION_EVALUATION);
 
     mTerrainShaderProgram.Compose({ &terrainVertexShader, &terrainControlShader, &terrainEvaluationShader, &terrainFragShader });
+
+    //Grass
+    Shader grassVertexShader = Shader();
+    Shader grassFragShader = Shader();
+
+    grassVertexShader.Load("Grass.vert", ShaderType::VERTEX);
+    grassFragShader.Load("Grass.frag", ShaderType::FRAGMENT);
+
+    mGrassShaderProgram.Compose({ &grassVertexShader, &grassFragShader });
 }
 
 void RendererGL::BeginDraw()
@@ -248,6 +257,7 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         pMesh->GetShaderProgram().Use();
         pMesh->GetShaderProgram().setMatrix4("uViewProj", mView * mProjection);
         pMesh->GetShaderProgram().setMatrix4("uWorldTransform", transform);
+        pMesh->GetShaderProgram().setFloat("time", Time::GetGameTime());
         pMesh->GetShaderProgram().setVector2f("uTileSize", tiling);
 
         Texture* t = pMesh->GetTexture(pTextureIndex);
@@ -258,6 +268,8 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
 
         pMesh->GetVertexArray()->SetActive();
 
+
+        //glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, pMesh->GetVertexArray()->GetVerticeCount(), 10 * 10);
         glDrawArrays(pMesh->GetShaderProgram().GetTesselation() ? GL_PATCHES : GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
         glLineWidth(2);
         glPolygonMode(GL_FRONT_AND_BACK, Engine::mInWireframeMode ? GL_LINE : GL_FILL);

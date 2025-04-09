@@ -6,6 +6,7 @@
 unsigned int Time::mFrameStart = 0;
 unsigned int Time::mFrameTime = 0;
 unsigned int Time::mLastFrame = 0;
+float Time::mGameTime = 0;
 
 float Time::deltaTime = 0;
 
@@ -24,5 +25,11 @@ void Time::DelayTime()
     mFrameTime = SDL_GetTicks() - mFrameStart;
     if(mFrameTime < FRAME_DELAY)
         SDL_Delay(FRAME_DELAY - mFrameTime);
+}
+
+float Time::GetGameTime()
+{
+    mGameTime += deltaTime;
+    return mGameTime;
 }
 

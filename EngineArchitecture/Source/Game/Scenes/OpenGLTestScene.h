@@ -16,6 +16,7 @@ public:
 
 private:
 	Mesh* mFloorMesh = nullptr;
+	Mesh* mGrassMesh = nullptr;
 
 	Camera* mCamera = nullptr;
 	EditorController* mMoveComponent = nullptr;

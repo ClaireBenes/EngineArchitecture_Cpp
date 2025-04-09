@@ -189,6 +189,9 @@
     <ClInclude Include="Source\Game\Scenes\OpenGLTestScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Actors\Grass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Engine.cpp">
@@ -353,6 +356,9 @@
     <ClCompile Include="Source\Game\Scenes\OpenGLTestScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Game\Actors\Grass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Game\Shaders\Vertex\SimpleVertex.shader" />
@@ -369,5 +375,8 @@
     <None Include="Resources\Shaders\Terrain.frag" />
     <None Include="Resources\Shaders\Terrain.tesc" />
     <None Include="Resources\Shaders\Terrain.tese" />
+    <None Include="Resources\Shaders\TesselationMesh.geo" />
+    <None Include="Resources\Shaders\Grass.frag" />
+    <None Include="Resources\Shaders\Grass.vert" />
   </ItemGroup>
 </Project>

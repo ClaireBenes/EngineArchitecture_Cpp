@@ -37,7 +37,7 @@ public:
 	static Mesh* GetCubeMesh();
 	static ShaderProgram mSimpleMeshShaderProgram;
 	static ShaderProgram mTesselationMeshShaderProgram;
-	static ShaderProgram mTerrainShaderProgram;
+	static ShaderProgram mGrassShaderProgram;
 
 private:
 	Window* mWindow;
@@ -53,7 +53,8 @@ private:
 	//ShaderProgram
 	ShaderProgram mSpriteShaderProgram;
 	ShaderProgram mRectShaderProgram;
-	ShaderProgram mRectLineShaderProgram;
+	ShaderProgram mRectLineShaderProgram;	
+	ShaderProgram mTerrainShaderProgram;
 };
 
 

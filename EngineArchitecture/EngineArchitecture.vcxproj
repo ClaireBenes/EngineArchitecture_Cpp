@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Game\Actors\Grass.h" />
     <ClInclude Include="Source\Game\Scenes\OpenGLTestScene.h" />
     <ClInclude Include="Source\Game\Actors\Doom\FirstEnemy.h" />
     <ClInclude Include="Source\Game\Controller\FPSController.h" />
@@ -80,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game\Actors\Doom\FirstEnemy.cpp" />
+    <ClCompile Include="Source\Game\Actors\Grass.cpp" />
     <ClCompile Include="Source\Game\Controller\FPSController.cpp" />
     <ClCompile Include="Source\Game\Actors\Doom\DoomPlayer.cpp" />
     <ClCompile Include="Source\Game\Scenes\Doom.cpp" />
@@ -137,6 +139,9 @@
     <ClCompile Include="Source\Game\Actors\Bowling\Pin.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Shaders\Grass.vert" />
+    <None Include="Resources\Shaders\Grass.frag" />
+    <None Include="Resources\Shaders\TesselationMesh.geo" />
     <None Include="Resources\Shaders\Terrain.tese" />
     <None Include="Resources\Shaders\Terrain.tesc" />
     <None Include="Resources\Shaders\Terrain.frag" />

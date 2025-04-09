@@ -7,16 +7,19 @@
 #include "Engine/GameTool/Movement/Controller/EditorController.h"
 #include "Engine/GameTool/Camera.h"
 #include "Game/Actors/Floor.h"
+#include "Game/Actors/Grass.h"
 
 void OpenGLTestScene::Load()
 {
-    //Floor
-
-    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/HeightMap.png", "floor");
-
     mFloorMesh = AssetManager::LoadMesh("plane.obj", "cube");
-    mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
     mFloorMesh->SetShaderProgram(RendererGL::mTesselationMeshShaderProgram);
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/grass.png", "floor");
+    mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
+
+    mGrassMesh = AssetManager::LoadMesh("grassBlade.obj", "grassBlade");
+    mGrassMesh->SetShaderProgram(RendererGL::mGrassShaderProgram);
+    mGrassMesh->AddTexture(AssetManager::GetTexture("floor"));
 }
 
 void OpenGLTestScene::Start()
@@ -28,6 +31,10 @@ void OpenGLTestScene::Start()
     AddActor(floor);
     floor->mTransform->mScale = Vector3(10, 0.0f, 10);
     floor->mTransform->mPosition = { 0, -2.5f, 10 };
+
+    Grass* grass = new Grass();
+    AddActor(grass);
+    grass->mTransform->mPosition = { 0, -2.5f, 10 };
 
     mCamera = new Camera();
     AddActor(mCamera);

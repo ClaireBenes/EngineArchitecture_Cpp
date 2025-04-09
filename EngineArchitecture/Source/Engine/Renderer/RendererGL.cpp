@@ -257,8 +257,9 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         pMesh->GetShaderProgram().Use();
         pMesh->GetShaderProgram().setMatrix4("uViewProj", mView * mProjection);
         pMesh->GetShaderProgram().setMatrix4("uWorldTransform", transform);
-        pMesh->GetShaderProgram().setFloat("time", Time::GetGameTime());
         pMesh->GetShaderProgram().setVector2f("uTileSize", tiling);
+
+        pMesh->GetShaderProgram().setFloat("time", Time::GetGameTime());
 
         Texture* t = pMesh->GetTexture(pTextureIndex);
         if (t)
@@ -269,7 +270,7 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         pMesh->GetVertexArray()->SetActive();
 
 
-        glDrawArraysInstanced(GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount(), 10 * 10);
+        glDrawArraysInstanced(GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount(), 20 * 10);
         //glDrawArrays(pMesh->GetShaderProgram().GetTesselation() ? GL_PATCHES : GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
         glLineWidth(2);
         glPolygonMode(GL_FRONT_AND_BACK, Engine::mInWireframeMode ? GL_LINE : GL_FILL);

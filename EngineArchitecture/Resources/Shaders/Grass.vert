@@ -29,33 +29,54 @@ mat4 constructRotationMatrixY(float angle)
 
 void main()
 {
-    int gridSize = 10;
-    int x = gl_InstanceID % gridSize;
-    int z = gl_InstanceID / gridSize;
+    int gridSizeX = 20;
+    int gridSizeZ = 10;
+    int x = gl_InstanceID % gridSizeX;
+    int z = gl_InstanceID / gridSizeX;
 
-    vec2 offset = vec2(float(x), float(z)) / 5; // spacing between grass
+    vec2 offset = vec2(float(x), float(z)) / 5; 
 
     float r = rand(float(gl_InstanceID));
     float swayOffset = r * 6.2831;
 
-    // Basic wind effect using sine wave
-    float windStrength = (0.1 + r + 1.3) * 0.1;
-    float swayRaw = sin(time * 0.5 + pos.x + pos.z + swayOffset);
-    float sway = pow(max(swayRaw, 0.0), 2.0) * windStrength;
+    // Base scale and wind strength
+    float baseScale = r * 0.5 + 0.5;
+    float windStrength = (0.1 + r + 1.3) * 0.15;
 
+
+    // Gust factor
+    float gustFactor = (sin(time * 0.1) + 1.0) * 0.5;
+
+    // Global wave (influences the field-wide wind effect)
+    float globalWave = sin(time * (2.0 + r * 0.5) - offset.x * 0.8 + pos.y * 0.3);
+    globalWave = (globalWave + 1.0) * 0.5 * gustFactor; // normalize and apply gust
+
+    // Individual sway (per-blade variation)
+    float individualSway = sin(time * (2.0 + r * 0.5) + swayOffset + pos.y * 1.5);
+    individualSway = (individualSway + 1.0) * 0.5;
+
+    // Combine sway: make the global wave more dominant
+    float combinedSway = (globalWave * 0.8 + individualSway * 0.2) * windStrength;
+
+    // Bending factor based on position height
     float bendFactor = smoothstep(0.0, 1.0, pos.y);
 
-    float rotationAngle = r * 3.14159265 * 2.0; 
+    // Apply random rotation around Y-axis
+    float rotationAngle = r * 3.14159265 * 2.0;
     mat4 rotationMatrix = constructRotationMatrixY(rotationAngle);
 
+    // Apply rotation to the position
     vec3 rotatedPos = (rotationMatrix * vec4(pos, 1.0)).xyz;
 
-    float scaleFactor = r * 0.5 + 0.5; // Random scale between 0.8 and 1.0
+    // Scale grass based on wave and random factor
+    float scaleFactor = baseScale + globalWave * 0.05; // increased wave scale effect
     vec3 scaledPos = rotatedPos * scaleFactor;
 
-    vec3 displacedPos = scaledPos + vec3(sway * bendFactor, 0.0, 0.0);
+    // Displace based on sway and bending factor
+    vec3 displacedPos = scaledPos + vec3(combinedSway * bendFactor, 0.0, 0.0);
     displacedPos.xz += offset;
 
+    // Final position transformation
     gl_Position = vec4(displacedPos, 1.0) * uWorldTransform * uViewProj;
     fragTexCoord = texCoord;
 }

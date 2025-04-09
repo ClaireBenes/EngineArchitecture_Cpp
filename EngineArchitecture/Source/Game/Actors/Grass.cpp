@@ -10,10 +10,10 @@ void Grass::Start()
 
 void Grass::SetupComponents()
 {
-	mTransform->mScale = { 0.5f, 0.5f, 0.5f };
+	mTransform->mScale = { 5.5f, 2.5f, 5.5f };
 
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("grassBlade"));
-	//meshComponent->SetTextureTiling(15, 15);
+	meshComponent->SetTextureTiling(0.1, 0.001);
 
 	//BoxColliderComponent* boxComponent = new BoxColliderComponent(this);
 }

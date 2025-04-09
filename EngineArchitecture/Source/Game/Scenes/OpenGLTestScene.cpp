@@ -17,8 +17,10 @@ void OpenGLTestScene::Load()
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/grass.png", "floor");
     mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
 
-    mGrassMesh = AssetManager::LoadMesh("grassBlade.obj", "grassBlade");
+    mGrassMesh = AssetManager::LoadMesh("grass.obj", "grassBlade");
     mGrassMesh->SetShaderProgram(RendererGL::mGrassShaderProgram);
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/plant.jpg", "plant");
     mGrassMesh->AddTexture(AssetManager::GetTexture("floor"));
 }
 

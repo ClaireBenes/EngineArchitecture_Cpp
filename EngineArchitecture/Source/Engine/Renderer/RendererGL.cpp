@@ -269,8 +269,8 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         pMesh->GetVertexArray()->SetActive();
 
 
-        //glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, pMesh->GetVertexArray()->GetVerticeCount(), 10 * 10);
-        glDrawArrays(pMesh->GetShaderProgram().GetTesselation() ? GL_PATCHES : GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
+        glDrawArraysInstanced(GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount(), 10 * 10);
+        //glDrawArrays(pMesh->GetShaderProgram().GetTesselation() ? GL_PATCHES : GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
         glLineWidth(2);
         glPolygonMode(GL_FRONT_AND_BACK, Engine::mInWireframeMode ? GL_LINE : GL_FILL);
     }

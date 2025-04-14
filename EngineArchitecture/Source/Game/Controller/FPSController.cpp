@@ -19,8 +19,7 @@ FPSController::FPSController(Actor* pActor) : MoveComponent(pActor)
 	InputManager::Instance().SubscribeToKey(SDLK_DOWN, this);
 	InputManager::Instance().SubscribeToKey(SDLK_RIGHT, this);
 
-	InputManager::Instance().SubscribeToKey(SDLK_SPACE, this);
-	InputManager::Instance().SubscribeToMouse(static_cast<SDL_MouseButtonEvent>(SDL_BUTTON_LEFT), this);
+	InputManager::Instance().SubscribeToMouse(SDL_BUTTON_LEFT, this);
 }
 
 void FPSController::Update()
@@ -67,9 +66,6 @@ void FPSController::OnNotify(SDL_Event& pEvent)
 				case SDLK_q:
 					inputDirection.x -= 0.5f;
 					break;
-				case SDLK_SPACE:
- 					Projectile* newProjectile = new Projectile();
-					mOwner->mScene->AddActor(newProjectile);
 			}
 			break;
 		}
@@ -102,7 +98,6 @@ void FPSController::OnNotify(SDL_Event& pEvent)
 
 		case SDL_MOUSEBUTTONDOWN:
 		{
-
 			mousePress(pEvent.button);
 			break;
 		}

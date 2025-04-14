@@ -34,7 +34,7 @@ void InputManager::HandleInputs(SDL_Event& pEvent)
 		(*itKey ).second->NotifyListeners(pEvent);
 	}
 
-	std::map<Uint32, InputEvent*>::iterator itMouse = mMouseEvents.find(pEvent.button.type);
+	std::map<Uint32, InputEvent*>::iterator itMouse = mMouseEvents.find(pEvent.button.button);
 
 	if(itMouse != mMouseEvents.end())
 	{
@@ -53,17 +53,14 @@ void InputManager::SubscribeToKey(SDL_Keycode pKeyCode, IInputListener* pListene
 	mInputEvents[pKeyCode]->Subscribe(pListener);
 }
 
-void InputManager::SubscribeToMouse(SDL_MouseButtonEvent pKeyCode, IInputListener* pListener)
+void InputManager::SubscribeToMouse(Uint8 pButton, IInputListener* pListener)
 {
 	//The count function of map<T,U> returns 1 if the element exists, 0 otherwise
-	size_t hasKey = mMouseEvents.count(pKeyCode.type);
+	size_t hasButton = mMouseEvents.count(pButton);
 
-	//TODO : figure out how to bind the mouse (the subscribe type need to be at 1024)
-	Log::Info("Subscribe to " + std::to_string(pKeyCode.type));
-
-	if(hasKey == 0)
+	if(hasButton == 0)
 	{
-		mMouseEvents[pKeyCode.type] = new InputEvent();
+		mMouseEvents[pButton] = new InputEvent();
 	}
-	mMouseEvents[pKeyCode.type]->Subscribe(pListener);
+	mMouseEvents[pButton]->Subscribe(pListener);
 }

@@ -19,7 +19,7 @@ public:
 
 	void HandleInputs(SDL_Event& pEvent);
 	void SubscribeToKey(SDL_Keycode pKeyCode, IInputListener* pListener);
-	void SubscribeToMouse(SDL_MouseButtonEvent pKeyCode, IInputListener* pListener);
+	void SubscribeToMouse(Uint8 pButton, IInputListener* pListener);
 
 };
 

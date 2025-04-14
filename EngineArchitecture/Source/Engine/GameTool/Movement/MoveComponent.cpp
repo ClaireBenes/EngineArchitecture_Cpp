@@ -63,8 +63,12 @@ void MoveComponent::Update()
 		}
 	}
 
-	if (!Maths::NearZero(mSpeed.MagnitudeSqr() + mVelocity.MagnitudeSqr()))
+	if (!Maths::NearZero(mSpeed.Magnitude() + mVelocity.Magnitude()))
 	{
+		// Apply friction to velocity
+		mVelocity.x -= mVelocity.x * Time::deltaTime * mFriction;
+		mVelocity.z -= mVelocity.z * Time::deltaTime * mFriction;
+	
 		mOwner->mTransform->mPosition = GetDesiredPos();
 	}
 }
@@ -112,31 +116,40 @@ void MoveComponent::SetCollider(ColliderComponent* pCollider)
 
 ColliderComponent* MoveComponent::CheckCollision()
 {
-	if (mCollidercomponent != nullptr)
+	if (mCollidercomponent == nullptr)
 	{
-		PhysicManager& physicManager = PhysicManager::Instance();
-		ColliderComponent* collidedComponent = physicManager.Collision(mCollidercomponent);
-
-		if (collidedComponent != nullptr)
-		{
-			if (collidedComponent->GetOwner()->GetComponentOfType<MoveComponent>() != nullptr)
-			{
-				Vector3 collisionNormal = physicManager.GetCollisionNormal(mCollidercomponent, collidedComponent);;
-				float impactStrength = mVelocity.Dot(mVelocity, collisionNormal);
-
-				// Ensure some movement
-				if (impactStrength < 0.3f)
-				{
-					impactStrength = 0.2f; 
-				}
-
-				collidedComponent->GetOwner()->GetComponentOfType<MoveComponent>()->mVelocity += collisionNormal * impactStrength;
-
-				mVelocity *= mFriction;
-			}
-			return collidedComponent;		
-		}
 		return nullptr;
 	}
-	return nullptr;
+
+	PhysicManager& physicManager = PhysicManager::Instance();
+	ColliderComponent* collidedComponent = physicManager.Collision(mCollidercomponent);
+
+	if (collidedComponent == nullptr)
+	{
+		return nullptr;
+	}
+
+	Actor* otherActor = collidedComponent->GetOwner();
+	Actor* thisActor = mOwner;
+
+	// Apply simple collision response if other has MoveComponent
+	MoveComponent* otherMove = otherActor->GetComponentOfType<MoveComponent>();
+	if (otherMove != nullptr)
+	{
+		Vector3 collisionNormal = physicManager.GetCollisionNormal(mCollidercomponent, collidedComponent);
+		float impactStrength = mVelocity.Dot(mVelocity, collisionNormal);
+
+		// Clamp to ensure some movement
+		if (impactStrength < 0.3f)
+		{
+			impactStrength = 0.2f;
+		}
+
+		otherMove->mVelocity += collisionNormal * impactStrength;
+	}
+
+	// Notify both actors
+	thisActor->OnCollide(otherActor);
+
+	return collidedComponent;
 }

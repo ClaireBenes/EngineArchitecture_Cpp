@@ -137,5 +137,5 @@ void Actor::Update()
 
 void Actor::Destroy()
 {
-
+	mState = ActorState::Dead;
 }

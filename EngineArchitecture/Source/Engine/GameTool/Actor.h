@@ -42,6 +42,8 @@ public:
 	virtual void Update();
 	virtual void Destroy();
 
+	virtual void OnCollide(Actor* collidedActor) {};
+
 public:
 	//Variables
 	Transform* mTransform =  nullptr;

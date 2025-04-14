@@ -153,6 +153,7 @@ void FPSController::mousePress(SDL_MouseButtonEvent& b)
 	if(b.button == SDL_BUTTON_LEFT)
 	{
 		Projectile* newProjectile = new Projectile();
+		newProjectile->SetPlayer(mOwner);
 		mOwner->mScene->AddActor(newProjectile);
 	}
 }

@@ -37,6 +37,7 @@ protected:
 
 private:
 	std::vector<Actor*> mPendingActors {};
+	std::vector<Actor*> mActorsToDelete {};
 	bool mIsUpdatingActors = false;
 };
 

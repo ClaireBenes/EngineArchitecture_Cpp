@@ -12,7 +12,12 @@ public:
 	void SetupComponents() override;
 	void Update() override;
 
+	void OnCollide(Actor* collidedActor) override;
+
+	void SetPlayer(Actor* player);
+
 private:
 	MoveComponent* moveComponent = nullptr;
+	Actor* mPlayer = nullptr;
 };
 

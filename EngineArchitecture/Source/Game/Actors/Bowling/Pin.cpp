@@ -12,7 +12,6 @@
 void Pin::Start()
 {
 	mTransform->mScale = 0.3f;
-
 	Actor::Start();
 }
 

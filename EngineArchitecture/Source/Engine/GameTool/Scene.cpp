@@ -32,11 +32,15 @@ void Scene::Update(float deltaTime)
 	for(Actor* actor : mActors)
 	{
 		actor->Update();
+		if (actor->GetState() == ActorState::Dead)
+		{
+			mActorsToDelete.push_back(actor);
+		}
 	}
 
 	mIsUpdatingActors = false;
 
-	for(Actor * actor: mPendingActors)
+	for(Actor * actor : mPendingActors)
 	{
 		mActors.emplace_back(actor);
 		actor->Start();
@@ -45,6 +49,13 @@ void Scene::Update(float deltaTime)
 	mPendingActors.clear();
 
 	//delete them when in dead state
+	for (Actor* actor : mActorsToDelete)
+	{
+		RemoveActor(actor);
+		delete actor;
+	}
+
+	mActorsToDelete.clear();
 }
 
 void Scene::Render()

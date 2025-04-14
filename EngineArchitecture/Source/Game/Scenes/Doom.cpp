@@ -25,10 +25,10 @@ void Doom::Load()
     mFirstEnemy->AddTexture(AssetManager::GetTexture("coco"));
 
     //Caillou
-    Mesh* projectileMesh = AssetManager::LoadMesh("sphere.obj", "caillou");
+    Mesh* projectileMesh = AssetManager::LoadMesh("stone.obj", "caillou");
     projectileMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
-    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/bowlingBall.png", "rock");
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/stone.png", "rock");
     projectileMesh->AddTexture(AssetManager::GetTexture("rock"));
 }
 

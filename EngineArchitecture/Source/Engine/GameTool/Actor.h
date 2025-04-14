@@ -37,7 +37,7 @@ public:
 	ActorState GetState() const;
 	Vector3 GetPosition() const;
 
-	virtual void SetupComponents() = 0;
+	virtual void SetupComponents() {};
 	virtual void Start();
 	virtual void Update();
 	virtual void Destroy();

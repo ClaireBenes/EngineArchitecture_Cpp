@@ -5,17 +5,22 @@
 #include "Engine/Manager/InputManager.h"
 #include "Engine/Engine.h"
 
+#include "Game/Actors/Doom/Projectile.h"
+
 FPSController::FPSController(Actor* pActor) : MoveComponent(pActor)
 {
-	InputManager::Instance().SubscribeTo(SDLK_z, this);
-	InputManager::Instance().SubscribeTo(SDLK_q, this);
-	InputManager::Instance().SubscribeTo(SDLK_s, this);
-	InputManager::Instance().SubscribeTo(SDLK_d, this);
+	InputManager::Instance().SubscribeToKey(SDLK_z, this);
+	InputManager::Instance().SubscribeToKey(SDLK_q, this);
+	InputManager::Instance().SubscribeToKey(SDLK_s, this);
+	InputManager::Instance().SubscribeToKey(SDLK_d, this);
 
-	InputManager::Instance().SubscribeTo(SDLK_UP, this);
-	InputManager::Instance().SubscribeTo(SDLK_LEFT, this);
-	InputManager::Instance().SubscribeTo(SDLK_DOWN, this);
-	InputManager::Instance().SubscribeTo(SDLK_RIGHT, this);
+	InputManager::Instance().SubscribeToKey(SDLK_UP, this);
+	InputManager::Instance().SubscribeToKey(SDLK_LEFT, this);
+	InputManager::Instance().SubscribeToKey(SDLK_DOWN, this);
+	InputManager::Instance().SubscribeToKey(SDLK_RIGHT, this);
+
+	InputManager::Instance().SubscribeToKey(SDLK_SPACE, this);
+	InputManager::Instance().SubscribeToMouse(static_cast<SDL_MouseButtonEvent>(SDL_BUTTON_LEFT), this);
 }
 
 void FPSController::Update()
@@ -37,9 +42,9 @@ void FPSController::Update()
 
 void FPSController::OnNotify(SDL_Event& pEvent)
 {
+
 	switch (pEvent.type)
 	{
-
 		case SDL_KEYDOWN:
 		{
 			if (pEvent.key.repeat) return;
@@ -62,6 +67,9 @@ void FPSController::OnNotify(SDL_Event& pEvent)
 				case SDLK_q:
 					inputDirection.x -= 0.5f;
 					break;
+				case SDLK_SPACE:
+ 					Projectile* newProjectile = new Projectile();
+					mOwner->mScene->AddActor(newProjectile);
 			}
 			break;
 		}
@@ -91,6 +99,14 @@ void FPSController::OnNotify(SDL_Event& pEvent)
 			}
 			break;
 		}
+
+		case SDL_MOUSEBUTTONDOWN:
+		{
+
+			mousePress(pEvent.button);
+			break;
+		}
+
 		default:
 			break;
 	}
@@ -135,4 +151,13 @@ Vector3 FPSController::GetDesiredPos()
 	}
 
 	return newPosition;
+}
+
+void FPSController::mousePress(SDL_MouseButtonEvent& b)
+{
+	if(b.button == SDL_BUTTON_LEFT)
+	{
+		Projectile* newProjectile = new Projectile();
+		mOwner->mScene->AddActor(newProjectile);
+	}
 }

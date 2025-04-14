@@ -10,6 +10,8 @@ void Grass::Start()
 
 void Grass::SetupComponents()
 {
+	Actor::SetupComponents();
+
 	mTransform->mScale = { 5.5f, 2.5f, 5.5f };
 
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("grassBlade"));

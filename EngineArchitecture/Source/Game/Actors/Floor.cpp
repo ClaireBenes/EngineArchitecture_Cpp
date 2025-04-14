@@ -11,6 +11,8 @@ void Floor::Start()
 
 void Floor::SetupComponents()
 {
+	Actor::SetupComponents();
+
 	mTransform->mScale = { 5.0f, 1.0f, 20.0f };
 
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("cube"));

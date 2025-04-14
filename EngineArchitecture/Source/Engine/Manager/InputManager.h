@@ -2,9 +2,12 @@
 #include <map>
 #include "Engine/GameTool/Movement/Input/InputEvent.h"
 
+static bool operator<(const SDL_MouseButtonEvent& mb1, const SDL_MouseButtonEvent& mb2) { return mb1.type < mb2.type; }
+
 class InputManager
 {
 	std::map<SDL_Keycode, InputEvent*> mInputEvents;
+	std::map<Uint32, InputEvent*> mMouseEvents;
 
 public:
 	InputManager() = default;
@@ -15,6 +18,8 @@ public:
 	static InputManager& Instance();
 
 	void HandleInputs(SDL_Event& pEvent);
-	void SubscribeTo(SDL_Keycode pKeyCode, IInputListener* pListener);
+	void SubscribeToKey(SDL_Keycode pKeyCode, IInputListener* pListener);
+	void SubscribeToMouse(SDL_MouseButtonEvent pKeyCode, IInputListener* pListener);
+
 };
 

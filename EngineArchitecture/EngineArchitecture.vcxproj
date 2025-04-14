@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Game\Actors\Doom\Projectile.h" />
     <ClInclude Include="Source\Game\Actors\Grass.h" />
     <ClInclude Include="Source\Game\Scenes\OpenGLTestScene.h" />
     <ClInclude Include="Source\Game\Actors\Doom\FirstEnemy.h" />
@@ -80,6 +81,7 @@
     <ClInclude Include="Source\Game\Actors\Bowling\Pin.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\Actors\Doom\Projectile.cpp" />
     <ClCompile Include="Source\Game\Actors\Doom\FirstEnemy.cpp" />
     <ClCompile Include="Source\Game\Actors\Grass.cpp" />
     <ClCompile Include="Source\Game\Controller\FPSController.cpp" />

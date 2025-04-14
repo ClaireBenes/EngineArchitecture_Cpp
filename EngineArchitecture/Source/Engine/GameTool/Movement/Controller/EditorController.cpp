@@ -7,15 +7,15 @@
 
 EditorController::EditorController(Actor* pActor) : MoveComponent(pActor)
 {
-	InputManager::Instance().SubscribeTo(SDLK_z, this);
-	InputManager::Instance().SubscribeTo(SDLK_q, this);
-	InputManager::Instance().SubscribeTo(SDLK_s, this);
-	InputManager::Instance().SubscribeTo(SDLK_d, this);
+	InputManager::Instance().SubscribeToKey(SDLK_z, this);
+	InputManager::Instance().SubscribeToKey(SDLK_q, this);
+	InputManager::Instance().SubscribeToKey(SDLK_s, this);
+	InputManager::Instance().SubscribeToKey(SDLK_d, this);
 
-	InputManager::Instance().SubscribeTo(SDLK_UP, this);
-	InputManager::Instance().SubscribeTo(SDLK_LEFT, this);
-	InputManager::Instance().SubscribeTo(SDLK_DOWN, this);
-	InputManager::Instance().SubscribeTo(SDLK_RIGHT, this);
+	InputManager::Instance().SubscribeToKey(SDLK_UP, this);
+	InputManager::Instance().SubscribeToKey(SDLK_LEFT, this);
+	InputManager::Instance().SubscribeToKey(SDLK_DOWN, this);
+	InputManager::Instance().SubscribeToKey(SDLK_RIGHT, this);
 }
 
 void EditorController::Update()

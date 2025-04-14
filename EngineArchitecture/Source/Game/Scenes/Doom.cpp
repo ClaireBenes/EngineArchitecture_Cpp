@@ -23,6 +23,13 @@ void Doom::Load()
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/coco.png", "coco");
     mFirstEnemy->AddTexture(AssetManager::GetTexture("coco"));
+
+    //Caillou
+    Mesh* projectileMesh = AssetManager::LoadMesh("sphere.obj", "caillou");
+    projectileMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/bowlingBall.png", "rock");
+    projectileMesh->AddTexture(AssetManager::GetTexture("rock"));
 }
 
 void Doom::Start()

@@ -10,13 +10,13 @@
 
 PlatformerPlayerController::PlatformerPlayerController(Actor* pActor) : MoveComponent(pActor), mSpriteRenderComponent(nullptr)
 {
-	InputManager::Instance().SubscribeTo(SDLK_q, this);
-	InputManager::Instance().SubscribeTo(SDLK_d, this);
-	InputManager::Instance().SubscribeTo(SDLK_SPACE, this);
+	InputManager::Instance().SubscribeToKey(SDLK_q, this);
+	InputManager::Instance().SubscribeToKey(SDLK_d, this);
+	InputManager::Instance().SubscribeToKey(SDLK_SPACE, this);
 
-	InputManager::Instance().SubscribeTo(SDLK_LEFT, this);
-	InputManager::Instance().SubscribeTo(SDLK_RIGHT, this);
-	InputManager::Instance().SubscribeTo(SDLK_UP, this);
+	InputManager::Instance().SubscribeToKey(SDLK_LEFT, this);
+	InputManager::Instance().SubscribeToKey(SDLK_RIGHT, this);
+	InputManager::Instance().SubscribeToKey(SDLK_UP, this);
 }
 
 void PlatformerPlayerController::OnNotify(SDL_Event& pEvent)

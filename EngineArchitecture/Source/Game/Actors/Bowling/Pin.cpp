@@ -18,6 +18,8 @@ void Pin::Start()
 
 void Pin::SetupComponents()
 {
+	Actor::SetupComponents();
+
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("pin"));
 	boxColliderComponent = new BoxColliderComponent(this, Box { { -1.5, 9, -1.5 }, { 1.5, 0, 1.5 } });
 

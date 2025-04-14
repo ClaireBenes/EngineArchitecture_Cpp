@@ -1,6 +1,7 @@
 #include "DoomPlayer.h"
 
 #include "Game/Controller/FPSController.h"
+#include "Engine/Renderer/RendererGL.h"
 
 #include "Engine/Manager/AssetManager.h"
 #include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
@@ -15,8 +16,11 @@ void DoomPlayer::Start()
 
 void DoomPlayer::SetupComponents()
 {
+	Actor::SetupComponents();
+
 	mMoveComponent = new FPSController(this);
 
+	//UI
 	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/lancePierre.png", "lance");
 
 	SpriteRenderComponent* slingshot = new SpriteRenderComponent(this, AssetManager::GetTexture("lance"));

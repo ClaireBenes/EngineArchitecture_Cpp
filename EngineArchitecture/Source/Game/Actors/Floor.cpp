@@ -17,7 +17,7 @@ void Floor::SetupComponents()
 
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("cube"));
 	meshComponent->SetTextureIndex(mTextureIndex);
-	meshComponent->SetTextureTiling(15, 15);
+	meshComponent->SetTextureTiling(55, 55);
 
 	BoxColliderComponent* boxComponent = new BoxColliderComponent(this);
 }

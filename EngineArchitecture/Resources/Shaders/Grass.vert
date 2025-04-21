@@ -7,6 +7,9 @@ uniform mat4 uWorldTransform;
 uniform mat4 uViewProj;
 uniform float time;
 
+uniform int uGridSizeX;
+uniform int uGridSizeZ;
+
 out vec2 fragTexCoord;
 
 float rand(float n) 
@@ -29,10 +32,8 @@ mat4 constructRotationMatrixY(float angle)
 
 void main()
 {
-    int gridSizeX = 20;
-    int gridSizeZ = 10;
-    int x = gl_InstanceID % gridSizeX;
-    int z = gl_InstanceID / gridSizeX;
+    int x = gl_InstanceID % uGridSizeX;
+    int z = gl_InstanceID / uGridSizeZ;
 
     vec2 offset = vec2(float(x), float(z)) / 5; 
 

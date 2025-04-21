@@ -53,7 +53,7 @@ void OpenGLTestScene::Start()
 
     Grass* grass = new Grass();
     AddActor(grass);
-    grass->mTransform->mPosition = { 0, -2.5f, 10 };
+    grass->mTransform->mPosition = { 0, -2.5f, 2 };
 
     mCamera = new Camera();
     AddActor(mCamera);

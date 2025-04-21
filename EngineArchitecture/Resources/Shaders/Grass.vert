@@ -33,7 +33,7 @@ mat4 constructRotationMatrixY(float angle)
 void main()
 {
     int x = gl_InstanceID % uGridSizeX;
-    int z = gl_InstanceID / uGridSizeZ;
+    int z = gl_InstanceID / uGridSizeX;
 
     vec2 offset = vec2(float(x), float(z)) / 5; 
 

@@ -5,6 +5,8 @@
 #include "Engine/GameTool/Movement/MoveComponent.h"
 #include "Engine/GameTool/Collision/BoxColliderComponent.h"
 
+#include "Game/Actors/Doom/FirstEnemy.h"
+
 
 void Projectile::Start()
 {
@@ -52,6 +54,12 @@ void Projectile::Update()
 void Projectile::OnCollide(Actor* collidedActor)
 {
 	Actor::OnCollide(collidedActor);
+
+	FirstEnemy* enemy = dynamic_cast<FirstEnemy*>(collidedActor);
+	if (enemy)
+	{
+		enemy->TakeDamage(1.0f);
+	}
 
 	Destroy();
 }

@@ -100,13 +100,13 @@ void Bowling::Update(float deltaTime)
 	Scene::Update(deltaTime);
 
     //change camera placement
-    //mCameraDelay -= deltaTime;
-    //if (mCameraDelay <= 0.0f && !mCameraHasMoved)
-    //{
-    //    mCamera->mTransform->mPosition = { 0, -3, -9 };
-    //    mCamera->mTransform->RotatePitch(40);
-    //    mCameraHasMoved = true;
-    //}
+    mCameraDelay -= deltaTime;
+    if (mCameraDelay <= 0.0f && !mCameraHasMoved)
+    {
+        mCamera->mTransform->mPosition = { 0, -3, -9 };
+        mCamera->mTransform->RotatePitch(40);
+        mCameraHasMoved = true;
+    }
 }
 
 void Bowling::Render()

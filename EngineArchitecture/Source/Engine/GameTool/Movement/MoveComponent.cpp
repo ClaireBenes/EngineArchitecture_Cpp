@@ -150,6 +150,7 @@ ColliderComponent* MoveComponent::CheckCollision()
 
 	// Notify both actors
 	thisActor->OnCollide(otherActor);
+	otherActor->OnCollide(thisActor);
 
 	return collidedComponent;
 }

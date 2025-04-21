@@ -143,7 +143,7 @@
   <ItemGroup>
     <None Include="Resources\Shaders\Grass.vert" />
     <None Include="Resources\Shaders\Grass.frag" />
-    <None Include="Resources\Shaders\TesselationMesh.geo" />
+    <None Include="Resources\Shaders\TesselationMesh.geom" />
     <None Include="Resources\Shaders\Terrain.tese" />
     <None Include="Resources\Shaders\Terrain.tesc" />
     <None Include="Resources\Shaders\Terrain.frag" />

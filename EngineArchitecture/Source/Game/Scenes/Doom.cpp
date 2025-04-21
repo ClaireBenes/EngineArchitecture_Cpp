@@ -20,19 +20,14 @@ void Doom::Load()
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/grass.png", "floor");
     mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
 
-    //Grass
-    Mesh* grassMesh = AssetManager::LoadMesh("plant.obj", "grassBlade");
-    grassMesh->SetShaderProgram(RendererGL::mGrassShaderProgram);
-
-    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/plant3.png", "plant");
-    grassMesh->AddTexture(AssetManager::GetTexture("plant"));
-
     //FirstEnemy
     mFirstEnemy = AssetManager::LoadMesh("plane.obj", "plane");
     mFirstEnemy->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/coco.png", "coco");
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/CocoHurt.png", "cocoHurt");
     mFirstEnemy->AddTexture(AssetManager::GetTexture("coco"));
+    mFirstEnemy->AddTexture(AssetManager::GetTexture("cocoHurt"));
 
     //Caillou
     Mesh* projectileMesh = AssetManager::LoadMesh("stone.obj", "caillou");
@@ -66,10 +61,6 @@ void Doom::Start()
     AddActor(floor);
     floor->mTransform->mScale = Vector3(50, 0.01f, 50);
     floor->mTransform->mPosition = { 0, -2.5f, 10 };
-
-    Grass* grass = new Grass();
-    AddActor(grass);
-    grass->mTransform->mPosition = { 0, -2.5f, 10 };
 
     mPlayer = new DoomPlayer();
     AddActor(mPlayer);

@@ -17,7 +17,7 @@ void Platformer2D::Start()
 	platform->mTransform->mPosition.y += 200;
 
 	Bush* secondPlatform = new Bush();
-	secondPlatform->mTransform->mPosition = Vector2(150, 530);
+	secondPlatform->mTransform->mPosition = Vector2(platform->mTransform->mPosition.x - 250, 530);
 
 	AddActor(platform);
 	AddActor(secondPlatform);

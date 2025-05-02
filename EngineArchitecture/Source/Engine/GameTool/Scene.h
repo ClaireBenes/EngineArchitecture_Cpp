@@ -63,13 +63,15 @@ public:
 
 protected:
 	//Variables
+
 	Window* mWindow;
 	IRenderer* mRenderer;
 	std::vector<Actor*> mActors{};
 
 private:
-	std::vector<Actor*> mPendingActors {};
-	std::vector<Actor*> mActorsToDelete {};
-	bool mIsUpdatingActors = false;
+	std::vector<Actor*> mPendingActors {}; // Actors to be added after the current update loop (deferred to avoid modifying mActors mid-iteration)
+	std::vector<Actor*> mActorsToDelete {}; // Actors that have been marked for removal and will be deleted after update
+
+	bool mIsUpdatingActors = false;	// Flag indicating whether the scene is currently updating actors
 };
 

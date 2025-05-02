@@ -5,340 +5,188 @@
 
 #include <memory.h>
 
-// Row major order 4*4 matrix
+
+/*
+Matrix4 represents a 4x4 matrix used for transformations in 3D space.
+It supports various operations such as matrix multiplication, inversion, and extracting different transformation components (e.g., translation, rotation, scale).
+This matrix can also be constructed for specific transformations like scaling, rotating, and translating, as well as for creating projection matrices for rendering.
+ */
 class Matrix4
 {
 public:
-	float mat[4][4];
+	float mat[4][4]; // 4x4 matrix to store the transformation values
 
-	Matrix4()
-	{
-		*this = Matrix4::Identity;
-	}
+	/*
+	Default constructor for Matrix4.
+	Initializes the matrix as an identity matrix by default.
+	 */
+	Matrix4();
+	/*
+	 * Constructor that initializes the matrix with a 4x4 float array.
+	 * @param inMat A 4x4 matrix to initialize the object with.
+	 */
+	explicit Matrix4(float inMat[4][4]);
 
-	explicit Matrix4(float inMat[4][4])
-	{
-		memcpy(mat, inMat, 16 * sizeof(float));
+	/*
+	 * Returns the matrix as a const float pointer for direct access to the raw data.
+	 * @return A pointer to the raw float data of the matrix.
+	 */
+	const float* GetAsFloatPtr() const;
 
-	}
+	/*
+	 * Multiplies two matrices and returns the resulting matrix.
+	 * @param a The first matrix.
+	 * @param b The second matrix.
+	 * @return The result of multiplying matrix a with matrix b.
+	 */
+	friend Matrix4 operator*(const Matrix4& a, const Matrix4& b);
 
-	// Cast to a const float pointer
-	const float* GetAsFloatPtr() const
-	{
-		return reinterpret_cast<const float*>(&mat[0][0]);
-	}
+	/*
+	 * Multiplies the current matrix by another matrix (a * b).
+	 * @param right The matrix to multiply the current matrix by.
+	 * @return The updated matrix.
+	 */
+	Matrix4& operator*=(const Matrix4& right);
 
-	// Matrix multiplication (a * b)
-	friend Matrix4 operator*(const Matrix4& a, const Matrix4& b)
-	{
-		Matrix4 retVal;
-		// row 0
-		retVal.mat[0][0] =
-			a.mat[0][0] * b.mat[0][0] +
-			a.mat[0][1] * b.mat[1][0] +
-			a.mat[0][2] * b.mat[2][0] +
-			a.mat[0][3] * b.mat[3][0];
-
-		retVal.mat[0][1] =
-			a.mat[0][0] * b.mat[0][1] +
-			a.mat[0][1] * b.mat[1][1] +
-			a.mat[0][2] * b.mat[2][1] +
-			a.mat[0][3] * b.mat[3][1];
-
-		retVal.mat[0][2] =
-			a.mat[0][0] * b.mat[0][2] +
-			a.mat[0][1] * b.mat[1][2] +
-			a.mat[0][2] * b.mat[2][2] +
-			a.mat[0][3] * b.mat[3][2];
-
-		retVal.mat[0][3] =
-			a.mat[0][0] * b.mat[0][3] +
-			a.mat[0][1] * b.mat[1][3] +
-			a.mat[0][2] * b.mat[2][3] +
-			a.mat[0][3] * b.mat[3][3];
-
-		// row 1
-		retVal.mat[1][0] =
-			a.mat[1][0] * b.mat[0][0] +
-			a.mat[1][1] * b.mat[1][0] +
-			a.mat[1][2] * b.mat[2][0] +
-			a.mat[1][3] * b.mat[3][0];
-
-		retVal.mat[1][1] =
-			a.mat[1][0] * b.mat[0][1] +
-			a.mat[1][1] * b.mat[1][1] +
-			a.mat[1][2] * b.mat[2][1] +
-			a.mat[1][3] * b.mat[3][1];
-
-		retVal.mat[1][2] =
-			a.mat[1][0] * b.mat[0][2] +
-			a.mat[1][1] * b.mat[1][2] +
-			a.mat[1][2] * b.mat[2][2] +
-			a.mat[1][3] * b.mat[3][2];
-
-		retVal.mat[1][3] =
-			a.mat[1][0] * b.mat[0][3] +
-			a.mat[1][1] * b.mat[1][3] +
-			a.mat[1][2] * b.mat[2][3] +
-			a.mat[1][3] * b.mat[3][3];
-
-		// row 2
-		retVal.mat[2][0] =
-			a.mat[2][0] * b.mat[0][0] +
-			a.mat[2][1] * b.mat[1][0] +
-			a.mat[2][2] * b.mat[2][0] +
-			a.mat[2][3] * b.mat[3][0];
-
-		retVal.mat[2][1] =
-			a.mat[2][0] * b.mat[0][1] +
-			a.mat[2][1] * b.mat[1][1] +
-			a.mat[2][2] * b.mat[2][1] +
-			a.mat[2][3] * b.mat[3][1];
-
-		retVal.mat[2][2] =
-			a.mat[2][0] * b.mat[0][2] +
-			a.mat[2][1] * b.mat[1][2] +
-			a.mat[2][2] * b.mat[2][2] +
-			a.mat[2][3] * b.mat[3][2];
-
-		retVal.mat[2][3] =
-			a.mat[2][0] * b.mat[0][3] +
-			a.mat[2][1] * b.mat[1][3] +
-			a.mat[2][2] * b.mat[2][3] +
-			a.mat[2][3] * b.mat[3][3];
-
-		// row 3
-		retVal.mat[3][0] =
-			a.mat[3][0] * b.mat[0][0] +
-			a.mat[3][1] * b.mat[1][0] +
-			a.mat[3][2] * b.mat[2][0] +
-			a.mat[3][3] * b.mat[3][0];
-
-		retVal.mat[3][1] =
-			a.mat[3][0] * b.mat[0][1] +
-			a.mat[3][1] * b.mat[1][1] +
-			a.mat[3][2] * b.mat[2][1] +
-			a.mat[3][3] * b.mat[3][1];
-
-		retVal.mat[3][2] =
-			a.mat[3][0] * b.mat[0][2] +
-			a.mat[3][1] * b.mat[1][2] +
-			a.mat[3][2] * b.mat[2][2] +
-			a.mat[3][3] * b.mat[3][2];
-
-		retVal.mat[3][3] =
-			a.mat[3][0] * b.mat[0][3] +
-			a.mat[3][1] * b.mat[1][3] +
-			a.mat[3][2] * b.mat[2][3] +
-			a.mat[3][3] * b.mat[3][3];
-
-		return retVal;
-	}
-
-	Matrix4& operator*=(const Matrix4& right)
-	{
-		*this = *this * right;
-		return *this;
-	}
-
-	// Invert the matrix - super slow
+	/*
+	 Inverts the matrix (calculates its inverse).
+	 This operation is computationally expensive and should be used carefully.
+	 */
 	void Invert();
 
-	Vector3 GetTranslation() const
-	{
-		return Vector3(mat[3][0], mat[3][1], mat[3][2]);
-	}
+	/*
+	 * Extracts the translation vector from the matrix (the position).
+	 * @return A Vector3 representing the translation part of the matrix.
+	 */
+	Vector3 GetTranslation() const;
 
-	Vector3 GetXAxis() const
-	{
-		return Vector3::Normalize(Vector3(mat[0][0], mat[0][1], mat[0][2]));
-	}
+	/*
+	 * Extracts the X-axis direction vector from the matrix (usually for orientation).
+	 * @return A normalized Vector3 representing the X-axis.
+	 */
+	Vector3 GetXAxis() const;
+	/*
+	 * Extracts the Y-axis direction vector from the matrix (usually for orientation).
+	 * @return A normalized Vector3 representing the Y-axis.
+	 */
+	Vector3 GetYAxis() const;
+	/*
+	 * Extracts the Z-axis direction vector from the matrix (usually for orientation).
+	 * @return A normalized Vector3 representing the Z-axis.
+	 */
+	Vector3 GetZAxis() const;
 
-	Vector3 GetYAxis() const
-	{
-		return Vector3::Normalize(Vector3(mat[1][0], mat[1][1], mat[1][2]));
-	}
+	/*
+	 * Extracts the scaling factors from the matrix (how much the object is scaled along each axis).
+	 * @return A Vector3 representing the scale along each axis.
+	 */
+	Vector3 GetScale() const;
 
-	Vector3 GetZAxis() const
-	{
-		return Vector3::Normalize(Vector3(mat[2][0], mat[2][1], mat[2][2]));
-	}
+	/*
+	 * Creates a scaling matrix using individual scale factors for each axis.
+	 * @param xScale The scale factor along the X-axis.
+	 * @param yScale The scale factor along the Y-axis.
+	 * @param zScale The scale factor along the Z-axis.
+	 * @return A new Matrix4 representing the scaling transformation.
+	 */
+	static Matrix4 CreateScale(float xScale, float yScale, float zScale);
+	/*
+	 * Creates a scaling matrix using a Vector3 to specify the scale for each axis.
+	 * @param scaleVector The scaling vector containing the scale for X, Y, and Z axes.
+	 * @return A new Matrix4 representing the scaling transformation.
+	 */
+	static Matrix4 CreateScale(const Vector3& scaleVector);
+	/*
+	 * Creates a uniform scaling matrix where all axes are scaled by the same factor.
+	 * @param scale The uniform scaling factor.
+	 * @return A new Matrix4 representing the uniform scaling transformation.
+	 */
+	static Matrix4 CreateScale(float scale);
 
-	Vector3 GetScale() const
-	{
-		Vector3 retVal;
-		retVal.x = Vector3(mat[0][0], mat[0][1], mat[0][2]).Magnitude();
-		retVal.y = Vector3(mat[1][0], mat[1][1], mat[1][2]).Magnitude();
-		retVal.z = Vector3(mat[2][0], mat[2][1], mat[2][2]).Magnitude();
-		return retVal;
-	}
+	/*
+	 * Creates a rotation matrix for rotation around the X-axis.
+	 * @param theta The angle (in radians) to rotate around the X-axis.
+	 * @return A new Matrix4 representing the rotation transformation.
+	 */
+	static Matrix4 CreateRotationX(float theta);
+	/*
+	 * Creates a rotation matrix for rotation around the Y-axis.
+	 * @param theta The angle (in radians) to rotate around the Y-axis.
+	 * @return A new Matrix4 representing the rotation transformation.
+	 */
+	static Matrix4 CreateRotationY(float theta);
+	/*
+	 * Creates a rotation matrix for rotation around the Z-axis.
+	 * @param theta The angle (in radians) to rotate around the Z-axis.
+	 * @return A new Matrix4 representing the rotation transformation.
+	 */
+	static Matrix4 CreateRotationZ(float theta);
 
-	static Matrix4 CreateScale(float xScale, float yScale, float zScale)
-	{
-		float temp[4][4] =
-		{
-			{ xScale, 0.0f, 0.0f, 0.0f },
-			{ 0.0f, yScale, 0.0f, 0.0f },
-			{ 0.0f, 0.0f, zScale, 0.0f },
-			{ 0.0f, 0.0f, 0.0f, 1.0f }
-		};
-		return Matrix4(temp);
-	}
 
-	static Matrix4 CreateScale(const Vector3& scaleVector)
-	{
-		return CreateScale(scaleVector.x, scaleVector.y, scaleVector.z);
-	}
+	/*
+	 * Creates a translation matrix that moves an object by a given translation vector.
+	 * @param trans The translation vector to apply to the object.
+	 * @return A new Matrix4 representing the translation transformation.
+	 */
+	static Matrix4 CreateTranslation(const Vector3& trans);
 
-	static Matrix4 CreateScale(float scale)
-	{
-		return CreateScale(scale, scale, scale);
-	}
+	/*
+	 * Creates a simple orthogonal view projection matrix.
+	 * Typically used for 2D rendering or simple orthographic projections.
+	 * @param width The width of the viewport or projection.
+	 * @param height The height of the viewport or projection.
+	 * @return A new Matrix4 representing a simple orthogonal projection.
+	 */
+	static Matrix4 CreateSimpleViewProj(float width, float height);
 
-	static Matrix4 CreateRotationX(float theta)
-	{
-		float temp[4][4] =
-		{
-			{ 1.0f, 0.0f, 0.0f , 0.0f },
-			{ 0.0f, Maths::Cos(theta), -Maths::Sin(theta), 0.0f },
-			{ 0.0f, Maths::Sin(theta), Maths::Cos(theta), 0.0f },
-			{ 0.0f, 0.0f, 0.0f, 1.0f },
-		};
-		return Matrix4(temp);
-	}
+	/*
+	 * Creates a rotation matrix from a quaternion representation.
+	 * @param q The quaternion to convert to a matrix.
+	 * @return A new Matrix4 representing the rotation described by the quaternion.
+	 */
+	static Matrix4 CreateFromQuaternion(const Quaternion& q);
 
-	static Matrix4 CreateRotationY(float theta)
-	{
-		float temp[4][4] =
-		{
-			{ Maths::Cos(theta), 0.0f, Maths::Sin(theta), 0.0f },
-			{ 0.0f, 1.0f, 0.0f, 0.0f },
-			{ -Maths::Sin(theta), 0.0f, Maths::Cos(theta), 0.0f },
-			{ 0.0f, 0.0f, 0.0f, 1.0f },
-		};
-		return Matrix4(temp);
-	}
+	/*
+	 * Creates a "look-at" matrix for setting up camera orientation.
+	 * @param eye The position of the camera.
+	 * @param target The point the camera is looking at.
+	 * @param up The "up" vector that defines the orientation of the camera.
+	 * @return A new Matrix4 representing the view transformation for the camera.
+	 */
+	static Matrix4 CreateLookAt(const Vector3& eye, const Vector3& target, const Vector3& up);
 
-	static Matrix4 CreateRotationZ(float theta)
-	{
-		float temp[4][4] =
-		{
-			{ Maths::Cos(theta), -Maths::Sin(theta), 0.0f, 0.0f },
-			{ Maths::Sin(theta), Maths::Cos(theta), 0.0f, 0.0f },
-			{ 0.0f, 0.0f, 1.0f, 0.0f },
-			{ 0.0f, 0.0f, 0.0f, 1.0f },
-		};
-		return Matrix4(temp);
-	}
+	/*
+	 * Creates an orthographic projection matrix (used for 2D rendering).
+	 * @param width The width of the view frustum.
+	 * @param height The height of the view frustum.
+	 * @param near The near clipping plane.
+	 * @param far The far clipping plane.
+	 * @return A new Matrix4 representing the orthographic projection transformation.
+	 */
+	static Matrix4 CreateOrtho(float width, float height, float near, float far);
 
-	static Matrix4 CreateTranslation(const Vector3& trans)
-	{
-		float temp[4][4] =
-		{
-			{ 1.0f, 0.0f, 0.0f, 0.0f },
-			{ 0.0f, 1.0f, 0.0f, 0.0f },
-			{ 0.0f, 0.0f, 1.0f, 0.0f },
-			{ trans.x, trans.y, trans.z, 1.0f }
-		};
-		return Matrix4(temp);
-	}
+	/*
+	 * Creates a perspective projection matrix with a specified field of view.
+	 * @param fovY The vertical field of view (in radians).
+	 * @param width The width of the viewport.
+	 * @param height The height of the viewport.
+	 * @param near The near clipping plane.
+	 * @param far The far clipping plane.
+	 * @return A new Matrix4 representing the perspective projection transformation.
+	 */
+	static Matrix4 CreatePerspectiveFOV(float fovY, float width, float height, float near, float far);
 
-	static Matrix4 CreateSimpleViewProj(float width, float height)
-	{
-		float temp[4][4] =
-		{
-			{ 2.0f / width, 0.0f, 0.0f, 0.0f },
-			{ 0.0f, 2.0f / height, 0.0f, 0.0f },
-			{ 0.0f, 0.0f, 1.0f, 0.0f },
-			{ 0.0f, 0.0f, 1.0f, 1.0f }
-		};
-		return Matrix4(temp);
-	}
+	/*
+	 * Creates a perspective projection matrix with specified frustum values.
+	 * @param left The left boundary of the near plane.
+	 * @param right The right boundary of the near plane.
+	 * @param bottom The bottom boundary of the near plane.
+	 * @param top The top boundary of the near plane.
+	 * @param near The near clipping plane.
+	 * @param far The far clipping plane.
+	 * @return A new Matrix4 representing the perspective projection transformation.
+	 */
+	static Matrix4 CreatePerspective(float left, float right, float bottom, float top, float near, float far);
 
-	static Matrix4 CreateFromQuaternion(const Quaternion& q)
-	{
-		float mat[4][4];
-
-		mat[0][0] = 1.0f - 2.0f * q.y * q.y - 2.0f * q.z * q.z;
-		mat[0][1] = 2.0f * q.x * q.y + 2.0f * q.w * q.z;
-		mat[0][2] = 2.0f * q.x * q.z - 2.0f * q.w * q.y;
-		mat[0][3] = 0.0f;
-
-		mat[1][0] = 2.0f * q.x * q.y - 2.0f * q.w * q.z;
-		mat[1][1] = 1.0f - 2.0f * q.x * q.x - 2.0f * q.z * q.z;
-		mat[1][2] = 2.0f * q.y * q.z + 2.0f * q.w * q.x;
-		mat[1][3] = 0.0f;
-
-		mat[2][0] = 2.0f * q.x * q.z + 2.0f * q.w * q.y;
-		mat[2][1] = 2.0f * q.y * q.z - 2.0f * q.w * q.x;
-		mat[2][2] = 1.0f - 2.0f * q.x * q.x - 2.0f * q.y * q.y;
-		mat[2][3] = 0.0f;
-
-		mat[3][0] = 0.0f;
-		mat[3][1] = 0.0f;
-		mat[3][2] = 0.0f;
-		mat[3][3] = 1.0f;
-
-		return Matrix4(mat);
-	}
-
-	static Matrix4 CreateLookAt(const Vector3& eye, const Vector3& target, const Vector3& up)
-	{
-		Vector3 zaxis = Vector3::Normalize(target - eye);
-		Vector3 xaxis = Vector3::Normalize(Vector3::Cross(up, zaxis));
-		Vector3 yaxis = Vector3::Normalize(Vector3::Cross(zaxis, xaxis));
-		Vector3 trans;
-		trans.x = -Vector3::Dot(xaxis, eye);
-		trans.y = -Vector3::Dot(yaxis, eye);
-		trans.z = -Vector3::Dot(zaxis, eye);
-
-		float temp[4][4] =
-		{
-			{ xaxis.x, yaxis.x, zaxis.x, 0.0f },
-			{ xaxis.y, yaxis.y, zaxis.y, 0.0f },
-			{ xaxis.z, yaxis.z, zaxis.z, 0.0f },
-			{ trans.x, trans.y, trans.z, 1.0f }
-		};
-		return Matrix4(temp);
-	}
-
-	static Matrix4 CreateOrtho(float width, float height, float near, float far)
-	{
-		float temp[4][4] =
-		{
-			{ 1.0f / width, 0.0f, 0.0f, 0.0f },
-			{ 0.0f, 1.0f / height, 0.0f, 0.0f },
-			{ 0.0f, 0.0f, -2.0f / (far - near), 0.0f },
-			{ 0.0f, 0.0f, (far + near) / (near - far), 1.0f }
-		};
-		return Matrix4(temp);
-	}
-
-	static Matrix4 CreatePerspectiveFOV(float fovY, float width, float height, float near, float far)
-	{
-		float yScale = Maths::Cot(fovY / 2.0f);
-		float xScale = yScale * height / width;
-		float temp[4][4] =
-		{
-			{ xScale, 0.0f, 0.0f, 0.0f },
-			{ 0.0f, yScale, 0.0f, 0.0f },
-			{ 0.0f, 0.0f, far / (far - near), 1.0f },
-			{ 0.0f, 0.0f, -near * far / (far - near), 0.0f }
-		};
-		return Matrix4(temp);
-	}
-
-	static Matrix4 CreatePerspective(float left, float right, float bottom, float top, float near, float far)
-	{
-		float temp[4][4] =
-		{
-			{ 2 * near / (right - left), 0.0f, 0.0f, 0.0f },
-			{ 0.0f, 2 * near / (top - bottom), 0.0f, 0.0f },
-			{ (right + left) / (right - left), (top + bottom) / (top - bottom), (far + near) / (near - far), -1.0f },
-			{ 0.0f, 0.0f, 2 * near * far / (near - far), 0.0f }
-		};
-		return Matrix4(temp);
-	}
-
-	static const Matrix4 Identity;
+	static const Matrix4 Identity; // Constant for the identity matrix (no transformation)
 };

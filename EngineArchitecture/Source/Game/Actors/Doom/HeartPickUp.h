@@ -2,10 +2,7 @@
 
 #include "Engine/GameTool/Actor.h"
 
-class BoxColliderComponent;
-class MoveComponent;
-
-class EnemyProjectile : public Actor
+class HeartPickUp : public Actor
 {
 public:
 	void Start() override;
@@ -13,10 +10,9 @@ public:
 	void Update() override;
 
 	void OnCollide(Actor* collidedActor) override;
-	void SetEnemy(Actor* enemy);
+	void SetPlayer(Actor* player);
 
 private:
-	MoveComponent* mMoveComponent = nullptr;
-	Actor* mEnemy = nullptr;
+	Actor* mPlayer = nullptr;
 };
 

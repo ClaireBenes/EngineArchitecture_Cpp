@@ -15,6 +15,7 @@ public:
 	void Update() override;
 
 	void TakeDamage(int damage);
+	void RestoreHealth();
 
 private:
 	Camera* mCamera = nullptr;
@@ -22,7 +23,9 @@ private:
 	BoxColliderComponent* mBoxComponent = nullptr;
 
 	std::vector<Actor*> mAllHearts;
-	int mHealth = 3;
+
+	const int mMaxHealth = 3;
+	int mHealth = mMaxHealth;
 
 };
 

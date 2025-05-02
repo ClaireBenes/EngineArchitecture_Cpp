@@ -8,6 +8,7 @@
 #include "Game/Actors/Doom/DoomPlayer.h"
 #include "Game/Actors/Doom/FirstEnemy.h"
 #include "Game/Actors/Grass.h"
+#include "Game/Actors/Doom/HeartPickUp.h"
 
 #include "Engine/GameTool/Visual/Mesh/MeshComponent.h"
 
@@ -20,14 +21,16 @@ void Doom::Load()
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/grass.png", "floor");
     mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
 
-    //FirstEnemy
+    //Plane
     mFirstEnemy = AssetManager::LoadMesh("plane.obj", "plane");
     mFirstEnemy->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/coco.png", "coco");
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/CocoHurt.png", "cocoHurt");
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Heart.png", "heart");
     mFirstEnemy->AddTexture(AssetManager::GetTexture("coco"));
     mFirstEnemy->AddTexture(AssetManager::GetTexture("cocoHurt"));
+    mFirstEnemy->AddTexture(AssetManager::GetTexture("heart"));
 
     //Caillou
     Mesh* projectileMesh = AssetManager::LoadMesh("stone.obj", "caillou");
@@ -77,6 +80,11 @@ void Doom::Start()
     firstEnemy->mTransform->mPosition = { 0, 0, 10 };
     firstEnemy->SetPlayer(mPlayer);
     AddActor(firstEnemy);
+
+    HeartPickUp* heartPickUp = new HeartPickUp();
+    heartPickUp->mTransform->mPosition = { 10, -2.0f, 10 };
+    heartPickUp->SetPlayer(mPlayer);
+    AddActor(heartPickUp);
 }
 
 void Doom::Update(float deltaTime)

@@ -44,20 +44,18 @@ void DoomPlayer::SetupComponents()
 	cursor->SetNewDimensions(64, 64);
 
 	//Heart
-	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/Heart.png", "heart");
-
-	float yPos = -570;
+	float xPos = -570;
 	for (int i = 0; i < mHealth; i++)
 	{
 		Actor* heart = new Actor();
 		SpriteRenderComponent* heartImage = new SpriteRenderComponent(heart, AssetManager::GetTexture("heart"));
 		heartImage->SetNewDimensions(128, 128);
-		heartImage->SetNewPositions(yPos, 300);
+		heartImage->SetNewPositions(xPos, 300);
 
 		mScene->AddActor(heart);
 		mAllHearts.push_back(heart);
 
-		yPos += 100;
+		xPos += 100;
 	} 
 }
 
@@ -85,5 +83,22 @@ void DoomPlayer::TakeDamage(int damage)
 	if (mHealth <= 0)
 	{
 		//Destroy();
+	}
+}
+
+void DoomPlayer::RestoreHealth()
+{
+	if (mHealth < mMaxHealth)
+	{
+		mHealth += 1;
+
+		Actor* heart = new Actor();
+		SpriteRenderComponent* heartImage = new SpriteRenderComponent(heart, AssetManager::GetTexture("heart"));
+		heartImage->SetNewDimensions(128, 128);
+
+		heartImage->SetNewPositions(mAllHearts.back()->GetComponentOfType<SpriteRenderComponent>()->mRectangle.position.x + 100, 300);
+
+		mScene->AddActor(heart);
+		mAllHearts.push_back(heart);
 	}
 }

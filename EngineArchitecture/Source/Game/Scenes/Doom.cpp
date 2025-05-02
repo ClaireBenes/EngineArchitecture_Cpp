@@ -15,22 +15,22 @@
 void Doom::Load()
 {
     //Floor
-    mFloorMesh = AssetManager::LoadMesh("cube.obj", "cube");
-    mFloorMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
+    Mesh* floorMesh = AssetManager::LoadMesh("cube.obj", "cube");
+    floorMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/grass.png", "floor");
-    mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
+    floorMesh->AddTexture(AssetManager::GetTexture("floor"));
 
-    //Plane
-    mFirstEnemy = AssetManager::LoadMesh("plane.obj", "plane");
-    mFirstEnemy->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
+    //Plane (Enemy + heart Pick up)
+    Mesh* plane = AssetManager::LoadMesh("plane.obj", "plane");
+    plane->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/coco.png", "coco");
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/CocoHurt.png", "cocoHurt");
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Heart.png", "heart");
-    mFirstEnemy->AddTexture(AssetManager::GetTexture("coco"));
-    mFirstEnemy->AddTexture(AssetManager::GetTexture("cocoHurt"));
-    mFirstEnemy->AddTexture(AssetManager::GetTexture("heart"));
+    plane->AddTexture(AssetManager::GetTexture("coco"));
+    plane->AddTexture(AssetManager::GetTexture("cocoHurt"));
+    plane->AddTexture(AssetManager::GetTexture("heart"));
 
     //Caillou
     Mesh* projectileMesh = AssetManager::LoadMesh("stone.obj", "caillou");

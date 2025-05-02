@@ -31,12 +31,14 @@ void SpriteRenderComponent::Render(IRenderer* pRenderer)
 	{
 		return;
 	}
-	//relative transform position
-	Rectangle tempRectangle = mRectangle;
-	tempRectangle.position.x += mOwner->mTransform->mPosition.x;
-	tempRectangle.position.y += mOwner->mTransform->mPosition.y;
 
-	pRenderer->DrawSprite(*mOwner, mTexture, tempRectangle, mFlip);
+	// TODO : Need to uncomment this part for 2D games (so when using sprite outside UI) and replace mRectangle with temp
+	////relative transform position
+	//Rectangle tempRectangle = mRectangle;
+	//tempRectangle.position.x += mOwner->mTransform->mPosition.y;
+	//tempRectangle.position.y += mOwner->mTransform->mPosition.x;
+
+	pRenderer->DrawSprite(*mOwner, mTexture, mRectangle, mFlip);
 }
 
 RenderType SpriteRenderComponent::GetRenderType()

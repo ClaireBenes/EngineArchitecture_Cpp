@@ -5,12 +5,11 @@
 #include "Engine/GameTool/Collision/BoxColliderComponent.h"
 #include "Engine/GameTool/Movement/MoveComponent.h"
 
-#include "Game/Actors/Doom/Projectile.h"
+#include "Game/Actors/Doom/EnemyProjectile.h"
 
 void FirstEnemy::Start()
 {
 	mTransform->mScale = { 1.0f, 1.0f, 1.8f };
-	mTransform->RotatePitch(90);
 
 	Actor::Start();
 }
@@ -21,10 +20,10 @@ void FirstEnemy::SetupComponents()
 
 	mMeshComponent = new MeshComponent(this, AssetManager::GetMesh("plane"));
 	mMeshComponent->SetTextureIndex(mTextureIndex);
-	boxComponent = new BoxColliderComponent(this, {{ -1, -1.8, -0.5 }, { 1, 1.8, 0.5 }});
+	mBoxComponent = new BoxColliderComponent(this, {{ -1, -1.8, -0.5 }, { 1, 1.8, 0.5 }});
 
 	moveComponent = new MoveComponent(this);
-	moveComponent->SetCollider(boxComponent);
+	moveComponent->SetCollider(mBoxComponent);
 	moveComponent->mGravityDirection = -Vector3::Up * 0.3;
 	moveComponent->mFriction = 7.0f;
 }
@@ -41,6 +40,17 @@ void FirstEnemy::Update()
 
 		mTransform->LookAt(playerPos);
 		mTransform->RotatePitch(-90);
+	}
+
+	//Shooting player 
+	mCurrentShootingDelay -= Time::deltaTime;
+	if (mCurrentShootingDelay <= 0.0f)
+	{
+		EnemyProjectile* newProjectile = new EnemyProjectile();
+		newProjectile->SetEnemy(this);
+		mScene->AddActor(newProjectile);
+
+		mCurrentShootingDelay = mShootingDelay;
 	}
 
 	//Damage

@@ -21,17 +21,22 @@ public:
 	void TakeDamage(float damage);
 
 private:
-	BoxColliderComponent* boxComponent = nullptr;
+	BoxColliderComponent* mBoxComponent = nullptr;
 	MeshComponent* mMeshComponent = nullptr;
 	MoveComponent* moveComponent = nullptr;
 	DoomPlayer* mPlayer = nullptr;
 
 	size_t mTextureIndex = 0;
 
+	//damage
 	const float mDamageDelay = 0.3f;
 	float mCurrentDamageDelay = mDamageDelay;
 	float mHealth = 5.0f;
 
 	bool mIsTakingDamage = false;
+
+	//shooting
+	const float mShootingDelay = 1.0f;
+	float mCurrentShootingDelay = mShootingDelay;
 };
 

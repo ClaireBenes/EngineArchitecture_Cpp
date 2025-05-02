@@ -35,15 +35,14 @@ void Projectile::SetupComponents()
 
 	if (mPlayer != nullptr)
 	{
-		moveComponent = new MoveComponent(this);
-		moveComponent->SetCollider(boxComponent);
+		mMoveComponent = new MoveComponent(this);
+		mMoveComponent->SetCollider(boxComponent);
 
 		Vector3 speed = mPlayer->mTransform->Forward() * 20.0f;
 		Vector3 force = mPlayer->mTransform->Forward() * 0.5f;
-		moveComponent->SetSpeed(speed);
-		moveComponent->AddForce(force);
+		mMoveComponent->SetSpeed(speed);
+		mMoveComponent->AddForce(force);
 	}
-
 }
 
 void Projectile::Update()

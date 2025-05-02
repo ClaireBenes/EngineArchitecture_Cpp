@@ -36,6 +36,13 @@ void Doom::Load()
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/stone.png", "rock");
     projectileMesh->AddTexture(AssetManager::GetTexture("rock"));
 
+    //Gyroid
+    Mesh* enemyProjectileMesh = AssetManager::LoadMesh("gyroid.obj", "gyroid");
+    enemyProjectileMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Gyroid.png", "gyroidTex");
+    enemyProjectileMesh->AddTexture(AssetManager::GetTexture("gyroidTex"));
+
     //Sky
     Mesh* skySphere = AssetManager::LoadMesh("sphere.obj", "sphere");
     skySphere->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
@@ -64,7 +71,7 @@ void Doom::Start()
 
     mPlayer = new DoomPlayer();
     AddActor(mPlayer);
-    mPlayer->mTransform->mPosition = { 0, 0, 0 };
+    mPlayer->mTransform->mPosition = { 0, 1.8f, 0 };
 
     FirstEnemy* firstEnemy = new FirstEnemy();
     firstEnemy->mTransform->mPosition = { 0, 0, 10 };

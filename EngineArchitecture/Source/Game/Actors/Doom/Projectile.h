@@ -17,7 +17,7 @@ public:
 	void SetPlayer(Actor* player);
 
 private:
-	MoveComponent* moveComponent = nullptr;
+	MoveComponent* mMoveComponent = nullptr;
 	Actor* mPlayer = nullptr;
 };
 

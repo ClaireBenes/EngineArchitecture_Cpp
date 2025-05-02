@@ -30,9 +30,9 @@ void EnemyProjectile::SetupComponents()
 	Actor::SetupComponents();
 
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("gyroid"));
-	//meshComponent->SetTextureTiling(0.1f, 0.1f);
+	meshComponent->SetTextureTiling(0.2f, 0.2f);
 
-	BoxColliderComponent* boxComponent = new BoxColliderComponent(this, { { -0.8f, -0.8f, -1.2f }, { 0.8f, 0.8f, 1.2f } });
+	BoxColliderComponent* boxComponent = new BoxColliderComponent(this, { { -0.8f, -0.8f, -0.8f }, { 0.8f, 0.8f, 0.8f } });
 
 	if (mEnemy != nullptr)
 	{

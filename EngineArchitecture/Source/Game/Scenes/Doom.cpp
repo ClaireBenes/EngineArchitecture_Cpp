@@ -40,7 +40,7 @@ void Doom::Load()
     Mesh* enemyProjectileMesh = AssetManager::LoadMesh("gyroid.obj", "gyroid");
     enemyProjectileMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
-    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Gyroid.png", "gyroidTex");
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Gyroid2.png", "gyroidTex");
     enemyProjectileMesh->AddTexture(AssetManager::GetTexture("gyroidTex"));
 
     //Sky

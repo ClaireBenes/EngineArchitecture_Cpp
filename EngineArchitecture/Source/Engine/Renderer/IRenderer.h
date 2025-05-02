@@ -42,7 +42,22 @@ public:
     virtual void DrawRect(const Rectangle& rRect, Color pColor) = 0;
     virtual void DrawRectLine(const Rectangle& rRect, Color pColor) = 0;
 
+    /*
+     * Draws a 2D sprite on the screen using the provided texture and rectangle.
+     * @param rOwner The owning actor of the sprite (used for context, not directly here).
+     * @param rTexture Pointer to the texture to render.
+     * @param rec Defines the position and size of the sprite on screen.
+     * @param flip Specifies sprite flipping (horizontal, vertical, etc.).
+     */
     virtual void DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle rec, Flip flip = Flip::None) = 0;
+
+    /* 
+    * Draws a mesh with a specific texture index and transformation.
+    * @param pMesh The mesh to be drawn.
+    * @param pTextureIndex Index of the mesh's texture to use.
+    * @param transform World transformation matrix.
+    * @param tiling Texture tiling to apply.
+    */ 
     virtual void DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transform, Vector2 tiling = Vector2::ONE) {};
 
     void AddRenderComponent(RenderComponent* pRenderComponent);

@@ -76,16 +76,18 @@ void Pong::Update(float deltaTime)
 	}
 }
 
-//Draw
-void Pong::Render()
-{
-	Color ballColor = { 100, 0, 200, 255 };
-	Color paddleColor = { 0, 0, 200, 255 };
 
-	mRenderer->DrawRect(mBall, ballColor );
-	mRenderer->DrawRect(mPaddleRight, paddleColor);
-	mRenderer->DrawRect(mPaddleLeft, paddleColor);
-}
+//Function has now be deleted when refactoring
+//Draw
+//void Pong::Render()
+//{
+//	Color ballColor = { 100, 0, 200, 255 };
+//	Color paddleColor = { 0, 0, 200, 255 };
+//
+//	mRenderer->DrawRect(mBall, ballColor );
+//	mRenderer->DrawRect(mPaddleRight, paddleColor);
+//	mRenderer->DrawRect(mPaddleLeft, paddleColor);
+//}
 
 //Input Handler
 //void Pong::OnInput(SDL_Event event)

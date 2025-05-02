@@ -11,7 +11,6 @@ public:
 	void Load() override;
 	void Start() override;
 	void Update(float deltaTime) override;
-	void Render() override;
 
 private:
 	DoomPlayer* mPlayer = nullptr;

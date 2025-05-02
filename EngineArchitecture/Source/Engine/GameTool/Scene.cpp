@@ -58,12 +58,6 @@ void Scene::Update(float deltaTime)
 	mActorsToDelete.clear();
 }
 
-void Scene::Render()
-{
-	// TODO: Erase this function.
-	//UI ?
-}
-
 void Scene::SetWindow(Window* pWindow)
 {
 	mWindow = pWindow;
@@ -93,7 +87,6 @@ void Scene::AddActor(Actor* pActor)
 		mActors.emplace_back(pActor);
 		pActor->Start();
 	}
-
 }
 
 void Scene::RemoveActor(Actor* pActor)

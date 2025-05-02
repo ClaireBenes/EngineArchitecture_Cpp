@@ -27,8 +27,3 @@ void Platformer2D::Update(float deltaTime)
 {
 	Scene::Update(deltaTime);
 }
-
-void Platformer2D::Render()
-{
-	Scene::Render();
-}

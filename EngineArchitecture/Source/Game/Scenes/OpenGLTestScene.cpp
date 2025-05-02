@@ -66,8 +66,3 @@ void OpenGLTestScene::Update(float deltaTime)
 {
     Scene::Update(deltaTime);
 }
-
-void OpenGLTestScene::Render()
-{
-    Scene::Render();
-}

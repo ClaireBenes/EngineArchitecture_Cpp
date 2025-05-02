@@ -108,8 +108,3 @@ void Bowling::Update(float deltaTime)
         mCameraHasMoved = true;
     }
 }
-
-void Bowling::Render()
-{
-	Scene::Render();
-}

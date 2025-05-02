@@ -91,8 +91,3 @@ void Doom::Update(float deltaTime)
 {
     Scene::Update(deltaTime);
 }
-
-void Doom::Render()
-{
-    Scene::Render();
-}

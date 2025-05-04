@@ -13,10 +13,19 @@ class Mesh;
 class RenderComponent;
 class DebugRenderInterface;
 
+/*
+IRenderer is an abstract base class for rendering systems. It defines methods for
+initializing, drawing, and managing graphics resources, which must be implemented
+by specific renderer classes (e.g., OpenGL, SDL).
+*/
 class IRenderer
 {
 public:
-    //to wrap SDL sprites flipping modes
+
+    /*
+     Enum to represent the different flipping modes for rendering sprites.
+     This allows flipping a sprite horizontally or vertically, or no flipping at all.
+     */
     enum class Flip
     {
         None = SDL_FLIP_NONE,
@@ -24,22 +33,60 @@ public:
         Vertical = SDL_FLIP_VERTICAL
     };
 
+    /*
+     * Enum representing the type of renderer (either SDL or OpenGL).
+     * This helps identify which underlying rendering system is being used.
+     */
     enum class RendererType
     {
         SDL,
         OPENGL
     };
 
+    // Destructor for IRenderer
     virtual ~IRenderer() = default;
 
+    /*
+     * Initializes the renderer with the provided window.
+     * @param rWindow The window that the renderer will be associated with.
+     * @return True if the initialization was successful, false otherwise.
+     */
     virtual bool Initialize(Window& rWindow) = 0;
+    /*
+     Prepares for drawing, called before rendering starts.
+     */
     virtual void BeginDraw() = 0;
+    /*
+     Draws the rendered objects to the screen.
+     This should be called after all draw calls have been issued.
+     */
     virtual void Draw() = 0;
+    /*
+     Completes the drawing process.
+     */
     virtual void EndDraw() = 0;
+    /*
+     * Closes the renderer and releases any allocated resources.
+     */
     virtual void Close() = 0;
+
+    /*
+     * Gets the type of the renderer being used.
+     * @return The renderer type (SDL or OpenGL).
+     */
     virtual RendererType GetType() = 0;
 
+    /*
+     * Draws a filled rectangle on the screen.
+     * @param rRect The rectangle defining the position and size of the rectangle.
+     * @param pColor The color of the rectangle.
+     */
     virtual void DrawRect(const Rectangle& rRect, Color pColor) = 0;
+    /*
+     * Draws only the outline (border) of a rectangle on the screen.
+     * @param rRect The rectangle defining the position and size of the rectangle.
+     * @param pColor The color of the rectangle's border.
+     */
     virtual void DrawRectLine(const Rectangle& rRect, Color pColor) = 0;
 
     /*
@@ -60,18 +107,39 @@ public:
     */ 
     virtual void DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transform, Vector2 tiling = Vector2::ONE) {};
 
+    /*
+     * Adds a render component to the list of components to be rendered.
+     * @param pRenderComponent The render component to be added.
+     */
     void AddRenderComponent(RenderComponent* pRenderComponent);
+    /*
+     * Removes a render component from the list of components to be rendered.
+     * @param pRenderComponent The render component to be removed.
+     */
     void RemoveRenderComponent(RenderComponent* pRenderComponent);
 
+    /*
+     * Adds a debug render component to the renderer.
+     * @param pDebugRender The debug render interface to be added.
+     */
     void AddDebugRender(DebugRenderInterface* pDebugRender);
+    /*
+     * Removes a debug render component from the renderer.
+     * @param pDebugRender The debug render interface to be removed.
+     */
     void RemoveDebugRender(DebugRenderInterface* pDebugRender);
 
+    /*
+     * Sets the view matrix for the renderer.
+     * This is usually used for camera transformations.
+     * @param pView The view transformation matrix (e.g., camera position and orientation).
+     */
     virtual void SetViewMatrix(const Matrix4& pView) {};
 
 protected:
-    std::vector<RenderComponent*> mViewportRenderComponents;
-    std::vector<RenderComponent*> mWorldRenderComponents;
-    std::vector<DebugRenderInterface*> mDebugRenders;
+    std::vector<RenderComponent*> mViewportRenderComponents; // List of render components associated with the viewport
+    std::vector<RenderComponent*> mWorldRenderComponents; // List of render components associated with the world (3D space)
+    std::vector<DebugRenderInterface*> mDebugRenders; // List of debug render components
 };
 
 

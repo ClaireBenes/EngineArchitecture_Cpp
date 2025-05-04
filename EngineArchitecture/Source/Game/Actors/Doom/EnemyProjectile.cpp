@@ -48,7 +48,7 @@ void EnemyProjectile::Update()
 {
 	Actor::Update();
 
-	mTransform->mRotation = Quaternion::Concatenate(mTransform->mRotation, Quaternion(mTransform->Up(), Maths::ToRad(8)));
+	mTransform->mRotation = Quaternion::Concatenate(mTransform->mRotation, Quaternion(mTransform->Up(), Maths::ToRad(360) * Time::deltaTime));
 }
 
 void EnemyProjectile::OnCollide(Actor* collidedActor)

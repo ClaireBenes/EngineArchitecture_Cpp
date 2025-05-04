@@ -9,6 +9,11 @@ class IRenderer;
 class Window;
 class Actor;
 
+/*
+ Base class representing a game scene that manages actors and rendering.
+ Scenes handle actor lifecycles (add, update, remove) and are tied to a specific window and renderer.
+ Derived classes should override Load and Start to define behavior.
+ */
 class Scene
 {
 public:
@@ -40,8 +45,21 @@ public:
 	virtual void Update(float deltaTime);
 
 	//Non virtual functions
+
+	/*
+	 * Sets the window associated with the scene.
+	 * @param pWindow Pointer to the Window instance.
+	 */
 	void SetWindow(Window* pWindow);
+	/*
+	 * Sets the renderer used by the scene.
+	 * @param pRenderer Pointer to the IRenderer implementation.
+	 */
 	void SetRenderer(IRenderer* pRenderer);
+	/*
+	 * Gets the renderer associated with the scene.
+	 * @return Pointer to the IRenderer instance used by the scene.
+	 */
 	IRenderer* GetRenderer();
 
 	/*
@@ -62,16 +80,14 @@ public:
 	void RemoveActor(Actor* pActor);
 
 protected:
-	//Variables
-
-	Window* mWindow;
-	IRenderer* mRenderer;
-	std::vector<Actor*> mActors{};
+	Window* mWindow; // Pointer to the window the scene uses
+	IRenderer* mRenderer; // Renderer responsible for drawing
+	std::vector<Actor*> mActors{}; // List of currently active actors
 
 private:
 	std::vector<Actor*> mPendingActors {}; // Actors to be added after the current update loop (deferred to avoid modifying mActors mid-iteration)
-	std::vector<Actor*> mActorsToDelete {}; // Actors that have been marked for removal and will be deleted after update
+	std::vector<Actor*> mActorsToDelete {}; // Actors marked for deletion after update
 
-	bool mIsUpdatingActors = false;	// Flag indicating whether the scene is currently updating actors
+	bool mIsUpdatingActors = false;	// Flag to prevent actor list modification during update
 };
 

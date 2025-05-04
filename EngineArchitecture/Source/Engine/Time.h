@@ -1,4 +1,11 @@
 #pragma once
+
+/*
+The Time class provides static utility functions and variables to manage
+frame timing, delta time computation, frame rate regulation, and tracking
+the elapsed game time. 
+It is designed to be a singleton-style class with only static members and no instances.
+*/
 class Time
 {
 public:
@@ -6,28 +13,37 @@ public:
 	Time(const Time&) = delete;
 	Time& operator=(const Time&) = delete;
 
-	//static function
+	/*
+	Computes the time elapsed since the last frame (delta time), clamps
+	it to a maximum to prevent instability, and stores it in `deltaTime`.
+	@return Delta time in milliseconds (clamped to MAX_DT).
+	*/
 	static unsigned int ComputeDeltaTime();
+	/*
+	Delays the frame if it finished too early, in order to maintain a
+	consistent frame rate defined by FPS.
+	*/
 	static void DelayTime();
+	/*
+	Returns the total time elapsed since the game started.
+	@return Elapsed game time in seconds.
+	*/
 	static float GetGameTime();
 
-	//static variable
+	/*
+	Delta time (in seconds) between the current and previous frame.
+	*/
 	static float deltaTime;
 
 private:
-	//static variable
-	const static unsigned int FPS = 60;
-	const static unsigned int FRAME_DELAY = 1000 / FPS;
-	//Maximum Delta Time
-	const static unsigned int MAX_DT = 50;
+	const static unsigned int FPS = 60; // Target frames per second
+	const static unsigned int FRAME_DELAY = 1000 / FPS; // Delay time per frame to maintain the target FPS
+	const static unsigned int MAX_DT = 50; // Maximum delta time in milliseconds to avoid big time jumps
 
-	//Time when current frame started
-	static unsigned int mFrameStart;
-	//Last frame start time 
-	static unsigned int mLastFrame;
-	//Time needed to run the loop 
-	static unsigned int mFrameTime;
-	//Time from game start
-	static float mGameTime;
+	static unsigned int mFrameStart; // Time at which the current frame started
+	static unsigned int mLastFrame; // Time at which the previous frame started
+	static unsigned int mFrameTime; // Duration taken to execute the current frame
+
+	static float mGameTime; // Total elapsed time since the game started
 };
 

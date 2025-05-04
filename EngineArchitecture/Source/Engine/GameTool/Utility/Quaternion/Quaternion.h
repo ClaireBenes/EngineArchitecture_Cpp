@@ -3,15 +3,10 @@
 #include "Engine/GameTool/Utility/Maths.h"
 #include "Engine/GameTool/Utility/Vector/Vector3.h"
 
-/**
-Quaternion class representing a 4D vector used for 3D rotations.
-
-This class supports:
-- Quaternion creation via axis-angle, Euler angles, and direct initialization.
-- Quaternion normalization, conjugation, and dot product.
-- Interpolation methods like Lerp and Slerp.
-- Rotation composition via Concatenate.
-- Conversion to and from rotation matrices.
+/*
+Quaternion represents a rotation in 3D space using four components (x, y, z, w).
+It supports construction from axis-angle, Euler angles, or component values,
+and provides utility functions for normalization, interpolation, and conversion to matrices.
  */
 class Quaternion
 {

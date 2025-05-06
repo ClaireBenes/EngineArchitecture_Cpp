@@ -3,14 +3,17 @@
 #include "Engine/Engine.h"
 #include "Engine/Renderer/RendererGL.h"
 #include "Engine/Manager/AssetManager.h"
+#include "Engine/GameTool/Visual/Mesh/MeshComponent.h"
 
 #include "Game/Actors/Floor.h"
+
 #include "Game/Actors/Doom/DoomPlayer.h"
 #include "Game/Actors/Doom/FirstEnemy.h"
-#include "Game/Actors/Grass.h"
-#include "Game/Actors/Doom/HeartPickUp.h"
 
-#include "Engine/GameTool/Visual/Mesh/MeshComponent.h"
+#include "Game/Actors/Doom/HeartPickUp.h"
+#include "Game/Actors/Doom/AmmoPickUp.h"
+
+
 
 void Doom::Load()
 {
@@ -90,6 +93,11 @@ void Doom::Start()
     heartPickUp->mTransform->mPosition = { 10, -2.0f, 10 };
     heartPickUp->SetPlayer(mPlayer);
     AddActor(heartPickUp);
+
+    AmmoPickUp* ammoPickUp = new AmmoPickUp();
+    ammoPickUp->mTransform->mPosition = { -5, -2.0f, 5 };
+    ammoPickUp->SetPlayer(mPlayer);
+    AddActor(ammoPickUp);
 }
 
 void Doom::Update(float deltaTime)

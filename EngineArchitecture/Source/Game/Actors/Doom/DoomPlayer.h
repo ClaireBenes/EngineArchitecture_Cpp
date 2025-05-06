@@ -22,7 +22,9 @@ public:
 	void AddHUDHeart(float xPos, float yPos = 300);
 	void AddHUDRock(float xPos, float yPos);
 
+	//Ammo
 	int GetAmmo();
+	void RestoreAmmo();
 	void Shoot();
 
 private:
@@ -33,10 +35,22 @@ private:
 	std::vector<Actor*> mAllHearts;
 	std::vector<Actor*> mAllAmmos;
 
+	//Heart
+	const int mHeartXOffset = 100;
+
 	const int mMaxHealth = 3;
 	int mHealth = mMaxHealth;
 
+	//Ammo
 	const int mAmmoPerLines = 10;
+	const int mAmmoXOffset = 30;
+	const int mAmmoYOffset = 40;
+
+	const int mAmmoXPos = -600;
+	const int mAmmoYPos = -320;
+
+	const int mAmmoToPickUp = 5;
+
 	const int mMaxAmmo = 20;
 	int mAmmo = mMaxAmmo;
 

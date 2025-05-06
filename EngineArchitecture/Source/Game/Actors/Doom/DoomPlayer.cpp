@@ -49,19 +49,16 @@ void DoomPlayer::SetupComponents()
 	{
 		AddHUDHeart(heartXPos);
 
-		heartXPos += 100;
+		heartXPos += mHeartXOffset;
 	} 
 
 	// Ammo
-	float AmmoXPos = -600;   // Starting X position
-	float AmmoYPos = -320;   // Starting Y position
-
 	for(int row = 0; row < (mAmmo / 10); ++row)
 	{
 		for(int col = 0; col < mAmmoPerLines; ++col)
 		{
-			float x = AmmoXPos + col * 30;
-			float y = AmmoYPos + row * 40; 
+			float x = mAmmoXPos + col * mAmmoXOffset;
+			float y = mAmmoYPos + row * mAmmoYOffset;
 
 			AddHUDRock(x, y);
 		}
@@ -101,7 +98,7 @@ void DoomPlayer::RestoreHealth()
 	{
 		mHealth += 1;
 
-		AddHUDHeart(mAllHearts.back()->GetComponentOfType<SpriteRenderComponent>()->mRectangle.position.x + 100);
+		AddHUDHeart(mAllHearts.back()->GetComponentOfType<SpriteRenderComponent>()->mRectangle.position.x + mHeartXOffset);
 	}
 }
 
@@ -131,6 +128,22 @@ void DoomPlayer::AddHUDRock(float xPos, float yPos)
 int DoomPlayer::GetAmmo()
 {
 	return mAmmo;
+}
+
+void DoomPlayer::RestoreAmmo()
+{
+	for(int i = 0; i < mAmmoToPickUp; ++i)
+	{
+		int col = (mAmmo + i) % mAmmoPerLines;
+		int row = (mAmmo + i) / mAmmoPerLines;
+
+		float x = mAmmoXPos + col * mAmmoXOffset;
+		float y = mAmmoYPos + row * mAmmoYOffset;
+
+		AddHUDRock(x, y);
+	}
+
+	mAmmo += mAmmoToPickUp;
 }
 
 void DoomPlayer::Shoot()

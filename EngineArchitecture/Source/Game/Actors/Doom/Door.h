@@ -14,13 +14,12 @@ public:
 	void OnCollide(Actor* collidedActor) override;
 	void SetPlayer(Actor* player);
 
-	float GetYawFromQuaternion(const Quaternion& q);
-
 private:
 	Actor* mPlayer = nullptr;
 	BoxColliderComponent* mBoxComponent = nullptr;
 
 	bool mIsturning = false;
+	bool mAlreadyTurned = false;
 	float mCurrentYaw = 0.0f; // degrees
 };
 

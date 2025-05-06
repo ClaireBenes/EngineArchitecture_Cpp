@@ -28,7 +28,7 @@ void Door::Update()
 {
 	Actor::Update();
 
-	if (mIsturning)
+	if (mIsturning && !mAlreadyTurned)
 	{
 		float delta = -2.0f;
 		mCurrentYaw += delta;
@@ -36,6 +36,12 @@ void Door::Update()
 		if (mCurrentYaw <= -90.0f)
 		{
 			delta -= (mCurrentYaw + 90.0f);
+
+			float yBox = mTransform->mScale.y;
+			mBoxComponent->mBox = Box { { 0, -1, 0 }, { 0.1, 1, 5.0 } };
+			mBoxComponent->OnStart();
+
+			mAlreadyTurned = true;
 			mIsturning = false;
 		}
 
@@ -48,7 +54,7 @@ void Door::OnCollide(Actor* collidedActor)
 	Actor::OnCollide(collidedActor);
 
 	DoomPlayer* player = dynamic_cast<DoomPlayer*>(collidedActor);
-	if (player)
+	if (player && !mAlreadyTurned)
 	{
 		mBoxComponent->OnEnd();
 		mIsturning = true;
@@ -58,12 +64,4 @@ void Door::OnCollide(Actor* collidedActor)
 void Door::SetPlayer(Actor* player)
 {
 	mPlayer = player;
-}
-
-float Door::GetYawFromQuaternion(const Quaternion& q)
-{
-	// Yaw (Y axis rotation)
-	float siny_cosp = 2 * (q.w * q.y + q.z * q.x);
-	float cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
-	return atan2(siny_cosp, cosy_cosp) * (180.0f / M_PI); // Convert to degrees
 }

@@ -17,7 +17,6 @@ void AmmoPickUp::SetupComponents()
 
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("plane"));
 	meshComponent->SetTextureIndex(3);
-	//meshComponent->SetTextureTiling(0.2f, 0.2f);
 
 	BoxColliderComponent* boxComponent = new BoxColliderComponent(this);
 }

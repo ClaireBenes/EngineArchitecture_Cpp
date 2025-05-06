@@ -204,6 +204,9 @@
     <ClInclude Include="Source\Game\Actors\Doom\AmmoPickUp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Actors\Doom\Door.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Engine.cpp">
@@ -381,6 +384,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Actors\Doom\AmmoPickUp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Actors\Doom\Door.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

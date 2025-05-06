@@ -12,7 +12,7 @@
 
 #include "Game/Actors/Doom/HeartPickUp.h"
 #include "Game/Actors/Doom/AmmoPickUp.h"
-
+#include "Game/Actors/Doom/Door.h"
 
 
 void Doom::Load()
@@ -53,6 +53,13 @@ void Doom::Load()
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Gyroid2.png", "gyroidTex");
     enemyProjectileMesh->AddTexture(AssetManager::GetTexture("gyroidTex"));
+
+    //Door
+    Mesh* doorMesh = AssetManager::LoadMesh("door.obj", "door");
+    doorMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/door.png", "doorTex");
+    doorMesh->AddTexture(AssetManager::GetTexture("doorTex"));
 
     //Sky
     Mesh* skySphere = AssetManager::LoadMesh("sphere.obj", "sphere");
@@ -98,6 +105,11 @@ void Doom::Start()
     ammoPickUp->mTransform->mPosition = { -5, -2.0f, 5 };
     ammoPickUp->SetPlayer(mPlayer);
     AddActor(ammoPickUp);
+
+    Door* door = new Door();
+    door->mTransform->mPosition = { 0, -0.5f, 5 };
+    door->SetPlayer(mPlayer);
+    AddActor(door);
 }
 
 void Doom::Update(float deltaTime)

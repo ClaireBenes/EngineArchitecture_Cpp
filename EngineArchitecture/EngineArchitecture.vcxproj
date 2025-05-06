@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Game\Actors\Doom\Door.h" />
     <ClInclude Include="Source\Game\Actors\Doom\AmmoPickUp.h" />
     <ClInclude Include="Source\Game\Actors\Doom\HeartPickUp.h" />
     <ClInclude Include="Source\Game\Actors\Doom\EnemyProjectile.h" />
@@ -84,6 +85,7 @@
     <ClInclude Include="Source\Game\Actors\Bowling\Pin.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\Actors\Doom\Door.cpp" />
     <ClCompile Include="Source\Game\Actors\Doom\AmmoPickUp.cpp" />
     <ClCompile Include="Source\Game\Actors\Doom\HeartPickUp.cpp" />
     <ClCompile Include="Source\Game\Actors\Doom\EnemyProjectile.cpp" />

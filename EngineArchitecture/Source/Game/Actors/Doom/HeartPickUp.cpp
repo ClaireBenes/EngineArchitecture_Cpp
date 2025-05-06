@@ -17,7 +17,6 @@ void HeartPickUp::SetupComponents()
 
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("plane"));
 	meshComponent->SetTextureIndex(2);
-	//meshComponent->SetTextureTiling(0.2f, 0.2f);
 
 	BoxColliderComponent* boxComponent = new BoxColliderComponent(this);
 }
@@ -41,6 +40,7 @@ void HeartPickUp::OnCollide(Actor* collidedActor)
 {
 	Actor::OnCollide(collidedActor);
 
+	// TODO : make sure health isn't full at first
 	DoomPlayer* player = dynamic_cast<DoomPlayer*>(collidedActor);
 	if (player)
 	{

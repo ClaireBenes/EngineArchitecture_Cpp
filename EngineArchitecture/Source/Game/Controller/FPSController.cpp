@@ -6,6 +6,7 @@
 #include "Engine/Engine.h"
 
 #include "Game/Actors/Doom/Projectile.h"
+#include "Game/Actors/Doom/DoomPlayer.h"
 
 FPSController::FPSController(Actor* pActor) : MoveComponent(pActor)
 {
@@ -20,6 +21,8 @@ FPSController::FPSController(Actor* pActor) : MoveComponent(pActor)
 	InputManager::Instance().SubscribeToKey(SDLK_RIGHT, this);
 
 	InputManager::Instance().SubscribeToMouse(SDL_BUTTON_LEFT, this);
+
+	mPlayer = static_cast<DoomPlayer*>(mOwner);
 }
 
 void FPSController::Update()
@@ -150,10 +153,16 @@ Vector3 FPSController::GetDesiredPos()
 
 void FPSController::mousePress(SDL_MouseButtonEvent& b)
 {
-	if(b.button == SDL_BUTTON_LEFT)
+	if(b.button == SDL_BUTTON_LEFT && mPlayer)
 	{
-		Projectile* newProjectile = new Projectile();
-		newProjectile->SetPlayer(mOwner);
-		mOwner->mScene->AddActor(newProjectile);
+		if(mPlayer->GetAmmo() > 0)
+		{
+			Projectile* newProjectile = new Projectile();
+			newProjectile->SetPlayer(mOwner);
+			mOwner->mScene->AddActor(newProjectile);
+
+			mPlayer->Shoot();
+		}
+
 	}
 }

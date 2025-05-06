@@ -44,19 +44,28 @@ void DoomPlayer::SetupComponents()
 	cursor->SetNewDimensions(64, 64);
 
 	//Heart
-	float xPos = -570;
+	float heartXPos = -570;
 	for (int i = 0; i < mHealth; i++)
 	{
-		Actor* heart = new Actor();
-		SpriteRenderComponent* heartImage = new SpriteRenderComponent(heart, AssetManager::GetTexture("heart"));
-		heartImage->SetNewDimensions(128, 128);
-		heartImage->SetNewPositions(xPos, 300);
+		AddHUDHeart(heartXPos);
 
-		mScene->AddActor(heart);
-		mAllHearts.push_back(heart);
-
-		xPos += 100;
+		heartXPos += 100;
 	} 
+
+	// Ammo
+	float AmmoXPos = -600;   // Starting X position
+	float AmmoYPos = -320;   // Starting Y position
+
+	for(int row = 0; row < (mAmmo / 10); ++row)
+	{
+		for(int col = 0; col < mAmmoPerLines; ++col)
+		{
+			float x = AmmoXPos + col * 30;
+			float y = AmmoYPos + row * 40; 
+
+			AddHUDRock(x, y);
+		}
+	}
 }
 
 void DoomPlayer::Update()
@@ -92,13 +101,45 @@ void DoomPlayer::RestoreHealth()
 	{
 		mHealth += 1;
 
-		Actor* heart = new Actor();
-		SpriteRenderComponent* heartImage = new SpriteRenderComponent(heart, AssetManager::GetTexture("heart"));
-		heartImage->SetNewDimensions(128, 128);
+		AddHUDHeart(mAllHearts.back()->GetComponentOfType<SpriteRenderComponent>()->mRectangle.position.x + 100);
+	}
+}
 
-		heartImage->SetNewPositions(mAllHearts.back()->GetComponentOfType<SpriteRenderComponent>()->mRectangle.position.x + 100, 300);
+void DoomPlayer::AddHUDHeart(float xPos, float yPos)
+{
+	Actor* heart = new Actor();
+	SpriteRenderComponent* heartImage = new SpriteRenderComponent(heart, AssetManager::GetTexture("heart"));
+	heartImage->SetNewDimensions(121, 115);
 
-		mScene->AddActor(heart);
-		mAllHearts.push_back(heart);
+	heartImage->SetNewPositions(xPos, yPos);
+
+	mScene->AddActor(heart);
+	mAllHearts.push_back(heart);
+}
+
+void DoomPlayer::AddHUDRock(float xPos, float yPos)
+{
+	Actor* rock = new Actor();
+	SpriteRenderComponent* rockImage = new SpriteRenderComponent(rock, AssetManager::GetTexture("rockHUD"));
+	rockImage->SetNewDimensions(50, 50);
+	rockImage->SetNewPositions(xPos, yPos);
+
+	mScene->AddActor(rock);
+	mAllAmmos.push_back(rock);
+}
+
+int DoomPlayer::GetAmmo()
+{
+	return mAmmo;
+}
+
+void DoomPlayer::Shoot()
+{
+	mAmmo -= 1;
+
+	if(!mAllAmmos.empty())
+	{
+		mAllAmmos.back()->Destroy();
+		mAllAmmos.pop_back();
 	}
 }

@@ -3,6 +3,8 @@
 #include "Engine/GameTool/Movement/Input/IInputListener.h"
 #include "Engine/GameTool/Movement/MoveComponent.h"
 
+class DoomPlayer;
+
 class FPSController : public MoveComponent, public IInputListener
 {
 public:
@@ -17,5 +19,7 @@ public:
 private:
 	float mMovementSpeed = 5.0f;
 	Vector2 inputDirection = Vector2::ZERO;
+
+	DoomPlayer* mPlayer = nullptr;
 };
 

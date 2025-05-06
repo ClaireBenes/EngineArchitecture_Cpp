@@ -28,6 +28,7 @@ void Doom::Load()
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/coco.png", "coco");
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/CocoHurt.png", "cocoHurt");
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Heart.png", "heart");
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Heart2.png", "heartHUD");
     plane->AddTexture(AssetManager::GetTexture("coco"));
     plane->AddTexture(AssetManager::GetTexture("cocoHurt"));
     plane->AddTexture(AssetManager::GetTexture("heart"));
@@ -36,6 +37,7 @@ void Doom::Load()
     Mesh* projectileMesh = AssetManager::LoadMesh("stone.obj", "caillou");
     projectileMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Rock.png", "rockHUD");
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/stone.png", "rock");
     projectileMesh->AddTexture(AssetManager::GetTexture("rock"));
 

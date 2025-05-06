@@ -17,11 +17,13 @@ void Projectile::Start()
 		Vector3 forwardOffset = mPlayer->mTransform->Forward() * 2.0f;
 		mTransform->mPosition = mPlayer->mTransform->mPosition + forwardOffset;
 
-		mTransform->mPosition.y -= 0.2f;
-		mTransform->mPosition.x -= 0.1f;
+		mTransform->mPosition.y -= 0.5f;
+		//mTransform->mPosition.x -= 0.3f;
 	}
 
-	mTransform->mScale = 0.8f;
+	mTransform->mScale = 0.2f;
+
+	//mTransform->RotateYaw(20);
 }
 
 void Projectile::SetupComponents()

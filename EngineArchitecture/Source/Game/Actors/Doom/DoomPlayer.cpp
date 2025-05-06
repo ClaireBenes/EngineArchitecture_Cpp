@@ -108,7 +108,7 @@ void DoomPlayer::RestoreHealth()
 void DoomPlayer::AddHUDHeart(float xPos, float yPos)
 {
 	Actor* heart = new Actor();
-	SpriteRenderComponent* heartImage = new SpriteRenderComponent(heart, AssetManager::GetTexture("heart"));
+	SpriteRenderComponent* heartImage = new SpriteRenderComponent(heart, AssetManager::GetTexture("heartHUD"));
 	heartImage->SetNewDimensions(121, 115);
 
 	heartImage->SetNewPositions(xPos, yPos);

@@ -21,25 +21,28 @@ void Doom::Load()
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/grass.png", "floor");
     floorMesh->AddTexture(AssetManager::GetTexture("floor"));
 
-    //Plane (Enemy + heart Pick up)
+    //Caillou
+    Mesh* projectileMesh = AssetManager::LoadMesh("rock.obj", "caillou");
+    projectileMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Rock2.png", "rockHUD");
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Rock.png", "rock");
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/stone.png", "rockTex");
+    projectileMesh->AddTexture(AssetManager::GetTexture("rockTex"));
+
+    //Plane (Enemy + heart Pick up + ammo pick up)
     Mesh* plane = AssetManager::LoadMesh("plane.obj", "plane");
     plane->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/coco.png", "coco");
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/CocoHurt.png", "cocoHurt");
-    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Heart.png", "heart");
-    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Heart2.png", "heartHUD");
     plane->AddTexture(AssetManager::GetTexture("coco"));
     plane->AddTexture(AssetManager::GetTexture("cocoHurt"));
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Heart.png", "heart");
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Heart2.png", "heartHUD");
     plane->AddTexture(AssetManager::GetTexture("heart"));
-
-    //Caillou
-    Mesh* projectileMesh = AssetManager::LoadMesh("stone.obj", "caillou");
-    projectileMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
-
-    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Rock.png", "rockHUD");
-    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/stone.png", "rock");
-    projectileMesh->AddTexture(AssetManager::GetTexture("rock"));
+    plane->AddTexture(AssetManager::GetTexture("rock"));
 
     //Gyroid
     Mesh* enemyProjectileMesh = AssetManager::LoadMesh("gyroid.obj", "gyroid");

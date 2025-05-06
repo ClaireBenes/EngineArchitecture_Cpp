@@ -41,8 +41,3 @@ unsigned int VertexArray::GetVerticeCount() const
 {
 	return mVerticeCount;
 }
-
-//unsigned int VertexArray::GetIndicesCount() const
-//{
-//	return mIndexCount;
-//}

@@ -44,10 +44,6 @@ bool RendererGL::Initialize(Window& rWindow)
 {
     mWindow = &rWindow;
 
-    mSpriteViewProj = Matrix4::CreateSimpleViewProj(mWindow->GetDimensions().x, mWindow->GetDimensions().y);
-    mView = Matrix4::CreateLookAt(Vector3(0, 0, 10), Vector3::Zero, Vector3::Up);
-    mProjection = Matrix4::CreatePerspectiveFOV(70.0f, mWindow->GetDimensions().x, mWindow->GetDimensions().y, 0.01f, 10000.0f);
-
     //Setting OpenGL attributes
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
@@ -74,6 +70,10 @@ bool RendererGL::Initialize(Window& rWindow)
     {
         Log::Error(LogType::Video, "Failed to initialize SDL_Image");
     }
+
+    mSpriteViewProj = Matrix4::CreateSimpleViewProj(mWindow->GetDimensions().x, mWindow->GetDimensions().y);
+    mView = Matrix4::CreateLookAt(Vector3(0, 0, 10), Vector3::Zero, Vector3::Up);
+    mProjection = Matrix4::CreatePerspectiveFOV(70.0f, mWindow->GetDimensions().x, mWindow->GetDimensions().y, 0.01f, 10000.0f);
 
     mSpriteVao = new VertexArray(spriteVertices, 4);
     LoadShaders();

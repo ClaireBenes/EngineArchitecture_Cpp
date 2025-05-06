@@ -40,7 +40,6 @@ void HeartPickUp::OnCollide(Actor* collidedActor)
 {
 	Actor::OnCollide(collidedActor);
 
-	// TODO : make sure health isn't full at first
 	DoomPlayer* player = dynamic_cast<DoomPlayer*>(collidedActor);
 	if (player)
 	{

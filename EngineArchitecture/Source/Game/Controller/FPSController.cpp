@@ -25,6 +25,11 @@ FPSController::FPSController(Actor* pActor) : MoveComponent(pActor)
 	mPlayer = static_cast<DoomPlayer*>(mOwner);
 }
 
+FPSController::~FPSController()
+{
+	InputManager::Instance().UnSubscribeToAllEvents(this);
+}
+
 void FPSController::Update()
 {
 	MoveComponent::Update();
@@ -44,7 +49,6 @@ void FPSController::Update()
 
 void FPSController::OnNotify(SDL_Event& pEvent)
 {
-
 	switch (pEvent.type)
 	{
 		case SDL_KEYDOWN:
@@ -101,7 +105,7 @@ void FPSController::OnNotify(SDL_Event& pEvent)
 
 		case SDL_MOUSEBUTTONDOWN:
 		{
-			mousePress(pEvent.button);
+			OnMousePress(pEvent.button);
 			break;
 		}
 
@@ -151,9 +155,9 @@ Vector3 FPSController::GetDesiredPos()
 	return newPosition;
 }
 
-void FPSController::mousePress(SDL_MouseButtonEvent& b)
+void FPSController::OnMousePress(SDL_MouseButtonEvent& event)
 {
-	if(b.button == SDL_BUTTON_LEFT && mPlayer)
+	if(event.button == SDL_BUTTON_LEFT && mPlayer)
 	{
 		if(mPlayer->GetAmmo() > 0)
 		{
@@ -163,6 +167,5 @@ void FPSController::mousePress(SDL_MouseButtonEvent& b)
 
 			mPlayer->Shoot();
 		}
-
 	}
 }

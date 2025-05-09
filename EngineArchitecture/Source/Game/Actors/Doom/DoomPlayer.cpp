@@ -88,7 +88,7 @@ void DoomPlayer::TakeDamage(int damage)
 
 	if (mHealth <= 0)
 	{
-		//Destroy();
+		mScene->Reload();
 	}
 }
 

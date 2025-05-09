@@ -63,6 +63,12 @@ public:
 	IRenderer* GetRenderer();
 
 	/*
+	 * Reloads the scene.
+	 * This is safe to call during an update since the operation happens at the end of an update.
+	 */
+	void Reload();
+
+	/*
 	 * Adds a new actor to the scene.
 	 * If called during actor updates, the addition is deferred until the update cycle ends.
 	 * @param pActor Pointer to the actor to add.
@@ -89,5 +95,6 @@ private:
 	std::vector<Actor*> mActorsToDelete {}; // Actors marked for deletion after update
 
 	bool mIsUpdatingActors = false;	// Flag to prevent actor list modification during update
+	bool mShouldReload = false;
 };
 

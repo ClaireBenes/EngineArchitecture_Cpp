@@ -27,6 +27,13 @@ Scene::~Scene()
 
 void Scene::Update(float deltaTime)
 {
+	for(Actor * actor : mPendingActors)
+	{
+		mActors.emplace_back(actor);
+		actor->Start();
+	}
+	mPendingActors.clear();
+
 	mIsUpdatingActors = true;
 
 	for(Actor* actor : mActors)
@@ -40,22 +47,17 @@ void Scene::Update(float deltaTime)
 
 	mIsUpdatingActors = false;
 
-	for(Actor * actor : mPendingActors)
-	{
-		mActors.emplace_back(actor);
-		actor->Start();
-	}
-
-	mPendingActors.clear();
-
 	//delete them when in dead state
 	for (Actor* actor : mActorsToDelete)
 	{
 		RemoveActor(actor);
-		delete actor;
 	}
-
 	mActorsToDelete.clear();
+
+	if (mShouldReload)
+	{
+		Reload();
+	}
 }
 
 void Scene::SetWindow(Window* pWindow)
@@ -71,6 +73,38 @@ void Scene::SetRenderer(IRenderer* pRenderer)
 IRenderer* Scene::GetRenderer()
 {
 	return mRenderer;
+}
+
+void Scene::Reload()
+{
+	// Defer reload for the end of tick
+	if (mIsUpdatingActors)
+	{
+		mShouldReload = true;
+		return;
+	}
+
+	// Destroy all actors
+	while (!mActors.empty())
+	{
+		Actor* actor = mActors[mActors.size() - 1];
+		RemoveActor(actor);
+	}
+
+	// Destroy all pending actors
+	while (!mPendingActors.empty())
+	{
+		Actor* actor = mPendingActors[mPendingActors.size() - 1];
+		RemoveActor(actor);
+	}
+
+	// We don't need to destroy all actors-to-delete since it should be destroyed
+	// before the call in the Update.
+
+	// Reload scene
+	Start();
+
+	mShouldReload = false;
 }
 
 void Scene::AddActor(Actor* pActor)
@@ -95,6 +129,7 @@ void Scene::RemoveActor(Actor* pActor)
 	if (it != mPendingActors.end())
 	{
 		std::iter_swap(it, mPendingActors.end() - 1);
+		delete mPendingActors[mPendingActors.size() - 1];
 		mPendingActors.pop_back();
 	}
 
@@ -102,6 +137,7 @@ void Scene::RemoveActor(Actor* pActor)
 	if (it != mActors.end())
 	{
 		std::iter_swap(it, mActors.end() - 1);
+		delete mActors[mActors.size() - 1];
 		mActors.pop_back();
 	}
 }

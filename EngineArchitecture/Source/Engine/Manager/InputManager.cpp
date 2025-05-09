@@ -27,7 +27,6 @@ InputManager& InputManager::Instance()
 
 void InputManager::HandleInputs(SDL_Event& pEvent)
 {
-
 	std::map<SDL_Keycode, InputEvent*>::iterator itKey = mInputEvents.find(pEvent.key.keysym.sym);
 	if (itKey != mInputEvents.end())
 	{
@@ -35,7 +34,6 @@ void InputManager::HandleInputs(SDL_Event& pEvent)
 	}
 
 	std::map<Uint32, InputEvent*>::iterator itMouse = mMouseEvents.find(pEvent.button.button);
-
 	if(itMouse != mMouseEvents.end())
 	{
 		( *itMouse ).second->NotifyListeners(pEvent);
@@ -63,4 +61,16 @@ void InputManager::SubscribeToMouse(Uint8 pButton, IInputListener* pListener)
 		mMouseEvents[pButton] = new InputEvent();
 	}
 	mMouseEvents[pButton]->Subscribe(pListener);
+}
+
+void InputManager::UnSubscribeToAllEvents(IInputListener* pListener)
+{
+	for (auto& inputEventPair : mInputEvents)
+	{
+		inputEventPair.second->Unsubscribe(pListener);
+	}
+	for (auto& mouseEventPair : mMouseEvents)
+	{
+		mouseEventPair.second->Unsubscribe(pListener);
+	}
 }

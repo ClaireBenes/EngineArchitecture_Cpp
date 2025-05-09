@@ -9,12 +9,13 @@ class FPSController : public MoveComponent, public IInputListener
 {
 public:
 	FPSController(Actor* pActor);
+	~FPSController();
 
 	void Update() override;
 	void OnNotify(SDL_Event& pEvent) override;
 
 	Vector3 GetDesiredPos() override;
-	void mousePress(SDL_MouseButtonEvent& b);
+	void OnMousePress(SDL_MouseButtonEvent& b);
 
 private:
 	float mMovementSpeed = 5.0f;

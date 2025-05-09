@@ -53,5 +53,9 @@ public:
 	 */
 	void SubscribeToMouse(Uint8 pButton, IInputListener* pListener);
 
+	/*
+	 * TODO: Add comment
+	 */
+	void UnSubscribeToAllEvents(IInputListener* pListener);
 };
 

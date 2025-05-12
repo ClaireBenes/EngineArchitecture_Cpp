@@ -83,6 +83,7 @@
     <ClInclude Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.h" />
     <ClInclude Include="Source\Engine\Vertex\VertexArray.h" />
     <ClInclude Include="Source\Game\Actors\Bowling\Pin.h" />
+    <ClInclude Include="Source\Game\Actors\Doom\WinBox.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game\Actors\Doom\Door.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="Source\Engine\GameTool\Visual\Render\Sprite\SpriteRenderComponent.cpp" />
     <ClCompile Include="Source\Engine\Vertex\VertexArray.cpp" />
     <ClCompile Include="Source\Game\Actors\Bowling\Pin.cpp" />
+    <ClCompile Include="Source\Game\Actors\Doom\WinBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Grass.vert" />

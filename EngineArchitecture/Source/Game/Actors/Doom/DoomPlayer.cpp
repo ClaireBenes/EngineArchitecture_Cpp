@@ -52,6 +52,11 @@ void DoomPlayer::SetupComponents()
 	loseScreen = new SpriteRenderComponent(this, AssetManager::GetTexture("loseScreen"));
 	loseScreen->SetNewDimensions(0,0);
 
+	//Win Screen
+	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/WinScreen.png", "winScreen");
+	winScreen = new SpriteRenderComponent(this, AssetManager::GetTexture("winScreen"));
+	winScreen->SetNewDimensions(0, 0);
+
 	//Heart
 	float heartXPos = -570;
 	for (int i = 0; i < mHealth; i++)
@@ -82,9 +87,16 @@ void DoomPlayer::Update()
 	mCamera->mTransform->mRotation = mTransform->mRotation;
 }
 
-void DoomPlayer::EndGame()
+void DoomPlayer::EndGame(bool isWin)
 {
-	loseScreen->SetNewDimensions(mScene->GetWindow()->GetDimensions().x + 40, mScene->GetWindow()->GetDimensions().y + 40);
+	if (isWin) 
+	{
+		winScreen->SetNewDimensions(mScene->GetWindow()->GetDimensions().x + 40, mScene->GetWindow()->GetDimensions().y + 40);
+	}
+	else 
+	{
+		loseScreen->SetNewDimensions(mScene->GetWindow()->GetDimensions().x + 40, mScene->GetWindow()->GetDimensions().y + 40);
+	}
 
 	Engine::mIsGamePaused = true;
 	mIsGameEnd = true;
@@ -105,7 +117,7 @@ void DoomPlayer::TakeDamage(int damage)
 
 	if (mHealth <= 0)
 	{
-		EndGame();
+		EndGame(false);
 	}
 }
 

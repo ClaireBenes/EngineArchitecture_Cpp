@@ -15,7 +15,7 @@ public:
 	void SetupComponents() override;
 	void Update() override;
 
-	void EndGame();
+	void EndGame(bool isWin);
 
 	//Life
 	void TakeDamage(int damage);
@@ -39,6 +39,8 @@ private:
 
 	BoxColliderComponent* mBoxComponent = nullptr;
 	SpriteRenderComponent* loseScreen = nullptr;
+	SpriteRenderComponent* winScreen = nullptr;
+
 
 	std::vector<Actor*> mAllHearts;
 	std::vector<Actor*> mAllAmmos;

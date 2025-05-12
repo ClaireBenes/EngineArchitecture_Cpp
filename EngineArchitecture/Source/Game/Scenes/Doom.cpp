@@ -13,6 +13,7 @@
 #include "Game/Actors/Doom/HeartPickUp.h"
 #include "Game/Actors/Doom/AmmoPickUp.h"
 #include "Game/Actors/Doom/Door.h"
+#include "Game/Actors/Doom/WinBox.h"
 
 
 void Doom::Load()
@@ -110,6 +111,11 @@ void Doom::Start()
     door->mTransform->mPosition = { 0, -0.5f, 5 };
     door->SetPlayer(mPlayer);
     AddActor(door);
+
+    WinBox* winBox = new WinBox();
+    winBox->mTransform->mPosition = { 5, 0, 5 };
+    winBox->SetPlayer(mPlayer);
+    AddActor(winBox);
 }
 
 void Doom::Update(float deltaTime)

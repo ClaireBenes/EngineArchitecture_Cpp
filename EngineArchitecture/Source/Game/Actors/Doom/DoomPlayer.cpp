@@ -53,9 +53,9 @@ void DoomPlayer::SetupComponents()
 	loseScreen->SetNewDimensions(0,0);
 
 	//Win Screen
-	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/WinScreen.png", "winScreen");
-	winScreen = new SpriteRenderComponent(this, AssetManager::GetTexture("winScreen"));
+	winScreen = new SpriteRenderComponent(this, AssetManager::GetTexture("winScreenTex"));
 	winScreen->SetNewDimensions(0, 0);
+
 
 	//Heart
 	float heartXPos = -570;
@@ -89,6 +89,17 @@ void DoomPlayer::Update()
 
 void DoomPlayer::EndGame(bool isWin)
 {
+	for (int i = 0; i < mAllHearts.size(); i++)
+	{
+		mAllHearts[i]->Destroy();
+	}
+	for (int i = 0; i < mAllAmmos.size(); i++)
+	{
+		mAllAmmos[i]->Destroy();
+	}
+	mAllHearts.clear();
+	mAllAmmos.clear();
+
 	if (isWin) 
 	{
 		winScreen->SetNewDimensions(mScene->GetWindow()->GetDimensions().x + 40, mScene->GetWindow()->GetDimensions().y + 40);

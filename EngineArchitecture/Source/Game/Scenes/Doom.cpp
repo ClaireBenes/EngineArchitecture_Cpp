@@ -68,6 +68,9 @@ void Doom::Load()
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/sky.png", "skyTex");
     skySphere->AddTexture(AssetManager::GetTexture("skyTex"));
+
+    //EndScreen
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/WinScreen.png", "winScreenTex");
 }
 
 void Doom::Start()

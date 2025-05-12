@@ -69,8 +69,16 @@ void Doom::Load()
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/sky.png", "skyTex");
     skySphere->AddTexture(AssetManager::GetTexture("skyTex"));
 
+    //UI
     //EndScreen
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/WinScreen.png", "winScreenTex");
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/LoseScreen.png", "loseScreen");
+
+    //Cursor
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/whiteOutlineCrosshair.png", "crosshair");
+
+    //Lance Pierre
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/lancePierre.png", "lance");
 }
 
 void Doom::Start()

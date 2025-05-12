@@ -35,25 +35,20 @@ void DoomPlayer::SetupComponents()
 
 	// ---- UI ----
 	// Lance Pierre
-	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/lancePierre.png", "lance");
-
 	SpriteRenderComponent* slingshot = new SpriteRenderComponent(this, AssetManager::GetTexture("lance"));
 	slingshot->SetNewDimensions(500, 380);
 	slingshot->SetNewPositions(0, -300);
 
 	//Cursor
-	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/whiteOutlineCrosshair.png", "crosshair");
-
 	SpriteRenderComponent* cursor = new SpriteRenderComponent(this, AssetManager::GetTexture("crosshair"));
 	cursor->SetNewDimensions(64, 64);
 
 	//Lose Screen
-	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/LoseScreen.png", "loseScreen");
-	loseScreen = new SpriteRenderComponent(this, AssetManager::GetTexture("loseScreen"));
+	loseScreen = new SpriteRenderComponent(this, AssetManager::GetTexture("loseScreen"), 120);
 	loseScreen->SetNewDimensions(0,0);
 
 	//Win Screen
-	winScreen = new SpriteRenderComponent(this, AssetManager::GetTexture("winScreenTex"));
+	winScreen = new SpriteRenderComponent(this, AssetManager::GetTexture("winScreenTex"), 120);
 	winScreen->SetNewDimensions(0, 0);
 
 
@@ -89,17 +84,6 @@ void DoomPlayer::Update()
 
 void DoomPlayer::EndGame(bool isWin)
 {
-	for (int i = 0; i < mAllHearts.size(); i++)
-	{
-		mAllHearts[i]->Destroy();
-	}
-	for (int i = 0; i < mAllAmmos.size(); i++)
-	{
-		mAllAmmos[i]->Destroy();
-	}
-	mAllHearts.clear();
-	mAllAmmos.clear();
-
 	if (isWin) 
 	{
 		winScreen->SetNewDimensions(mScene->GetWindow()->GetDimensions().x + 40, mScene->GetWindow()->GetDimensions().y + 40);

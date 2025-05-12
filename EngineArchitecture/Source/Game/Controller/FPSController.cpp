@@ -8,6 +8,8 @@
 #include "Game/Actors/Doom/Projectile.h"
 #include "Game/Actors/Doom/DoomPlayer.h"
 
+#include "Engine/Engine.h"
+
 FPSController::FPSController(Actor* pActor) : MoveComponent(pActor)
 {
 	InputManager::Instance().SubscribeToKey(SDLK_z, this);
@@ -20,6 +22,7 @@ FPSController::FPSController(Actor* pActor) : MoveComponent(pActor)
 	InputManager::Instance().SubscribeToKey(SDLK_DOWN, this);
 	InputManager::Instance().SubscribeToKey(SDLK_RIGHT, this);
 
+	InputManager::Instance().SubscribeToKey(SDLK_RETURN, this);
 	InputManager::Instance().SubscribeToMouse(SDL_BUTTON_LEFT, this);
 
 	mPlayer = static_cast<DoomPlayer*>(mOwner);
@@ -73,6 +76,12 @@ void FPSController::OnNotify(SDL_Event& pEvent)
 				case SDLK_q:
 					inputDirection.x -= 0.5f;
 					break;
+				case SDLK_RETURN:
+					if (mPlayer->mIsGameEnd) 
+					{
+						mPlayer->mIsGameEnd = false;
+						mPlayer->mScene->Reload();
+					}
 			}
 			break;
 		}

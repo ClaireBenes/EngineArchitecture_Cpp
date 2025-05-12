@@ -6,6 +6,7 @@
 
 class FPSController;
 class BoxColliderComponent;
+class SpriteRenderComponent;
 
 class DoomPlayer : public Actor
 {
@@ -13,6 +14,8 @@ public:
 	void Start() override;
 	void SetupComponents() override;
 	void Update() override;
+
+	void EndGame();
 
 	//Life
 	void TakeDamage(int damage);
@@ -27,10 +30,15 @@ public:
 	void RestoreAmmo();
 	void Shoot();
 
+public:
+	bool mIsGameEnd = false;
+
 private:
 	Camera* mCamera = nullptr;
 	FPSController* mMoveComponent = nullptr;
+
 	BoxColliderComponent* mBoxComponent = nullptr;
+	SpriteRenderComponent* loseScreen = nullptr;
 
 	std::vector<Actor*> mAllHearts;
 	std::vector<Actor*> mAllAmmos;
@@ -53,6 +61,5 @@ private:
 
 	const int mMaxAmmo = 20;
 	int mAmmo = mMaxAmmo;
-
 };
 

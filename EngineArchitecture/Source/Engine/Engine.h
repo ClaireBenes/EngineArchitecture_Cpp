@@ -67,6 +67,7 @@ public:
 	// Static flags for debug and wireframe modes
 	static inline bool mInDebugMode = false;
 	static inline bool mInWireframeMode = false;
+	static inline bool mIsGamePaused = false;
 
 private:
 	std::string mTitle = "The Title"; // The window title.

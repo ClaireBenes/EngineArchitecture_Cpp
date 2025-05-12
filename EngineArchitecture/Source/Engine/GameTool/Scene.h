@@ -52,6 +52,11 @@ public:
 	 */
 	void SetWindow(Window* pWindow);
 	/*
+	 * Gets the window in which the scene in showing.
+	 * @return Pointer to the Window instance used by the scene.
+	 */
+	Window* GetWindow();
+	/*
 	 * Sets the renderer used by the scene.
 	 * @param pRenderer Pointer to the IRenderer implementation.
 	 */

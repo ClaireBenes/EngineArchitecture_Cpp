@@ -65,6 +65,11 @@ void Scene::SetWindow(Window* pWindow)
 	mWindow = pWindow;
 }
 
+Window* Scene::GetWindow()
+{
+	return mWindow;
+}
+
 void Scene::SetRenderer(IRenderer* pRenderer)
 {
 	mRenderer = pRenderer;

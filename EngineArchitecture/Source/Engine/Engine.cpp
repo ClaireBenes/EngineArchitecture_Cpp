@@ -73,7 +73,11 @@ void Engine::Loop()
     {
         Time::ComputeDeltaTime();
 
-        Update();
+        if (!mIsGamePaused) 
+        {
+            Update();
+        }
+
         CheckForInputs();
         Render();
 

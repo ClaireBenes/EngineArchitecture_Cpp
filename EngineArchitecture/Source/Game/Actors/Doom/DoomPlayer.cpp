@@ -7,12 +7,16 @@
 #include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
 #include "Engine/GameTool/Collision/BoxColliderComponent.h"
 
+#include "Engine/Engine.h"
+
 void DoomPlayer::Start()
 {
 	mCamera = new Camera();
 	mScene->AddActor(mCamera);
 
 	mTransform->mScale = { 1.0f, 1.5f, 1.8f };
+
+	Engine::mIsGamePaused = false;
 
 	Actor::Start();
 }
@@ -42,6 +46,11 @@ void DoomPlayer::SetupComponents()
 
 	SpriteRenderComponent* cursor = new SpriteRenderComponent(this, AssetManager::GetTexture("crosshair"));
 	cursor->SetNewDimensions(64, 64);
+
+	//Lose Screen
+	AssetManager::LoadTexture(*mScene->GetRenderer(), "Resources/Textures/LoseScreen.png", "loseScreen");
+	loseScreen = new SpriteRenderComponent(this, AssetManager::GetTexture("loseScreen"));
+	loseScreen->SetNewDimensions(0,0);
 
 	//Heart
 	float heartXPos = -570;
@@ -73,6 +82,14 @@ void DoomPlayer::Update()
 	mCamera->mTransform->mRotation = mTransform->mRotation;
 }
 
+void DoomPlayer::EndGame()
+{
+	loseScreen->SetNewDimensions(mScene->GetWindow()->GetDimensions().x + 40, mScene->GetWindow()->GetDimensions().y + 40);
+
+	Engine::mIsGamePaused = true;
+	mIsGameEnd = true;
+}
+
 void DoomPlayer::TakeDamage(int damage)
 {
 	mHealth -= damage;
@@ -88,7 +105,7 @@ void DoomPlayer::TakeDamage(int damage)
 
 	if (mHealth <= 0)
 	{
-		mScene->Reload();
+		EndGame();
 	}
 }
 

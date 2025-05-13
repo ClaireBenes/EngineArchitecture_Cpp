@@ -9,12 +9,16 @@
 void WinBox::Start()
 {
 	Actor::Start();
+
+	mTransform->mScale = { 0.5, 0.5, 0.5 };
+	mTransform->RotateYaw(20);
 }
 
 void WinBox::SetupComponents()
 {
 	Actor::SetupComponents();
 
+	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("bellBag"));
 	BoxColliderComponent* boxComponent = new BoxColliderComponent(this, Box { { -2, -2, -2 }, { 2, 2, 2 } } );
 }
 

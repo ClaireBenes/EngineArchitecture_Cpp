@@ -13,6 +13,8 @@ public:
 	void Update(float deltaTime) override;
 
 	void InitializeFloors();
+	void InitializeEnemies();
+	void InitializePickUps();
 
 private:
 	DoomPlayer* mPlayer = nullptr;

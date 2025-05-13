@@ -33,7 +33,7 @@ void Projectile::SetupComponents()
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("caillou"));
 	meshComponent->SetTextureTiling(0.1f, 0.1f);
 
-	BoxColliderComponent* boxComponent = new BoxColliderComponent(this, { { -0.3f, -0.3f, -0.3f }, { 0.3f, 0.3f, 0.3f } });
+	BoxColliderComponent* boxComponent = new BoxColliderComponent(this, { { -0.5f, -0.5f, -1.5f }, { 1.5f, 2.5f, 1.5f } });
 
 	if (mPlayer != nullptr)
 	{

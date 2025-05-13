@@ -55,6 +55,13 @@ void Doom::Load()
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/Gyroid2.png", "gyroidTex");
     enemyProjectileMesh->AddTexture(AssetManager::GetTexture("gyroidTex"));
 
+    //BellBag
+    Mesh* bellBagMesh = AssetManager::LoadMesh("bellBag.obj", "bellBag");
+    bellBagMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/bellBag.png", "bellBagTex");
+    bellBagMesh->AddTexture(AssetManager::GetTexture("bellBagTex"));
+
     //Door
     Mesh* doorMesh = AssetManager::LoadMesh("door.obj", "door");
     doorMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
@@ -100,21 +107,6 @@ void Doom::Start()
 
     InitializeFloors();
 
-    //FirstEnemy* firstEnemy = new FirstEnemy();
-    //firstEnemy->mTransform->mPosition = { 0, 0, 10 };
-    //firstEnemy->SetPlayer(mPlayer);
-    //AddActor(firstEnemy);
-
-    //HeartPickUp* heartPickUp = new HeartPickUp();
-    //heartPickUp->mTransform->mPosition = { 10, -2.0f, 10 };
-    //heartPickUp->SetPlayer(mPlayer);
-    //AddActor(heartPickUp);
-
-    //AmmoPickUp* ammoPickUp = new AmmoPickUp();
-    //ammoPickUp->mTransform->mPosition = { -5, -2.0f, 5 };
-    //ammoPickUp->SetPlayer(mPlayer);
-    //AddActor(ammoPickUp);
-
     Door* door = new Door();
     door->mTransform->mPosition = { -4.5f, -0.5f, 8.6f };
     door->SetPlayer(mPlayer);
@@ -126,9 +118,12 @@ void Doom::Start()
     AddActor(door2);
 
     WinBox* winBox = new WinBox();
-    winBox->mTransform->mPosition = { 1, 0, 41 };
+    winBox->mTransform->mPosition = { 1, -2.1f, 41 };
     winBox->SetPlayer(mPlayer);
     AddActor(winBox);
+
+    InitializeEnemies();
+    InitializePickUps();
 }
 
 void Doom::Update(float deltaTime)
@@ -196,4 +191,73 @@ void Doom::InitializeFloors()
     AddActor(wall9);
     wall9->mTransform->mScale = Vector3(0.5f, 2, 5);
     wall9->mTransform->mPosition = { 4, -0.5f, 43 };
+}
+
+void Doom::InitializeEnemies()
+{
+    FirstEnemy* firstEnemy = new FirstEnemy();
+    firstEnemy->mTransform->mPosition = { 2, 0, 23 };
+    firstEnemy->SetPlayer(mPlayer);
+    AddActor(firstEnemy);
+
+    FirstEnemy* Enemy2 = new FirstEnemy();
+    Enemy2->mTransform->mPosition = { 15, 0, 15 };
+    Enemy2->SetPlayer(mPlayer);
+    AddActor(Enemy2);
+
+    FirstEnemy* Enemy3 = new FirstEnemy();
+    Enemy3->mTransform->mPosition = { 10, 0, 35 };
+    Enemy3->SetPlayer(mPlayer);
+    AddActor(Enemy3);
+
+    FirstEnemy* Enemy4 = new FirstEnemy();
+    Enemy4->mTransform->mPosition = { -2, 0, 30 };
+    Enemy4->SetPlayer(mPlayer);
+    AddActor(Enemy4);
+}
+
+void Doom::InitializePickUps()
+{
+    // ---- AMMO ----
+    AmmoPickUp* ammoPickUp = new AmmoPickUp();
+    ammoPickUp->mTransform->mPosition = { -2.0f, -2.0f, 5.0f };
+    ammoPickUp->SetPlayer(mPlayer);
+    AddActor(ammoPickUp);
+
+    AmmoPickUp* ammoPickUp3 = new AmmoPickUp();
+    ammoPickUp3->mTransform->mPosition = { 15.0f, -2.0f, 20 };
+    ammoPickUp3->SetPlayer(mPlayer);
+    AddActor(ammoPickUp3);
+
+    AmmoPickUp* ammoPickUp4 = new AmmoPickUp();
+    ammoPickUp4->mTransform->mPosition = { 11, -2.0f, 30 };
+    ammoPickUp4->SetPlayer(mPlayer);
+    AddActor(ammoPickUp4);
+
+    // ---- HEART ----
+    HeartPickUp* heartPickUp = new HeartPickUp();
+    heartPickUp->mTransform->mPosition = { -2.0f, -2.0f, 23 };
+    heartPickUp->SetPlayer(mPlayer);
+    AddActor(heartPickUp);
+
+    HeartPickUp* heartPickUp2 = new HeartPickUp();
+    heartPickUp2->mTransform->mPosition = { 8, -2.0f, 15 };
+    heartPickUp2->SetPlayer(mPlayer);
+    AddActor(heartPickUp2);
+
+    HeartPickUp* heartPickUp3 = new HeartPickUp();
+    heartPickUp3->mTransform->mPosition = { 8, -2.0f, 28 };
+    heartPickUp3->SetPlayer(mPlayer);
+    AddActor(heartPickUp3);
+
+    // ---- AMMO ----
+    AmmoPickUp* ammoPickUp2 = new AmmoPickUp();
+    ammoPickUp2->mTransform->mPosition = { 5.0f, -2.0f, 23 };
+    ammoPickUp2->SetPlayer(mPlayer);
+    AddActor(ammoPickUp2);
+
+    AmmoPickUp* ammoPickUp5 = new AmmoPickUp();
+    ammoPickUp5->mTransform->mPosition = { 5.0f, -2.0f, 23 };
+    ammoPickUp5->SetPlayer(mPlayer);
+    AddActor(ammoPickUp5);
 }

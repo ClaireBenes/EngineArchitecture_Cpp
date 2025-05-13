@@ -36,7 +36,7 @@ private:
 	bool mIsTakingDamage = false;
 
 	//shooting
-	const float mShootingDelay = 1.0f;
+	const float mShootingDelay = 1.5f;
 	float mCurrentShootingDelay = mShootingDelay;
 };
 

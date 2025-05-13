@@ -21,7 +21,7 @@ void Door::SetupComponents()
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("door"));
 
 	float yBox = mTransform->mScale.y;
-	mBoxComponent = new BoxColliderComponent(this, Box { { 0, -yBox, -1.0 }, { 2, yBox, 1.0 } });
+	mBoxComponent = new BoxColliderComponent(this, Box { { 0, -yBox, -2.0 }, { 2, yBox, 2.0 } });
 }
 
 void Door::Update()

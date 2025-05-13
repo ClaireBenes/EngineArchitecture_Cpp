@@ -17,7 +17,8 @@ void Floor::SetupComponents()
 
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("cube"));
 	meshComponent->SetTextureIndex(mTextureIndex);
-	meshComponent->SetTextureTiling(55, 55);
+	meshComponent->SetTextureTiling(mTextureTiling.x, mTextureTiling.y);
+
 
 	BoxColliderComponent* boxComponent = new BoxColliderComponent(this);
 }
@@ -25,4 +26,9 @@ void Floor::SetupComponents()
 void Floor::SetTextureIndex(size_t newIndex)
 {
 	mTextureIndex = newIndex;
+}
+
+void Floor::SetTextureTiling(float x, float y)
+{
+	mTextureTiling = Vector2(x, y);
 }

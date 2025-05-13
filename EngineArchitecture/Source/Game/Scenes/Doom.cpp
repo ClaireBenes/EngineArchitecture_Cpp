@@ -94,37 +94,39 @@ void Doom::Start()
     MeshComponent* meshComponent = new MeshComponent(sky, AssetManager::GetMesh("sphere"));
     AddActor(sky);
 
-    Floor* floor = new Floor();
-    AddActor(floor);
-    floor->mTransform->mScale = Vector3(50, 0.01f, 50);
-    floor->mTransform->mPosition = { 0, -2.5f, 10 };
-
     mPlayer = new DoomPlayer();
     AddActor(mPlayer);
     mPlayer->mTransform->mPosition = { 0, 1.8f, 0 };
 
-    FirstEnemy* firstEnemy = new FirstEnemy();
-    firstEnemy->mTransform->mPosition = { 0, 0, 10 };
-    firstEnemy->SetPlayer(mPlayer);
-    AddActor(firstEnemy);
+    InitializeFloors();
 
-    HeartPickUp* heartPickUp = new HeartPickUp();
-    heartPickUp->mTransform->mPosition = { 10, -2.0f, 10 };
-    heartPickUp->SetPlayer(mPlayer);
-    AddActor(heartPickUp);
+    //FirstEnemy* firstEnemy = new FirstEnemy();
+    //firstEnemy->mTransform->mPosition = { 0, 0, 10 };
+    //firstEnemy->SetPlayer(mPlayer);
+    //AddActor(firstEnemy);
 
-    AmmoPickUp* ammoPickUp = new AmmoPickUp();
-    ammoPickUp->mTransform->mPosition = { -5, -2.0f, 5 };
-    ammoPickUp->SetPlayer(mPlayer);
-    AddActor(ammoPickUp);
+    //HeartPickUp* heartPickUp = new HeartPickUp();
+    //heartPickUp->mTransform->mPosition = { 10, -2.0f, 10 };
+    //heartPickUp->SetPlayer(mPlayer);
+    //AddActor(heartPickUp);
+
+    //AmmoPickUp* ammoPickUp = new AmmoPickUp();
+    //ammoPickUp->mTransform->mPosition = { -5, -2.0f, 5 };
+    //ammoPickUp->SetPlayer(mPlayer);
+    //AddActor(ammoPickUp);
 
     Door* door = new Door();
-    door->mTransform->mPosition = { 0, -0.5f, 5 };
+    door->mTransform->mPosition = { -4.5f, -0.5f, 8.6f };
     door->SetPlayer(mPlayer);
     AddActor(door);
 
+    Door* door2 = new Door();
+    door2->mTransform->mPosition = { -4.5f, -0.5f, 37.6f };
+    door2->SetPlayer(mPlayer);
+    AddActor(door2);
+
     WinBox* winBox = new WinBox();
-    winBox->mTransform->mPosition = { 5, 0, 5 };
+    winBox->mTransform->mPosition = { 1, 0, 41 };
     winBox->SetPlayer(mPlayer);
     AddActor(winBox);
 }
@@ -132,4 +134,66 @@ void Doom::Start()
 void Doom::Update(float deltaTime)
 {
     Scene::Update(deltaTime);
+}
+
+void Doom::InitializeFloors()
+{
+    Floor* floor = new Floor();
+    AddActor(floor);
+    floor->mTransform->mScale = Vector3(50, 0.01f, 50);
+    floor->mTransform->mPosition = { 0, -2.5f, 35 };
+
+    Floor* wall1 = new Floor();
+    wall1->SetTextureTiling(20, 30);
+    AddActor(wall1);
+    wall1->mTransform->mScale = Vector3(5, 2, 0.5f);
+    wall1->mTransform->mPosition = { 0, -0.5f, -5 };
+
+    Floor* wall2 = new Floor();
+    wall2->SetTextureTiling(20, 200);
+    AddActor(wall2);
+    wall2->mTransform->mScale = Vector3(0.5f, 2, 40);
+    wall2->mTransform->mPosition = { -5, -0.5f, 35 };
+
+    Floor* wall3 = new Floor();
+    wall3->SetTextureTiling(20, 35);
+    AddActor(wall3);
+    wall3->mTransform->mScale = Vector3(0.5f, 2, 7);
+    wall3->mTransform->mPosition = { 5, -0.5f, 2 };
+
+    Floor* wall4 = new Floor();
+    wall4->SetTextureTiling(20, 50);
+    AddActor(wall4);
+    wall4->mTransform->mScale = Vector3(10, 2, 0.5f);
+    wall4->mTransform->mPosition = { 8.1f, -0.5f, 9 };
+
+    Floor* wall5 = new Floor();
+    wall5->SetTextureTiling(20, 100);
+    AddActor(wall5);
+    wall5->mTransform->mScale = Vector3(0.5f, 2, 20);
+    wall5->mTransform->mPosition = { 18.1f, -0.5f, 18 };
+
+    Floor* wall6 = new Floor();
+    wall6->SetTextureTiling(20, 30);
+    AddActor(wall6);
+    wall6->mTransform->mScale = Vector3(5, 2, 0.5f);
+    wall6->mTransform->mPosition = { 0, -0.5f, 25 };
+
+    Floor* wall7 = new Floor();
+    wall7->SetTextureTiling(20, 50);
+    AddActor(wall7);
+    wall7->mTransform->mScale = Vector3(10, 2, 0.5f);
+    wall7->mTransform->mPosition = { 8.1f, -0.5f, 38 };
+
+    Floor* wall8 = new Floor();
+    wall8->SetTextureTiling(20, 30);
+    AddActor(wall8);
+    wall8->mTransform->mScale = Vector3(5, 2, 0.5f);
+    wall8->mTransform->mPosition = { 0, -0.5f, 45 };
+
+    Floor* wall9 = new Floor();
+    wall9->SetTextureTiling(20, 30);
+    AddActor(wall9);
+    wall9->mTransform->mScale = Vector3(0.5f, 2, 5);
+    wall9->mTransform->mPosition = { 4, -0.5f, 43 };
 }

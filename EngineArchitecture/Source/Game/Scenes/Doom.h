@@ -12,6 +12,8 @@ public:
 	void Start() override;
 	void Update(float deltaTime) override;
 
+	void InitializeFloors();
+
 private:
 	DoomPlayer* mPlayer = nullptr;
 };

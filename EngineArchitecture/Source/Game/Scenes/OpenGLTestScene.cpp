@@ -14,13 +14,10 @@
 void OpenGLTestScene::Load()
 {
     mFloorMesh = AssetManager::LoadMesh("plane.obj", "cube");
-    mFloorMesh->SetShaderProgram(RendererGL::mSandShaderProgram);
+    mFloorMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
-    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/sand.png", "sandTex");
-    mFloorMesh->AddTexture(AssetManager::GetTexture("sandTex"));
-
-    //AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/grass.png", "floor");
-    //mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/grass.png", "floor");
+    mFloorMesh->AddTexture(AssetManager::GetTexture("floor"));
 
     mGrassMesh = AssetManager::LoadMesh("plant.obj", "grassBlade");
     mGrassMesh->SetShaderProgram(RendererGL::mGrassShaderProgram);
@@ -34,15 +31,6 @@ void OpenGLTestScene::Load()
 
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/sky.png", "skyTex");
     skySphere->AddTexture(AssetManager::GetTexture("skyTex"));
-    
-    //Sand
-    //Mesh* sandMesh = AssetManager::LoadMesh("plane.obj", "plane");
-    //sandMesh->SetShaderProgram(RendererGL::mSandShaderProgram);
-
-    //AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/sand.png", "sandTex");
-    //AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/sandDisp.jpg", "sandDisp");
-    //sandMesh->AddTexture(AssetManager::GetTexture("sandTex"));
-    //sandMesh->AddTexture(AssetManager::GetTexture("sandDisp"));
 }
 
 void OpenGLTestScene::Start()
@@ -58,21 +46,15 @@ void OpenGLTestScene::Start()
     MeshComponent* meshComponent = new MeshComponent(sky, AssetManager::GetMesh("sphere"));
     AddActor(sky);
 
-    //Actor* sand = new Actor();
-    //sand->mTransform->mScale = Vector3(11, 0.0f, 10);
-
-    //MeshComponent* sandMeshComponent = new MeshComponent(sand, AssetManager::GetMesh("sphere"));
-    //AddActor(sand);
-
     Floor* floor = new Floor();
     floor->SetTextureTiling(2, 2);
     AddActor(floor);
     floor->mTransform->mScale = Vector3(11, 0.0f, 10);
     floor->mTransform->mPosition = { -0.6f + floor->mTransform->mScale.x, -2.5f, 11 };
 
-    //Grass* grass = new Grass();
-    //AddActor(grass);
-    //grass->mTransform->mPosition = { 0, -2.5f, 2 };
+    Grass* grass = new Grass();
+    AddActor(grass);
+    grass->mTransform->mPosition = { 0, -2.5f, 2 };
 
     mCamera = new Camera();
     AddActor(mCamera);

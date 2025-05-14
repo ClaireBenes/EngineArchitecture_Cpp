@@ -277,7 +277,7 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         pMesh->GetShaderProgram().setFloat("time", Time::GetGameTime());
 
         // ----- Wave -----
-        pMesh->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
+        //pMesh->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
         pMesh->GetShaderProgram().setFloat("uWaveStrength", 0.2f);
         pMesh->GetShaderProgram().setFloat("uRippleStrength", 0.1f);
 
@@ -285,8 +285,6 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         float rippleInterp = 0.5f * (1.0f + sin(Time::GetGameTime()));
         pMesh->GetShaderProgram().setFloat("uRippleInterp", rippleInterp);
         // ----- END WAVE -----
-
-
 
         Texture* t = pMesh->GetTexture(pTextureIndex);
         if (t)
@@ -310,9 +308,10 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         pMesh->GetShaderProgram().setInteger("uGridSizeZ", gridSizeZ);
         // ----- END GRASS -----
 
-        //glDrawArraysInstanced(GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount(), instanceCount);
+        glDrawArraysInstanced(GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount(), instanceCount);
+        /*
         glPatchParameteri(GL_PATCH_VERTICES, 3);
-        glDrawArrays(pMesh->GetShaderProgram().GetTesselation() ? GL_PATCHES : GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
+        glDrawArrays(pMesh->GetShaderProgram().GetTesselation() ? GL_PATCHES : GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());*/
         glLineWidth(2);
         glPolygonMode(GL_FRONT_AND_BACK, Engine::mInWireframeMode ? GL_LINE : GL_FILL);
     }

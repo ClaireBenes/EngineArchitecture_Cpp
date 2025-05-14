@@ -151,6 +151,14 @@
     <ClCompile Include="Source\Game\Actors\Doom\WinBox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Shaders\Sand.tese" />
+    <None Include="Resources\Shaders\Sand.tesc" />
+    <None Include="Resources\Shaders\Wave.vert" />
+    <None Include="Resources\Shaders\Wave.tesc" />
+    <None Include="Resources\Shaders\Wave.frag" />
+    <None Include="Resources\Shaders\Sand.vert" />
+    <None Include="Resources\Shaders\Sand.frag" />
+    <None Include="Resources\Shaders\Wave.tese" />
     <None Include="Resources\Shaders\Grass.vert" />
     <None Include="Resources\Shaders\Grass.frag" />
     <None Include="Resources\Shaders\TesselationMesh.geom" />

@@ -30,7 +30,7 @@ public:
 	 Binds the texture as the currently active OpenGL texture.
 	 Note: This only applies to OpenGL renderers.
 	 */
-	void SetActive() const;
+	void SetActive(int slot) const;
 
 	/*
 	 * Outputs the texture dimensions to the given references.

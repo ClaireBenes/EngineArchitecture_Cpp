@@ -27,9 +27,11 @@ constexpr unsigned int spriteIndices[] = {
 };
 
 Mesh* RendererGL::mCubeMesh = nullptr;
+
 ShaderProgram RendererGL::mSimpleMeshShaderProgram = ShaderProgram();
 ShaderProgram RendererGL::mTesselationMeshShaderProgram = ShaderProgram();
 ShaderProgram RendererGL::mGrassShaderProgram = ShaderProgram();
+ShaderProgram RendererGL::mSandShaderProgram = ShaderProgram();
 
 RendererGL::RendererGL() : mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr)
 {
@@ -159,6 +161,19 @@ void RendererGL::LoadShaders()
     grassFragShader.Load("Grass.frag", ShaderType::FRAGMENT);
 
     mGrassShaderProgram.Compose({ &grassVertexShader, &grassFragShader });
+
+    //Sand
+    Shader sandVertexShader = Shader();
+    Shader sandFragShader = Shader();
+    Shader sandControlShader = Shader();
+    Shader sandEvaluationShader = Shader();
+
+    sandVertexShader.Load("Sand.vert", ShaderType::VERTEX);
+    sandFragShader.Load("Sand.frag", ShaderType::FRAGMENT);
+    sandControlShader.Load("Sand.tesc", ShaderType::TESSELLATION_CONTROL);
+    sandEvaluationShader.Load("Sand.tese", ShaderType::TESSELLATION_EVALUATION);
+
+    mSandShaderProgram.Compose({ &sandVertexShader, &sandControlShader, &sandEvaluationShader, &sandFragShader });
 }
 
 void RendererGL::BeginDraw()
@@ -222,7 +237,7 @@ void RendererGL::DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle re
         0.0f));
 
     mSpriteShaderProgram.setMatrix4("uWorldTransform", screen);
-    rTexture->SetActive();
+    rTexture->SetActive(0);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
@@ -261,24 +276,43 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
 
         pMesh->GetShaderProgram().setFloat("time", Time::GetGameTime());
 
+        // ----- Wave -----
+        pMesh->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
+        pMesh->GetShaderProgram().setFloat("uWaveStrength", 0.2f);
+        pMesh->GetShaderProgram().setFloat("uRippleStrength", 0.1f);
+
+        // Smooth interpolation factor (optional: could use sin(time))
+        float rippleInterp = 0.5f * (1.0f + sin(Time::GetGameTime()));
+        pMesh->GetShaderProgram().setFloat("uRippleInterp", rippleInterp);
+        // ----- END WAVE -----
+
+
+
         Texture* t = pMesh->GetTexture(pTextureIndex);
         if (t)
         {
-            t->SetActive();
+            t->SetActive(0);
         }
 
         pMesh->GetVertexArray()->SetActive();
 
+        // ----- SAND -----
+        pMesh->GetShaderProgram().setFloat("uDisplacementStrength", 3.0f);
+        // ----- END SAND -----
 
+
+        // ----- GRASS -----
         int gridSizeX = 20;
         int gridSizeZ = 10;
         int instanceCount = gridSizeX * gridSizeZ;
 
         pMesh->GetShaderProgram().setInteger("uGridSizeX", gridSizeX);
         pMesh->GetShaderProgram().setInteger("uGridSizeZ", gridSizeZ);
+        // ----- END GRASS -----
 
-        glDrawArraysInstanced(GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount(), instanceCount);
-        //glDrawArrays(pMesh->GetShaderProgram().GetTesselation() ? GL_PATCHES : GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
+        //glDrawArraysInstanced(GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount(), instanceCount);
+        glPatchParameteri(GL_PATCH_VERTICES, 3);
+        glDrawArrays(pMesh->GetShaderProgram().GetTesselation() ? GL_PATCHES : GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
         glLineWidth(2);
         glPolygonMode(GL_FRONT_AND_BACK, Engine::mInWireframeMode ? GL_LINE : GL_FILL);
     }

@@ -117,6 +117,7 @@ public:
 	static ShaderProgram mSimpleMeshShaderProgram; // Shader program for simple meshes.
 	static ShaderProgram mTesselationMeshShaderProgram; // Shader program for tessellated meshes.
 	static ShaderProgram mGrassShaderProgram; // Shader program for rendering grass.
+	static ShaderProgram mSandShaderProgram; // Shader program for a displaced terrain using heightmap.
 
 private:
 	Window* mWindow; // The window to render to.

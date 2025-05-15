@@ -274,19 +274,14 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         pMesh->GetShaderProgram().setMatrix4("uWorldTransform", transform);
         pMesh->GetShaderProgram().setVector2f("uTileSize", tiling);
 
-        pMesh->GetShaderProgram().setFloat("time", Time::GetGameTime());
-
         // ----- Wave -----
         pMesh->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
         pMesh->GetShaderProgram().setFloat("uWaveStrength", 0.2f);
         pMesh->GetShaderProgram().setFloat("uRippleStrength", 0.1f);
 
-        // Smooth interpolation factor (optional: could use sin(time))
         float rippleInterp = 0.5f * (1.0f + sin(Time::GetGameTime()));
         pMesh->GetShaderProgram().setFloat("uRippleInterp", rippleInterp);
         // ----- END WAVE -----
-
-
 
         Texture* t = pMesh->GetTexture(pTextureIndex);
         if (t)
@@ -297,9 +292,8 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         pMesh->GetVertexArray()->SetActive();
 
         // ----- SAND -----
-        pMesh->GetShaderProgram().setFloat("uDisplacementStrength", 3.0f);
+        pMesh->GetShaderProgram().setFloat("uDisplacementStrength", 2.0f);
         // ----- END SAND -----
-
 
         // ----- GRASS -----
         int gridSizeX = 20;
@@ -308,10 +302,12 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
 
         pMesh->GetShaderProgram().setInteger("uGridSizeX", gridSizeX);
         pMesh->GetShaderProgram().setInteger("uGridSizeZ", gridSizeZ);
+
+        pMesh->GetShaderProgram().setFloat("time", Time::GetGameTime());
         // ----- END GRASS -----
 
         //glDrawArraysInstanced(GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount(), instanceCount);
-        glPatchParameteri(GL_PATCH_VERTICES, 3);
+        //glPatchParameteri(GL_PATCH_VERTICES, 3);
         glDrawArrays(pMesh->GetShaderProgram().GetTesselation() ? GL_PATCHES : GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount());
         glLineWidth(2);
         glPolygonMode(GL_FRONT_AND_BACK, Engine::mInWireframeMode ? GL_LINE : GL_FILL);

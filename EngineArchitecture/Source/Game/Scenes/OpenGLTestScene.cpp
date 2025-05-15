@@ -35,6 +35,11 @@ void OpenGLTestScene::Load()
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/sky.png", "skyTex");
     skySphere->AddTexture(AssetManager::GetTexture("skyTex"));
     
+    Mesh* waterMesh = AssetManager::LoadMesh("plane.obj", "plane");
+    waterMesh->SetShaderProgram(RendererGL::mWaveShaderProgram);
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/voronoise.png", "waveTex");
+    waterMesh->AddTexture(AssetManager::GetTexture("waveTex"));
     //Sand
     //Mesh* sandMesh = AssetManager::LoadMesh("plane.obj", "plane");
     //sandMesh->SetShaderProgram(RendererGL::mSandShaderProgram);
@@ -58,17 +63,25 @@ void OpenGLTestScene::Start()
     MeshComponent* meshComponent = new MeshComponent(sky, AssetManager::GetMesh("sphere"));
     AddActor(sky);
 
-    //Actor* sand = new Actor();
-    //sand->mTransform->mScale = Vector3(11, 0.0f, 10);
-
-    //MeshComponent* sandMeshComponent = new MeshComponent(sand, AssetManager::GetMesh("sphere"));
-    //AddActor(sand);
-
     Floor* floor = new Floor();
     floor->SetTextureTiling(2, 2);
     AddActor(floor);
     floor->mTransform->mScale = Vector3(11, 0.0f, 10);
     floor->mTransform->mPosition = { -0.6f + floor->mTransform->mScale.x, -2.5f, 11 };
+
+    Floor* floor2 = new Floor();
+    floor2->SetTextureTiling(2, 2);
+    AddActor(floor2);
+    floor2->mTransform->mScale = Vector3(11, 0.0f, 10);
+    floor2->mTransform->mPosition = { -8, -2.5f, 20 };
+    floor2->mTransform->RotateYaw(-90);
+
+    Actor* waves = new Actor();
+    waves->mTransform->mScale = Vector3(10, 1.0f, 10);
+    waves->mTransform->mPosition = Vector3(-0.6f + floor->mTransform->mScale.x, -2, 15);
+    MeshComponent* wavesMeshComponent = new MeshComponent(waves, AssetManager::GetMesh("plane"));
+    AddActor(waves);
+    waves->mTransform->RotateYaw(20);
 
     //Grass* grass = new Grass();
     //AddActor(grass);

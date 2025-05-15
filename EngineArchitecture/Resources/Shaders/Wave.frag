@@ -1,15 +1,14 @@
-#version 450 core
+#version 330 core
 
-in TESE_OUT {
-    vec2 texCoord;
-} frag_in;
-
+in TESE_OUT{ vec2 texCoord; float displacement; } frag_in;
 out vec4 outColor;
 
-uniform sampler2D uTexture;
+uniform vec4 uColor;        // 43B6DB (base)
+uniform vec4 uSecondColor;  // D8FFFF (highlight)
 
 void main()
 {
-    vec3 baseColor = texture(uTexture, frag_in.texCoord).rgb;
-    outColor = vec4(baseColor, 1.0);
+    // Blend based on displacement factor (could use fresnel or lighting later)
+    float t = clamp(frag_in.displacement, 0.0, 1.0);
+    outColor = mix(uColor, uSecondColor, t);
 }

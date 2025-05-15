@@ -2,50 +2,37 @@
 
 layout(triangles, fractional_even_spacing, cw) in;
 
-in TESC_OUT {
-    vec2 texCoord;
-    vec3 worldPos;
-} tese_in[];
+in TESC_OUT{ vec2 texCoord; } tese_in[];
+out TESE_OUT { vec2 texCoord; float displacement; } tese_out;
 
-out TESE_OUT {
-    vec2 texCoord;
-} tese_out;
+uniform float uTime;
+uniform float uSpeed;
+uniform float uFrequency;
+uniform float uAmplitude;
+uniform float uDisplacement;
 
 uniform sampler2D uNoiseTex;
-uniform float uTime;
-uniform float uWaveStrength;
-uniform float uRippleStrength;
-uniform float uRippleInterp;
-uniform mat4 uViewProj;
 
-vec2 interpolate2D(vec2 a, vec2 b, vec2 c)
-{
-    return gl_TessCoord.x * a +
-           gl_TessCoord.y * b +
-           gl_TessCoord.z * c;
+vec2 interpolate2D(vec2 v0, vec2 v1, vec2 v2) {
+    return gl_TessCoord.x * v0 + gl_TessCoord.y * v1 + gl_TessCoord.z * v2;
 }
 
-vec3 interpolate3D(vec3 a, vec3 b, vec3 c)
-{
-    return gl_TessCoord.x * a +
-           gl_TessCoord.y * b +
-           gl_TessCoord.z * c;
+vec4 interpolate4D(vec4 v0, vec4 v1, vec4 v2) {
+    return gl_TessCoord.x * v0 + gl_TessCoord.y * v1 + gl_TessCoord.z * v2;
 }
 
-void main()
-{
-    vec2 texCoord = interpolate2D(tese_in[0].texCoord, tese_in[1].texCoord, tese_in[2].texCoord);
-    vec3 pos = interpolate3D(tese_in[0].worldPos, tese_in[1].worldPos, tese_in[2].worldPos);
+void main(void) {
+    vec2 uv = interpolate2D(tese_in[0].texCoord, tese_in[1].texCoord, tese_in[2].texCoord);
+    vec4 pos = interpolate4D(gl_in[0].gl_Position, gl_in[1].gl_Position, gl_in[2].gl_Position);
 
-    // Sinusoidal wave
-    float wave = sin(pos.x * 1.5 + uTime) * cos(pos.z * 1.2 + uTime * 0.5);
 
-    // Noise-based ripples
-    float noise = texture(uNoiseTex, texCoord * 4.0 + vec2(uTime * 0.05)).r;
+    float noise = texture(uNoiseTex, uv * 10.0).r;
+    float wave = sin((uv.x * uFrequency - uTime * uSpeed)) * (uAmplitude * noise);
+    wave *= mix(0.8, 1.2, noise);
 
-    float displacement = wave * uWaveStrength + noise * uRippleStrength * uRippleInterp;
-    pos.y += displacement;
+    pos.y += wave * uDisplacement ;
 
-    gl_Position = uViewProj * vec4(pos, 1.0);
-    tese_out.texCoord = texCoord;
+    gl_Position = pos;
+    tese_out.texCoord = uv;
+    tese_out.displacement = clamp(wave * uDisplacement + 0.3, 0.0, 1.0);
 }

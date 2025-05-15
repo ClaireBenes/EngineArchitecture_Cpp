@@ -19,8 +19,7 @@ vec4 interpolate4D(vec4 v0, vec4 v1, vec4 v2)
 
 float computeHeight(vec2 uv)
 {
-    // Simple pseudo bumpiness using sin/cos
-    float height = sin(uv.x * 10.0) * cos(uv.y * 10.0);
+    float height = sin(uv.x * 3.0) * cos(uv.y * 5.0);
     return height;
 }
 
@@ -31,7 +30,6 @@ void main(void)
 
     float height = computeHeight(uv) * uDisplacementStrength;
 
-    // Apply height displacement along Y axis
     pos.y += height;
 
     gl_Position = pos;

@@ -14,17 +14,17 @@
 struct Vector2
 {
 	/*
-	Default constructor. Initializes vector to (0, 0).
+	@brief Default constructor. Initializes vector to (0, 0).
 	 */
 	Vector2();
-	/*
-	 * Initializes the vector with specified x and y values.
+	/* 
+	 * @brief Initializes the vector with specified x and y values.
 	 * @param x The x component.
 	 * @param y The y component.
 	 */
 	Vector2(float x, float y);
 	/*
-	 * Initializes both x and y with the same value.
+	 * @brief Initializes both x and y with the same value.
 	 * @param x The value to assign to both x and y.
 	 */
 	Vector2(float x);
@@ -38,41 +38,41 @@ struct Vector2
 	//Functions
 
 	/*
-	Returns the magnitude (length) of the vector.
+	@brief Returns the magnitude (length) of the vector.
 	 */
 	float Magnitude() const;
 	/*
-	Returns the squared length of the vector (avoids square root for performance).
+	@brief Returns the squared length of the vector (avoids square root for performance).
 	 */
 	float SqrLength() const;
 
 	/*
-	Normalizes the vector to unit length.
+	@brief Normalizes the vector to unit length.
 	If the vector is zero-length, it remains unchanged.
 	 */
 	void Normalize();
 	/*
-	 Returns a new unit-length vector in the same direction.
+	 @brief Returns a new unit-length vector in the same direction.
 	 If the original vector has zero length, returns Vector2::ZERO.
 	 */
 	Vector2 Normalized();
 
 	/*
-	 * Computes the dot product of two vectors.
+	 * @brief Computes the dot product of two vectors.
 	 * @param left The first vector.
 	 * @param right The second vector.
 	 * @return A scalar representing how aligned the vectors are.
 	 */
 	float Dot(const Vector2& left, const Vector2& right) const;
 	/*
-	 * Computes the 2D cross product between this and another vector.
+	 * @brief Computes the 2D cross product between this and another vector.
 	 * The result is a scalar equal to the Z-component of a 3D cross product.
 	 * @param vector The other vector.
 	 */
 	float Cross(const Vector2& vector) const;
 
 	/*
-	 * Converts the vector to a readable string format.
+	 * @brief Converts the vector to a readable string format.
 	 * @return String in format (x , y).
 	 */
 	std::string ToString() const;

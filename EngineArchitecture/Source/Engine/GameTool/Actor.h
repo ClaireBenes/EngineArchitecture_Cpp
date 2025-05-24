@@ -30,7 +30,12 @@ enum class ActorState
 	Dead
 };
 
-
+/**
+ * @brief Base class representing an actor in the scene.
+ *
+ * Actors are entities that can contain multiple components such as renderers, colliders, etc.
+ * They manage their own lifecycle (setup, start, update, destroy) and interact with the scene.
+ */
 class Actor
 {
 public:

@@ -10,33 +10,33 @@
 class RectangleColliderComponent : public ColliderComponent
 {
 public:
-    /*
-     * Constructor for RectangleColliderComponent.
+    /**
+     * @brief Constructor for RectangleColliderComponent.
      * @param pOwner The actor that owns this collider component.
      */
 	RectangleColliderComponent(Actor* pOwner);
 
-    /*
-     * Renders the rectangle as a line in the world for debugging purposes.
+    /**
+     * @brief Renders the rectangle as a line in the world for debugging purposes.
      * @param pRenderer The renderer used to draw the debug rectangle.
      */
 	void DebugRender(IRenderer* pRenderer) override;
 
-    /*
-     * Gets the world-space rectangle based on the owner's position.
+    /**
+     * @brief Gets the world-space rectangle based on the owner's position.
      * Transforms the local-space rectangle to its global position.
      * @return A Rectangle in world-space coordinates.
      */
 	Rectangle GetWorldRectangle() const;
 
-    /*
-     * Checks for collision with another rectangle in world space.
+    /**
+     * @brief Checks for collision with another rectangle in world space.
      * @param otherRectangle The other rectangle to check against.
      * @return True if a collision is detected, false otherwise.
      */
 	bool Collision(const Rectangle& otherRectangle);
-    /*
-     * Checks for collision with another collider component.
+    /**
+     * @brief Checks for collision with another collider component.
      * Only supports collision with other RectangleColliderComponent instances.
      * @param pComponent Pointer to the other collider component.
      * @return True if a collision is detected, false otherwise.

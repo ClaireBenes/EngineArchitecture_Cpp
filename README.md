@@ -4,7 +4,7 @@ A lightweight video game engine written in C++ using OpenGL.
 This engine is currently in early development and is aimed at learning and experimenting with real-time rendering and architecture.
 
 📚 **Documentation**  
-👉 [Claire's Game Engine Docs](https://clairebenes.github.io/EngineArchitecture_Cpp/index.html)
+👉 [Documentation link](https://clairebenes.github.io/EngineArchitecture_Cpp/index.html)
 
 ---
 

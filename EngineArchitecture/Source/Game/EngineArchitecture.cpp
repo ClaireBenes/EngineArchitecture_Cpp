@@ -13,6 +13,21 @@
 
 #include "Engine/Renderer/IRenderer.h"
 
+/**
+ * @mainpage Engine Documentation
+ *
+ * Welcome to the documentation for my **C++ Game Engine**!
+ *
+ * - Engine structure: see namespaces and architecture
+ * - Game examples are excluded from this doc
+ *
+ * ---
+ *
+ * ### Quick Links
+ * - [Classes](classes.html)
+ * - [Namespaces](namespaces.html)
+ * - [File List](files.html)
+ */
 int main(int argc, char* argv[])
 {
 	//Engine pong ("Claire's Game Engine", { new Pong }, IRenderer::RendererType::SDL);

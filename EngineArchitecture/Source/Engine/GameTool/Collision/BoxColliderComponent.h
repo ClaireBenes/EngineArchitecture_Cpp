@@ -38,6 +38,6 @@ public:
 	 */
 	Box GetWorldBox() const;
 
-	Box mBox; // Local-space axis-aligned box defining the collider shape
+	Box mBox; /// Local-space axis-aligned box defining the collider shape
 };
 

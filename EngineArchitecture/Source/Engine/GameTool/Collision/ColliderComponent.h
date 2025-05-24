@@ -40,6 +40,6 @@ public:
 	virtual bool Collision(const ColliderComponent* pComponent) = 0;
 
 	//Variables
-	Color mColor{ 255,0,0,255 }; // Debug rendering color for the collider (default: red).
+	Color mColor{ 255,0,0,255 }; /// Debug rendering color for the collider (default: red).
 };
 

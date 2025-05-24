@@ -4,8 +4,9 @@
 #include "Engine/GameTool/Utility/Geometry/Box.h"
 
 /*
-BoxColliderComponent represents an axis-aligned bounding box (AABB) collider.
-It handles collision detection using box geometry and provides debug rendering.
+* @brief
+* BoxColliderComponent represents an axis-aligned bounding box (AABB) collider.
+* It handles collision detection using box geometry and provides debug rendering.
  */
 class BoxColliderComponent : public ColliderComponent
 {

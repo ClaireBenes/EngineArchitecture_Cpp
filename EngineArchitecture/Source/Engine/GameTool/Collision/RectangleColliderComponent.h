@@ -4,8 +4,9 @@
 #include "Engine/GameTool/Utility/Geometry/Rectangle.h"
 
 /*
-RectangleColliderComponent represents a 2D axis-aligned bounding box (AABB) collider.
-It provides collision detection and debug rendering for rectangular shapes in 2D space.
+* @brief
+* RectangleColliderComponent represents a 2D axis-aligned bounding box (AABB) collider.
+* It provides collision detection and debug rendering for rectangular shapes in 2D space.
  */
 class RectangleColliderComponent : public ColliderComponent
 {

@@ -11,12 +11,23 @@ class RenderComponent;
 class ColliderComponent;
 class AssetManager;
 
-//All actor possible state
+/**
+ * @brief All actor possible state
+ */
 enum class ActorState
 {
-	Active,   // Actor is active and updated/rendered
-	Paused,   // Actor is paused, not updated/rendered
-	Dead      // Actor is marked for destruction
+	/**
+	 * @brief Actor is active and updated/rendered
+	 */
+	Active,
+	/**
+	 * @brief Actor is paused, not updated/rendered
+	 */
+	Paused,
+	/**
+	 * @brief Actor is marked for destruction
+	 */
+	Dead
 };
 
 
@@ -28,70 +39,70 @@ public:
 
 	// Functions
 
-	/*
-	 * Sets the scene for this actor.
+	/**
+	 * @brief Sets the scene for this actor.
 	 * @param pScene The scene this actor belongs to.
 	 */
 	void SetScene(Scene* pScene);
 
-	/*
-	 * Adds a component to the actor.
+	/**
+	 * @brief Adds a component to the actor.
 	 * The component can be of various types (render, collider, etc.).
 	 * @param pComponent The component to add to the actor.
 	 */
 	void AddComponent(Component* pComponent);
 
-	/*
-	 * Removes a specific component from the actor.
+	/**
+	 * @brief Removes a specific component from the actor.
 	 * @param pComponent The component to remove.
 	 */
 	void RemoveComponent(Component* pComponent);
 
-	/*
-	Updates all components' world transforms.
+	/**
+	 * @brief Updates all components' world transforms.
 	 */
 	void UpdateComponentsTransform();
 
-	/*
-	 * Sets the actor's active state, enabling or disabling components accordingly.
+	/**
+	 * @brief Sets the actor's active state, enabling or disabling components accordingly.
 	 * @param isActive True to activate the actor, false to pause it.
 	 */
 	void SetActive(bool isActive);
 
-	/*
-	 * Returns the current state of the actor (Active, Paused, Dead).
+	/**
+	 * @brief Returns the current state of the actor (Active, Paused, Dead).
 	 * @return The actor's state.
 	 */
 	ActorState GetState() const;
 
-	/*
-	 * Returns the position of the actor in world space.
+	/**
+	 * @brief Returns the position of the actor in world space.
 	 * @return The actor's position.
 	 */
 	Vector3 GetPosition() const;
 
-	/*
-	Called to set up the actor's components after initialization.
+	/**
+	 * @brief Called to set up the actor's components after initialization.
 	 */
 	virtual void SetupComponents() {};
 
-	/*
-	Called once at the start of the scene, after setup.
+	/**
+	 * @brief Called once at the start of the scene, after setup.
 	 */
 	virtual void Start();
 
-	/*
-	Called every frame to update the actor and its component.
+	/**
+	 * @brief Called every frame to update the actor and its component.
 	 */
 	virtual void Update();
 
-	/*
-	Called to destroy the actor, marking it as dead.
+	/**
+	 * @brief Called to destroy the actor, marking it as dead.
 	 */
 	virtual void Destroy();
 
-	/*
-	 * Called when this actor collides with another actor.
+	/**
+	 * @brief Called when this actor collides with another actor.
 	 * Override this to handle collision behavior.
 	 * @param collidedActor The actor that collided with this actor.
 	 */
@@ -100,11 +111,17 @@ public:
 public:
 	//Variables
 
-	Transform* mTransform =  nullptr; //Transform representing position, rotation, scale
-	Scene* mScene = nullptr; //Scene this actor belongs to
+	/** 
+	 * @brief Transform representing position, rotation, scale
+	 */
+	Transform* mTransform =  nullptr; 
+	/**
+	 * @brief Scene this actor belongs to
+	 */
+	Scene* mScene = nullptr;
 
-	/*
-	 * Gets a component of a specific type attached to this actor.
+	/**
+	 * @brief Gets a component of a specific type attached to this actor.
 	 * @param C The type of component to retrieve.
 	 * @return Pointer to the component if found, nullptr otherwise.
 	 */
@@ -121,7 +138,10 @@ public:
 	}
 
 private:
-	ActorState mState = ActorState::Paused; // Actor's current state (Active, Paused, Dead)
+	/**
+	 * @brief Actor's current state (Active, Paused, Dead)
+	 */
+	ActorState mState = ActorState::Paused;
 
 	// Component lists
 	std::vector<Component*> mComponents{};

@@ -9,36 +9,36 @@ class IRenderer;
 class Window;
 class Actor;
 
-/*
- Base class representing a game scene that manages actors and rendering.
- Scenes handle actor lifecycles (add, update, remove) and are tied to a specific window and renderer.
- Derived classes should override Load and Start to define behavior.
+/**
+ * @brief Base class representing a game scene that manages actors and rendering.
+ * Scenes handle actor lifecycles (add, update, remove) and are tied to a specific window and renderer.
+ * Derived classes should override Load and Start to define behavior.
  */
 class Scene
 {
 public:
 	Scene();
 
-	/*
-	 * Scene destructor.
+	/**
+	 * @brief Scene destructor.
 	 * Cleans up all actors and clears loaded assets.
 	 */
 	virtual ~Scene();
 
 	//Virtual functions
 
-	/*
-	 * Called once before the scene starts. Override to load assets or initialize data.
+	/**
+	 * @brief Called once before the scene starts. Override to load assets or initialize data.
 	 */
 	virtual void Load() {};
 
-	/*
-	 * Called once after Load. Must be implemented to initialize gameplay logic.
+	/**
+	 * @brief Called once after Load. Must be implemented to initialize gameplay logic.
 	 */
 	virtual void Start() = 0;
 
-	/*
-	 * Updates all actors in the scene.
+	/**
+	 * @brief Updates all actors in the scene.
 	 * Handles actor lifecycle: updates active ones, removes dead ones, and adds any newly pending actors.
 	 * @param deltaTime Time elapsed since the last frame.
 	 */
@@ -46,42 +46,42 @@ public:
 
 	//Non virtual functions
 
-	/*
-	 * Sets the window associated with the scene.
+	/**
+	 * @brief Sets the window associated with the scene.
 	 * @param pWindow Pointer to the Window instance.
 	 */
 	void SetWindow(Window* pWindow);
-	/*
-	 * Gets the window in which the scene in showing.
+	/**
+	 * @brief Gets the window in which the scene in showing.
 	 * @return Pointer to the Window instance used by the scene.
 	 */
 	Window* GetWindow();
-	/*
-	 * Sets the renderer used by the scene.
+	/**
+	 * @brief Sets the renderer used by the scene.
 	 * @param pRenderer Pointer to the IRenderer implementation.
 	 */
 	void SetRenderer(IRenderer* pRenderer);
-	/*
-	 * Gets the renderer associated with the scene.
+	/**
+	 * @brief Gets the renderer associated with the scene.
 	 * @return Pointer to the IRenderer instance used by the scene.
 	 */
 	IRenderer* GetRenderer();
 
-	/*
-	 * Reloads the scene.
+	/**
+	 * @brief Reloads the scene.
 	 * This is safe to call during an update since the operation happens at the end of an update.
 	 */
 	void Reload();
 
-	/*
-	 * Adds a new actor to the scene.
+	/**
+	 * @brief Adds a new actor to the scene.
 	 * If called during actor updates, the addition is deferred until the update cycle ends.
 	 * @param pActor Pointer to the actor to add.
 	 */
 	void AddActor(Actor* pActor);
 
-	/*
-	 * Removes an actor from the scene, either from the active or pending actor lists.
+	/**
+	 * @brief Removes an actor from the scene, either from the active or pending actor lists.
 	 * @param pActor Pointer to the actor to be removed.
 	 *
 	 * The function searches for the actor in both `mPendingActors` and `mActors`,
@@ -91,15 +91,33 @@ public:
 	void RemoveActor(Actor* pActor);
 
 protected:
-	Window* mWindow; // Pointer to the window the scene uses
-	IRenderer* mRenderer; // Renderer responsible for drawing
-	std::vector<Actor*> mActors{}; // List of currently active actors
+	/**
+	 * @brief Pointer to the window the scene uses
+	 */
+	Window* mWindow; 
+	/**
+	 * @brief Renderer responsible for drawing
+	 */ 
+	IRenderer* mRenderer; 
+	/**
+	 * @brief List of currently active actors
+	 */
+	std::vector<Actor*> mActors{}; 
 
 private:
-	std::vector<Actor*> mPendingActors {}; // Actors to be added after the current update loop (deferred to avoid modifying mActors mid-iteration)
-	std::vector<Actor*> mActorsToDelete {}; // Actors marked for deletion after update
+	/**
+	 * @brief Actors to be added after the current update loop (deferred to avoid modifying mActors mid-iteration)
+	 */
+	std::vector<Actor*> mPendingActors {}; 
+	/**
+	 * @brief Actors marked for deletion after update
+	 */
+	std::vector<Actor*> mActorsToDelete {}; 
 
-	bool mIsUpdatingActors = false;	// Flag to prevent actor list modification during update
+	/**
+	 * @brief Flag to prevent actor list modification during update
+	 */ 
+	bool mIsUpdatingActors = false;	
 	bool mShouldReload = false;
 };
 

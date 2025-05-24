@@ -37,6 +37,9 @@ public:
 	void NotifyListeners(SDL_Event& pEvent) const;
 
 private:
-	std::vector<IInputListener*> mListeners; /// List of currently subscribed input listeners.
+	/**
+	 * @brief List of currently subscribed input listeners.
+	 */
+	std::vector<IInputListener*> mListeners;
 };
 

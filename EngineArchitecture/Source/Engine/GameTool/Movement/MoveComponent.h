@@ -80,17 +80,37 @@ public:
 	 */
 	ColliderComponent* CheckCollision();
 
-	/// Variables for gravity, velocity, friction, and speed:
-	Vector3 mGravityDirection = Vector3::Zero; /// Direction of gravity (set to zero by default).
-	Vector3 mVelocity = Vector3::Zero; /// Velocity of the actor in 3D space.
+	/**
+	 * @brief Direction of gravity applied to the actor.
+	 * Default is a zero vector (no gravity).
+	 */
+	Vector3 mGravityDirection = Vector3::Zero;
 
-	float mFriction = 0.8f; /// Friction factor applied to the velocity.
+	/**
+	 * @brief Current velocity of the actor in 3D space.
+	 */
+	Vector3 mVelocity = Vector3::Zero;
+
+	/**
+	 * @brief Friction coefficient applied to velocity each update.
+	 */
+	float mFriction = 0.8f;
 
 protected:
-	Vector3 mSpeed = 0; /// Speed of the actor in 3D space (can be adjusted to control movement).
-	Vector2 mRotationSpeed = 0; /// Rotation speed of the actor (yaw and pitch).
+	/**
+	 * @brief Speed of the actor in 3D space (can be adjusted to control movement).
+	 */
+	Vector3 mSpeed = 0; 
+
+	/**
+	 * @brief Rotation speed of the actor (yaw and pitch).
+	 */
+	Vector2 mRotationSpeed = 0;
 
 private:
-	ColliderComponent* mCollidercomponent = nullptr; /// Collider component used for collision checks.
+	/**
+	 * @brief Collider component used for collision checks.
+	 */
+	ColliderComponent* mCollidercomponent = nullptr;
 };
 

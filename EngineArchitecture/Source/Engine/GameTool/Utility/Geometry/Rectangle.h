@@ -4,7 +4,7 @@
 #include "Engine/GameTool/Utility/Vector/Vector2.h"
 
 /**
- * @briefRepresents a 2D axis-aligned rectangle used for UI, collision detection, or rendering.
+ * @brief Represents a 2D axis-aligned rectangle used for UI, collision detection, or rendering.
  * Supports AABB collision checks and conversion to SDL's rectangle format.
  */
 struct Rectangle

@@ -7,7 +7,7 @@
 #include "Engine/GameTool/Utility/Matrix/Matrix4.h"
 
 /**
- * @briefTransform is a component that defines the position, rotation, and scale of an actor in 3D space.
+ * @brief Transform is a component that defines the position, rotation, and scale of an actor in 3D space.
  * It provides direction vectors, transformation matrix computation, and rotation utility functions.
  */
 class Transform : public Component

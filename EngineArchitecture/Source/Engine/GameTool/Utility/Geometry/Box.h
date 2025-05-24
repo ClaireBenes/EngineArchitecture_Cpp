@@ -3,7 +3,7 @@
 #include "Engine/GameTool/Utility/Vector/Vector3.h"
 
 /**
- * @briefRepresents an axis-aligned bounding box (AABB) in 3D space.
+ * @brief Represents an axis-aligned bounding box (AABB) in 3D space.
  * Used primarily for collision detection and spatial calculations.
  */
 struct Box

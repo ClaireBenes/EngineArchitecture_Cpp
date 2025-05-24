@@ -7,7 +7,7 @@
 enum class LogType;
 
 /**
- * @briefLog class provides static methods for logging messages to the SDL log system.
+ * @brief Log class provides static methods for logging messages to the SDL log system.
  * It includes functions for printing informational messages and errors with
  * specific categories, using SDL's built-in logging capabilities.
  */

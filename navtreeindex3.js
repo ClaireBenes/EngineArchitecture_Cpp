@@ -1,9 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"struct_box.html#a3adf9ae0f62dafb06cfb652080805d7a":[2,0,4,1],
-"struct_box.html#a4abf60a1d638e134ea3feb9edac24256":[2,0,4,3],
-"struct_box.html#a533ba539cb60c7f087b762f0e57ba0dc":[2,0,4,2],
-"struct_box.html#a6d39871c1822ef7002f7719416e2edf8":[2,0,4,0],
 "struct_rectangle.html":[2,0,24],
 "struct_rectangle.html#a0b7dab7bcd588b260a0c984df02eb513":[2,0,24,0],
 "struct_rectangle.html#a20634a2ba054e79c597e208fdf296291":[2,0,24,3],
@@ -249,5 +245,9 @@ var NAVTREEINDEX3 =
 "structtinyobj_1_1points__t.html":[2,0,0,12],
 "structtinyobj_1_1points__t.html#aff29129fc00b8464233e1adbe8714add":[1,0,1,12,0],
 "structtinyobj_1_1points__t.html#aff29129fc00b8464233e1adbe8714add":[2,0,0,12,0],
-"structtinyobj_1_1shape__t.html":[1,0,1,13]
+"structtinyobj_1_1shape__t.html":[1,0,1,13],
+"structtinyobj_1_1shape__t.html":[2,0,0,13],
+"structtinyobj_1_1shape__t.html#a3dacb06dfbfe9e245ff4bc7b5b3d9818":[1,0,1,13,1],
+"structtinyobj_1_1shape__t.html#a3dacb06dfbfe9e245ff4bc7b5b3d9818":[2,0,0,13,1],
+"structtinyobj_1_1shape__t.html#a8515a73329f151bd081693f283f20eb4":[1,0,1,13,3]
 };

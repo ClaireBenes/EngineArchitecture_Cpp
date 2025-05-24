@@ -1,9 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"structtinyobj_1_1shape__t.html":[2,0,0,13],
-"structtinyobj_1_1shape__t.html#a3dacb06dfbfe9e245ff4bc7b5b3d9818":[1,0,1,13,1],
-"structtinyobj_1_1shape__t.html#a3dacb06dfbfe9e245ff4bc7b5b3d9818":[2,0,0,13,1],
-"structtinyobj_1_1shape__t.html#a8515a73329f151bd081693f283f20eb4":[1,0,1,13,3],
 "structtinyobj_1_1shape__t.html#a8515a73329f151bd081693f283f20eb4":[2,0,0,13,3],
 "structtinyobj_1_1shape__t.html#a98650e2e66d00934f68de88eafb34630":[1,0,1,13,2],
 "structtinyobj_1_1shape__t.html#a98650e2e66d00934f68de88eafb34630":[2,0,0,13,2],
@@ -55,7 +51,7 @@ var NAVTREEINDEX4 =
 "structtinyobj_1_1texture__option__t.html#ad2e2c79e305189e5d146992c32248d49":[2,0,0,16,3],
 "structtinyobj_1_1texture__option__t.html#ae93ebf5f70b1b3e3c1de58a257157e00":[1,0,1,16,13],
 "structtinyobj_1_1texture__option__t.html#ae93ebf5f70b1b3e3c1de58a257157e00":[2,0,0,16,13],
-"tiny__obj__loader_8h.html":[3,0,0,0,0,0,0,0,4,0,4],
-"tiny__obj__loader_8h.html#a753f77799f2358606593480b4e83a14f":[3,0,0,0,0,0,0,0,4,0,4,17],
-"tiny__obj__loader_8h_source.html":[3,0,0,0,0,0,0,0,4,0,4]
+"tiny__obj__loader_8h.html":[3,0,0,0,4,0,4],
+"tiny__obj__loader_8h.html#a753f77799f2358606593480b4e83a14f":[3,0,0,0,4,0,4,17],
+"tiny__obj__loader_8h_source.html":[3,0,0,0,4,0,4]
 };

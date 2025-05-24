@@ -7,10 +7,9 @@
 
 class IRendererSDL;
 
-/*
-* @brief
-* Base class for collider components used in physics and collision detection.
-* Inherits from Component for lifecycle management and DebugRenderInterface for debug visualization.
+/**
+ * @brief Base class for collider components used in physics and collision detection.
+ * Inherits from Component for lifecycle management and DebugRenderInterface for debug visualization.
  */
 class ColliderComponent : public Component, public DebugRenderInterface
 {

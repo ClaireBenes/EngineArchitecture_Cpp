@@ -43,6 +43,9 @@ public:
      */
 	bool Collision(const ColliderComponent* pComponent) override;
 
-	Rectangle mRectangle{ Vector2(-16,-16),Vector2(32,32) };  /// Local-space rectangle defining the collider shape
+    /**
+     * @brief Checks Local-space rectangle defining the collider shape
+     */
+	Rectangle mRectangle{ Vector2(-16,-16),Vector2(32,32) };
 };
 

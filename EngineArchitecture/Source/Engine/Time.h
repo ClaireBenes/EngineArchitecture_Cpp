@@ -1,11 +1,11 @@
 #pragma once
 
-/*
-The Time class provides static utility functions and variables to manage
-frame timing, delta time computation, frame rate regulation, and tracking
-the elapsed game time. 
-It is designed to be a singleton-style class with only static members and no instances.
-*/
+/**
+ * @brief The Time class provides static utility functions and variables to manage
+ * frame timing, delta time computation, frame rate regulation, and tracking
+ * the elapsed game time. 
+ * It is designed to be a singleton-style class with only static members and no instances.
+ */
 class Time
 {
 public:
@@ -13,37 +13,58 @@ public:
 	Time(const Time&) = delete;
 	Time& operator=(const Time&) = delete;
 
-	/*
-	Computes the time elapsed since the last frame (delta time), clamps
-	it to a maximum to prevent instability, and stores it in `deltaTime`.
-	@return Delta time in milliseconds (clamped to MAX_DT).
-	*/
+	/**
+     * @brief Computes the time elapsed since the last frame (delta time), clamps
+	 * it to a maximum to prevent instability, and stores it in `deltaTime`.
+	 * @return Delta time in milliseconds (clamped to MAX_DT).
+	 */
 	static unsigned int ComputeDeltaTime();
-	/*
-	Delays the frame if it finished too early, in order to maintain a
-	consistent frame rate defined by FPS.
-	*/
+	/**
+	 * @brief Delays the frame if it finished too early, in order to maintain a
+	 * consistent frame rate defined by FPS.
+	 */
 	static void DelayTime();
-	/*
-	Returns the total time elapsed since the game started.
-	@return Elapsed game time in seconds.
-	*/
+	/**
+	 * @brief Returns the total time elapsed since the game started.
+	 * @return Elapsed game time in seconds.
+	 */
 	static float GetGameTime();
 
-	/*
-	Delta time (in seconds) between the current and previous frame.
-	*/
+	/**
+	 * @brief Delta time (in seconds) between the current and previous frame.
+	 */
 	static float deltaTime;
 
 private:
-	const static unsigned int FPS = 60; // Target frames per second
-	const static unsigned int FRAME_DELAY = 1000 / FPS; // Delay time per frame to maintain the target FPS
-	const static unsigned int MAX_DT = 50; // Maximum delta time in milliseconds to avoid big time jumps
+	/**
+	 * @brief Target frames per second
+	 */
+	const static unsigned int FPS = 60;
+	/**
+	 * @brief Delay time per frame to maintain the target FPS
+	 */
+	const static unsigned int FRAME_DELAY = 1000 / FPS; 
+	/**
+	 * @brief Maximum delta time in milliseconds to avoid big time jumps
+	 */
+	const static unsigned int MAX_DT = 50;
 
-	static unsigned int mFrameStart; // Time at which the current frame started
-	static unsigned int mLastFrame; // Time at which the previous frame started
-	static unsigned int mFrameTime; // Duration taken to execute the current frame
+	/**
+	 * @brief Time at which the current frame started
+	 */
+	static unsigned int mFrameStart;
+	/**
+	 * @brief Time at which the previous frame started
+	 */
+	static unsigned int mLastFrame;
+	/**
+	 * @brief Duration taken to execute the current frame
+	 */
+	static unsigned int mFrameTime;
 
-	static float mGameTime; // Total elapsed time since the game started
+	/**
+	 * @brief Total elapsed time since the game started
+	 */
+	static float mGameTime; 
 };
 

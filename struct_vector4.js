@@ -1,0 +1,25 @@
+var struct_vector4 =
+[
+    [ "Vector4", "struct_vector4.html#a511b4d9c8326c235b76d794eea018921", null ],
+    [ "Vector4", "struct_vector4.html#ad10f211f59efb91633914c0b109c254a", null ],
+    [ "Vector4", "struct_vector4.html#a1982715fddb40af08501af4f15113b8b", null ],
+    [ "GetAsFloatPtr", "struct_vector4.html#a59cd0af87a702a395c999ddc867a9d80", null ],
+    [ "Magnitude", "struct_vector4.html#a703bbcb9630a08c312f5575f71825cee", null ],
+    [ "MagnitudeSqr", "struct_vector4.html#a932db80c5d0a3a8b00ff78a9a5755663", null ],
+    [ "Normalize", "struct_vector4.html#af89719493cc0c2b21b94c53e682eacb8", null ],
+    [ "operator*=", "struct_vector4.html#a8921068f06f671250a0ea06d2cb31832", null ],
+    [ "operator+=", "struct_vector4.html#aee3fb48b6bf202b97f037e599d610a6a", null ],
+    [ "operator-=", "struct_vector4.html#a07374312ee85e426fd5b04cbbd9f0004", null ],
+    [ "operator[]", "struct_vector4.html#a2e9c6d075b3253c68e2240099ec2130e", null ],
+    [ "ToString", "struct_vector4.html#ab6bae8b48d8061c958b3da47a265e7ba", null ],
+    [ "Matrix4", "struct_vector4.html#aed2829d86d2df8f9333d4c0087455880", null ],
+    [ "operator*", "struct_vector4.html#a3f52b6f602513908d4240d6f1ce23cf6", null ],
+    [ "operator*", "struct_vector4.html#a659fc905dc15a5c240ef32776f48110e", null ],
+    [ "operator*", "struct_vector4.html#ad249852866294af5a9610e84d046a414", null ],
+    [ "operator+", "struct_vector4.html#ae6ce8e3ce943c6e0e021eb292bb01208", null ],
+    [ "operator-", "struct_vector4.html#a9b64f4645ae585ab1e5fa126dd98f5fa", null ],
+    [ "w", "struct_vector4.html#a988ad29d481ee14c5c6c35dbdf58c559", null ],
+    [ "x", "struct_vector4.html#a1cc671b8b90e1b8145e74f128d828fbe", null ],
+    [ "y", "struct_vector4.html#a72ef7eedea2e006cf6a64fe192088509", null ],
+    [ "z", "struct_vector4.html#aa0d02112e7661ac9b90d1c17c8f1b1e6", null ]
+];

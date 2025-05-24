@@ -1,0 +1,25 @@
+var struct_vector2 =
+[
+    [ "Vector2", "struct_vector2.html#a22104d1809be26a419ef1f959e3761bf", null ],
+    [ "Vector2", "struct_vector2.html#a061ab58a0e216c759d64e3746d712b12", null ],
+    [ "Vector2", "struct_vector2.html#a6297c1a903477546a49a2fa40da58e50", null ],
+    [ "Cross", "struct_vector2.html#ac898a43178d93f7fc86ec5216ddd50f7", null ],
+    [ "Dot", "struct_vector2.html#aae8bde9d6f5c93f7d9f17d5d5f7b65c1", null ],
+    [ "Magnitude", "struct_vector2.html#a16b13aa4859a54eaec1a76ae2ca4f94d", null ],
+    [ "Normalize", "struct_vector2.html#a3b597b3bfeb114dd9e157b86330e087d", null ],
+    [ "Normalized", "struct_vector2.html#a3c3867494c864e91e3403b6cf9551eb9", null ],
+    [ "operator*=", "struct_vector2.html#aace0f729cfc2425da8ba43d4dfd54362", null ],
+    [ "operator+=", "struct_vector2.html#a524de26915ae91ca3772381f24eb5f41", null ],
+    [ "operator-=", "struct_vector2.html#a6e5289ba38ca78c72c0c9745b67b2fd1", null ],
+    [ "operator/=", "struct_vector2.html#a7f710128eac21518e07209cdd8416a5c", null ],
+    [ "SqrLength", "struct_vector2.html#a7647c87bb6b53da5d35baee6dc1d30fa", null ],
+    [ "ToString", "struct_vector2.html#a82954202994563f3cdcac400fc100bbf", null ],
+    [ "operator*", "struct_vector2.html#a6fbe4d3f9b4e116d7d306cbe45adda37", null ],
+    [ "operator*", "struct_vector2.html#a9be70890ebfd20af87d054ae6cc1e118", null ],
+    [ "operator+", "struct_vector2.html#ab128b983e584d020acf6de27bc555d10", null ],
+    [ "operator-", "struct_vector2.html#a52dd7bf25a69ae256301cbe724b7ba40", null ],
+    [ "operator/", "struct_vector2.html#abf0d241c46a38cc068dd332b14e88e04", null ],
+    [ "operator==", "struct_vector2.html#a8a2cb3b9f521fe8040a080e23fb1a9d4", null ],
+    [ "x", "struct_vector2.html#a046bb8d17a876acc49415128dc0502f2", null ],
+    [ "y", "struct_vector2.html#a0e07bad05f01ed811b909a2eef97f9e2", null ]
+];

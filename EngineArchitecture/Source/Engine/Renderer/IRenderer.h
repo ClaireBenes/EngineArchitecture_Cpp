@@ -13,18 +13,18 @@ class Mesh;
 class RenderComponent;
 class DebugRenderInterface;
 
-/*
-IRenderer is an abstract base class for rendering systems. It defines methods for
-initializing, drawing, and managing graphics resources, which must be implemented
-by specific renderer classes (e.g., OpenGL, SDL).
+/**
+ * @brief IRenderer is an abstract base class for rendering systems. It defines methods for
+ * initializing, drawing, and managing graphics resources, which must be implemented
+ * by specific renderer classes (e.g., OpenGL, SDL).
 */
 class IRenderer
 {
 public:
 
-    /*
-     Enum to represent the different flipping modes for rendering sprites.
-     This allows flipping a sprite horizontally or vertically, or no flipping at all.
+    /**
+     * @brief Enum to represent the different flipping modes for rendering sprites.
+     * This allows flipping a sprite horizontally or vertically, or no flipping at all.
      */
     enum class Flip
     {
@@ -33,8 +33,8 @@ public:
         Vertical = SDL_FLIP_VERTICAL
     };
 
-    /*
-     * Enum representing the type of renderer (either SDL or OpenGL).
+    /**
+     * @brief Enum representing the type of renderer (either SDL or OpenGL).
      * This helps identify which underlying rendering system is being used.
      */
     enum class RendererType
@@ -46,51 +46,51 @@ public:
     // Destructor for IRenderer
     virtual ~IRenderer() = default;
 
-    /*
-     * Initializes the renderer with the provided window.
+    /**
+     * @brief Initializes the renderer with the provided window.
      * @param rWindow The window that the renderer will be associated with.
      * @return True if the initialization was successful, false otherwise.
      */
     virtual bool Initialize(Window& rWindow) = 0;
-    /*
-     Prepares for drawing, called before rendering starts.
+    /**
+     * @brief Prepares for drawing, called before rendering starts.
      */
     virtual void BeginDraw() = 0;
-    /*
-     Draws the rendered objects to the screen.
-     This should be called after all draw calls have been issued.
+    /**
+     * @brief Draws the rendered objects to the screen.
+     * This should be called after all draw calls have been issued.
      */
     virtual void Draw() = 0;
-    /*
-     Completes the drawing process.
+    /**
+     * @briefCompletes the drawing process.
      */
     virtual void EndDraw() = 0;
-    /*
-     * Closes the renderer and releases any allocated resources.
+    /**
+     * @brief Closes the renderer and releases any allocated resources.
      */
     virtual void Close() = 0;
 
-    /*
-     * Gets the type of the renderer being used.
+    /**
+     * @brief Gets the type of the renderer being used.
      * @return The renderer type (SDL or OpenGL).
      */
     virtual RendererType GetType() = 0;
 
-    /*
-     * Draws a filled rectangle on the screen.
+    /**
+     * @brief Draws a filled rectangle on the screen.
      * @param rRect The rectangle defining the position and size of the rectangle.
      * @param pColor The color of the rectangle.
      */
     virtual void DrawRect(const Rectangle& rRect, Color pColor) = 0;
-    /*
-     * Draws only the outline (border) of a rectangle on the screen.
+    /**
+     * @brief Draws only the outline (border) of a rectangle on the screen.
      * @param rRect The rectangle defining the position and size of the rectangle.
      * @param pColor The color of the rectangle's border.
      */
     virtual void DrawRectLine(const Rectangle& rRect, Color pColor) = 0;
 
-    /*
-     * Draws a 2D sprite on the screen using the provided texture and rectangle.
+    /**
+     * @brief Draws a 2D sprite on the screen using the provided texture and rectangle.
      * @param rOwner The owning actor of the sprite (used for context, not directly here).
      * @param rTexture Pointer to the texture to render.
      * @param rec Defines the position and size of the sprite on screen.
@@ -98,8 +98,8 @@ public:
      */
     virtual void DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle rec, Flip flip = Flip::None) = 0;
 
-    /* 
-    * Draws a mesh with a specific texture index and transformation.
+    /**
+     * @brief Draws a mesh with a specific texture index and transformation.
     * @param pMesh The mesh to be drawn.
     * @param pTextureIndex Index of the mesh's texture to use.
     * @param transform World transformation matrix.
@@ -107,39 +107,48 @@ public:
     */ 
     virtual void DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transform, Vector2 tiling = Vector2::ONE) {};
 
-    /*
-     * Adds a render component to the list of components to be rendered.
+    /**
+     * @brief Adds a render component to the list of components to be rendered.
      * @param pRenderComponent The render component to be added.
      */
     void AddRenderComponent(RenderComponent* pRenderComponent);
-    /*
-     * Removes a render component from the list of components to be rendered.
+    /**
+     * @brief Removes a render component from the list of components to be rendered.
      * @param pRenderComponent The render component to be removed.
      */
     void RemoveRenderComponent(RenderComponent* pRenderComponent);
 
-    /*
-     * Adds a debug render component to the renderer.
+    /**
+     * @brief Adds a debug render component to the renderer.
      * @param pDebugRender The debug render interface to be added.
      */
     void AddDebugRender(DebugRenderInterface* pDebugRender);
-    /*
-     * Removes a debug render component from the renderer.
+    /**
+     * @brief Removes a debug render component from the renderer.
      * @param pDebugRender The debug render interface to be removed.
      */
     void RemoveDebugRender(DebugRenderInterface* pDebugRender);
 
-    /*
-     * Sets the view matrix for the renderer.
+    /**
+     * @brief Sets the view matrix for the renderer.
      * This is usually used for camera transformations.
      * @param pView The view transformation matrix (e.g., camera position and orientation).
      */
     virtual void SetViewMatrix(const Matrix4& pView) {};
 
 protected:
-    std::vector<RenderComponent*> mViewportRenderComponents; // List of render components associated with the viewport
-    std::vector<RenderComponent*> mWorldRenderComponents; // List of render components associated with the world (3D space)
-    std::vector<DebugRenderInterface*> mDebugRenders; // List of debug render components
+    /**
+     * @brief List of render components associated with the viewport
+     */
+    std::vector<RenderComponent*> mViewportRenderComponents;
+    /**
+     * @brief List of render components associated with the world (3D space)
+     */
+    std::vector<RenderComponent*> mWorldRenderComponents; 
+    /**
+     * @brief List of debug render components
+     */
+    std::vector<DebugRenderInterface*> mDebugRenders;
 };
 
 

@@ -6,22 +6,22 @@
 
 #include <vector>
 
-/*
-RendererGL is an OpenGL-based renderer that implements IRenderer. It handles
-OpenGL initialization, shader loading, and drawing of 2D/3D objects, including
-sprites, meshes, and textures, using OpenGL API.
+/**
+ * @brief RendererGL is an OpenGL-based renderer that implements IRenderer. It handles
+ * OpenGL initialization, shader loading, and drawing of 2D/3D objects, including
+ * sprites, meshes, and textures, using OpenGL API.
 */
 class RendererGL : public IRenderer
 {
 public:
-	/*
-	 Constructor for RendererGL.
-	 Initializes member variables and sets up OpenGL context.
+	/**
+	 * @brief Constructor for RendererGL.
+	 * Initializes member variables and sets up OpenGL context.
 	 */
 	RendererGL();
-	/*
-	 Destructor for RendererGL.
-	 Cleans up the OpenGL context and VertexArray objects.
+	/**
+	 * @brief Destructor for RendererGL.
+	 * Cleans up the OpenGL context and VertexArray objects.
 	 */
 	virtual ~RendererGL();
 
@@ -29,48 +29,48 @@ public:
 	RendererGL(const RendererGL&) = delete;
 	RendererGL& operator=(const RendererGL&) = delete;
 
-	/*
-	 * Initializes the OpenGL renderer with the given window.
+	/**
+	 * @brief Initializes the OpenGL renderer with the given window.
 	 * @param rWindow The window to render the graphics onto.
 	 * @return Returns true if initialization is successful, false otherwise.
 	 */
 	bool Initialize(Window& rWindow) override;
-	/*
-	 Loads the shaders used by the renderer for various components.
+	/**
+	 * @brief Loads the shaders used by the renderer for various components.
 	 */
 	void LoadShaders();
-	/*
-	 Begins the drawing process, clearing the screen and setting up necessary OpenGL states.
+	/**
+	 * @brief Begins the drawing process, clearing the screen and setting up necessary OpenGL states.
 	 */
 	void BeginDraw() override;
-	/*
-	 Draws all the rendered components (meshes, sprites, etc.).
+	/**
+	 * @brief Draws all the rendered components (meshes, sprites, etc.).
 	 */
 	void Draw() override;
-	/*
-	 Ends the drawing process by swapping the buffers.
+	/**
+	 * @brief Ends the drawing process by swapping the buffers.
 	 */
 	void EndDraw() override;
 
-	/*
-	 * Draws a filled rectangle on the screen with the specified color.
+	/**
+	 * @brief Draws a filled rectangle on the screen with the specified color.
 	 * @param rRect The rectangle to be drawn.
 	 * @param pColor The color of the rectangle.
 	 */
 	void DrawRect(const Rectangle& rRect, Color pColor) override;
-	/*
-	 * Draws the outline of a rectangle on the screen with the specified color.
+	/**
+	 * @brief Draws the outline of a rectangle on the screen with the specified color.
 	 * @param rRect The rectangle to be drawn.
 	 * @param pColor The color of the rectangle outline.
 	 */
 	void DrawRectLine(const Rectangle& rRect, Color pColor) override;
 
-	/*
-	 Draws all sprites currently in the render queue.
+	/**
+	 * @brief Draws all sprites currently in the render queue.
 	 */
 	void DrawAllSprites();
-	/*
-	 * Draws a sprite on the screen using the specified texture and transformation.
+	/**
+	 * @brief  Draws a sprite on the screen using the specified texture and transformation.
 	 * @param rOwner The actor owning the sprite (used for context, not directly here).
 	 * @param rTexture Pointer to the texture to render.
 	 * @param rec The rectangle that defines the position and size of the sprite on screen.
@@ -78,12 +78,12 @@ public:
 	 */
 	void DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle rec, Flip flip = Flip::None) override;
 
-	/*
-	 Draws all meshes currently in the render queue.
+	/**
+	 * @brief Draws all meshes currently in the render queue.
 	 */
 	void DrawAllMeshes();
-	/*
-	 * Draws a mesh with the specified texture index and transformation.
+	/**
+	 * @brief Draws a mesh with the specified texture index and transformation.
 	 * @param pMesh The mesh to be drawn.
 	 * @param pTextureIndex The texture index of the mesh.
 	 * @param transform The transformation matrix to apply to the mesh.
@@ -91,24 +91,24 @@ public:
 	 */
 	void DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transform, Vector2 tiling = Vector2::ONE) override;
 
-	/*
-	 * Sets the view matrix used for rendering.
+	/**
+	 * @brief Sets the view matrix used for rendering.
 	 * @param pView The new view matrix.
 	 */
 	void SetViewMatrix(const Matrix4& pView) override;
 
-	/*
-	 Closes the OpenGL context and cleans up resources.
+	/**
+	 * @brief Closes the OpenGL context and cleans up resources.
 	 */
 	void Close() override;
-	/*
-	 * Returns the type of renderer (OpenGL).
+	/**
+	 * @brief Returns the type of renderer (OpenGL).
 	 * @return RendererType::OPENGL.
 	 */
 	RendererType GetType() override;
 
-	/*
-	 * Gets the cube mesh used for rendering.
+	/**
+	 * @brief Gets the cube mesh used for rendering.
 	 * @return A pointer to the cube mesh.
 	 */
 	static Mesh* GetCubeMesh();
@@ -121,13 +121,31 @@ public:
 	static ShaderProgram mWaveShaderProgram; // Shader program for moving waves.
 
 private:
-	Window* mWindow; // The window to render to.
-	VertexArray* mSpriteVao; // The vertex array for rendering sprites.
-	SDL_GLContext mContext; // The OpenGL context used by the renderer.
+	/**
+	 * @brief The window to render to.
+	 */
+	Window* mWindow;
+	/**
+	 * @brief The vertex array for rendering sprites.
+	 */
+	VertexArray* mSpriteVao;
+	/**
+	 * @brief The OpenGL context used by the renderer.
+	 */
+	SDL_GLContext mContext;
 
-	Matrix4 mSpriteViewProj; // The projection matrix for rendering sprites.
-	Matrix4 mView; // The view matrix used for camera transformations.
-	Matrix4 mProjection; // The projection matrix for 3D rendering.
+	/**
+	 * @brief The projection matrix for rendering sprites.
+	 */
+	Matrix4 mSpriteViewProj;
+	/**
+	 * @brief The view matrix used for camera transformations.
+	 */
+	Matrix4 mView;
+	/**
+	 * @brief The projection matrix for 3D rendering.
+	 */
+	Matrix4 mProjection; // 
 
 	static Mesh* mCubeMesh; // The static cube mesh used for rendering.
 

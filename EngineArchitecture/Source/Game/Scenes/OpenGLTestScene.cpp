@@ -14,11 +14,11 @@
 void OpenGLTestScene::Load()
 {
     mFloorMesh = AssetManager::LoadMesh("plane.obj", "cube");
-    mFloorMesh->SetShaderProgram(RendererGL::mSandShaderProgram); //RendererGL::mSimpleMeshShaderProgram
+    mFloorMesh->SetShaderProgram(RendererGL::mArtShaderProgram); //RendererGL::mSimpleMeshShaderProgram
 
     //Sand
-    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/sand.png", "sandTex");
-    mFloorMesh->AddTexture(AssetManager::GetTexture("sandTex"));
+    //AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/sand.png", "sandTex");
+    //mFloorMesh->AddTexture(AssetManager::GetTexture("sandTex"));
 
     //// ----- GRASS -----
     //AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/grass.png", "floor");
@@ -31,21 +31,21 @@ void OpenGLTestScene::Load()
     //mGrassMesh->AddTexture(AssetManager::GetTexture("plant"));
     //// ----- END GRASS -----
 
-    // ----- SKY -----
-    Mesh* skySphere = AssetManager::LoadMesh("sphere.obj", "sphere");
-    skySphere->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
+    //// ----- SKY -----
+    //Mesh* skySphere = AssetManager::LoadMesh("sphere.obj", "sphere");
+    //skySphere->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
 
-    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/sky.png", "skyTex");
-    skySphere->AddTexture(AssetManager::GetTexture("skyTex"));
-    // ----- END SKY -----
+    //AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/sky.png", "skyTex");
+    //skySphere->AddTexture(AssetManager::GetTexture("skyTex"));
+    //// ----- END SKY -----
 
-    // ----- Wave -----
-    Mesh* waterMesh = AssetManager::LoadMesh("plane.obj", "plane");
-    waterMesh->SetShaderProgram(RendererGL::mWaveShaderProgram);
+    //// ----- Wave -----
+    //Mesh* waterMesh = AssetManager::LoadMesh("plane.obj", "plane");
+    //waterMesh->SetShaderProgram(RendererGL::mWaveShaderProgram);
 
-    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/voronoise.png", "waveTex");
-    waterMesh->AddTexture(AssetManager::GetTexture("waveTex"));
-    // ----- END WAVE -----
+    //AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/voronoise.png", "waveTex");
+    //waterMesh->AddTexture(AssetManager::GetTexture("waveTex"));
+    //// ----- END WAVE -----
 }
 
 void OpenGLTestScene::Start()
@@ -56,39 +56,40 @@ void OpenGLTestScene::Start()
     Floor* floor = new Floor();
     floor->SetTextureTiling(2, 2);
     AddActor(floor);
-    floor->mTransform->mScale = Vector3(11, 0.0f, 10);
-    floor->mTransform->mPosition = { -0.6f + floor->mTransform->mScale.x, -2.5f, 11 };
+    floor->mTransform->mScale = Vector3(GetWindow()->GetDimensions().x / 138, 0.0f, GetWindow()->GetDimensions().y / 138); //11, 0.0f, 10
+    floor->mTransform->mPosition = { -0.6f + floor->mTransform->mScale.x, 0.0, 11 }; //-2.5f
+    floor->mTransform->RotatePitch(90);
 
-    // ----- SKY -----
-    Actor* sky = new Actor();
-    sky->mTransform->mPosition = { 0, -250, 10 };
-    sky->mTransform->mScale = { 2000.0f, 2000.0f, 2000.0f };
-    sky->mTransform->RotatePitch(180);
+    //// ----- SKY -----
+    //Actor* sky = new Actor();
+    //sky->mTransform->mPosition = { 0, -250, 10 };
+    //sky->mTransform->mScale = { 2000.0f, 2000.0f, 2000.0f };
+    //sky->mTransform->RotatePitch(180);
 
-    MeshComponent* meshComponent = new MeshComponent(sky, AssetManager::GetMesh("sphere"));
-    AddActor(sky);
-    // ----- END SKY -----
+    //MeshComponent* meshComponent = new MeshComponent(sky, AssetManager::GetMesh("sphere"));
+    //AddActor(sky);
+    //// ----- END SKY -----
 
-    // ----- Wave -----
-    Actor* waves = new Actor();
-    waves->mTransform->mScale = Vector3(10, 1.0f, 10);
-    waves->mTransform->mPosition = Vector3(-0.6f + floor->mTransform->mScale.x, -2, 15);
-    MeshComponent* wavesMeshComponent = new MeshComponent(waves, AssetManager::GetMesh("plane"));
-    AddActor(waves);
-    waves->mTransform->RotateYaw(20);
-    // ----- END WAVE -----
+    //// ----- Wave -----
+    //Actor* waves = new Actor();
+    //waves->mTransform->mScale = Vector3(10, 1.0f, 10);
+    //waves->mTransform->mPosition = Vector3(-0.6f + floor->mTransform->mScale.x, -2, 15);
+    //MeshComponent* wavesMeshComponent = new MeshComponent(waves, AssetManager::GetMesh("plane"));
+    //AddActor(waves);
+    //waves->mTransform->RotateYaw(20);
+    //// ----- END WAVE -----
 
-    // ----- GRASS -----
+    //// ----- GRASS -----
     //Grass* grass = new Grass();
     //AddActor(grass);
     //grass->mTransform->mPosition = { 0, -2.5f, 2 };
-    // ----- END GRASS -----
+    //// ----- END GRASS -----
 
     mCamera = new Camera();
     AddActor(mCamera);
     mCamera->mTransform->mPosition = { -0.6f + floor->mTransform->mScale.x , 0, 0};
 
-    mMoveComponent = new EditorController(mCamera);
+    //mMoveComponent = new EditorController(mCamera);
 }
 
 void OpenGLTestScene::Update(float deltaTime)

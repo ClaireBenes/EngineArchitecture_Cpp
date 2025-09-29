@@ -33,6 +33,8 @@ ShaderProgram RendererGL::mTesselationMeshShaderProgram = ShaderProgram();
 ShaderProgram RendererGL::mGrassShaderProgram = ShaderProgram();
 ShaderProgram RendererGL::mSandShaderProgram = ShaderProgram();
 ShaderProgram RendererGL::mWaveShaderProgram = ShaderProgram();
+ShaderProgram RendererGL::mArtShaderProgram = ShaderProgram();
+
 
 RendererGL::RendererGL() : mWindow(nullptr), mSpriteVao(nullptr), mContext(nullptr)
 {
@@ -188,6 +190,15 @@ void RendererGL::LoadShaders()
     waveEvaluationShader.Load("Wave.tese", ShaderType::TESSELLATION_EVALUATION);
 
     mWaveShaderProgram.Compose({ &waveVertexShader, &waveControlShader, &waveEvaluationShader, &waveFragShader });
+
+    //Art
+    Shader artVertexShader = Shader();
+    Shader artFragShader = Shader();
+
+    artVertexShader.Load("ArtShader.vert", ShaderType::VERTEX);
+    artFragShader.Load("ArtShader.frag", ShaderType::FRAGMENT);
+
+    mArtShaderProgram.Compose({ &artVertexShader, &artFragShader });
 }
 
 void RendererGL::BeginDraw()
@@ -288,15 +299,26 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         pMesh->GetShaderProgram().setMatrix4("uWorldTransform", transform);
         pMesh->GetShaderProgram().setVector2f("uTileSize", tiling);
 
-        // ----- Wave -----
-        pMesh->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
-        pMesh->GetShaderProgram().setFloat("uSpeed", 0.38f);
-        pMesh->GetShaderProgram().setFloat("uFrequency", 15.11f);
-        pMesh->GetShaderProgram().setFloat("uAmplitude", 1.08f);
-        pMesh->GetShaderProgram().setFloat("uDisplacement", 0.52f);
-        pMesh->GetShaderProgram().setVector4f("uColor", Vector4(0.262f, 0.674f, 0.959f, 1.0f));      
-        pMesh->GetShaderProgram().setVector4f("uSecondColor", Vector4(0.847f, 1.0f, 1.0f, 1.0f)); 
+        // ----- WAVE -----
+        //pMesh->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
+        //pMesh->GetShaderProgram().setFloat("uSpeed", 0.38f);
+        //pMesh->GetShaderProgram().setFloat("uFrequency", 15.11f);
+        //pMesh->GetShaderProgram().setFloat("uAmplitude", 1.08f);
+        //pMesh->GetShaderProgram().setFloat("uDisplacement", 0.52f);
+        //pMesh->GetShaderProgram().setVector4f("uColor", Vector4(0.262f, 0.674f, 0.959f, 1.0f));      
+        //pMesh->GetShaderProgram().setVector4f("uSecondColor", Vector4(0.847f, 1.0f, 1.0f, 1.0f)); 
         // ----- END WAVE -----
+
+        // ----- ART SHADER -----
+        pMesh->GetShaderProgram().setVector2f("uDimensions", Vector2(mWindow->GetDimensions().x, mWindow->GetDimensions().y));
+        pMesh->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
+        pMesh->GetShaderProgram().setFloat("uSpeed", 0.4f);
+        pMesh->GetShaderProgram().setFloat("uPatternRepetition", 4.0f);
+        pMesh->GetShaderProgram().setFloat("uPatternMultiplier", 1.5f);
+        pMesh->GetShaderProgram().setFloat("uShapeRepetition", 8.0f);
+        pMesh->GetShaderProgram().setFloat("uBrightness", 0.01f);
+        pMesh->GetShaderProgram().setFloat("uContrast", 1.2f);
+        // ----- END ART SHADER -----
 
         Texture* t = pMesh->GetTexture(pTextureIndex);
         if (t)
@@ -307,7 +329,7 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         pMesh->GetVertexArray()->SetActive();
 
         // ----- SAND -----
-        pMesh->GetShaderProgram().setFloat("uDisplacementStrength", 5.0f);
+        //pMesh->GetShaderProgram().setFloat("uDisplacementStrength", 5.0f);
         // ----- END SAND -----
 
         // ----- GRASS -----

@@ -422,5 +422,7 @@
     <None Include="Resources\Shaders\Wave.vert" />
     <None Include="Resources\Shaders\Sand.tesc" />
     <None Include="Resources\Shaders\Sand.tese" />
+    <None Include="Resources\Shaders\ArtShader.frag" />
+    <None Include="Resources\Shaders\ArtShader.vert" />
   </ItemGroup>
 </Project>

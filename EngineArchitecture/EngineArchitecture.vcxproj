@@ -151,6 +151,8 @@
     <ClCompile Include="Source\Game\Actors\Doom\WinBox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Shaders\ArtShader.vert" />
+    <None Include="Resources\Shaders\ArtShader.frag" />
     <None Include="Resources\Shaders\Sand.tese" />
     <None Include="Resources\Shaders\Sand.tesc" />
     <None Include="Resources\Shaders\Wave.vert" />

@@ -192,7 +192,7 @@ void RendererGL::LoadShaders()
 
 void RendererGL::BeginDraw()
 {
-    glClearColor(0.45f, 0.45f, 1.0f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     mSpriteVao->SetActive();
@@ -311,14 +311,14 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         // ----- END SAND -----
 
         // ----- GRASS -----
-        int gridSizeX = 20;
-        int gridSizeZ = 10;
-        int instanceCount = gridSizeX * gridSizeZ;
+        //int gridSizeX = 20;
+        //int gridSizeZ = 10;
+        //int instanceCount = gridSizeX * gridSizeZ;
 
-        pMesh->GetShaderProgram().setInteger("uGridSizeX", gridSizeX);
-        pMesh->GetShaderProgram().setInteger("uGridSizeZ", gridSizeZ);
+        //pMesh->GetShaderProgram().setInteger("uGridSizeX", gridSizeX);
+        //pMesh->GetShaderProgram().setInteger("uGridSizeZ", gridSizeZ);
 
-        pMesh->GetShaderProgram().setFloat("time", Time::GetGameTime());
+        //pMesh->GetShaderProgram().setFloat("time", Time::GetGameTime());
         // ----- END GRASS -----
 
         //glDrawArraysInstanced(GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount(), instanceCount);

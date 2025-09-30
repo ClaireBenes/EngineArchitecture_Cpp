@@ -312,12 +312,11 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         // ----- ART SHADER -----
         pMesh->GetShaderProgram().setVector2f("uDimensions", Vector2(mWindow->GetDimensions().x, mWindow->GetDimensions().y));
         pMesh->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
-        pMesh->GetShaderProgram().setFloat("uSpeed", 0.4f);
-        pMesh->GetShaderProgram().setFloat("uPatternRepetition", 4.0f);
-        pMesh->GetShaderProgram().setFloat("uPatternMultiplier", 1.5f);
+        pMesh->GetShaderProgram().setFloat("uSpeed", 0.5f);
+        pMesh->GetShaderProgram().setFloat("uPatternRepetition", 0.75f);
+        pMesh->GetShaderProgram().setFloat("uShapeSize", 0.7f);
         pMesh->GetShaderProgram().setFloat("uShapeRepetition", 8.0f);
-        pMesh->GetShaderProgram().setFloat("uBrightness", 0.01f);
-        pMesh->GetShaderProgram().setFloat("uContrast", 1.2f);
+        pMesh->GetShaderProgram().setFloat("uBrightness", 0.001f);
         // ----- END ART SHADER -----
 
         Texture* t = pMesh->GetTexture(pTextureIndex);

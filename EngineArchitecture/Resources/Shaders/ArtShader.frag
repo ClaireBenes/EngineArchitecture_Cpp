@@ -58,11 +58,19 @@ void main()
         O = n * normalize(vec3(((fragCoord + fragCoord - b.xy) / b.y) * R(s / 4.0), 1.0));
         O.xz *= R(n * uZDistance);
         O.z += s - 1.0;
+
+        float loopLimit = 4.0;
+        float loopfraction = 0.3;
+        if(uPalette == 2) 
+        {
+            loopLimit = 10.0;
+            loopfraction = 1.2;
+        }
         
-        for(o = -3.0, c = 9.0; ++o < 4.0;) //10.0
+        for(o = -3.0, c = 9.0; ++o < loopLimit;)
         {
             r = O;
-            r.z = fract(r.z) - 0.3 - o;
+            r.z = fract(r.z) - loopfraction - o;
             B = floor(O.z) + o;
             
             r.xy *= R(B * 0.75);

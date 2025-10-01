@@ -310,13 +310,14 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         // ----- END WAVE -----
 
         // ----- ART SHADER -----
-        pMesh->GetShaderProgram().setVector2f("uDimensions", Vector2(mWindow->GetDimensions().x, mWindow->GetDimensions().y));
+        pMesh->GetShaderProgram().setVector3f("uDimensions", Vector3(mWindow->GetDimensions().x, mWindow->GetDimensions().y, 1.0));
         pMesh->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
-        pMesh->GetShaderProgram().setFloat("uSpeed", 0.5f);
-        pMesh->GetShaderProgram().setFloat("uPatternRepetition", 0.75f);
-        pMesh->GetShaderProgram().setFloat("uShapeSize", 0.7f);
-        pMesh->GetShaderProgram().setFloat("uShapeRepetition", 8.0f);
-        pMesh->GetShaderProgram().setFloat("uBrightness", 0.001f);
+        pMesh->GetShaderProgram().setFloat("uSpeed", 1.1f);
+        pMesh->GetShaderProgram().setFloat("uBrightness", 0.002f);
+        pMesh->GetShaderProgram().setFloat("uExposure", 0.5f);
+        pMesh->GetShaderProgram().setFloat("uBallSize", 0.09f);
+        pMesh->GetShaderProgram().setFloat("uZDistance", 0.01f);
+        pMesh->GetShaderProgram().setInteger("uPalette", 0);
         // ----- END ART SHADER -----
 
         Texture* t = pMesh->GetTexture(pTextureIndex);

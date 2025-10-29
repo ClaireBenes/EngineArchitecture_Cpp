@@ -314,7 +314,7 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         pMesh->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
         pMesh->GetShaderProgram().setFloat("uSpeed", 1.5f);
         pMesh->GetShaderProgram().setFloat("uBrightness", 1000.0f);
-        pMesh->GetShaderProgram().setFloat("uSunriseMix", 0.5f);
+        pMesh->GetShaderProgram().setFloat("uSunriseMix", 0.0f);
         pMesh->GetShaderProgram().setFloat("uCloudScale", 0.2f);
         pMesh->GetShaderProgram().setInteger("uClouds", 150);
         // ----- END ART SHADER -----

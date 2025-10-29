@@ -49,7 +49,7 @@ void main()
     );
 
     // --- Day / Night cycle ---
-    sunrise = sin(uTime * 0.8) * 0.8 + 0.5;
+    //sunrise = sin(uTime * 0.8) * 0.8 + 0.5;
 
     // --- Warm cloud tint ---
     vec3 warmTint = mix(vec3(1.0), vec3(0.8, 0.8, 0.8), sunrise);

@@ -44,6 +44,11 @@ public:
 	 */
 	virtual void Update(float deltaTime);
 
+	/**
+	 * TODO
+	 */
+	virtual void Draw() {};
+
 	//Non virtual functions
 
 	/**

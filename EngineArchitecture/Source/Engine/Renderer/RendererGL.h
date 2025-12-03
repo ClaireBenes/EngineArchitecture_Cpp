@@ -98,6 +98,15 @@ public:
 	void SetViewMatrix(const Matrix4& pView) override;
 
 	/**
+	 * TODO
+	 */
+	virtual const Matrix4& GetViewMatrix() override;
+	/**
+	 * TODO
+	 */
+	virtual const Matrix4& GetProjectionMatrix() override;
+
+	/**
 	 * @brief Closes the OpenGL context and cleans up resources.
 	 */
 	void Close() override;

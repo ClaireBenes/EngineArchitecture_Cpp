@@ -90,6 +90,8 @@ void Engine::Render()
 {
     mRenderer->BeginDraw();
 
+    mScenes[mLoadedScene]->Draw();
+
     mRenderer->Draw();
 
     mRenderer->EndDraw();

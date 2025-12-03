@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Game\Scenes\ComputeShader.h" />
     <ClInclude Include="Source\Game\Actors\Doom\Door.h" />
     <ClInclude Include="Source\Game\Actors\Doom\AmmoPickUp.h" />
     <ClInclude Include="Source\Game\Actors\Doom\HeartPickUp.h" />
@@ -86,6 +87,7 @@
     <ClInclude Include="Source\Game\Actors\Doom\WinBox.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\Scenes\ComputeShader.cpp" />
     <ClCompile Include="Source\Game\Actors\Doom\Door.cpp" />
     <ClCompile Include="Source\Game\Actors\Doom\AmmoPickUp.cpp" />
     <ClCompile Include="Source\Game\Actors\Doom\HeartPickUp.cpp" />
@@ -151,6 +153,9 @@
     <ClCompile Include="Source\Game\Actors\Doom\WinBox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Shaders\Cloth.frag" />
+    <None Include="Resources\Shaders\Cloth.vert" />
+    <None Include="Resources\Shaders\Cloth.comp" />
     <None Include="Resources\Shaders\ArtShader.vert" />
     <None Include="Resources\Shaders\ArtShader.frag" />
     <None Include="Resources\Shaders\Sand.tese" />

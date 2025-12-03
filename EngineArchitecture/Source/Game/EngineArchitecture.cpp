@@ -10,6 +10,7 @@
 #include "Scenes/Bowling.h"
 #include "Scenes/Doom.h"
 #include "Scenes/OpenGLTestScene.h"
+#include "Scenes/ComputeShader.h"
 
 #include "Engine/Renderer/IRenderer.h"
 
@@ -35,7 +36,7 @@ int main(int argc, char* argv[])
 	//Engine bowling("OpenGL 3D Bowling", { new Bowling }, IRenderer::RendererType::OPENGL);
 	//Engine doom("OpenGL 3D Not really Doom", { new Doom }, IRenderer::RendererType::OPENGL);
 
-	Engine testScene("OpenGL 3D test scene", { new OpenGLTestScene }, IRenderer::RendererType::OPENGL);
+	Engine testScene("cloth", { new ComputeShader }, IRenderer::RendererType::OPENGL);
 
 	return 0;
 }

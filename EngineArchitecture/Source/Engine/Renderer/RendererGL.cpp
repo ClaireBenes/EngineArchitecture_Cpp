@@ -358,6 +358,16 @@ void RendererGL::SetViewMatrix(const Matrix4& pView)
     mView = pView;
 }
 
+const Matrix4& RendererGL::GetViewMatrix()
+{
+    return mView;
+}
+
+const Matrix4& RendererGL::GetProjectionMatrix()
+{
+    return mProjection;
+}
+
 void RendererGL::Close()
 {
     SDL_GL_DeleteContext(mContext);

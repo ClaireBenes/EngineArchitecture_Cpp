@@ -210,6 +210,9 @@
     <ClInclude Include="Source\Game\Actors\Doom\WinBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Scenes\ComputeShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Engine.cpp">
@@ -395,6 +398,9 @@
     <ClCompile Include="Source\Game\Actors\Doom\WinBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Game\Scenes\ComputeShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Game\Shaders\Vertex\SimpleVertex.shader" />
@@ -424,5 +430,8 @@
     <None Include="Resources\Shaders\Sand.tese" />
     <None Include="Resources\Shaders\ArtShader.frag" />
     <None Include="Resources\Shaders\ArtShader.vert" />
+    <None Include="Resources\Shaders\Cloth.comp" />
+    <None Include="Resources\Shaders\Cloth.vert" />
+    <None Include="Resources\Shaders\Cloth.frag" />
   </ItemGroup>
 </Project>

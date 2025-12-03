@@ -136,6 +136,15 @@ public:
      */
     virtual void SetViewMatrix(const Matrix4& pView) {};
 
+    /**
+     * TODO
+     */
+    virtual const Matrix4& GetViewMatrix() { return Matrix4::Identity; };
+    /**
+     * TODO
+     */
+    virtual const Matrix4& GetProjectionMatrix() { return Matrix4::Identity; };
+
 protected:
     /**
      * @brief List of render components associated with the viewport

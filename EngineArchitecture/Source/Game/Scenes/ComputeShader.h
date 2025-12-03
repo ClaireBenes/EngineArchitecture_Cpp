@@ -16,6 +16,13 @@ public:
 	void Draw() override;
 
 private:
+	static constexpr int GridWidth = 50;
+	static constexpr int GridHeight = 50;
+
+	static constexpr int VerticesCountX = 100;
+	static constexpr int VerticesCountY = 100;
+
+private:
 	Camera* mCamera = nullptr;
 	EditorController* mMoveComponent = nullptr;
 

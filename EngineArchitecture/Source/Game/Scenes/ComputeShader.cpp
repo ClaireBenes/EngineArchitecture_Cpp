@@ -30,12 +30,6 @@ void ComputeShader::Load()
     mRenderShader.Compose({ &clothVertexShader, &clothFragmentShader });
 
     //Vertices
-    constexpr int GridWidth = 50;
-    constexpr int GridHeight = 50;
-    
-    constexpr int VerticesCountX = 100;
-    constexpr int VerticesCountY = 100;
-
     for(int y = 0; y < VerticesCountY; y++)
     {
         for(int x = 0; x < VerticesCountX; x++)
@@ -52,11 +46,13 @@ void ComputeShader::Load()
     //Generate VBO
     glGenBuffers(1, &mVertexBufferId);
     glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferId);
-    glBufferData(GL_ARRAY_BUFFER, mVertices.size() * 3 * sizeof(float), mVertices.data(), GL_STATIC_DRAW);
 
     //Position
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*) 0);
+
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, mVertexBufferId);
+    glBufferData(GL_SHADER_STORAGE_BUFFER, mVertices.size() * 3 * sizeof(float), mVertices.data(), GL_STATIC_DRAW);
 
     //Floor
     Mesh* floorMesh = AssetManager::LoadMesh("cube.obj", "cube");
@@ -91,7 +87,8 @@ void ComputeShader::Update(float deltaTime)
 void ComputeShader::Draw()
 {
     mComputeShader.Use();
-    glDispatchCompute(1, 1, 1);
+    glDispatchCompute(VerticesCountX / 10, VerticesCountY / 10, 1);
+    glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
 
     mRenderShader.Use();
     mRenderShader.setMatrix4("uWorldTransform", Matrix4::Identity);

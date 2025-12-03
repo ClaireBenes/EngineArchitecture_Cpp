@@ -94,7 +94,7 @@ void ComputeShader::Start()
 
     mCamera = new Camera();
     AddActor(mCamera);
-    mCamera->mTransform->mPosition = { GridWidth * 0.5f, GridHeight * 0.1f, -40 };
+    mCamera->mTransform->mPosition = { GridWidth * 0.5f, GridHeight * 0.1f, -30 };
     mCamera->mTransform->RotatePitch(25);
 
     mMoveComponent = new EditorController(mCamera);
@@ -112,7 +112,9 @@ void ComputeShader::Draw()
     mComputeShader.Use();
     mComputeShader.setVector3f("uWindForce", windForce);
 
-    for(int i = 0; i < 3000; i++)
+    int iterations = std::min(60 / Time::deltaTime, 3000.0f);
+
+    for(int i = 0; i < iterations; i++)
     {
         // Compute shader
         glDispatchCompute(VerticesCountX / 10, VerticesCountY / 10, 1);

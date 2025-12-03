@@ -13,5 +13,5 @@ void main()
    gl_Position = pos * uWorldTransform * uViewProj;
    gl_PointSize = 100.0 / gl_Position.z;
 
-   color = mix(vec4(1, 1, 1, 1), vec4(1, 1, 1, 0.4), clamp(length(velocity.xyz) / 10, 0, 1));
+   color = mix(vec4(1, 1, 1, 1), vec4(0.9, 0.9, 1, 0.2), clamp(length(velocity.xyz) / 15, 0, 1));
 }

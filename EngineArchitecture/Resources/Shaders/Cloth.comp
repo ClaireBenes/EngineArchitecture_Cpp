@@ -22,10 +22,10 @@ layout(std430, binding = 3) buffer VelOut
     vec4 VelocityOut[];
 };
 
-uniform vec3 uGravity = vec3(0, -10, 0);
-uniform float uParticleMass = 0.1;
-uniform float uParticleInvMass = 1.0 / 0.1;
-uniform float uStiffness = 2000.0;
+uniform vec3 uGravity = vec3(0, -7, 0);
+uniform float uParticleMass = 0.08;
+uniform float uParticleInvMass = 1.0 / 0.08;
+uniform float uStiffness = 1500.0;
 uniform float uDeltaTime = 0.000005;
 uniform float uFriction = 0.1;
 
@@ -41,7 +41,7 @@ void main()
 
     vec3 position = vec3(PositionIn[index]);
 
-    if (gl_GlobalInvocationID.y == 0 && (gl_GlobalInvocationID.x == 0 || gl_GlobalInvocationID.x == particleCount.x - 1))
+    if (gl_GlobalInvocationID.y == 0 && (gl_GlobalInvocationID.x < 2 || gl_GlobalInvocationID.x > particleCount.x - 3))
     {
         PositionOut[index] = vec4(position, 1);
         VelocityOut[index] = VelocityIn[index];

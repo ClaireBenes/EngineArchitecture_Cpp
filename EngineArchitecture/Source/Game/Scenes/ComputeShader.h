@@ -16,8 +16,8 @@ public:
 	void Draw() override;
 
 private:
-	static constexpr int GridWidth = 30;
-	static constexpr int GridHeight = 30;
+	static constexpr int GridWidth = 25;
+	static constexpr int GridHeight = 25;
 
 	static constexpr int VerticesCountX = 100;
 	static constexpr int VerticesCountY = 100;

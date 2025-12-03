@@ -81,9 +81,26 @@ void Shader::Load(std::string pFileName, ShaderType pShaderType)
             break;
         }
     }
+
     const char* source = mCode.c_str();
     glShaderSource(mId, 1, &source, NULL);
+
     glCompileShader(mId);
+
+    GLint status = GL_FALSE;
+    glGetShaderiv(mId, GL_COMPILE_STATUS, &status);
+    if (status != GL_TRUE)
+    {
+        GLint infoLogLength = 0;
+        glGetShaderiv(mId, GL_INFO_LOG_LENGTH, &infoLogLength);
+
+        std::string infoLog {};
+        infoLog.reserve(infoLogLength);
+        glGetShaderInfoLog(mId, infoLogLength, &infoLogLength, infoLog.data());
+
+        Log::Info("Compile error with shader '" + pFileName + "':");
+        printf("%s", infoLog.c_str());
+    }
 }
 
 std::string& Shader::GetCode()

@@ -22,13 +22,95 @@ layout(std430, binding = 3) buffer VelOut
     vec4 VelocityOut[];
 };
 
+uniform vec3 uGravity = vec3(0, -10, 0);
+uniform float uParticleMass = 0.1;
+uniform float uParticleInvMass = 1.0 / 0.1;
+uniform float uStiffness = 2000.0;
+uniform float uDeltaTime = 0.000005;
+uniform float uFriction = 0.1;
+
+uniform float uDesiredHorizontalLength;
+uniform float uDesiredVerticalLength;
+uniform float uDesiredDiagonalLength;
+uniform vec3 uWindForce;
+
 void main()
 {
-    uvec3 NumParticles = gl_NumWorkGroups * gl_WorkGroupSize;
-    uint Index = gl_GlobalInvocationID.y * NumParticles.x + gl_GlobalInvocationID.x;
+    uvec3 particleCount = gl_NumWorkGroups * gl_WorkGroupSize;
+    uint index = gl_GlobalInvocationID.y * particleCount.x + gl_GlobalInvocationID.x;
 
-    vec3 p = vec3(PositionIn[Index]);
+    vec3 position = vec3(PositionIn[index]);
 
-    PositionOut[Index] = vec4(p, 1) + VelocityIn[Index];
-    VelocityOut[Index] = VelocityIn[Index] + vec4(0, -1, 0, 0) * 0.0016;
+    if (gl_GlobalInvocationID.y == 0)
+    {
+        PositionOut[index] = vec4(position, 1);
+        VelocityOut[index] = VelocityIn[index];
+        return;
+    }
+
+    vec3 positionDifference; 
+
+    // Start with gravitational acceleration and add the spring
+    // Forces from each neighbor
+    vec3 force = (uGravity + uWindForce) * uParticleMass;
+
+    // Particle above
+    if (gl_GlobalInvocationID.y < particleCount.y - 1) {
+        positionDifference = PositionIn[index + particleCount.x].xyz - position;
+        force += normalize(positionDifference) * uStiffness * (length(positionDifference) - uDesiredVerticalLength);
+    }
+
+    // Below
+    if (gl_GlobalInvocationID.y > 0) {
+        positionDifference = PositionIn[index - particleCount.x].xyz - position;
+        force += normalize(positionDifference) * uStiffness * (length(positionDifference) - uDesiredVerticalLength);
+    }
+
+    // Left
+    if (gl_GlobalInvocationID.x > 0) {
+        positionDifference = PositionIn[index - 1].xyz - position;
+        force += normalize(positionDifference) * uStiffness * (length(positionDifference) - uDesiredHorizontalLength);
+    }
+
+    // Right
+    if (gl_GlobalInvocationID.x < particleCount.x - 1) {
+        positionDifference = PositionIn[index + 1].xyz - position;
+        force += normalize(positionDifference) * uStiffness * (length(positionDifference) - uDesiredHorizontalLength);
+    }
+
+    // Diagonals
+    // Upper-left
+    if (gl_GlobalInvocationID.x > 0 && gl_GlobalInvocationID.y < particleCount.y - 1) {
+        positionDifference = PositionIn[index + particleCount.x - 1].xyz - position;
+        force += normalize(positionDifference) * uStiffness * (length(positionDifference) - uDesiredDiagonalLength);
+    }
+
+    // Upper-right
+    if (gl_GlobalInvocationID.x < particleCount.x - 1 && gl_GlobalInvocationID.y < particleCount.y - 1) {
+        positionDifference = PositionIn[index + particleCount.x + 1].xyz - position;
+        force += normalize(positionDifference) * uStiffness * (length(positionDifference) - uDesiredDiagonalLength);
+    }
+
+    // lower -left
+    if (gl_GlobalInvocationID.x > 0 && gl_GlobalInvocationID.y > 0) {
+        positionDifference = PositionIn[index - particleCount.x - 1].xyz - position;
+        force += normalize(positionDifference) * uStiffness * (length(positionDifference) - uDesiredDiagonalLength);
+    }
+
+    // lower-right
+    if (gl_GlobalInvocationID.x < particleCount.x - 1 && gl_GlobalInvocationID.y > 0) {
+        positionDifference = PositionIn[index - particleCount.x + 1].xyz - position;
+        force += normalize(positionDifference) * uStiffness * (length(positionDifference) - uDesiredDiagonalLength);
+    }
+
+    vec3 velocity = vec3(VelocityIn[index]);
+    force += -velocity * uFriction;
+
+    // Apply semi-implicit Euler integrator
+    vec3 acceleration = force * uParticleInvMass;    
+    VelocityOut[index] = vec4(velocity + acceleration * uDeltaTime, 0.0);
+
+    velocity = vec3(VelocityIn[index]);  // get the udpated value
+
+    PositionOut[index] = vec4(position + velocity * uDeltaTime + 0.5 * acceleration * uDeltaTime * uDeltaTime, 1.0);
 }

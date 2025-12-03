@@ -6,11 +6,9 @@
 #include "Engine/GameTool/Movement/Controller/EditorController.h"
 #include "Engine/GameTool/Camera.h"
 
-#include "Game/Actors/Floor.h"
-
 void ComputeShader::Load()
 {
-    //  I need to enable this to use gl_PointSize in my vertex shader
+    // Need this to use gl_PointSize in vertex shader
     glEnable(GL_PROGRAM_POINT_SIZE);
 
     //Compute shader
@@ -37,11 +35,17 @@ void ComputeShader::Load()
     {
         for(int x = 0; x < VerticesCountX; x++)
         {
-            mVertices.push_back(Vector4(x * distX, 0, y * distY, 1));
+            mVertices.push_back(Vector4(x * distX, 0, -y * distY, 1));
         }
     }
 
     printf("Vertices Count: %d\n", mVertices.size());
+
+    // Setup rest lengths
+    mComputeShader.Use();
+    mComputeShader.setFloat("uDesiredHorizontalLength", distX);
+    mComputeShader.setFloat("uDesiredVerticalLength", distY);
+    mComputeShader.setFloat("uDesiredDiagonalLength", sqrtf(distX * distX + distY * distY));
 
     //Generate double buffers
     for (int i = 0; i < 2; i++)
@@ -76,13 +80,6 @@ void ComputeShader::Load()
 
     //Unbind VAO
     glBindVertexArray(0);
-
-    //Floor
-    Mesh* floorMesh = AssetManager::LoadMesh("cube.obj", "cube");
-    floorMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
-
-    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/grass.png", "floor");
-    floorMesh->AddTexture(AssetManager::GetTexture("floor"));
 }
 
 void ComputeShader::Start()
@@ -90,14 +87,10 @@ void ComputeShader::Start()
     SDL_SetHintWithPriority(SDL_HINT_MOUSE_RELATIVE_MODE_WARP, "1", SDL_HINT_OVERRIDE);
     SDL_SetRelativeMouseMode(SDL_TRUE);
 
-    /*Floor* floor = new Floor();
-    AddActor(floor);
-    floor->mTransform->mScale = Vector3(50, 0.01f, 50);
-    floor->mTransform->mPosition = { 0, -2.5f, 35 };*/
-
     mCamera = new Camera();
     AddActor(mCamera);
-    mCamera->mTransform->mPosition = { 25, 10, -50 };
+    mCamera->mTransform->mPosition = { GridWidth * 0.5f, GridHeight * 0.1f, -40 };
+    mCamera->mTransform->RotatePitch(25);
 
     mMoveComponent = new EditorController(mCamera);
 }
@@ -109,17 +102,24 @@ void ComputeShader::Update(float deltaTime)
 
 void ComputeShader::Draw()
 {
-    // Compute shader
-    mComputeShader.Use();
-    glDispatchCompute(VerticesCountX / 10, VerticesCountY / 10, 1);
-    glMemoryBarrier(GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT | GL_SHADER_STORAGE_BARRIER_BIT);
+    Vector3 windForce = Vector3(cosf(Time::GetGameTime() * 0.5f) * 20.0f, 0, sinf(Time::GetGameTime()) * 10.0f);
 
-    // Swap buffers
-    mDoubleBufferIndex = 1 - mDoubleBufferIndex;  // 0 --> 1 --> 0 --> ...
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, mPositionBuffers[mDoubleBufferIndex]);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, mPositionBuffers[1 - mDoubleBufferIndex]);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, mVelocityBuffers[mDoubleBufferIndex]);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 3, mVelocityBuffers[1 - mDoubleBufferIndex]);
+    mComputeShader.Use();
+    mComputeShader.setVector3f("uWindForce", windForce);
+
+    for(int i = 0; i < 3000; i++)
+    {
+        // Compute shader
+        glDispatchCompute(VerticesCountX / 10, VerticesCountY / 10, 1);
+        glMemoryBarrier(GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT | GL_SHADER_STORAGE_BARRIER_BIT);
+
+        // Swap buffers
+        mDoubleBufferIndex = 1 - mDoubleBufferIndex;  // 0 --> 1 --> 0 --> ...
+        glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, mPositionBuffers[mDoubleBufferIndex]);
+        glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, mPositionBuffers[1 - mDoubleBufferIndex]);
+        glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, mVelocityBuffers[mDoubleBufferIndex]);
+        glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 3, mVelocityBuffers[1 - mDoubleBufferIndex]);
+    }
 
     // Render shader
     mRenderShader.Use();

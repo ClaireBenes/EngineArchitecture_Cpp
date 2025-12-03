@@ -75,8 +75,13 @@ void ComputeShader::Load()
 
     //Position
     glBindBuffer(GL_ARRAY_BUFFER, mPositionBuffers[0]);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vector4), (void*) 0);
+    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(Vector4), (void*) 0);
     glEnableVertexAttribArray(0);
+
+    //Velocity
+    glBindBuffer(GL_ARRAY_BUFFER, mVelocityBuffers[0]);
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vector4), (void*) 0);
+    glEnableVertexAttribArray(1);
 
     //Unbind VAO
     glBindVertexArray(0);

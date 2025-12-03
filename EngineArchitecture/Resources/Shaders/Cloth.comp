@@ -41,7 +41,7 @@ void main()
 
     vec3 position = vec3(PositionIn[index]);
 
-    if (gl_GlobalInvocationID.y == 0)
+    if (gl_GlobalInvocationID.y == 0 && (gl_GlobalInvocationID.x == 0 || gl_GlobalInvocationID.x == particleCount.x - 1))
     {
         PositionOut[index] = vec4(position, 1);
         VelocityOut[index] = VelocityIn[index];

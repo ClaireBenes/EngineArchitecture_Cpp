@@ -103,15 +103,15 @@ void ComputeShader::Start()
 void ComputeShader::Update(float deltaTime)
 {
 	Scene::Update(deltaTime);
-}
 
-void ComputeShader::Draw()
-{
     Vector3 windForce = Vector3(cosf(Time::GetGameTime() * 0.5f) * 20.0f, 0, sinf(Time::GetGameTime()) * 10.0f);
 
     mComputeShader.Use();
     mComputeShader.setVector3f("uWindForce", windForce);
+}
 
+void ComputeShader::Draw()
+{
     int iterations = std::min(60 / Time::deltaTime, 3000.0f);
 
     for(int i = 0; i < iterations; i++)

@@ -14,14 +14,13 @@ This engine is currently in early development and is aimed at learning and exper
 - OpenGL rendering pipeline
 - Modular class and namespace structure
 - Auto-generated, easy-to-read documentation
-
+---
 ## 📸 Screenshots
 
 | Cloud Shader | Wave Shader | Grass Shader |
 |---------------|-----------|----------------|
 | ![Clouds4 - frame at 0m7s](https://github.com/user-attachments/assets/5b3868d7-4548-40f7-b0f4-2e21bb1e7fdb)| <img width="2242" height="1253" alt="Engine_Water" src="https://github.com/user-attachments/assets/fe6478ca-9fa4-4094-8cd2-e9618139e98b" />| <img width="2240" height="1251" alt="Engine_Grass" src="https://github.com/user-attachments/assets/29d98b5d-fd86-46ec-be69-f3bb55f97215" /> |
 
----
 Here are some previews of the documentation site:
 
 ![2025-05-24_194105](https://github.com/user-attachments/assets/49b6c01c-6430-4823-8c47-ba2f51c59a5d)

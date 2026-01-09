@@ -41,3 +41,7 @@
 CMakeSettings.json
 
 !*/Resources/**/*.obj
+
+# Allow GLEW binaries and libraries
+!Dependencies/glew-2.2.0-win32/glew-2.2.0/bin/**
+!Dependencies/glew-2.2.0-win32/glew-2.2.0/lib/**

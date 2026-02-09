@@ -28,12 +28,12 @@ void MoveComponent::AddForce(Vector3 pForce)
 	mVelocity += pForce;
 }
 
-Vector2 MoveComponent::GetRotationSpeed() const
+Vector3 MoveComponent::GetRotationSpeed() const
 {
 	return mRotationSpeed;
 }
 
-void MoveComponent::SetRotationSpeed(Vector2 pRotationSpeed)
+void MoveComponent::SetRotationSpeed(Vector3 pRotationSpeed)
 {
 	mRotationSpeed = pRotationSpeed;
 }
@@ -45,7 +45,7 @@ void MoveComponent::Update()
 		mVelocity += mGravityDirection * Time::deltaTime;
 	}
 
-	if(!Maths::NearZero(mRotationSpeed.SqrLength()))
+	if(!Maths::NearZero(mRotationSpeed.MagnitudeSqr()))
 	{
 		Quaternion newRotation = mOwner->mTransform->mRotation + Quaternion(Vector3::Up, mRotationSpeed.x * Time::deltaTime);
 		newRotation.Normalize();

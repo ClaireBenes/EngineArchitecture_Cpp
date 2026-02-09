@@ -35,19 +35,29 @@ PilotController::~PilotController()
 
 void PilotController::Update()
 {
-	MoveComponent::Update();
+	if (!Maths::NearZero(mRotationSpeed.MagnitudeSqr()))
+	{
+		Quaternion rotation = mOwner->mTransform->mRotation + Quaternion(mOwner->mTransform->Forward(), mRotationSpeed.z * Time::deltaTime);
+		rotation = rotation + Quaternion(mOwner->mTransform->Right(), mRotationSpeed.y * Time::deltaTime);
+		rotation = rotation + Quaternion(mOwner->mTransform->Up(), mRotationSpeed.x * Time::deltaTime);
+
+		rotation.Normalize();
+		mOwner->mTransform->mRotation = rotation;
+	}
+
+	if (!Maths::NearZero(mSpeed.Magnitude() + mVelocity.Magnitude()))
+	{
+		// Apply friction to velocity
+		mVelocity.x -= mVelocity.x * Time::deltaTime * mFriction;
+		mVelocity.z -= mVelocity.z * Time::deltaTime * mFriction;
+
+		mOwner->mTransform->mPosition = GetDesiredPos();
+	}
 
 	int mouseDeltaX, mouseDeltaY;
 	SDL_GetRelativeMouseState(&mouseDeltaX, &mouseDeltaY);
 
-	if (mouseDeltaX != 0 || mouseDeltaY != 0)
-	{
-		SetRotationSpeed(Vector2(mouseDeltaX / 10, mouseDeltaY / 10));
-	}
-	else
-	{
-		SetRotationSpeed(Vector2::ZERO);
-	}
+	SetRotationSpeed(Vector3(mouseDeltaX / 10, mouseDeltaY / 10, inputDirection.x));
 }
 
 void PilotController::OnNotify(SDL_Event& pEvent)
@@ -70,15 +80,11 @@ void PilotController::OnNotify(SDL_Event& pEvent)
 					break;
 				case SDLK_RIGHT:
 				case SDLK_d:
-					inputDirection.x += 0.5f;
-					//inputDirection.z += 0.5f;
-					//mOwner->mTransform->RotateRoll(45);
-					 // e.g., maxRollAngle = 45 degrees
-					//mOwner->mTransform->RotateRoll(inputDirection.x * 1);
+					inputDirection.x -= 0.5f;
 					break;
 				case SDLK_LEFT:
 				case SDLK_q:
-					inputDirection.x -= 0.5f;
+					inputDirection.x += 0.5f;
 					break;
 				case SDLK_RETURN:
 					if (mPlayer->mIsGameEnd) 
@@ -106,11 +112,11 @@ void PilotController::OnNotify(SDL_Event& pEvent)
 					break;
 				case SDLK_RIGHT:
 				case SDLK_d:
-					inputDirection.x -= 0.5f;
+					inputDirection.x += 0.5f;
 					break;
 				case SDLK_LEFT:
 				case SDLK_q:
-					inputDirection.x += 0.5f;
+					inputDirection.x -= 0.5f;
 					break;
 			}
 			break;
@@ -127,7 +133,7 @@ void PilotController::OnNotify(SDL_Event& pEvent)
 	}
 
 	Vector3 inputDirectionNormalized = inputDirection.Normalized();
-	Vector3 speed = inputDirectionNormalized.x * Vector3::Right + 
+	Vector3 speed = //inputDirectionNormalized.x * Vector3::Right + 
 		inputDirectionNormalized.y * Vector3::Forward +
 		inputDirectionNormalized.z * Vector3::Up;
 	speed *= mMovementSpeed;

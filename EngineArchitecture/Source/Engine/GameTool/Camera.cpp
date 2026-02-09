@@ -10,7 +10,7 @@ void Camera::Update()
 
 	Vector3 camPosition = mTransform->mPosition;
 	Vector3 target = mTransform->mPosition + mTransform->Forward() * 100.0f;
-	Vector3 up = Vector3::Up;
+	Vector3 up = mTransform->Up();
 
 	//Log::Info("" + std::to_string(camPosition.x) + ", " + std::to_string(camPosition.y) + ", " + std::to_string(camPosition.z));
 

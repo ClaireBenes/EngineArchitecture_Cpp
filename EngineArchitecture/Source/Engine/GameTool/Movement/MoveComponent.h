@@ -45,14 +45,14 @@ public:
 
 	/**
 	 * @brief Gets the current rotation speed of the actor.
-	 * @return The actor's rotation speed as a Vector2 (x for yaw, y for pitch).
+	 * @return The actor's rotation speed as a Vector3 (x for yaw, y for pitch and z for roll).
 	 */
-	Vector2 GetRotationSpeed() const;
+	Vector3 GetRotationSpeed() const;
 	/**
 	 * @brief Sets the rotation speed of the actor.
 	 * @param pRotationSpeed The new rotation speed to set.
 	 */
-	void SetRotationSpeed(Vector2 pRotationSpeed);
+	void SetRotationSpeed(Vector3 pRotationSpeed);
 
 
 	/**
@@ -105,7 +105,7 @@ protected:
 	/**
 	 * @brief Rotation speed of the actor (yaw and pitch).
 	 */
-	Vector2 mRotationSpeed = 0;
+	Vector3 mRotationSpeed = 0;
 
 private:
 	/**

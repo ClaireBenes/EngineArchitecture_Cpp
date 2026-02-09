@@ -30,6 +30,13 @@ void TheDescentScene::Load()
     skySphere->AddTexture(AssetManager::GetTexture("skyTex"));
     // ----- END SKY -----
 
+        //Caillou
+    Mesh* projectileMesh = AssetManager::LoadMesh("rock.obj", "caillou");
+    projectileMesh->SetShaderProgram(RendererGL::mSimpleMeshShaderProgram);
+
+    AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/stone.png", "rockTex");
+    projectileMesh->AddTexture(AssetManager::GetTexture("rockTex"));
+
     //UI
     //EndScreen
     AssetManager::LoadTexture(*GetRenderer(), "Resources/Textures/WinScreen.png", "winScreenTex");

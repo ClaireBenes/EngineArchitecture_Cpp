@@ -35,11 +35,12 @@ PilotController::~PilotController()
 
 void PilotController::Update()
 {
-	if (!Maths::NearZero(mRotationSpeed.MagnitudeSqr()))
+	if (!Maths::NearZero(mRollInput) || !Maths::NearZero(mRotationSpeed.MagnitudeSqr()))
 	{
-		Quaternion rotation = mOwner->mTransform->mRotation + Quaternion(mOwner->mTransform->Forward(), mRotationSpeed.z * Time::deltaTime);
-		rotation = rotation + Quaternion(mOwner->mTransform->Right(), mRotationSpeed.y * Time::deltaTime);
+		Quaternion rotation = mOwner->mTransform->mRotation;
 		rotation = rotation + Quaternion(mOwner->mTransform->Up(), mRotationSpeed.x * Time::deltaTime);
+		rotation = rotation + Quaternion(mOwner->mTransform->Right(), mRotationSpeed.y * Time::deltaTime);
+		rotation = rotation + Quaternion(mOwner->mTransform->Forward(), mRollInput * Time::deltaTime);
 
 		rotation.Normalize();
 		mOwner->mTransform->mRotation = rotation;
@@ -80,11 +81,11 @@ void PilotController::OnNotify(SDL_Event& pEvent)
 					break;
 				case SDLK_RIGHT:
 				case SDLK_d:
-					inputDirection.x -= 0.5f;
+					mRollInput -= 1.0f;
 					break;
 				case SDLK_LEFT:
 				case SDLK_q:
-					inputDirection.x += 0.5f;
+					mRollInput += 1.0f;
 					break;
 				case SDLK_RETURN:
 					if (mPlayer->mIsGameEnd) 
@@ -112,11 +113,11 @@ void PilotController::OnNotify(SDL_Event& pEvent)
 					break;
 				case SDLK_RIGHT:
 				case SDLK_d:
-					inputDirection.x += 0.5f;
+					mRollInput += 1.0f;
 					break;
 				case SDLK_LEFT:
 				case SDLK_q:
-					inputDirection.x -= 0.5f;
+					mRollInput -= 1.0f;
 					break;
 			}
 			break;

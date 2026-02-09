@@ -19,6 +19,7 @@ public:
 
 private:
 	float mMovementSpeed = 5.0f;
+	float mRollInput = 0.0f;
 	Vector3 inputDirection = Vector3::Zero;
 
 	TheDescentPlayer* mPlayer = nullptr;

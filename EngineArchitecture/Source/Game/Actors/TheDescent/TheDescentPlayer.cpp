@@ -87,11 +87,11 @@ void TheDescentPlayer::SetupComponents()
 
 
 	MeshComponent* meshComponent2 = new MeshComponent(mWaterDistortion, AssetManager::GetMesh("distortion"));
-	//mScene->AddActor(mWaterDistortion);
+	mScene->AddActor(mWaterDistortion);
 
 	// Gods Ray
 	MeshComponent* meshComponent = new MeshComponent(mGodsRay, AssetManager::GetMesh("rays"));
-	//mScene->AddActor(mGodsRay);
+	mScene->AddActor(mGodsRay);
 
 
 }
@@ -103,17 +103,17 @@ void TheDescentPlayer::Update()
 	mCamera->mTransform->mPosition = mTransform->mPosition; 
 	mCamera->mTransform->mRotation = mTransform->mRotation;
 
-	//Vector3 camForward = mCamera->mTransform->Forward(); // camera forward vector
-	//mGodsRay->mTransform->mPosition = mCamera->mTransform->mPosition + camForward;
+	Vector3 camForward = mCamera->mTransform->Forward(); // camera forward vector
+	mGodsRay->mTransform->mPosition = mCamera->mTransform->mPosition + camForward;
 
-	//mGodsRay->mTransform->LookAt(mCamera->mTransform->mPosition);
-	//mGodsRay->mTransform->RotatePitch(90);
+	//mGodsRay->mTransform->mRotation = mCamera->mTransform->mRotation;
+	//mGodsRay->mTransform->RotateYaw(180);
+	mGodsRay->mTransform->LookAt(mCamera->mTransform->mPosition);
+	mGodsRay->mTransform->RotatePitch(90);
 
-	//mWaterDistortion->mTransform->mPosition = mCamera->mTransform->mPosition + camForward * 1.01;
-	//mWaterDistortion->mTransform->LookAt(mCamera->mTransform->mPosition);
-	//mWaterDistortion->mTransform->RotatePitch(90);
-
-	mTransform->RotateRoll(1);
+	mWaterDistortion->mTransform->mPosition = mCamera->mTransform->mPosition + camForward * 1.01;
+	mWaterDistortion->mTransform->LookAt(mCamera->mTransform->mPosition);
+	mWaterDistortion->mTransform->RotatePitch(90);
 }
 
 void TheDescentPlayer::EndGame(bool isWin)

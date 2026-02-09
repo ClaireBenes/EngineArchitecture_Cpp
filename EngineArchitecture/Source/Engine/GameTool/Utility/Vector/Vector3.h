@@ -77,7 +77,7 @@ public:
 	 * @brief Returns a normalized copy of the vector.
 	 * @return Unit-length vector in same direction.
 	 */
-	Vector3 Normalized();
+	Vector3 Normalized() const;
 	/**
 	 * @brief Static method to normalize a vector.
 	 * @param vec Vector to normalize.

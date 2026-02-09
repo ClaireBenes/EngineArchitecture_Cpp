@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Game\Actors\TheDescent\TheDescentPlayer.h" />
     <ClInclude Include="Source\Game\Actors\Doom\Door.h" />
     <ClInclude Include="Source\Game\Actors\Doom\AmmoPickUp.h" />
     <ClInclude Include="Source\Game\Actors\Doom\HeartPickUp.h" />
     <ClInclude Include="Source\Game\Actors\Doom\EnemyProjectile.h" />
     <ClInclude Include="Source\Game\Actors\Doom\Projectile.h" />
     <ClInclude Include="Source\Game\Actors\Grass.h" />
+    <ClInclude Include="Source\Game\Scenes\TheDescentScene.h" />
     <ClInclude Include="Source\Game\Scenes\OpenGLTestScene.h" />
     <ClInclude Include="Source\Game\Actors\Doom\FirstEnemy.h" />
     <ClInclude Include="Source\Game\Controller\FPSController.h" />
@@ -86,6 +88,7 @@
     <ClInclude Include="Source\Game\Actors\Doom\WinBox.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\Actors\TheDescent\TheDescentPlayer.cpp" />
     <ClCompile Include="Source\Game\Actors\Doom\Door.cpp" />
     <ClCompile Include="Source\Game\Actors\Doom\AmmoPickUp.cpp" />
     <ClCompile Include="Source\Game\Actors\Doom\HeartPickUp.cpp" />
@@ -95,6 +98,7 @@
     <ClCompile Include="Source\Game\Actors\Grass.cpp" />
     <ClCompile Include="Source\Game\Controller\FPSController.cpp" />
     <ClCompile Include="Source\Game\Actors\Doom\DoomPlayer.cpp" />
+    <ClCompile Include="Source\Game\Scenes\TheDescentScene.cpp" />
     <ClCompile Include="Source\Game\Scenes\Doom.cpp" />
     <ClCompile Include="Source\Game\Actors\Bowling\BowlingBall.cpp" />
     <ClCompile Include="Source\Engine\GameTool\Utility\Geometry\Box.cpp" />
@@ -151,6 +155,7 @@
     <ClCompile Include="Source\Game\Actors\Doom\WinBox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Shaders\FullScreen.vert" />
     <None Include="Resources\Shaders\ArtShader.vert" />
     <None Include="Resources\Shaders\ArtShader.frag" />
     <None Include="Resources\Shaders\Sand.tese" />

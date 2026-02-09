@@ -80,7 +80,7 @@ void Vector3::Normalize()
 	}
 }
 
-Vector3 Vector3::Normalized()
+Vector3 Vector3::Normalized() const
 {
 	Vector3 temp(x, y, z);
 	temp.Normalize();

@@ -210,6 +210,12 @@
     <ClInclude Include="Source\Game\Actors\Doom\WinBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Scenes\TheDescentScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Actors\TheDescent\TheDescentPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Engine.cpp">
@@ -395,6 +401,12 @@
     <ClCompile Include="Source\Game\Actors\Doom\WinBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Game\Scenes\TheDescentScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Actors\TheDescent\TheDescentPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Game\Shaders\Vertex\SimpleVertex.shader" />
@@ -424,5 +436,6 @@
     <None Include="Resources\Shaders\Sand.tese" />
     <None Include="Resources\Shaders\ArtShader.frag" />
     <None Include="Resources\Shaders\ArtShader.vert" />
+    <None Include="Resources\Shaders\FullScreen.vert" />
   </ItemGroup>
 </Project>

@@ -279,6 +279,8 @@ void RendererGL::DrawRectLine(const Rectangle& rRect, Color pColor)
 void RendererGL::DrawAllMeshes()
 {
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     //TODO : Choose to see or not inside faces (by enabling GL_CULL_FACE)
     //glEnable(GL_CULL_FACE);
@@ -299,25 +301,9 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         pMesh->GetShaderProgram().setMatrix4("uWorldTransform", transform);
         pMesh->GetShaderProgram().setVector2f("uTileSize", tiling);
 
-        // ----- WAVE -----
-        //pMesh->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
-        //pMesh->GetShaderProgram().setFloat("uSpeed", 0.38f);
-        //pMesh->GetShaderProgram().setFloat("uFrequency", 15.11f);
-        //pMesh->GetShaderProgram().setFloat("uAmplitude", 1.08f);
-        //pMesh->GetShaderProgram().setFloat("uDisplacement", 0.52f);
-        //pMesh->GetShaderProgram().setVector4f("uColor", Vector4(0.262f, 0.674f, 0.959f, 1.0f));      
-        //pMesh->GetShaderProgram().setVector4f("uSecondColor", Vector4(0.847f, 1.0f, 1.0f, 1.0f)); 
-        // ----- END WAVE -----
-
-        // ----- ART SHADER -----
         pMesh->GetShaderProgram().setVector3f("uDimensions", Vector3(mWindow->GetDimensions().x, mWindow->GetDimensions().y, 1.0));
         pMesh->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
-        pMesh->GetShaderProgram().setFloat("uSpeed", 1.5f);
-        pMesh->GetShaderProgram().setFloat("uBrightness", 1000.0f);
-        pMesh->GetShaderProgram().setFloat("uSunriseMix", 0.0f);
-        pMesh->GetShaderProgram().setFloat("uCloudScale", 0.2f);
-        pMesh->GetShaderProgram().setInteger("uClouds", 150);
-        // ----- END ART SHADER -----
+        //Mesh->GetShaderProgram().setFloat("uSpeed", 1.5f);
 
         Texture* t = pMesh->GetTexture(pTextureIndex);
         if (t)
@@ -326,21 +312,6 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
         }
 
         pMesh->GetVertexArray()->SetActive();
-
-        // ----- SAND -----
-        //pMesh->GetShaderProgram().setFloat("uDisplacementStrength", 5.0f);
-        // ----- END SAND -----
-
-        // ----- GRASS -----
-        //int gridSizeX = 20;
-        //int gridSizeZ = 10;
-        //int instanceCount = gridSizeX * gridSizeZ;
-
-        //pMesh->GetShaderProgram().setInteger("uGridSizeX", gridSizeX);
-        //pMesh->GetShaderProgram().setInteger("uGridSizeZ", gridSizeZ);
-
-        //pMesh->GetShaderProgram().setFloat("time", Time::GetGameTime());
-        // ----- END GRASS -----
 
         //glDrawArraysInstanced(GL_TRIANGLES, 0, pMesh->GetVertexArray()->GetVerticeCount(), instanceCount);
         //glPatchParameteri(GL_PATCH_VERTICES, 3);

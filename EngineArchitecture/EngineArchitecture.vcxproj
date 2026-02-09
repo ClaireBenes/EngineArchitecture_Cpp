@@ -157,6 +157,7 @@
     <ClCompile Include="Source\Game\Actors\Doom\WinBox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Shaders\WaterDistortion.frag" />
     <None Include="Resources\Shaders\FullScreen.vert" />
     <None Include="Resources\Shaders\ArtShader.vert" />
     <None Include="Resources\Shaders\ArtShader.frag" />

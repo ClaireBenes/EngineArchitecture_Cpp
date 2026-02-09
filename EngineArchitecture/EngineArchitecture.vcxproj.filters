@@ -443,5 +443,6 @@
     <None Include="Resources\Shaders\ArtShader.frag" />
     <None Include="Resources\Shaders\ArtShader.vert" />
     <None Include="Resources\Shaders\FullScreen.vert" />
+    <None Include="Resources\Shaders\WaterDistortion.frag" />
   </ItemGroup>
 </Project>

@@ -28,6 +28,21 @@ void TheDescentPlayer::Start()
 	mGodsRay->mTransform->RotatePitch(90);
 	// ----- END GODS RAY -----
 
+	Shader distortionVertexShader = Shader();
+	Shader distortionFragShader = Shader();
+
+	distortionVertexShader.Load("ArtShader.vert", ShaderType::VERTEX);
+	distortionFragShader.Load("WaterDistortion.frag", ShaderType::FRAGMENT);
+
+	mUnderWaterDistortionShader.Compose({ &distortionVertexShader, &distortionFragShader });
+
+	mWaterDistortion = new Actor();
+
+	mWaterDistortion->mTransform->mScale = Vector3(screenWidth, 0.0f, screenHeight);
+	mWaterDistortion->mTransform->mPosition = { -0.6f + mWaterDistortion->mTransform->mScale.x, 0.0, 1 }; //-2.5f
+	mWaterDistortion->mTransform->RotatePitch(90);
+
+
 	Engine::mIsGamePaused = false;
 
 	Actor::Start();
@@ -44,8 +59,11 @@ void TheDescentPlayer::SetupComponents()
 	mMoveComponent->mVelocity = Vector3::Zero;
 
 	// God Ray Shader
-	mGodRayMesh = AssetManager::LoadMesh("plane.obj", "rays");
-	mGodRayMesh->SetShaderProgram(RendererGL::mArtShaderProgram);
+	Mesh* godRayMesh = AssetManager::LoadMesh("plane.obj", "rays");
+	godRayMesh->SetShaderProgram(RendererGL::mArtShaderProgram);
+
+	Mesh* waterDistortion = AssetManager::LoadMesh("plane.obj", "distortion");
+	waterDistortion->SetShaderProgram(mUnderWaterDistortionShader);
 
 	// ---- UI ----
 	// Lance Pierre
@@ -66,9 +84,14 @@ void TheDescentPlayer::SetupComponents()
 	winScreen->SetNewDimensions(0, 0);
 
 
+	MeshComponent* meshComponent2 = new MeshComponent(mWaterDistortion, AssetManager::GetMesh("distortion"));
+	mScene->AddActor(mWaterDistortion);
+
 	// Gods Ray
 	MeshComponent* meshComponent = new MeshComponent(mGodsRay, AssetManager::GetMesh("rays"));
-	//mScene->AddActor(mGodsRay);
+	mScene->AddActor(mGodsRay);
+
+
 }
 
 void TheDescentPlayer::Update()
@@ -84,9 +107,13 @@ void TheDescentPlayer::Update()
 	mGodsRay->mTransform->LookAt(mCamera->mTransform->mPosition);
 	mGodsRay->mTransform->RotatePitch(90);
 
+	mWaterDistortion->mTransform->mPosition = mCamera->mTransform->mPosition + camForward * 1.01;
+	mWaterDistortion->mTransform->LookAt(mCamera->mTransform->mPosition);
+	mWaterDistortion->mTransform->RotatePitch(90);
+
 	//mTransform->RotateRoll(1);
 
-	printf("%.2f\n", mTransform->mRotation.GetRoll());
+	//printf("%.2f\n", mTransform->mRotation.GetRoll());
 }
 
 void TheDescentPlayer::EndGame(bool isWin)

@@ -303,7 +303,7 @@ void RendererGL::DrawMesh(Mesh* pMesh, int pTextureIndex, const Matrix4& transfo
 
         pMesh->GetShaderProgram().setVector3f("uDimensions", Vector3(mWindow->GetDimensions().x, mWindow->GetDimensions().y, 1.0));
         pMesh->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
-        //Mesh->GetShaderProgram().setFloat("uSpeed", 1.5f);
+        pMesh->GetShaderProgram().setFloat("uSpeed", 0.3f);
 
         Texture* t = pMesh->GetTexture(pTextureIndex);
         if (t)

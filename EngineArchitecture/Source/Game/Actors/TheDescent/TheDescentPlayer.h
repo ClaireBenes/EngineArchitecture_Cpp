@@ -4,7 +4,7 @@
 #include "Engine/GameTool/Camera.h"
 #include <vector>
 
-class EditorController;
+class PilotController;
 class BoxColliderComponent;
 class SpriteRenderComponent;
 class Mesh;
@@ -28,7 +28,7 @@ public:
 
 private:
 	Camera* mCamera = nullptr;
-	EditorController* mMoveComponent = nullptr;
+	PilotController* mMoveComponent = nullptr;
 
 	BoxColliderComponent* mBoxComponent = nullptr;
 	SpriteRenderComponent* loseScreen = nullptr;

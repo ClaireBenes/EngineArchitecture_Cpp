@@ -1,6 +1,5 @@
 #include "TheDescentPlayer.h"
 
-#include "Engine/GameTool/Movement/Controller/EditorController.h"
 #include "Engine/Renderer/RendererGL.h"
 
 #include "Engine/Manager/AssetManager.h"
@@ -9,6 +8,8 @@
 #include "Engine/GameTool/Collision/BoxColliderComponent.h"
 
 #include "Engine/Engine.h"
+
+#include "Game/Controller/PilotController.h"
 
 void TheDescentPlayer::Start()
 {
@@ -38,7 +39,7 @@ void TheDescentPlayer::SetupComponents()
 
 	mBoxComponent = new BoxColliderComponent(this, { { -1, -1.8, -0.5 }, { 1, 1.8, 0.5 } });
 
-	mMoveComponent = new EditorController(this);
+	mMoveComponent = new PilotController(this);
 	mMoveComponent->SetCollider(mBoxComponent);
 	mMoveComponent->mVelocity = Vector3::Zero;
 
@@ -67,7 +68,7 @@ void TheDescentPlayer::SetupComponents()
 
 	// Gods Ray
 	MeshComponent* meshComponent = new MeshComponent(mGodsRay, AssetManager::GetMesh("rays"));
-	mScene->AddActor(mGodsRay);
+	//mScene->AddActor(mGodsRay);
 }
 
 void TheDescentPlayer::Update()
@@ -82,6 +83,10 @@ void TheDescentPlayer::Update()
 
 	mGodsRay->mTransform->LookAt(mCamera->mTransform->mPosition);
 	mGodsRay->mTransform->RotatePitch(90);
+
+	//mTransform->RotateRoll(1);
+
+	printf("%.2f\n", mTransform->mRotation.GetRoll());
 }
 
 void TheDescentPlayer::EndGame(bool isWin)
@@ -111,5 +116,5 @@ void TheDescentPlayer::TakeDamage(int damage)
 
 void TheDescentPlayer::Shoot()
 {
-	return;
+	//Do something
 }

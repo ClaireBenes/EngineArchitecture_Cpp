@@ -33,7 +33,6 @@ void EditorController::Update()
 	{
 		SetRotationSpeed(Vector2::ZERO);
 	}
-
 }
 
 void EditorController::OnNotify(SDL_Event& pEvent)

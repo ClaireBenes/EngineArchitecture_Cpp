@@ -32,16 +32,16 @@ void main()
 
     // Calculate ray strength
     float rays =
-        rayStrength(rayPos1, rayRefDir1, coord, 36.2214, 21.11349, 1.5) * 0.5 +
-        rayStrength(rayPos2, rayRefDir2, coord, 22.3991, 18.0234, 1.1) * 0.4;
+        rayStrength(rayPos1, rayRefDir1, coord, 36.2214, 21.11349, 0.8) * 0.5 +
+        rayStrength(rayPos2, rayRefDir2, coord, 22.3991, 18.0234, 0.4) * 0.4;
 
     // Attenuate brightness towards the bottom
     float brightness = 1.0 - (coord.y / uDimensions.y);
 
     vec3 rayColor;
-    rayColor.r = rays * (0.1 + brightness * 0.8);
-    rayColor.g = rays * (0.3 + brightness * 0.6);
-    rayColor.b = rays * (0.5 + brightness * 0.5);
+    rayColor.b = rays * (0.9 + brightness * (0.5 - 0.1));
+    rayColor.r = rays * (0.5 + brightness * (0.8 - 0.1));
+    rayColor.g = rays * (0.7 + brightness * (0.8 - 0.1));
 
     // Output transparent background + rays
     outColor = vec4(rayColor, rays); // alpha = ray strength for translucency

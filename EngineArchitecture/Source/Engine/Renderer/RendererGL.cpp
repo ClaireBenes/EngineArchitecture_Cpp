@@ -266,6 +266,13 @@ void RendererGL::DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle re
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
+void RendererGL::DrawScreenEffect(ShaderProgram& shaderProgram)
+{
+    shaderProgram.Use();
+
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+}
+
 void RendererGL::DrawRect(const Rectangle& rRect, Color pColor)
 {
     mRectShaderProgram.Use();

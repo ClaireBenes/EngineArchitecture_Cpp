@@ -4,6 +4,7 @@
 
 #include "Engine/Manager/AssetManager.h"
 #include "Engine/GameTool/Visual/Render/Sprite/SpriteRenderComponent.h"
+#include "Engine/GameTool/Visual/Render/ScreenEffectRenderComponent.h"
 #include "Engine/GameTool/Visual/Mesh/MeshComponent.h"
 #include "Engine/GameTool/Collision/BoxColliderComponent.h"
 
@@ -17,33 +18,6 @@ void TheDescentPlayer::Start()
 	mScene->AddActor(mCamera);
 
 	mTransform->mScale = { 1.0f, 1.5f, 1.8f };
-
-	// ----- GODS RAY -----
-	mGodsRay = new Actor();
-	float screenHeight = 2.0f * tan(28.0f * 0.5f * (3.14159f / 180.0f));
-	float screenWidth = screenHeight * mScene->GetWindow()->GetDimensions().x / mScene->GetWindow()->GetDimensions().y;
-
-	mGodsRay->mTransform->mScale = Vector3(screenWidth, 0.0f, screenHeight);
-	mGodsRay->mTransform->mPosition = { -0.6f + mGodsRay->mTransform->mScale.x, 0.0, 1 }; //-2.5f
-	mGodsRay->mTransform->RotatePitch(90);
-	// ----- END GODS RAY -----
-
-	// ----- WATER DISTORTION -----
-	Shader distortionVertexShader = Shader();
-	Shader distortionFragShader = Shader();
-
-	distortionVertexShader.Load("ArtShader.vert", ShaderType::VERTEX);
-	distortionFragShader.Load("WaterDistortion.frag", ShaderType::FRAGMENT);
-
-	mUnderWaterDistortionShader.Compose({ &distortionVertexShader, &distortionFragShader });
-
-	mWaterDistortion = new Actor();
-
-	mWaterDistortion->mTransform->mScale = Vector3(screenWidth, 0.0f, screenHeight);
-	mWaterDistortion->mTransform->mPosition = { -0.6f + mWaterDistortion->mTransform->mScale.x, 0.0, 1 }; //-2.5f
-	mWaterDistortion->mTransform->RotatePitch(90);
-	// ----- END WATER DISTORTION -----
-
 
 	Engine::mIsGamePaused = false;
 
@@ -61,11 +35,29 @@ void TheDescentPlayer::SetupComponents()
 	mMoveComponent->mVelocity = Vector3::Zero;
 
 	// God Ray Shader
-	Mesh* godRayMesh = AssetManager::LoadMesh("plane.obj", "rays");
-	godRayMesh->SetShaderProgram(RendererGL::mArtShaderProgram);
+	Shader godRayVertexShader = Shader();
+	Shader godRayFragShader = Shader();
 
-	Mesh* waterDistortion = AssetManager::LoadMesh("plane.obj", "distortion");
-	waterDistortion->SetShaderProgram(mUnderWaterDistortionShader);
+	godRayVertexShader.Load("FullScreen.vert", ShaderType::VERTEX);
+	godRayFragShader.Load("ArtShader.frag", ShaderType::FRAGMENT);
+
+	mGodRayScreenEffect = new ScreenEffectRenderComponent(this);
+	mGodRayScreenEffect->GetShaderProgram().Compose({ &godRayVertexShader, &godRayFragShader });
+
+	mGodRayScreenEffect->GetShaderProgram().setVector3f("uDimensions", Vector3(mScene->GetWindow()->GetDimensions().x, mScene->GetWindow()->GetDimensions().y, 1.0));
+
+	// Water Distortion Shader
+	Shader distortionVertexShader = Shader();
+	Shader distortionFragShader = Shader();
+
+	distortionVertexShader.Load("FullScreen.vert", ShaderType::VERTEX);
+	distortionFragShader.Load("WaterDistortion.frag", ShaderType::FRAGMENT);
+
+	mDistortionScreenEffect = new ScreenEffectRenderComponent(this);
+	mDistortionScreenEffect->GetShaderProgram().Compose({ &distortionVertexShader, &distortionFragShader });
+
+	mDistortionScreenEffect->GetShaderProgram().setVector3f("uDimensions", Vector3(mScene->GetWindow()->GetDimensions().x, mScene->GetWindow()->GetDimensions().y, 1.0));
+	mDistortionScreenEffect->GetShaderProgram().setFloat("uSpeed", 0.3f);
 
 	// ---- UI ----
 	// CockPit
@@ -84,16 +76,6 @@ void TheDescentPlayer::SetupComponents()
 	//Win Screen
 	winScreen = new SpriteRenderComponent(this, AssetManager::GetTexture("winScreenTex"), 120);
 	winScreen->SetNewDimensions(0, 0);
-
-
-	MeshComponent* meshComponent2 = new MeshComponent(mWaterDistortion, AssetManager::GetMesh("distortion"));
-	mScene->AddActor(mWaterDistortion);
-
-	// Gods Ray
-	MeshComponent* meshComponent = new MeshComponent(mGodsRay, AssetManager::GetMesh("rays"));
-	mScene->AddActor(mGodsRay);
-
-
 }
 
 void TheDescentPlayer::Update()
@@ -103,17 +85,12 @@ void TheDescentPlayer::Update()
 	mCamera->mTransform->mPosition = mTransform->mPosition; 
 	mCamera->mTransform->mRotation = mTransform->mRotation;
 
-	Vector3 camForward = mCamera->mTransform->Forward(); // camera forward vector
-	mGodsRay->mTransform->mPosition = mCamera->mTransform->mPosition + camForward;
+	// Update post process
+	mGodRayScreenEffect->GetShaderProgram().Use();
+	mGodRayScreenEffect->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
 
-	//mGodsRay->mTransform->mRotation = mCamera->mTransform->mRotation;
-	//mGodsRay->mTransform->RotateYaw(180);
-	mGodsRay->mTransform->LookAt(mCamera->mTransform->mPosition);
-	mGodsRay->mTransform->RotatePitch(90);
-
-	mWaterDistortion->mTransform->mPosition = mCamera->mTransform->mPosition + camForward * 1.01;
-	mWaterDistortion->mTransform->LookAt(mCamera->mTransform->mPosition);
-	mWaterDistortion->mTransform->RotatePitch(90);
+	mDistortionScreenEffect->GetShaderProgram().Use();
+	mDistortionScreenEffect->GetShaderProgram().setFloat("uTime", Time::GetGameTime());
 }
 
 void TheDescentPlayer::EndGame(bool isWin)

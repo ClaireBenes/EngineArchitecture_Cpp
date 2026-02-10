@@ -77,6 +77,8 @@ public:
 	 * @param flip Specifies sprite flipping (horizontal, vertical, etc.).
 	 */
 	void DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle rec, Flip flip = Flip::None) override;
+	
+	void DrawScreenEffect(ShaderProgram& shaderProgram) override;
 
 	/**
 	 * @brief Draws all meshes currently in the render queue.

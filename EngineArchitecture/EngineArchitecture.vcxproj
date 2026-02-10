@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Engine\GameTool\Visual\Render\ScreenEffectRenderComponent.h" />
     <ClInclude Include="Source\Game\Controller\PilotController.h" />
     <ClInclude Include="Source\Game\Actors\TheDescent\TheDescentPlayer.h" />
     <ClInclude Include="Source\Game\Actors\Doom\Door.h" />
@@ -89,6 +90,7 @@
     <ClInclude Include="Source\Game\Actors\Doom\WinBox.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine\GameTool\Visual\Render\ScreenEffectRenderComponent.cpp" />
     <ClCompile Include="Source\Game\Controller\PilotController.cpp" />
     <ClCompile Include="Source\Game\Actors\TheDescent\TheDescentPlayer.cpp" />
     <ClCompile Include="Source\Game\Actors\Doom\Door.cpp" />

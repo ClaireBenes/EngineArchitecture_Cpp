@@ -9,7 +9,7 @@
 class PilotController;
 class BoxColliderComponent;
 class SpriteRenderComponent;
-class Mesh;
+class ScreenEffectRenderComponent;
 
 class TheDescentPlayer : public Actor
 {
@@ -36,10 +36,9 @@ private:
 	SpriteRenderComponent* loseScreen = nullptr;
 	SpriteRenderComponent* winScreen = nullptr;
 
-	Actor* mGodsRay = nullptr;
-	Actor* mWaterDistortion = nullptr;
-
-	ShaderProgram mUnderWaterDistortionShader;
+	// Post Process Shaders
+	ScreenEffectRenderComponent* mGodRayScreenEffect = nullptr;
+	ScreenEffectRenderComponent* mDistortionScreenEffect = nullptr;
 
 	std::vector<Actor*> mAllHearts;
 

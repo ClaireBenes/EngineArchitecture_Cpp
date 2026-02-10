@@ -12,6 +12,7 @@ class Texture;
 class Mesh;
 class RenderComponent;
 class DebugRenderInterface;
+class ShaderProgram;
 
 /**
  * @brief IRenderer is an abstract base class for rendering systems. It defines methods for
@@ -97,6 +98,8 @@ public:
      * @param flip Specifies sprite flipping (horizontal, vertical, etc.).
      */
     virtual void DrawSprite(const Actor& rOwner, Texture* rTexture, Rectangle rec, Flip flip = Flip::None) = 0;
+
+    virtual void DrawScreenEffect(ShaderProgram& shaderProgram) {};
 
     /**
      * @brief Draws a mesh with a specific texture index and transformation.

@@ -5,7 +5,7 @@
 #include "Engine/GameTool/Movement/MoveComponent.h"
 #include "Engine/GameTool/Collision/BoxColliderComponent.h"
 
-#include "Game/Actors/Doom/FirstEnemy.h"
+#include "Game/Actors/TheDescent/SimpleEnemy.h"
 
 
 void Projectile::Start()
@@ -14,16 +14,13 @@ void Projectile::Start()
 
 	if (mPlayer != nullptr)
 	{
-		Vector3 forwardOffset = mPlayer->mTransform->Forward() * 2.0f;
+		Vector3 forwardOffset = mPlayer->mTransform->Forward() * 5.0f;
 		mTransform->mPosition = mPlayer->mTransform->mPosition + forwardOffset;
 
 		mTransform->mPosition.y -= 0.5f;
-		//mTransform->mPosition.x -= 0.3f;
 	}
 
-	mTransform->mScale = 0.2f;
-
-	//mTransform->RotateYaw(20);
+	mTransform->mScale = 1.6f;
 }
 
 void Projectile::SetupComponents()
@@ -31,7 +28,7 @@ void Projectile::SetupComponents()
 	Actor::SetupComponents();
 
 	MeshComponent* meshComponent = new MeshComponent(this, AssetManager::GetMesh("caillou"));
-	meshComponent->SetTextureTiling(0.1f, 0.1f);
+	meshComponent->SetTextureTiling(0.5f, 0.5f);
 
 	BoxColliderComponent* boxComponent = new BoxColliderComponent(this, { { -0.5f, -0.5f, -1.5f }, { 1.5f, 2.5f, 1.5f } });
 
@@ -40,7 +37,7 @@ void Projectile::SetupComponents()
 		mMoveComponent = new MoveComponent(this);
 		mMoveComponent->SetCollider(boxComponent);
 
-		Vector3 speed = mPlayer->mTransform->Forward() * 20.0f;
+		Vector3 speed = mPlayer->mTransform->Forward() * 100.0f;
 		Vector3 force = mPlayer->mTransform->Forward() * 0.5f;
 		mMoveComponent->SetSpeed(speed);
 		mMoveComponent->AddForce(force);
@@ -56,7 +53,7 @@ void Projectile::OnCollide(Actor* collidedActor)
 {
 	Actor::OnCollide(collidedActor);
 
-	FirstEnemy* enemy = dynamic_cast<FirstEnemy*>(collidedActor);
+	SimpleEnemy* enemy = dynamic_cast<SimpleEnemy*>(collidedActor);
 	if (enemy)
 	{
 		enemy->TakeDamage(1.0f);

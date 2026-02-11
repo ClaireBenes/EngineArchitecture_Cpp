@@ -18,7 +18,7 @@ public:
 	void OnMousePress(SDL_MouseButtonEvent& b);
 
 private:
-	float mMovementSpeed = 5.0f;
+	float mMovementSpeed = 25.0f;
 	float mRollInput = 0.0f;
 	Vector3 inputDirection = Vector3::Zero;
 

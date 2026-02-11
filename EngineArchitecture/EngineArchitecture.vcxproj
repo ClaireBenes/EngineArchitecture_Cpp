@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine\GameTool\Visual\Render\ScreenEffectRenderComponent.h" />
+    <ClInclude Include="Source\Game\Actors\TheDescent\SimpleEnemy.h" />
     <ClInclude Include="Source\Game\Controller\PilotController.h" />
     <ClInclude Include="Source\Game\Actors\TheDescent\TheDescentPlayer.h" />
     <ClInclude Include="Source\Game\Actors\Doom\Door.h" />
@@ -91,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\GameTool\Visual\Render\ScreenEffectRenderComponent.cpp" />
+    <ClCompile Include="Source\Game\Actors\TheDescent\SimpleEnemy.cpp" />
     <ClCompile Include="Source\Game\Controller\PilotController.cpp" />
     <ClCompile Include="Source\Game\Actors\TheDescent\TheDescentPlayer.cpp" />
     <ClCompile Include="Source\Game\Actors\Doom\Door.cpp" />

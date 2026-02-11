@@ -11,6 +11,9 @@ public:
 	void Start() override;
 	void Update(float deltaTime) override;
 
+	void InitializeFloors();
+	void InitializeEnemies();
+
 private:
 	TheDescentPlayer* mPlayer = nullptr;
 };

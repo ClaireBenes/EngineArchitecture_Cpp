@@ -38,7 +38,7 @@ void PilotController::Update()
 	if (!Maths::NearZero(mRollInput) || !Maths::NearZero(mRotationSpeed.MagnitudeSqr()))
 	{
 		Quaternion rotation = mOwner->mTransform->mRotation;
-		rotation = rotation + Quaternion(mOwner->mTransform->Up(), mRotationSpeed.x * Time::deltaTime);
+		rotation = rotation + Quaternion(Vector3::Up, mRotationSpeed.x * Time::deltaTime);
 		rotation = rotation + Quaternion(mOwner->mTransform->Right(), mRotationSpeed.y * Time::deltaTime);
 		rotation = rotation + Quaternion(mOwner->mTransform->Forward(), mRollInput * Time::deltaTime);
 

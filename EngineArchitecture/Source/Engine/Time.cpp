@@ -16,7 +16,10 @@ unsigned int Time::ComputeDeltaTime()
     unsigned int dt = mFrameStart - mLastFrame;
     mLastFrame = mFrameStart;
     dt = std::min(dt, MAX_DT);
+
     deltaTime = dt / 1000.0f;
+    mGameTime += deltaTime;
+
     return dt;
 }
 
@@ -29,7 +32,6 @@ void Time::DelayTime()
 
 float Time::GetGameTime()
 {
-    mGameTime += deltaTime;
     return mGameTime;
 }
 

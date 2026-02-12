@@ -134,9 +134,7 @@ void PilotController::OnNotify(SDL_Event& pEvent)
 	}
 
 	Vector3 inputDirectionNormalized = inputDirection.Normalized();
-	Vector3 speed = //inputDirectionNormalized.x * Vector3::Right + 
-		inputDirectionNormalized.y * Vector3::Forward +
-		inputDirectionNormalized.z * Vector3::Up;
+	Vector3 speed = inputDirectionNormalized.y * Vector3::Forward + inputDirectionNormalized.z * Vector3::Up;
 	speed *= mMovementSpeed;
 	SetSpeed(speed);
 
